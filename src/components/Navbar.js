@@ -17,7 +17,7 @@ const Navbar = () => {
 
 	return (
 		<div class=" w-full px-36 h-16 flex justify-start shadow-xl">
-			<div class="flex justify-center items-center">
+			<div class="flex justify-center items-center cursor-pointer">
 				<img src="/image/logo.png" class="h-10" alt="logo" />
 			</div>
 			<div class="flex-1 flex justify-end items-center">
