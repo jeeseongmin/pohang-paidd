@@ -21,8 +21,8 @@ const Home = () => {
 			{/* section 2 */}
 			<div class="flex flex-row px-36 pt-16">
 				<div class="w-1/2 ">
-					<h1 class="text-3xl">발달장애인협회</h1>
-					<h1 class="text-3xl">사업소개</h1>
+					<h1 class="text-3xl font-semibold mb-2">발달장애인협회</h1>
+					<h1 class="text-3xl font-semibold">사업소개</h1>
 					<div class="text-xl py-8">
 						발달장애인협회에서 진행되는 사업들을 살펴보세요.
 					</div>
@@ -51,7 +51,7 @@ const Home = () => {
 			{/* section 3 */}
 			<div class="flex flex-col px-36 py-8">
 				<div class="w-full">
-					<h1 class="text-3xl">소식</h1>
+					<h1 class="text-3xl font-semibold">소식</h1>
 					<div class="text-xl py-8">
 						발달장애인협회에서는 어떤 일들이 있었을까요?
 					</div>
@@ -125,7 +125,7 @@ const Home = () => {
 			{/* section 4 */}
 			<div class="flex flex-col px-36 py-16">
 				<div class="w-full">
-					<h1 class="text-3xl">후원 및 자원봉사</h1>
+					<h1 class="text-3xl font-semibold">후원 및 자원봉사</h1>
 					<div class="text-xl py-8">
 						더 많은 발달장애인에게 좋은 서비스를 지원할 수 있도록 후원과
 						자원봉사 신청을 받습니다.

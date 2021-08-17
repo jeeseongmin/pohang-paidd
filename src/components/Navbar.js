@@ -16,20 +16,23 @@ const Navbar = () => {
 	};
 
 	return (
-		<div class=" w-full px-36 h-16 flex justify-start shadow-xl">
+		<div class="w-full px-36 h-16 flex justify-start shadow-xl">
 			<div class="flex justify-center items-center cursor-pointer">
-				<img src="/image/logo.png" class="h-10" alt="logo" />
+				<Link to="/">
+					<img src="/image/logo.png" class="h-10" alt="logo" />
+				</Link>
 			</div>
-			<div class="flex-1 flex justify-end items-center">
+			<div class="z-30 flex-1 flex justify-end items-center">
 				<div
 					onMouseOver={() => hoverIn(0)}
 					onMouseOut={() => hoverOut(0)}
 					class="h-full relative ml-16 flex items-center"
 				>
 					<Link
+						to="/introduce/intro"
 						class={
 							"pl-4 font-semibold text-lg " +
-							(overMenu[0] ? "text-blue-500" : "")
+							(overMenu[0] ? "text-purple-700" : "")
 						}
 					>
 						협회소개
@@ -40,19 +43,34 @@ const Navbar = () => {
 							(overMenu[0] ? "block" : "hidden")
 						}
 					>
-						<Link class="text-xs text-gray-400 pl-4 py-3 border-b border-gray-200 hover:bg-gray-100 hover:text-blue-500">
+						<Link
+							to="/introduce/intro"
+							class="text-xs text-gray-400 pl-4 py-3 border-b border-gray-200 hover:bg-gray-100 hover:text-purple-700"
+						>
 							인사말
 						</Link>
-						<Link class="text-xs text-gray-400 pl-4 py-3 border-b border-gray-200 hover:bg-gray-100 hover:text-blue-500">
+						<Link
+							to="/introduce/purpose"
+							class="text-xs text-gray-400 pl-4 py-3 border-b border-gray-200 hover:bg-gray-100 hover:text-purple-700"
+						>
 							설립목적
 						</Link>
-						<Link class="text-xs text-gray-400 pl-4 py-3 border-b border-gray-200 hover:bg-gray-100 hover:text-blue-500">
+						<Link
+							to="/introduce/history"
+							class="text-xs text-gray-400 pl-4 py-3 border-b border-gray-200 hover:bg-gray-100 hover:text-purple-700"
+						>
 							연혁
 						</Link>
-						<Link class="text-xs text-gray-400 pl-4 py-3 border-b border-gray-200 hover:bg-gray-100 hover:text-blue-500">
+						<Link
+							to="/introduce/org"
+							class="text-xs text-gray-400 pl-4 py-3 border-b border-gray-200 hover:bg-gray-100 hover:text-purple-700"
+						>
 							조직도
 						</Link>
-						<Link class="text-xs text-gray-400 pl-4 py-3 hover:bg-gray-100 hover:text-blue-500">
+						<Link
+							to="/introduce/guide"
+							class="text-xs text-gray-400 pl-4 py-3 hover:bg-gray-100 hover:text-purple-700"
+						>
 							오시는 길
 						</Link>
 					</div>
@@ -65,7 +83,7 @@ const Navbar = () => {
 					<Link
 						class={
 							"pl-4 font-semibold text-lg " +
-							(overMenu[1] ? "text-blue-500" : "")
+							(overMenu[1] ? "text-purple-700" : "")
 						}
 					>
 						주요사업
@@ -76,16 +94,16 @@ const Navbar = () => {
 							(overMenu[1] ? "block" : "hidden")
 						}
 					>
-						<Link class="text-xs text-gray-400 pl-4 py-3 border-b border-gray-200 hover:bg-gray-100 hover:text-blue-500">
+						<Link class="text-xs text-gray-400 pl-4 py-3 border-b border-gray-200 hover:bg-gray-100 hover:text-purple-700">
 							협회사업
 						</Link>
-						<Link class="text-xs text-gray-400 pl-4 py-3 border-b border-gray-200 hover:bg-gray-100 hover:text-blue-500">
+						<Link class="text-xs text-gray-400 pl-4 py-3 border-b border-gray-200 hover:bg-gray-100 hover:text-purple-700">
 							포항시지적장애인 자립지원센터
 						</Link>
-						<Link class="text-xs text-gray-400 pl-4 py-3 border-b border-gray-200 hover:bg-gray-100 hover:text-blue-500">
+						<Link class="text-xs text-gray-400 pl-4 py-3 border-b border-gray-200 hover:bg-gray-100 hover:text-purple-700">
 							장애인활동 지원사업
 						</Link>
-						<Link class="text-xs text-gray-400 pl-4 py-3 hover:bg-gray-100 hover:text-blue-500">
+						<Link class="text-xs text-gray-400 pl-4 py-3 hover:bg-gray-100 hover:text-purple-700">
 							방과후활동 지원사업
 						</Link>
 					</div>
@@ -99,7 +117,7 @@ const Navbar = () => {
 					<Link
 						class={
 							"pl-4 font-semibold text-lg " +
-							(overMenu[2] ? "text-blue-500" : "")
+							(overMenu[2] ? "text-purple-700" : "")
 						}
 					>
 						부설기관
@@ -110,7 +128,7 @@ const Navbar = () => {
 							(overMenu[2] ? "block" : "hidden")
 						}
 					>
-						<Link class="text-xs text-gray-400 pl-4 py-3  hover:bg-gray-100 hover:text-blue-500">
+						<Link class="text-xs text-gray-400 pl-4 py-3  hover:bg-gray-100 hover:text-purple-700">
 							부설기관
 						</Link>
 					</div>
@@ -123,7 +141,7 @@ const Navbar = () => {
 					<Link
 						class={
 							"pl-4 font-semibold text-lg " +
-							(overMenu[3] ? "text-blue-500" : "")
+							(overMenu[3] ? "text-purple-700" : "")
 						}
 					>
 						참여마당
@@ -134,16 +152,16 @@ const Navbar = () => {
 							(overMenu[3] ? "block" : "hidden")
 						}
 					>
-						<Link class="text-xs text-gray-400 pl-4 py-3 border-b border-gray-200 hover:bg-gray-100 hover:text-blue-500">
+						<Link class="text-xs text-gray-400 pl-4 py-3 border-b border-gray-200 hover:bg-gray-100 hover:text-purple-700">
 							공지사항
 						</Link>
-						<Link class="text-xs text-gray-400 pl-4 py-3 border-b border-gray-200 hover:bg-gray-100 hover:text-blue-500">
+						<Link class="text-xs text-gray-400 pl-4 py-3 border-b border-gray-200 hover:bg-gray-100 hover:text-purple-700">
 							건의 및 고충상담
 						</Link>
-						<Link class="text-xs text-gray-400 pl-4 py-3 border-b border-gray-200 hover:bg-gray-100 hover:text-blue-500">
+						<Link class="text-xs text-gray-400 pl-4 py-3 border-b border-gray-200 hover:bg-gray-100 hover:text-purple-700">
 							후원
 						</Link>
-						<Link class="text-xs text-gray-400 pl-4 py-3 hover:bg-gray-100 hover:text-blue-500">
+						<Link class="text-xs text-gray-400 pl-4 py-3 hover:bg-gray-100 hover:text-purple-700">
 							자원봉사
 						</Link>
 					</div>
@@ -156,7 +174,7 @@ const Navbar = () => {
 					<Link
 						class={
 							"pl-4 font-semibold text-lg " +
-							(overMenu[4] ? "text-blue-500" : "")
+							(overMenu[4] ? "text-purple-700" : "")
 						}
 					>
 						지역복지
@@ -167,7 +185,7 @@ const Navbar = () => {
 							(overMenu[4] ? "block" : "hidden")
 						}
 					>
-						<Link class="text-xs text-gray-400 pl-4 py-3 hover:bg-gray-100 hover:text-blue-500">
+						<Link class="text-xs text-gray-400 pl-4 py-3 hover:bg-gray-100 hover:text-purple-700">
 							지역복지
 						</Link>
 					</div>
