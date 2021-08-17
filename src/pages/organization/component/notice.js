@@ -1,7 +1,7 @@
 import React from "react";
 
-const notice = () => {
+const Notice = () => {
 	return <div></div>;
 };
 
-export default notice;
+export default Notice;

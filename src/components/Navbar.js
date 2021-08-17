@@ -16,7 +16,7 @@ const Navbar = () => {
 	};
 
 	return (
-		<div class="w-full px-36 h-16 flex justify-start shadow-xl">
+		<div class="z-40 w-full px-36 h-16 flex justify-start shadow-lg fixed bg-white ">
 			<div class="flex justify-center items-center cursor-pointer">
 				<Link to="/">
 					<img src="/image/logo.png" class="h-10" alt="logo" />
@@ -139,6 +139,7 @@ const Navbar = () => {
 					class="h-full relative ml-16 flex items-center"
 				>
 					<Link
+						to="/participation/notice"
 						class={
 							"pl-4 font-semibold text-lg " +
 							(overMenu[3] ? "text-purple-700" : "")
@@ -152,16 +153,28 @@ const Navbar = () => {
 							(overMenu[3] ? "block" : "hidden")
 						}
 					>
-						<Link class="text-xs text-gray-400 pl-4 py-3 border-b border-gray-200 hover:bg-gray-100 hover:text-purple-700">
+						<Link
+							to="/participation/notice"
+							class="text-xs text-gray-400 pl-4 py-3 border-b border-gray-200 hover:bg-gray-100 hover:text-purple-700"
+						>
 							공지사항
 						</Link>
-						<Link class="text-xs text-gray-400 pl-4 py-3 border-b border-gray-200 hover:bg-gray-100 hover:text-purple-700">
+						<Link
+							to="/participation/counseling"
+							class="text-xs text-gray-400 pl-4 py-3 border-b border-gray-200 hover:bg-gray-100 hover:text-purple-700"
+						>
 							건의 및 고충상담
 						</Link>
-						<Link class="text-xs text-gray-400 pl-4 py-3 border-b border-gray-200 hover:bg-gray-100 hover:text-purple-700">
+						<Link
+							to="/participation/support"
+							class="text-xs text-gray-400 pl-4 py-3 border-b border-gray-200 hover:bg-gray-100 hover:text-purple-700"
+						>
 							후원
 						</Link>
-						<Link class="text-xs text-gray-400 pl-4 py-3 hover:bg-gray-100 hover:text-purple-700">
+						<Link
+							to="/participation/volunteer"
+							class="text-xs text-gray-400 pl-4 py-3 hover:bg-gray-100 hover:text-purple-700"
+						>
 							자원봉사
 						</Link>
 					</div>

@@ -1,6 +1,6 @@
 import React from "react";
 
-const Intro = () => {
+const intro = () => {
 	return (
 		<div class="px-36 py-16">
 			<h1 class="text-3xl font-bold">인사말</h1>
@@ -20,4 +20,4 @@ const Intro = () => {
 	);
 };
 
-export default Intro;
+export default intro;
