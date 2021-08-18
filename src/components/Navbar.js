@@ -3,6 +3,7 @@ import { Route, Link } from "react-router-dom";
 
 const Navbar = () => {
 	const [overMenu, setOverMenu] = useState([false, false, false, false, false]);
+	const [page, setPage] = useState(0);
 
 	const hoverIn = (menu) => {
 		const cp = [...overMenu];
@@ -16,10 +17,15 @@ const Navbar = () => {
 		setOverMenu(cp);
 	};
 
+	const goPage = (num) => {
+		setPage(num);
+		window.scrollTo(0, 0);
+	};
+
 	return (
 		<div class="z-40 w-full px-36 h-16 flex justify-start shadow-lg fixed bg-white ">
 			<div class="flex justify-center items-center cursor-pointer">
-				<Link to="/" onClick={() => window.scrollTo(0, 0)}>
+				<Link to="/" onClick={() => goPage(0)}>
 					<img src="/image/logo.png" class="h-10" alt="logo" />
 				</Link>
 			</div>
@@ -31,10 +37,10 @@ const Navbar = () => {
 				>
 					<Link
 						to="/introduce/intro"
-						onClick={() => window.scrollTo(0, 0)}
+						onClick={() => goPage(1)}
 						class={
 							"pl-4 font-semibold text-lg " +
-							(overMenu[0] ? "text-purple-700" : "")
+							(overMenu[0] || page === 1 ? "text-purple-700" : "")
 						}
 					>
 						협회소개
@@ -47,35 +53,35 @@ const Navbar = () => {
 					>
 						<Link
 							to="/introduce/intro"
-							onClick={() => window.scrollTo(0, 0)}
+							onClick={() => goPage(1)}
 							class="text-xs text-gray-400 pl-4 py-3 border-b border-gray-200 hover:bg-gray-100 hover:text-purple-700"
 						>
 							인사말
 						</Link>
 						<Link
 							to="/introduce/purpose"
-							onClick={() => window.scrollTo(0, 0)}
+							onClick={() => goPage(1)}
 							class="text-xs text-gray-400 pl-4 py-3 border-b border-gray-200 hover:bg-gray-100 hover:text-purple-700"
 						>
 							설립목적
 						</Link>
 						<Link
 							to="/introduce/history"
-							onClick={() => window.scrollTo(0, 0)}
+							onClick={() => goPage(1)}
 							class="text-xs text-gray-400 pl-4 py-3 border-b border-gray-200 hover:bg-gray-100 hover:text-purple-700"
 						>
 							연혁
 						</Link>
 						<Link
 							to="/introduce/org"
-							onClick={() => window.scrollTo(0, 0)}
+							onClick={() => goPage(1)}
 							class="text-xs text-gray-400 pl-4 py-3 border-b border-gray-200 hover:bg-gray-100 hover:text-purple-700"
 						>
 							조직도
 						</Link>
 						<Link
 							to="/introduce/guide"
-							onClick={() => window.scrollTo(0, 0)}
+							onClick={() => goPage(1)}
 							class="text-xs text-gray-400 pl-4 py-3 hover:bg-gray-100 hover:text-purple-700"
 						>
 							오시는 길
@@ -90,9 +96,9 @@ const Navbar = () => {
 					<Link
 						class={
 							"pl-4 font-semibold text-lg " +
-							(overMenu[1] ? "text-purple-700" : "")
+							(overMenu[1] || page === 2 ? "text-purple-700" : "")
 						}
-						onClick={() => window.scrollTo(0, 0)}
+						onClick={() => goPage(2)}
 					>
 						주요사업
 					</Link>
@@ -103,25 +109,25 @@ const Navbar = () => {
 						}
 					>
 						<Link
-							onClick={() => window.scrollTo(0, 0)}
+							onClick={() => goPage(2)}
 							class="text-xs text-gray-400 pl-4 py-3 border-b border-gray-200 hover:bg-gray-100 hover:text-purple-700"
 						>
 							협회사업
 						</Link>
 						<Link
-							onClick={() => window.scrollTo(0, 0)}
+							onClick={() => goPage(2)}
 							class="text-xs text-gray-400 pl-4 py-3 border-b border-gray-200 hover:bg-gray-100 hover:text-purple-700"
 						>
 							포항시지적장애인 자립지원센터
 						</Link>
 						<Link
-							onClick={() => window.scrollTo(0, 0)}
+							onClick={() => goPage(2)}
 							class="text-xs text-gray-400 pl-4 py-3 border-b border-gray-200 hover:bg-gray-100 hover:text-purple-700"
 						>
 							장애인활동 지원사업
 						</Link>
 						<Link
-							onClick={() => window.scrollTo(0, 0)}
+							onClick={() => goPage(2)}
 							class="text-xs text-gray-400 pl-4 py-3 hover:bg-gray-100 hover:text-purple-700"
 						>
 							방과후활동 지원사업
@@ -135,10 +141,10 @@ const Navbar = () => {
 					class="h-full relative ml-16 flex items-center"
 				>
 					<Link
-						onClick={() => window.scrollTo(0, 0)}
+						onClick={() => goPage(3)}
 						class={
 							"pl-4 font-semibold text-lg " +
-							(overMenu[2] ? "text-purple-700" : "")
+							(overMenu[2] || page === 3 ? "text-purple-700" : "")
 						}
 					>
 						부설기관
@@ -150,7 +156,7 @@ const Navbar = () => {
 						}
 					>
 						<Link
-							onClick={() => window.scrollTo(0, 0)}
+							onClick={() => goPage(3)}
 							class="text-xs text-gray-400 pl-4 py-3  hover:bg-gray-100 hover:text-purple-700"
 						>
 							부설기관
@@ -164,10 +170,10 @@ const Navbar = () => {
 				>
 					<Link
 						to="/participation/notice"
-						onClick={() => window.scrollTo(0, 0)}
+						onClick={() => goPage(4)}
 						class={
 							"pl-4 font-semibold text-lg " +
-							(overMenu[3] ? "text-purple-700" : "")
+							(overMenu[3] || page === 4 ? "text-purple-700" : "")
 						}
 					>
 						참여마당
@@ -179,28 +185,28 @@ const Navbar = () => {
 						}
 					>
 						<Link
-							onClick={() => window.scrollTo(0, 0)}
+							onClick={() => goPage(4)}
 							to="/participation/notice"
 							class="text-xs text-gray-400 pl-4 py-3 border-b border-gray-200 hover:bg-gray-100 hover:text-purple-700"
 						>
 							공지사항
 						</Link>
 						<Link
-							onClick={() => window.scrollTo(0, 0)}
+							onClick={() => goPage(4)}
 							to="/participation/counseling"
 							class="text-xs text-gray-400 pl-4 py-3 border-b border-gray-200 hover:bg-gray-100 hover:text-purple-700"
 						>
 							건의 및 고충상담
 						</Link>
 						<Link
-							onClick={() => window.scrollTo(0, 0)}
+							onClick={() => goPage(4)}
 							to="/participation/support"
 							class="text-xs text-gray-400 pl-4 py-3 border-b border-gray-200 hover:bg-gray-100 hover:text-purple-700"
 						>
 							후원
 						</Link>
 						<Link
-							onClick={() => window.scrollTo(0, 0)}
+							onClick={() => goPage(4)}
 							to="/participation/volunteer"
 							class="text-xs text-gray-400 pl-4 py-3 hover:bg-gray-100 hover:text-purple-700"
 						>
@@ -214,10 +220,11 @@ const Navbar = () => {
 					class="h-full relative ml-16 flex items-center"
 				>
 					<Link
-						onClick={() => window.scrollTo(0, 0)}
+						onClick={() => goPage(5)}
+						to="/local"
 						class={
 							"pl-4 font-semibold text-lg " +
-							(overMenu[4] ? "text-purple-700" : "")
+							(overMenu[4] || page === 5 ? "text-purple-700" : "")
 						}
 					>
 						지역복지
@@ -229,7 +236,8 @@ const Navbar = () => {
 						}
 					>
 						<Link
-							onClick={() => window.scrollTo(0, 0)}
+							onClick={() => goPage(5)}
+							to="/local"
 							class="text-xs text-gray-400 pl-4 py-3 hover:bg-gray-100 hover:text-purple-700"
 						>
 							지역복지
