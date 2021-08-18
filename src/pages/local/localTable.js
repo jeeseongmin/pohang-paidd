@@ -22,7 +22,7 @@ const LocalTable = (props) => {
 
 	return (
 		<div>
-			<div class="text-2xl my-4">{name[num]}</div>
+			<div class="text-2xl mt-4 mb-8 font-bold">{name[num]}</div>
 			<div class="w-full h-auto mb-8">
 				{/* 딱 10개 씩만 로드하기 */}
 				<div class="w-full px-8 py-2 flex justify-end items-center border-t-2 border-b-2 border-purple-600">

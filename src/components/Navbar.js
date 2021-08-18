@@ -142,6 +142,7 @@ const Navbar = () => {
 				>
 					<Link
 						onClick={() => goPage(3)}
+						to="/organization"
 						class={
 							"pl-4 font-semibold text-lg " +
 							(overMenu[2] || page === 3 ? "text-purple-700" : "")
@@ -157,6 +158,7 @@ const Navbar = () => {
 					>
 						<Link
 							onClick={() => goPage(3)}
+							to="/organization"
 							class="text-xs text-gray-400 pl-4 py-3  hover:bg-gray-100 hover:text-purple-700"
 						>
 							부설기관
