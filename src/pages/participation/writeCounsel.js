@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { Route, Link } from "react-router-dom";
 
 const WriteCounsel = () => {
@@ -9,6 +9,10 @@ const WriteCounsel = () => {
 		password: "",
 		passwordCheck: "",
 	});
+	const titleRef = useRef(null);
+	const emailRef = useRef(null);
+	const contentRef = useRef(null);
+	const passwordRef = useRef(null);
 	const checkEmail = () => {
 		// 이메일 검증 스크립트 작성
 		var emailVal = info.email;
@@ -26,16 +30,22 @@ const WriteCounsel = () => {
 		console.log(info);
 		if (info.title === "") {
 			alert("제목을 입력해주세요!");
+			titleRef.current.focus();
 		} else if (info.email === "") {
 			alert("이메일을 입력해주세요!");
-		} else if (checkEmail) {
+			emailRef.current.focus();
+		} else if (!checkEmail) {
 			alert("이메일 형식이 올바르지 않습니다.");
+			emailRef.current.focus();
 		} else if (info.content === "") {
 			alert("내용을 입력해주세요!");
+			contentRef.current.focus();
 		} else if (info.password === "") {
 			alert("비밀번호를 입력해주세요!");
+			passwordRef.current.focus();
 		} else if (info.password !== info.passwordCheck) {
 			alert("비밀번호가 일치하지 않습니다!");
+			passwordRef.current.focus();
 		} else {
 			alert("제출되었습니다!");
 		}
@@ -59,12 +69,14 @@ const WriteCounsel = () => {
 				</h1>
 				<div class="flex flex-row justify-start items-center mb-2">
 					<input
+						ref={titleRef}
 						type="text"
 						class="flex-1 p-4 border-2 border-gray-300 outline-none mr-4 focus:border-purple-700"
 						onChange={(e) => changeInfo(e, "title")}
 						placeholder="제목"
 					/>
 					<input
+						ref={emailRef}
 						type="text"
 						class="w-72 p-4 border-2 border-gray-300 outline-none focus:border-purple-700"
 						onChange={(e) => changeInfo(e, "email")}
@@ -73,6 +85,7 @@ const WriteCounsel = () => {
 				</div>
 				<div class="flex flex-row justify-start items-start mb-2">
 					<textarea
+						ref={contentRef}
 						class="w-full h-96 p-4 border-2 border-gray-300 outline-none focus:border-purple-700"
 						onChange={(e) => changeInfo(e, "content")}
 						placeholder="내용"
@@ -80,6 +93,7 @@ const WriteCounsel = () => {
 				</div>
 				<div class="flex flex-row justify-start items-start mb-2">
 					<input
+						ref={passwordRef}
 						type="password"
 						class="w-60 p-4 border-2 border-gray-300 outline-none mr-4 focus:border-purple-700"
 						onChange={(e) => changeInfo(e, "password")}

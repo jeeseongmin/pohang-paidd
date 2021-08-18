@@ -7,6 +7,7 @@ import Support from "./support";
 import Volunteer from "./volunteer";
 import WriteCounsel from "./writeCounsel";
 import WriteSupport from "./writeSupport";
+import WriteVolunteer from "./writeVolunteer";
 
 const Index = ({ match }) => {
 	const [page, setPage] = useState(1);
@@ -95,6 +96,9 @@ const Index = ({ match }) => {
 					</Route>
 					<Route path="/participation/volunteer">
 						<Volunteer />
+					</Route>
+					<Route path="/participation/writeVolunteer">
+						<WriteVolunteer />
 					</Route>
 					<Route path="/participation/writeSupport">
 						<WriteSupport />

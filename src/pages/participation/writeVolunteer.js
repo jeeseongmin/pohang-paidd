@@ -3,7 +3,7 @@ import { Route, Link, withRouter } from "react-router-dom";
 import { AiOutlineCheck } from "react-icons/ai";
 import CreatableSelect from "react-select/creatable";
 
-const WriteSupport = ({ history }) => {
+const WriteVolunteer = ({ history }) => {
 	const [info, setInfo] = useState({
 		name: "",
 		privateNumber: "",
@@ -120,12 +120,12 @@ const WriteSupport = ({ history }) => {
 		<div class="px-36 py-16">
 			<div class="flex flex-row justify-between items-center mb-8">
 				<div>
-					<h1 class="text-3xl font-bold">후원 신청하기</h1>
+					<h1 class="text-3xl font-bold">자원봉사 신청하기</h1>
 				</div>
 			</div>
 			<form class="border-t-2 border-b-2 border-purple-700 py-6 mb-4">
 				<div class="mb-4">
-					<h1 class="text-md mb-4 font-bold">후원자 정보</h1>
+					<h1 class="text-md mb-4 font-bold">봉사자 정보</h1>
 				</div>
 				<div class="flex flex-row justify-start items-center mb-2">
 					<input
@@ -451,4 +451,4 @@ const WriteSupport = ({ history }) => {
 	);
 };
 
-export default withRouter(WriteSupport);
+export default withRouter(WriteVolunteer);
