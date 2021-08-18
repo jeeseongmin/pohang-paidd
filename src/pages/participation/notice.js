@@ -23,7 +23,7 @@ const Notice = () => {
 					<div class="text-lg flex-1 ">제목</div>
 					<div class="text-lg w-24 ">날짜</div>
 				</div>
-				<div class="cursor-pointer w-full px-8 py-4 flex justify-end items-center border-b border-gray-300">
+				<div class="cursor-pointer w-full px-8 py-4 flex justify-end items-center border-b border-gray-300 hover:bg-gray-100">
 					<div class="text-base flex-1 pr-4 truncate	">
 						제목입니다.제목입니다.제목입니다.제목입니다.제목입니다.제목입니다.제목입니다.제목입니다.제목입니다.제목입니다.제목입니다.제목입니다.제목입니다.제목입니다.제목입니다.제목입니다.제목입니다.제목입니다.제목입니다.제목입니다.제목입니다.제목입니다.제목입니다.제목입니다.제목입니다.
 					</div>

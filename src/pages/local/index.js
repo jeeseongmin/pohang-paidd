@@ -137,6 +137,39 @@ const Index = ({ match }) => {
 					>
 						기타공공기관
 					</div>
+					<div
+						onClick={() => setSelected(10)}
+						class={
+							"cursor-pointer text-sm mr-2 mb-2 px-4 py-2 w-auto rounded-full " +
+							(selected === 10
+								? "border border-purple-700 bg-purple-700 text-white font-bold"
+								: "border border-gray-300 text-gray-300")
+						}
+					>
+						화재 및 재난
+					</div>
+					<div
+						onClick={() => setSelected(11)}
+						class={
+							"cursor-pointer text-sm mr-2 mb-2 px-4 py-2 w-auto rounded-full " +
+							(selected === 11
+								? "border border-purple-700 bg-purple-700 text-white font-bold"
+								: "border border-gray-300 text-gray-300")
+						}
+					>
+						응급상황
+					</div>
+					<div
+						onClick={() => setSelected(12)}
+						class={
+							"cursor-pointer text-sm mr-2 mb-2 px-4 py-2 w-auto rounded-full " +
+							(selected === 12
+								? "border border-purple-700 bg-purple-700 text-white font-bold"
+								: "border border-gray-300 text-gray-300")
+						}
+					>
+						응급상담 및 병원
+					</div>
 				</div>
 			</div>
 			<div class="px-36">
