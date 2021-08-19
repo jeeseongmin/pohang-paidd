@@ -56,7 +56,7 @@ const Index = ({ match }) => {
 				</div> */}
 			</div>
 			<div class="w-full h-auto px-36">
-				<div class="border border-black  flex flex-row justify-start items-center py-8">
+				<div class="flex flex-row justify-start items-center py-8">
 					{[0, 1, 2, 3].map((element, index) => {
 						return (
 							<OrgMenu
