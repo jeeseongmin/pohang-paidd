@@ -86,7 +86,7 @@ const WriteCounsel = () => {
 				<div class="flex flex-row justify-start items-start mb-2">
 					<textarea
 						ref={contentRef}
-						class="w-full h-96 p-4 border-2 border-gray-300 outline-none focus:border-purple-700"
+						class="w-full h-96 p-4 border-2 border-gray-300 outline-none focus:border-purple-700 resize-none"
 						onChange={(e) => changeInfo(e, "content")}
 						placeholder="내용"
 					></textarea>

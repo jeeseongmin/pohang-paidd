@@ -8,6 +8,13 @@ import Notice from "./components/notice";
 
 const Index = ({ match }) => {
 	const [selected, setSelected] = useState(0);
+	console.log(match.params.pages);
+
+	useEffect(() => {
+		if (match.params.pages === 0) {
+			// 늘사랑주간보호센터
+		}
+	}, []);
 
 	const changeSelected = (num) => {
 		setSelected(num);
@@ -29,7 +36,7 @@ const Index = ({ match }) => {
 	return (
 		<div class="h-full z-0">
 			<div class="z-0 h-56 bg-purple-100 flex justify-center items-center relative">
-				<h1 class="text-4xl">부설기관</h1>
+				<h1 class="text-4xl">늘사랑주간보호센터</h1>
 				{/* 나중에 부설기관이 늘어나면 추가하기 */}
 				{/* <div class="px-36 w-full cursor-pointer absolute bottom-0 flex flex-row justify-center">
 					<Link
