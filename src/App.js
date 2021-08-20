@@ -3,10 +3,10 @@ import { Route } from "react-router-dom";
 
 import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
-import introduce from "./pages/introduce";
+import introduce from "./pages/introduce/index";
 import business from "./pages/business/index";
 import organization from "./pages/organization/index";
-import participation from "./pages/participation";
+import participation from "./pages/participation/index";
 import local from "./pages/local/index";
 
 const Routes = () => {
