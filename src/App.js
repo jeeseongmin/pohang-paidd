@@ -3,11 +3,11 @@ import { Route } from "react-router-dom";
 
 import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
-import introduce from "./pages/introduce/index";
-import business from "./pages/business/index";
-import organization from "./pages/organization/index";
-import participation from "./pages/participation/index";
-import local from "./pages/local/index";
+import Introduce from "./pages/introduce/index";
+import Business from "./pages/business/index";
+import Organization from "./pages/organization/index";
+import Participation from "./pages/participation/index";
+import Local from "./pages/local/index";
 
 const Routes = () => {
 	return (
@@ -16,11 +16,11 @@ const Routes = () => {
 			<div class="z-30 h-auto pt-16">
 				<switch>
 					<Route path="/" component={Home} exact />
-					<Route exact path="/introduce/:pages" component={introduce} />
-					<Route path="/business/:pages/:type" component={business} />
-					<Route path="/organization/:pages" component={organization} />
-					<Route exact path="/participation/:pages" component={participation} />
-					<Route exact path="/local" component={local} />
+					<Route exact path="/introduce/:pages" component={Introduce} />
+					<Route path="/business/:pages/:type" component={Business} />
+					<Route path="/organization/:pages" component={Organization} />
+					<Route exact path="/participation/:pages" component={Participation} />
+					<Route exact path="/local" component={Local} />
 				</switch>
 			</div>
 		</div>
