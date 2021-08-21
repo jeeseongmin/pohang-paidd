@@ -25,9 +25,11 @@ const Index = ({ match }) => {
 	}, [match.url]);
 	return (
 		<div class="h-full">
-			<div class="h-56 bg-purple-100 flex justify-center items-center relative">
-				<h1 class="text-4xl">협회소개</h1>
-				<div class="px-36 w-full cursor-pointer absolute bottom-0 flex flex-row justify-center">
+			<div>
+				<div class="h-44 bg-purple-100 flex justify-center items-center">
+					<h1 class="text-4xl">협회소개</h1>
+				</div>
+				<div class="px-36 w-full cursor-pointer bottom-0 flex flex-row justify-center bg-purple-100">
 					<Link
 						to="/introduce/intro"
 						class={
@@ -85,6 +87,7 @@ const Index = ({ match }) => {
 					</Link>
 				</div>
 			</div>
+
 			<div class="w-full h-auto">
 				<switch>
 					<Route exact path="/introduce">

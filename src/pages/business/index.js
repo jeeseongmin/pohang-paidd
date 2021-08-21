@@ -23,9 +23,11 @@ const Index = ({ match }) => {
 
 	return (
 		<div class="h-full">
-			<div class="h-56 bg-purple-100 flex justify-center items-center relative">
-				<h1 class="text-4xl">주요사업</h1>
-				<div class="px-36 w-full cursor-pointer absolute bottom-0 flex flex-row justify-center">
+			<div>
+				<div class="h-44 bg-purple-100 flex justify-center items-center ">
+					<h1 class="text-4xl">주요사업</h1>
+				</div>
+				<div class="px-36 w-full cursor-pointer bottom-0 flex flex-row justify-center bg-purple-100">
 					<Link
 						to="/business/base/default"
 						class={

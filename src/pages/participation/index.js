@@ -28,9 +28,11 @@ const Index = ({ match }) => {
 	}, [match.url]);
 	return (
 		<div class="h-full z-0">
-			<div class="z-0 h-56 bg-purple-100 flex justify-center items-center relative">
-				<h1 class="text-4xl">참여마당</h1>
-				<div class="px-36 w-full cursor-pointer absolute bottom-0 flex flex-row justify-center">
+			<div>
+				<div class="z-0 h-44 bg-purple-100 flex justify-center items-center ">
+					<h1 class="text-4xl">참여마당</h1>
+				</div>
+				<div class="px-36 w-full cursor-pointer  bottom-0 flex flex-row justify-center bg-purple-100">
 					<Link
 						to="/participation/notice"
 						class={
