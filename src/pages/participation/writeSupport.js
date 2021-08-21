@@ -52,8 +52,14 @@ const WriteSupport = ({ history }) => {
 		} else if (info.privateNumber === "") {
 			alert("주민(사업자)번호를 입력해주세요!");
 			privateNumberRef.current.focus();
+		} else if (info.privateNumber.includes("-")) {
+			alert("하이픈(-) 제외 후 입력해주세요.");
+			privateNumberRef.current.focus();
 		} else if (info.phoneNumber === "") {
 			alert("휴대폰번호를 입력해주세요!");
+			phoneNumberRef.current.focus();
+		} else if (info.phoneNumber.includes("-")) {
+			alert("하이픈(-) 제외 후 입력해주세요.");
 			phoneNumberRef.current.focus();
 		} else if (info.email === "" || !checkEmail) {
 			alert("이메일 형식이 올바르지 않습니다.");
@@ -81,7 +87,6 @@ const WriteSupport = ({ history }) => {
 			alert("물품 후원할 내용을 입력해주세요.");
 		} else if (!info.agree) {
 			alert("개인정보 수집 및 이용 동의에 체크해주세요");
-			agreeRef.current.focus();
 		} else {
 			alert("제출되었습니다!");
 			window.scrollTo(0, 0);
@@ -187,7 +192,7 @@ const WriteSupport = ({ history }) => {
 						<div
 							class={
 								"flex flex-row items-center " +
-								(info.periodicalSupport.status ? "text-black" : "text-gray-300")
+								(info.periodicalSupport.status ? "text-black" : "text-gray-500")
 							}
 						>
 							<div
@@ -202,7 +207,7 @@ const WriteSupport = ({ history }) => {
 									"w-0 h-6 border-r " +
 									(info.periodicalSupport.status
 										? "border-black"
-										: "border-gray-300")
+										: "border-gray-500")
 								}
 							></div>
 							<div
@@ -257,7 +262,7 @@ const WriteSupport = ({ history }) => {
 						<div
 							class={
 								"flex flex-row items-center " +
-								(info.temporarySupport.status ? "text-black" : "text-gray-300")
+								(info.temporarySupport.status ? "text-black" : "text-gray-500")
 							}
 						>
 							<div
@@ -272,7 +277,7 @@ const WriteSupport = ({ history }) => {
 									"w-0 h-6 border-r " +
 									(info.temporarySupport.status
 										? "border-black"
-										: "border-gray-300")
+										: "border-gray-500")
 								}
 							></div>
 							<div
@@ -325,7 +330,7 @@ const WriteSupport = ({ history }) => {
 						<div
 							class={
 								"flex flex-row items-center " +
-								(info.itemSupport.status ? "text-black" : "text-gray-300")
+								(info.itemSupport.status ? "text-black" : "text-gray-500")
 							}
 						>
 							<div
@@ -338,7 +343,7 @@ const WriteSupport = ({ history }) => {
 								onClick={(e) => toggleSupportType(e, "itemSupport")}
 								class={
 									"w-0 h-6 border-r " +
-									(info.itemSupport.status ? "border-black" : "border-gray-300")
+									(info.itemSupport.status ? "border-black" : "border-gray-500")
 								}
 							></div>
 							<div
@@ -426,7 +431,7 @@ const WriteSupport = ({ history }) => {
 					>
 						{info.agree && <AiOutlineCheck size={20} class="text-white" />}
 					</div>
-					<div class="w-auto mx-4 text-sm font-bold">
+					<div class="cursor-pointer w-auto mx-4 text-sm font-bold">
 						「개인정보보호법」에 따라 위와 같이 개인정보 수집 및 이용에
 						동의합니다.
 					</div>

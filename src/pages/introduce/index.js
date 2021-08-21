@@ -31,10 +31,10 @@ const Index = ({ match }) => {
 					<Link
 						to="/introduce/intro"
 						class={
-							"w-1/5 max-w-xl py-4 text-center " +
+							"w-1/5 max-w-xl py-4 text-center hover:bg-white hover:text-purple-700 hover:font-bold " +
 							(page === 1
 								? "text-purple-700 bg-white font-bold"
-								: "text-white bg-purple-300")
+								: "text-white bg-purple-300 ")
 						}
 					>
 						인사말
@@ -42,7 +42,7 @@ const Index = ({ match }) => {
 					<Link
 						to="/introduce/purpose"
 						class={
-							"w-1/5 max-w-xl py-4 text-center " +
+							"w-1/5 max-w-xl py-4 text-center hover:bg-white hover:text-purple-700 hover:font-bold " +
 							(page === 2
 								? "text-purple-700 bg-white font-bold"
 								: "text-white bg-purple-300")
@@ -53,7 +53,7 @@ const Index = ({ match }) => {
 					<Link
 						to="/introduce/history"
 						class={
-							"w-1/5 max-w-xl py-4 text-center " +
+							"w-1/5 max-w-xl py-4 text-center hover:bg-white hover:text-purple-700 hover:font-bold " +
 							(page === 3
 								? "text-purple-700 bg-white font-bold"
 								: "text-white bg-purple-300")
@@ -64,7 +64,7 @@ const Index = ({ match }) => {
 					<Link
 						to="/introduce/org"
 						class={
-							"w-1/5 max-w-xl py-4 text-center " +
+							"w-1/5 max-w-xl py-4 text-center hover:bg-white hover:text-purple-700 hover:font-bold " +
 							(page === 4
 								? "text-purple-700 bg-white font-bold"
 								: "text-white bg-purple-300")
@@ -75,7 +75,7 @@ const Index = ({ match }) => {
 					<Link
 						to="/introduce/guide"
 						class={
-							"w-1/5 max-w-xl py-4 text-center " +
+							"w-1/5 max-w-xl py-4 text-center hover:bg-white hover:text-purple-700 hover:font-bold " +
 							(page === 5
 								? "text-purple-700 bg-white font-bold"
 								: "text-white bg-purple-300")

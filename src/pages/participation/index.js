@@ -34,7 +34,7 @@ const Index = ({ match }) => {
 					<Link
 						to="/participation/notice"
 						class={
-							"w-1/4 max-w-xl py-4 text-center " +
+							"w-1/4 max-w-xl py-4 text-center hover:bg-white hover:text-purple-700 hover:font-bold " +
 							(page === 1
 								? "text-purple-700 bg-white font-bold"
 								: "text-white bg-purple-300")
@@ -45,7 +45,7 @@ const Index = ({ match }) => {
 					<Link
 						to="/participation/counseling"
 						class={
-							"w-1/4 max-w-xl py-4 text-center " +
+							"w-1/4 max-w-xl py-4 text-center hover:bg-white hover:text-purple-700 hover:font-bold " +
 							(page === 2 || page === 5
 								? "text-purple-700 bg-white font-bold"
 								: "text-white bg-purple-300")
@@ -56,7 +56,7 @@ const Index = ({ match }) => {
 					<Link
 						to="/participation/support"
 						class={
-							"w-1/4 max-w-xl py-4 text-center " +
+							"w-1/4 max-w-xl py-4 text-center hover:bg-white hover:text-purple-700 hover:font-bold " +
 							(page === 3
 								? "text-purple-700 bg-white font-bold"
 								: "text-white bg-purple-300")
@@ -67,7 +67,7 @@ const Index = ({ match }) => {
 					<Link
 						to="/participation/volunteer"
 						class={
-							"w-1/4 max-w-xl py-4 text-center " +
+							"w-1/4 max-w-xl py-4 text-center hover:bg-white hover:text-purple-700 hover:font-bold " +
 							(page === 4
 								? "text-purple-700 bg-white font-bold"
 								: "text-white bg-purple-300")

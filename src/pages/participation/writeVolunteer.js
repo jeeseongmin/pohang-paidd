@@ -6,30 +6,22 @@ import CreatableSelect from "react-select/creatable";
 const WriteVolunteer = ({ history }) => {
 	const [info, setInfo] = useState({
 		name: "",
-		privateNumber: "",
+		birth: "",
 		phoneNumber: "",
-		email: "",
-		address: "",
-		periodicalSupport: {
-			status: false,
-			content: "",
-		},
-		temporarySupport: {
-			status: false,
-			content: "",
-		},
-		itemSupport: {
-			status: false,
-			content: "",
-		},
+		vms: "",
+		activity: "",
+		hopeContent: "",
+		hopeTime: "",
 		agree: false,
 	});
 
 	const nameRef = useRef(null);
-	const privateNumberRef = useRef(null);
+	const birthRef = useRef(null);
 	const phoneNumberRef = useRef(null);
-	const emailRef = useRef(null);
-	const addressRef = useRef(null);
+	const vmsRef = useRef(null);
+	const activityRef = useRef(null);
+	const hopeContentRef = useRef(null);
+	const hopeTimeRef = useRef(null);
 	const agreeRef = useRef(null);
 
 	const checkEmail = () => {
@@ -49,43 +41,36 @@ const WriteVolunteer = ({ history }) => {
 		if (info.name === "") {
 			alert("이름을 입력해주세요!");
 			nameRef.current.focus();
-		} else if (info.privateNumber === "") {
-			alert("주민(사업자)번호를 입력해주세요!");
-			privateNumberRef.current.focus();
+		} else if (info.birth === "") {
+			alert("생년월일을 입력해주세요!");
+			birthRef.current.focus();
+		} else if (info.birth.length !== 6) {
+			alert("생년월일 앞 6자리를 입력해주세요.");
+			birthRef.current.focus();
 		} else if (info.phoneNumber === "") {
 			alert("휴대폰번호를 입력해주세요!");
 			phoneNumberRef.current.focus();
-		} else if (info.email === "" || !checkEmail) {
-			alert("이메일 형식이 올바르지 않습니다.");
-			emailRef.current.focus();
-		} else if (info.address === "") {
-			alert("주소를 입력해주세요!");
-			addressRef.current.focus();
-		} else if (
-			!info.periodicalSupport.status &&
-			!info.temporarySupport.status &&
-			!info.itemSupport.status
-		) {
-			alert("후원 방식을 선택해주세요.");
-		} else if (
-			info.periodicalSupport.status &&
-			info.periodicalSupport.content === ""
-		) {
-			alert("정기 후원할 금액을 입력해주세요");
-		} else if (
-			info.temporarySupport.status &&
-			info.temporarySupport.content === ""
-		) {
-			alert("일시 후원할 금액을 입력해주세요");
-		} else if (info.itemSupport.status && info.itemSupport.content === "") {
-			alert("물품 후원할 내용을 입력해주세요.");
+		} else if (info.phoneNumber.includes("-")) {
+			alert("하이픈(-) 제외 후 입력해주세요.");
+			phoneNumberRef.current.focus();
+		} else if (info.vms === "") {
+			alert("VMS ID/연번을 입력해주세요!");
+			vmsRef.current.focus();
+		} else if (info.activity === "") {
+			alert("최근 봉사활동 내역을 입력해주세요.");
+			activityRef.current.focus();
+		} else if (info.hopeContent === "") {
+			alert("희망봉사 내용을 적어주세요.");
+			hopeContentRef.current.focus();
+		} else if (info.hopeTime === "") {
+			alert("희망봉사 시간을 적어주세요.");
+			hopeTimeRef.current.focus();
 		} else if (!info.agree) {
 			alert("개인정보 수집 및 이용 동의에 체크해주세요");
-			agreeRef.current.focus();
 		} else {
 			alert("제출되었습니다!");
 			window.scrollTo(0, 0);
-			history.push("/participation/support");
+			history.push("/participation/volunteer");
 		}
 	};
 	const changeInfo = (e, type) => {
@@ -136,11 +121,11 @@ const WriteVolunteer = ({ history }) => {
 						placeholder="성명(단체명)"
 					/>
 					<input
-						ref={privateNumberRef}
+						ref={birthRef}
 						type="text"
 						class="w-1/2 p-4 border-2 border-gray-300 outline-none focus:border-purple-700"
-						onChange={(e) => changeInfo(e, "privateNumber")}
-						placeholder="주민(사업자)번호 (하이픈은 제외하고 입력해주세요)"
+						onChange={(e) => changeInfo(e, "birth")}
+						placeholder="생년월일 앞 6자리"
 					/>
 				</div>
 				<div class="flex flex-row justify-start items-center mb-2">
@@ -152,227 +137,39 @@ const WriteVolunteer = ({ history }) => {
 						placeholder="휴대폰번호 (하이픈은 제외하고 입력해주세요)"
 					/>
 					<input
-						ref={emailRef}
+						ref={vmsRef}
 						type="text"
 						class="w-1/2 p-4 border-2 border-gray-300 outline-none focus:border-purple-700"
-						onChange={(e) => changeInfo(e, "email")}
-						placeholder="이메일"
+						onChange={(e) => changeInfo(e, "vms")}
+						placeholder="VMS ID/연번정보"
 					/>
 				</div>
 				<div class="flex flex-row justify-start items-center mb-2">
 					<input
-						ref={addressRef}
+						ref={activityRef}
 						type="text"
 						class="w-full p-4 border-2 border-gray-300 outline-none focus:border-purple-700"
-						onChange={(e) => changeInfo(e, "address")}
-						placeholder="주소"
+						onChange={(e) => changeInfo(e, "activity")}
+						placeholder="최근봉사활동"
 					/>
 				</div>
-				<div class="mt-8 mb-4">
-					<h1 class="text-md mb-4 font-bold">후원 선택</h1>
+				<div class="flex flex-row justify-start items-center mb-2">
+					<input
+						ref={hopeContentRef}
+						type="text"
+						class="w-3/4 p-4 border-2 border-gray-300 outline-none mr-4 focus:border-purple-700"
+						onChange={(e) => changeInfo(e, "hopeContent")}
+						placeholder="희망봉사내용"
+					/>
+					<input
+						ref={hopeTimeRef}
+						type="text"
+						class="w-1/4 p-4 border-2 border-gray-300 outline-none focus:border-purple-700"
+						onChange={(e) => changeInfo(e, "hopeTime")}
+						placeholder="희망봉사 시간"
+					/>
 				</div>
-				<div class="w-full">
-					<div class="w-full flex flex-row items-center mb-4">
-						<div
-							onClick={(e) => toggleSupportType(e, "periodicalSupport")}
-							class={
-								"cursor-pointer w-5 h-5 border-2 rounded-sm border-purple-700 flex justify-center items-center " +
-								(info.periodicalSupport.status ? "bg-purple-700" : "bg-white")
-							}
-						>
-							{info.periodicalSupport.status && (
-								<AiOutlineCheck size={20} class="text-white" />
-							)}
-						</div>
-						<div
-							class={
-								"flex flex-row items-center " +
-								(info.periodicalSupport.status ? "text-black" : "text-gray-300")
-							}
-						>
-							<div
-								onClick={(e) => toggleSupportType(e, "periodicalSupport")}
-								class="mx-4 text-sm"
-							>
-								정기후원
-							</div>
-							<div
-								onClick={(e) => toggleSupportType(e, "periodicalSupport")}
-								class={
-									"w-0 h-6 border-r " +
-									(info.periodicalSupport.status
-										? "border-black"
-										: "border-gray-300")
-								}
-							></div>
-							<div
-								onClick={(e) => toggleSupportType(e, "periodicalSupport")}
-								class="ml-4 text-sm"
-							>
-								금액 입력 :{" "}
-							</div>
-							<div class="w-48 mx-4">
-								<CreatableSelect
-									isClearable
-									options={periodicalOptions}
-									isDisabled={!info.periodicalSupport.status}
-									onChange={(value) =>
-										changeSupportItem(value, "periodicalSupport")
-									}
-									styles={{
-										control: (base, state) => ({
-											...base,
-											border: state.isFocused
-												? "1px solid rgba(109, 40, 217, var(--tw-border-opacity))"
-												: "1px solid #e3e3e3",
-											// This line disable the blue border
-											boxShadow: state.isFocused ? 0 : 0,
-											color: info.periodicalSupport.status
-												? "black"
-												: "#e3e3e3",
-											"&:hover": {
-												border: state.isFocused
-													? "1px solid rgba(109, 40, 217, var(--tw-border-opacity))"
-													: "1px solid gray",
-											},
-										}),
-									}}
-								/>
-							</div>
-							<div class="text-sm">원</div>
-						</div>
-					</div>
-					<div class="w-full flex flex-row items-center mb-4">
-						<div
-							onClick={(e) => toggleSupportType(e, "temporarySupport")}
-							class={
-								"cursor-pointer w-5 h-5 border-2 rounded-sm border-purple-700 flex justify-center items-center " +
-								(info.temporarySupport.status ? "bg-purple-700" : "bg-white")
-							}
-						>
-							{info.temporarySupport.status && (
-								<AiOutlineCheck size={20} class="text-white" />
-							)}
-						</div>
-						<div
-							class={
-								"flex flex-row items-center " +
-								(info.temporarySupport.status ? "text-black" : "text-gray-300")
-							}
-						>
-							<div
-								onClick={(e) => toggleSupportType(e, "temporarySupport")}
-								class="mx-4 text-sm"
-							>
-								일시후원
-							</div>
-							<div
-								onClick={(e) => toggleSupportType(e, "temporarySupport")}
-								class={
-									"w-0 h-6 border-r " +
-									(info.temporarySupport.status
-										? "border-black"
-										: "border-gray-300")
-								}
-							></div>
-							<div
-								onClick={(e) => toggleSupportType(e, "temporarySupport")}
-								class="ml-4 text-sm"
-							>
-								금액 입력 :{" "}
-							</div>
-							<div class="w-48 mx-4">
-								<CreatableSelect
-									isClearable
-									options={periodicalOptions}
-									isDisabled={!info.temporarySupport.status}
-									onChange={(value) =>
-										changeSupportItem(value, "temporarySupport")
-									}
-									styles={{
-										control: (base, state) => ({
-											...base,
-											border: state.isFocused
-												? "1px solid rgba(109, 40, 217, var(--tw-border-opacity))"
-												: "1px solid #e3e3e3",
-											// This line disable the blue border
-											boxShadow: state.isFocused ? 0 : 0,
-											color: info.temporarySupport.status ? "black" : "#e3e3e3",
-											"&:hover": {
-												border: state.isFocused
-													? "1px solid rgba(109, 40, 217, var(--tw-border-opacity))"
-													: "1px solid gray",
-											},
-										}),
-									}}
-								/>
-							</div>
-							<div class="text-sm">원</div>
-						</div>
-					</div>
-					<div class="w-full flex flex-row items-center ">
-						<div
-							onClick={(e) => toggleSupportType(e, "itemSupport")}
-							class={
-								"cursor-pointer w-5 h-5 border-2 rounded-sm border-purple-700 flex justify-center items-center " +
-								(info.itemSupport.status ? "bg-purple-700" : "bg-white")
-							}
-						>
-							{info.itemSupport.status && (
-								<AiOutlineCheck size={20} class="text-white" />
-							)}
-						</div>
-						<div
-							class={
-								"flex flex-row items-center " +
-								(info.itemSupport.status ? "text-black" : "text-gray-300")
-							}
-						>
-							<div
-								onClick={(e) => toggleSupportType(e, "itemSupport")}
-								class="mx-4 text-sm"
-							>
-								물품후원
-							</div>
-							<div
-								onClick={(e) => toggleSupportType(e, "itemSupport")}
-								class={
-									"w-0 h-6 border-r " +
-									(info.itemSupport.status ? "border-black" : "border-gray-300")
-								}
-							></div>
-							<div
-								onClick={(e) => toggleSupportType(e, "itemSupport")}
-								class="ml-4 text-sm"
-							>
-								물품 입력 :{" "}
-							</div>
-							<div class="w-48 mx-4">
-								<CreatableSelect
-									isClearable
-									isDisabled={!info.itemSupport.status}
-									onChange={(value) => changeSupportItem(value, "itemSupport")}
-									styles={{
-										control: (base, state) => ({
-											...base,
-											border: state.isFocused
-												? "1px solid rgba(109, 40, 217, var(--tw-border-opacity))"
-												: "1px solid #e3e3e3",
-											// This line disable the blue border
-											boxShadow: state.isFocused ? 0 : 0,
-											color: info.itemSupport.status ? "black" : "#e3e3e3",
-											"&:hover": {
-												border: state.isFocused
-													? "1px solid rgba(109, 40, 217, var(--tw-border-opacity))"
-													: "1px solid gray",
-											},
-										}),
-									}}
-								/>
-							</div>
-						</div>
-					</div>
-				</div>
+
 				<div class="mt-8 mb-4">
 					<h1 class="text-md mb-4 font-bold">개인정보동의</h1>
 				</div>
@@ -426,7 +223,7 @@ const WriteVolunteer = ({ history }) => {
 					>
 						{info.agree && <AiOutlineCheck size={20} class="text-white" />}
 					</div>
-					<div class="w-auto mx-4 text-sm font-bold">
+					<div class="cursor-pointer w-auto mx-4 text-sm font-bold">
 						「개인정보보호법」에 따라 위와 같이 개인정보 수집 및 이용에
 						동의합니다.
 					</div>

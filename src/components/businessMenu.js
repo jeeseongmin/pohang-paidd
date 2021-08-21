@@ -14,9 +14,9 @@ const businessMenu = (props) => {
 			onClick={() => changeSelected(num)}
 			to={"/business/" + props.pages + "/default"}
 			class={
-				"cursor-pointer text-sm mr-2 mb-2 px-4 py-2 w-auto rounded-full " +
+				"cursor-pointer text-sm mr-2 mb-2 px-4 py-2 w-auto rounded-full hover:text-white hover:bg-purple-600 hover:border-purple-600 " +
 				(selected === num
-					? "border border-purple-700 bg-purple-700 text-white font-bold"
+					? "border border-purple-600 bg-purple-600 text-white font-bold"
 					: "border border-gray-300 text-gray-300")
 			}
 		>

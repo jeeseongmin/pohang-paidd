@@ -25,9 +25,9 @@ const LocalMenu = (props) => {
 		<div
 			onClick={() => changeSelected(num)}
 			class={
-				"cursor-pointer text-sm mr-2 mb-2 px-4 py-2 w-auto rounded-full " +
+				"cursor-pointer text-sm mr-2 mb-2 px-4 py-2 w-auto rounded-full hover:font-bold hover:border-purple-500 hover:bg-purple-500 hover:text-white " +
 				(selected === num
-					? "border border-purple-700 bg-purple-700 text-white font-bold"
+					? "border border-purple-500 bg-purple-500 text-white font-bold"
 					: "border border-gray-300 text-gray-300")
 			}
 		>

@@ -4,12 +4,12 @@ const Business = () => {
 	return (
 		<div>
 			<h1 class="text-3xl mb-8 font-bold">주요사업</h1>
-			<div class="flex flex-wrap justify-around gap-4">
-				<div class="w-1/4 flex flex-col justify-between items-center p-4 shadow-lg mb-8 border-gray-200">
+			<div class="flex flex-wrap justify-start gap-x-32">
+				<div class="w-1/4 flex flex-col justify-between items-center p-4 shadow-lg mb-8 border border-gray-200">
 					<div class="text-xl w-full text-center py-4 text-purple-700 border-b-2 border-purple-700">
 						일상생활활동
 					</div>
-					<div class="text-center text-lg flex flex-col justify-center items-center py-8">
+					<div class="h-48 text-center text-lg flex flex-col justify-center items-center py-8">
 						<div>용모관리</div>
 						<div>개인위생활동</div>
 						<div>식사예절 익히기</div>
@@ -18,11 +18,11 @@ const Business = () => {
 						하루 일과 중 용모 단장 및 위생 관리와 식사 예절을 연습합니다.
 					</div>
 				</div>{" "}
-				<div class="w-1/4 flex flex-col justify-between items-center p-4 shadow-lg mb-8 border-gray-200">
+				<div class="w-1/4 flex flex-col justify-between items-center p-4 shadow-lg mb-8 border border-gray-200">
 					<div class="text-xl w-full text-center py-4 text-purple-700 border-b-2 border-purple-700">
 						감수성활동
 					</div>
-					<div class="text-center text-lg flex flex-col justify-center items-center py-8">
+					<div class="h-48 text-center text-lg flex flex-col justify-center items-center py-8">
 						<div>음악활동(핸드벨/리듬악기)</div>
 						<div>미술활동(만화/미술)</div>
 						<div>푸드아트테라피</div>
@@ -31,11 +31,11 @@ const Business = () => {
 						몸과 마음을 건강하게 하는 활동을 합니다.
 					</div>
 				</div>
-				<div class="w-1/4 flex flex-col justify-between items-center p-4 shadow-lg mb-8 border-gray-200">
+				<div class="w-1/4 flex flex-col justify-between items-center p-4 shadow-lg mb-8 border border-gray-200">
 					<div class="text-xl w-full text-center py-4 text-purple-700 border-b-2 border-purple-700">
 						취미여가활동
 					</div>
-					<div class="text-center text-lg flex flex-col justify-center items-center py-8">
+					<div class="h-48 text-center text-lg flex flex-col justify-center items-center py-8">
 						<div>외국어배우기 (중국어,영어)</div>
 						<div>브레인닥터 (인지자극활동)</div>
 						<div>체육활동</div>
@@ -47,11 +47,11 @@ const Business = () => {
 						향상하고 유지하기 위함입니다.
 					</div>
 				</div>
-				<div class="w-1/4 flex flex-col justify-between items-center p-4 shadow-lg mb-8 border-gray-200">
+				<div class="w-1/4 flex flex-col justify-between items-center p-4 shadow-lg mb-8 border border-gray-200">
 					<div class="text-xl w-full text-center py-4 text-purple-700 border-b-2 border-purple-700">
 						사회적응활동
 					</div>
-					<div class="text-center text-lg flex flex-col justify-center items-center py-8">
+					<div class="h-48 text-center text-lg flex flex-col justify-center items-center py-8">
 						<div>자치회의(민주적 의사소통활동)</div>
 						<div>지역사회 누리기</div>
 					</div>
@@ -60,11 +60,11 @@ const Business = () => {
 						생각을 잘 표현할 수 있게 연습합니다.
 					</div>
 				</div>
-				<div class="w-1/4 flex flex-col justify-between items-center p-4 shadow-lg mb-8 border-gray-200">
+				<div class="w-1/4 flex flex-col justify-between items-center p-4 shadow-lg mb-8 border border-gray-200">
 					<div class="text-xl w-full text-center py-4 text-purple-700 border-b-2 border-purple-700">
 						상담 및 교육활동
 					</div>
-					<div class="text-center text-lg flex flex-col justify-center items-center py-8">
+					<div class="h-48 text-center text-lg flex flex-col justify-center items-center py-8">
 						<div>상담(개별/보호자/동료상담)</div>
 						<div>인권교육</div>
 						<div>성폭력예방교육</div>
@@ -75,11 +75,11 @@ const Business = () => {
 						교육받은 내용을 사회생활에서 적용할 수 있도록 훈련합니다.
 					</div>
 				</div>
-				<div class="w-1/4 flex flex-col justify-between items-center p-4 shadow-lg mb-8 border-gray-200">
+				<div class="w-1/4 flex flex-col justify-between items-center p-4 shadow-lg mb-8 border border-gray-200">
 					<div class="text-xl w-full text-center py-4 text-purple-700 border-b-2 border-purple-700">
 						캠프 및 동아리 활동
 					</div>
-					<div class="text-center text-lg flex flex-col justify-center items-center py-8">
+					<div class="h-48 text-center text-lg flex flex-col justify-center items-center py-8">
 						<div>"느려도 우리가 해요"(캠프)</div>
 					</div>
 					<div class="bg-gray-100 p-4">
@@ -88,11 +88,11 @@ const Business = () => {
 						수 있습니다.
 					</div>
 				</div>
-				<div class="w-1/4 flex flex-col justify-between items-center p-4 shadow-lg mb-8 border-gray-200">
+				<div class="w-1/4 flex flex-col justify-between items-center p-4 shadow-lg mb-8 border border-gray-200">
 					<div class="text-xl w-full text-center py-4 text-purple-700 border-b-2 border-purple-700">
 						동아리활동
 					</div>
-					<div class="text-center text-lg flex flex-col justify-center items-center py-8">
+					<div class=" h-48 text-center text-lg flex flex-col justify-center items-center py-8">
 						<div>그룹 별 동아리 활동</div>
 					</div>
 					<div class="bg-gray-100 p-4">

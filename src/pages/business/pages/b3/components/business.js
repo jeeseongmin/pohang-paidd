@@ -4,8 +4,8 @@ const Business = () => {
 	return (
 		<div>
 			<h1 class="text-3xl mb-8 font-bold">주요사업</h1>
-			<div class="flex flex-wrap justify-around gap-4">
-				<div class="w-1/4 flex flex-col justify-between items-center p-4 shadow-lg mb-8 border-gray-200">
+			<div class="flex flex-wrap justify-start gap-x-32">
+				<div class="w-1/4 flex flex-col justify-between items-center p-4 shadow-lg mb-8 border border-gray-200">
 					<div class="text-xl w-full text-center py-4 text-purple-700 border-b-2 border-purple-700">
 						취미여가활동
 					</div>
@@ -16,7 +16,7 @@ const Business = () => {
 						<div>힐링활동</div>
 					</div>
 				</div>
-				<div class="w-1/4 flex flex-col justify-between items-center p-4 shadow-lg mb-8 border-gray-200">
+				<div class="w-1/4 flex flex-col justify-between items-center p-4 shadow-lg mb-8 border border-gray-200">
 					<div class="text-xl w-full text-center py-4 text-purple-700 border-b-2 border-purple-700">
 						직업탐구활동
 					</div>
@@ -26,7 +26,7 @@ const Business = () => {
 						<div>직업탐색활동</div>
 					</div>
 				</div>
-				<div class="w-1/4 flex flex-col justify-between items-center p-4 shadow-lg mb-8 border-gray-200">
+				<div class="w-1/4 flex flex-col justify-between items-center p-4 shadow-lg mb-8 border border-gray-200">
 					<div class="text-xl w-full text-center py-4 text-purple-700 border-b-2 border-purple-700">
 						자립준비활동
 					</div>
@@ -37,7 +37,7 @@ const Business = () => {
 						<div>미래계획활동</div>
 					</div>
 				</div>
-				<div class="w-1/4 flex flex-col justify-between items-center p-4 shadow-lg mb-8 border-gray-200">
+				<div class="w-1/4 flex flex-col justify-between items-center p-4 shadow-lg mb-8 border border-gray-200">
 					<div class="text-xl w-full text-center py-4 text-purple-700 border-b-2 border-purple-700">
 						관람체험활동
 					</div>
@@ -46,7 +46,7 @@ const Business = () => {
 						<div>체험활동</div>
 					</div>
 				</div>
-				<div class="w-1/4 flex flex-col justify-between items-center p-4 shadow-lg mb-8 border-gray-200">
+				<div class="w-1/4 flex flex-col justify-between items-center p-4 shadow-lg mb-8 border border-gray-200">
 					<div class="text-xl w-full text-center py-4 text-purple-700 border-b-2 border-purple-700">
 						자조활동
 					</div>

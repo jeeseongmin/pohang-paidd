@@ -1,4 +1,5 @@
 import React from "react";
+import { Route, Link } from "react-router-dom";
 
 const Home = () => {
 	return (
@@ -27,21 +28,41 @@ const Home = () => {
 						발달장애인협회에서 진행되는 사업들을 살펴보세요.
 					</div>
 					<div class="flex flex-wrap">
-						<div class="cursor-pointer mr-4 mb-4 p-4 border border-purple-700 text-purple-700 rounded-full">
+						<Link
+							to="/business/base/default"
+							onClick={() => window.scrollTo(0, 0)}
+							class="cursor-pointer mr-4 mb-4 p-4 border border-purple-700 text-purple-700 rounded-full hover:border-purple-300 hover:bg-purple-300 hover:text-white"
+						>
 							협회 사업
-						</div>
-						<div class="cursor-pointer mr-4 mb-4 p-4 border border-purple-700 text-purple-700 rounded-full">
+						</Link>
+						<Link
+							to="/business/b1/default"
+							onClick={() => window.scrollTo(0, 0)}
+							class="cursor-pointer mr-4 mb-4 p-4 border border-purple-700 text-purple-700 rounded-full hover:border-purple-300 hover:bg-purple-300 hover:text-white"
+						>
 							포항시지적장애인자립지원센터
-						</div>
-						<div class="cursor-pointer mr-4 mb-4 p-4 border border-purple-700 text-purple-700 rounded-full">
+						</Link>
+						<Link
+							to="/business/b2/default"
+							onClick={() => window.scrollTo(0, 0)}
+							class="cursor-pointer mr-4 mb-4 p-4 border border-purple-700 text-purple-700 rounded-full hover:border-purple-300 hover:bg-purple-300 hover:text-white"
+						>
 							장애인활동사업
-						</div>
-						<div class="cursor-pointer mr-4 mb-4 p-4 border border-purple-700 text-purple-700 rounded-full">
+						</Link>
+						<Link
+							to="/business/b3/default"
+							onClick={() => window.scrollTo(0, 0)}
+							class="cursor-pointer mr-4 mb-4 p-4 border border-purple-700 text-purple-700 rounded-full hover:border-purple-300 hover:bg-purple-300 hover:text-white"
+						>
 							방과후 활동 서비스 사업
-						</div>
-						<div class="cursor-pointer mr-4 mb-4 p-4 border border-purple-700 text-purple-700 rounded-full">
+						</Link>
+						<Link
+							to="/organization/0"
+							onClick={() => window.scrollTo(0, 0)}
+							class="cursor-pointer mr-4 mb-4 p-4 border border-purple-700 text-purple-700 rounded-full hover:border-purple-300 hover:bg-purple-300 hover:text-white"
+						>
 							늘사랑주간보호센터
-						</div>
+						</Link>
 					</div>
 				</div>
 				<div class="flex-1 flex flex-col justify-end items-center">
@@ -60,7 +81,7 @@ const Home = () => {
 					<div class="flex justify-end items-center"></div>
 					<div class="w-full flex flex-row flex-wrap ">
 						<div class="w-1/4 px-4">
-							<div class="mb-4 h-48 object-cover border border-gray-500">
+							<div class="cursor-pointer mb-4 h-48 object-cover border border-gray-500">
 								<img
 									class="w-full h-full"
 									src="/image/noImage.png"
@@ -75,7 +96,7 @@ const Home = () => {
 							</div>
 						</div>
 						<div class="w-1/4 px-4">
-							<div class="mb-4 h-48  object-cover border border-gray-500">
+							<div class="cursor-pointer mb-4 h-48  object-cover border border-gray-500">
 								<img
 									class="w-full h-full"
 									src="/image/noImage.png"
@@ -90,7 +111,7 @@ const Home = () => {
 							</div>
 						</div>
 						<div class="w-1/4 px-4">
-							<div class="mb-4 h-48  object-cover border border-gray-500">
+							<div class="cursor-pointer mb-4 h-48  object-cover border border-gray-500">
 								<img
 									class="w-full h-full"
 									src="/image/noImage.png"
@@ -105,7 +126,7 @@ const Home = () => {
 							</div>
 						</div>
 						<div class="w-1/4 px-4">
-							<div class="mb-4 h-48  object-cover border border-gray-500">
+							<div class="cursor-pointer mb-4 h-48  object-cover border border-gray-500">
 								<img
 									class="w-full h-full"
 									src="/image/noImage.png"
@@ -133,15 +154,19 @@ const Home = () => {
 				</div>
 				<div class="w-full flex flex-row">
 					<div class="w-1/2 h-96 mr-4 p-8 border border-purple-300 bg-purple-100 relative">
-						<div class="flex flex-row items-end justify-between mb-4">
+						<div class="flex flex-row items-end justify-between mb-8">
 							<h1 class="text-3xl text-purple-600 font-semibold">후원</h1>
 							<h1 class="text-xl text-purple-600">
 								정기후원/일시후원/물품후원
 							</h1>
 						</div>
-						<div class="w-60 text-center cursor-pointer py-4 px-8 text-xl border border-purple-700 text-purple-700 rounded-full">
+						<Link
+							to="/participation/support"
+							onClick={() => window.scrollTo(0, 0)}
+							class="w-60 text-center cursor-pointer py-3 px-8 text-xl border border-purple-700 text-purple-700 rounded-full hover:border-purple-300 hover:bg-purple-300 hover:text-white"
+						>
 							자세히 보기
-						</div>
+						</Link>
 						<div class="absolute bottom-10 right-10 opacity-50">
 							<img
 								class="w-full h-full"
@@ -151,12 +176,16 @@ const Home = () => {
 						</div>
 					</div>
 					<div class="z-10 w-1/2 ml-4 p-8 border border-purple-300 bg-purple-100 relative">
-						<h1 class="z-20 text-3xl text-purple-600 font-semibold mb-4 ">
+						<h1 class="z-20 text-3xl text-purple-600 font-semibold mb-8 ">
 							자원봉사
 						</h1>
-						<div class="w-60 text-center cursor-pointer py-4 px-8 text-xl border border-purple-700 text-purple-700 rounded-full">
+						<Link
+							to="/participation/volunteer"
+							onClick={() => window.scrollTo(0, 0)}
+							class="w-60 text-center cursor-pointer py-3 px-8 text-xl border border-purple-700 text-purple-700 rounded-full hover:border-purple-300 hover:bg-purple-300 hover:text-white"
+						>
 							자세히 보기
-						</div>
+						</Link>
 						<div class="absolute bottom-6 right-10 opacity-50">
 							<img
 								class="w-full h-full"
