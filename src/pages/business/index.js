@@ -4,6 +4,7 @@ import Base from "./base";
 import B1 from "./pages/b1/index";
 import B2 from "./pages/b2/index";
 import B3 from "./pages/b3/index";
+import Menu from "../../components/Submenu";
 
 const Index = ({ match }) => {
 	const [page, setPage] = useState(1);
@@ -28,50 +29,36 @@ const Index = ({ match }) => {
 					<h1 class="text-4xl">주요사업</h1>
 				</div>
 				<div class="px-36 w-full cursor-pointer bottom-0 flex flex-row justify-center bg-purple-100">
-					<Link
-						to="/business/base/default"
-						class={
-							"w-1/4 max-w-xl py-4 text-center hover:bg-white hover:text-purple-700 hover:font-bold " +
-							(page === 1
-								? "text-purple-700 bg-white font-bold"
-								: "text-white bg-purple-300")
-						}
-					>
-						협회사업
-					</Link>
-					<Link
-						to="/business/b1/default"
-						class={
-							"w-1/4 max-w-xl py-4 text-center hover:bg-white hover:text-purple-700 hover:font-bold " +
-							(page === 2
-								? "text-purple-700 bg-white font-bold"
-								: "text-white bg-purple-300")
-						}
-					>
-						포항시지적장애인 자립지원센터
-					</Link>
-					<Link
-						to="/business/b2/default"
-						class={
-							"w-1/4 max-w-xl py-4 text-center hover:bg-white hover:text-purple-700 hover:font-bold " +
-							(page === 3
-								? "text-purple-700 bg-white font-bold"
-								: "text-white bg-purple-300")
-						}
-					>
-						장애인활동지원사업
-					</Link>
-					<Link
-						to="/business/b3/default"
-						class={
-							"w-1/4 max-w-xl py-4 text-center hover:bg-white hover:text-purple-700 hover:font-bold " +
-							(page === 4
-								? "text-purple-700 bg-white font-bold"
-								: "text-white bg-purple-300")
-						}
-					>
-						방과후활동서비스사업
-					</Link>
+					<Menu
+						text={"협회사업"}
+						current={page}
+						page={1}
+						address={"/business/base/default"}
+						count={4}
+					/>
+					<Menu
+						text={"포항시지적장애인 자립지원센터"}
+						current={page}
+						page={2}
+						address={"/business/b1/default"}
+						count={4}
+					/>
+					<Menu
+						text={"장애인활동지원사업"}
+						current={page}
+						page={3}
+						address={"/business/b2/default"}
+						count={4}
+
+					/>
+					<Menu
+						text={"방과후활동서비스사업"}
+						current={page}
+						page={4}
+						address={"/business/b3/default"}
+						count={4}
+
+					/>
 				</div>
 			</div>
 			<div class="w-full h-auto px-36 py-16">

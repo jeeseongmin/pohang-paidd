@@ -5,6 +5,7 @@ import Purpose from "./purpose";
 import History from "./history";
 import Org from "./org";
 import Guide from "./guide";
+import Menu from "../../components/Submenu";
 
 const Index = ({ match }) => {
 	const [page, setPage] = useState(1);
@@ -30,61 +31,41 @@ const Index = ({ match }) => {
 					<h1 class="text-4xl">협회소개</h1>
 				</div>
 				<div class="px-36 w-full cursor-pointer bottom-0 flex flex-row justify-center bg-purple-100">
-					<Link
-						to="/introduce/intro"
-						class={
-							"w-1/5 max-w-xl py-4 text-center hover:bg-white hover:text-purple-700 hover:font-bold " +
-							(page === 1
-								? "text-purple-700 bg-white font-bold"
-								: "text-white bg-purple-300 ")
-						}
-					>
-						인사말
-					</Link>
-					<Link
-						to="/introduce/purpose"
-						class={
-							"w-1/5 max-w-xl py-4 text-center hover:bg-white hover:text-purple-700 hover:font-bold " +
-							(page === 2
-								? "text-purple-700 bg-white font-bold"
-								: "text-white bg-purple-300")
-						}
-					>
-						설립목적
-					</Link>
-					<Link
-						to="/introduce/history"
-						class={
-							"w-1/5 max-w-xl py-4 text-center hover:bg-white hover:text-purple-700 hover:font-bold " +
-							(page === 3
-								? "text-purple-700 bg-white font-bold"
-								: "text-white bg-purple-300")
-						}
-					>
-						연혁
-					</Link>
-					<Link
-						to="/introduce/org"
-						class={
-							"w-1/5 max-w-xl py-4 text-center hover:bg-white hover:text-purple-700 hover:font-bold " +
-							(page === 4
-								? "text-purple-700 bg-white font-bold"
-								: "text-white bg-purple-300")
-						}
-					>
-						조직도
-					</Link>
-					<Link
-						to="/introduce/guide"
-						class={
-							"w-1/5 max-w-xl py-4 text-center hover:bg-white hover:text-purple-700 hover:font-bold " +
-							(page === 5
-								? "text-purple-700 bg-white font-bold"
-								: "text-white bg-purple-300")
-						}
-					>
-						오시는 길
-					</Link>
+					<Menu
+						text={"인사말"}
+						current={page}
+						page={1}
+						address={"/introduce/intro"}
+						count={5}
+					/>
+					<Menu
+						text={"설립목적"}
+						current={page}
+						page={2}
+						address={"/introduce/purpose"}
+						count={5}
+					/>
+					<Menu
+						text={"연혁"}
+						current={page}
+						page={3}
+						address={"/introduce/history"}
+						count={5}
+					/>
+					<Menu
+						text={"조직도"}
+						current={page}
+						page={4}
+						address={"/introduce/org"}
+						count={5}
+					/>
+					<Menu
+						text={"오시는 길"}
+						current={page}
+						page={5}
+						address={"/introduce/guide"}
+						count={5}
+					/>
 				</div>
 			</div>
 

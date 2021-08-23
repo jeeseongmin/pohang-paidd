@@ -1,7 +1,11 @@
 import React, { useState, useRef, useEffect } from "react";
 import { Route, Link } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { decrement, increment, updateArr } from "../reducer/baseSlice";
 
 const Navbar = () => {
+	const dispatch = useDispatch();
+
 	console.log("url", window.location.pathname);
 	const [overMenu, setOverMenu] = useState([false, false, false, false, false]);
 	const [page, setPage] = useState(0);

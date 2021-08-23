@@ -8,6 +8,7 @@ import Volunteer from "./volunteer";
 import WriteCounsel from "./writeCounsel";
 import WriteSupport from "./writeSupport";
 import WriteVolunteer from "./writeVolunteer";
+import Menu from "../../components/Submenu";
 
 const Index = ({ match }) => {
 	const [page, setPage] = useState(1);
@@ -33,50 +34,34 @@ const Index = ({ match }) => {
 					<h1 class="text-4xl">참여마당</h1>
 				</div>
 				<div class="px-36 w-full cursor-pointer  bottom-0 flex flex-row justify-center bg-purple-100">
-					<Link
-						to="/participation/notice"
-						class={
-							"w-1/4 max-w-xl py-4 text-center hover:bg-white hover:text-purple-700 hover:font-bold " +
-							(page === 1
-								? "text-purple-700 bg-white font-bold"
-								: "text-white bg-purple-300")
-						}
-					>
-						공지사항
-					</Link>
-					<Link
-						to="/participation/counseling"
-						class={
-							"w-1/4 max-w-xl py-4 text-center hover:bg-white hover:text-purple-700 hover:font-bold " +
-							(page === 2 || page === 5
-								? "text-purple-700 bg-white font-bold"
-								: "text-white bg-purple-300")
-						}
-					>
-						건의 및 고충상담
-					</Link>
-					<Link
-						to="/participation/support"
-						class={
-							"w-1/4 max-w-xl py-4 text-center hover:bg-white hover:text-purple-700 hover:font-bold " +
-							(page === 3
-								? "text-purple-700 bg-white font-bold"
-								: "text-white bg-purple-300")
-						}
-					>
-						후원
-					</Link>
-					<Link
-						to="/participation/volunteer"
-						class={
-							"w-1/4 max-w-xl py-4 text-center hover:bg-white hover:text-purple-700 hover:font-bold " +
-							(page === 4
-								? "text-purple-700 bg-white font-bold"
-								: "text-white bg-purple-300")
-						}
-					>
-						자원봉사
-					</Link>
+					<Menu
+						text={"공지사항"}
+						current={page}
+						page={1}
+						address={"/participation/notice"}
+						count={4}
+					/>
+					<Menu
+						text={"건의 및 고충상담"}
+						current={page}
+						page={2}
+						address={"/participation/counseling"}
+						count={4}
+					/>
+					<Menu
+						text={"후원"}
+						current={page}
+						page={3}
+						address={"/participation/support"}
+						count={4}
+					/>
+					<Menu
+						text={"자원봉사"}
+						current={page}
+						page={4}
+						address={"/participation/volunteer"}
+						count={4}
+					/>
 				</div>
 			</div>
 			<div class="w-full h-auto">

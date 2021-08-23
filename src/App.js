@@ -8,6 +8,7 @@ import Business from "./pages/business/index";
 import Organization from "./pages/organization/index";
 import Participation from "./pages/participation/index";
 import Local from "./pages/local/index";
+import Footer from "./components/Footer";
 
 const Routes = () => {
 	return (
@@ -23,6 +24,7 @@ const Routes = () => {
 					<Route exact path="/local" component={Local} />
 				</switch>
 			</div>
+			<Footer />
 		</div>
 	);
 };

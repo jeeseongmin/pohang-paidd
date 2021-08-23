@@ -11,10 +11,10 @@ const orgMenu = (props) => {
 		<div
 			onClick={() => changeSelected(num)}
 			class={
-				"cursor-pointer text-sm mr-2 mb-2 px-4 py-2 w-auto rounded-full hover:text-white hover:bg-purple-600 hover:border-purple-600 " +
+				"cursor-pointer text-sm mr-2 mb-2 px-4 py-2 w-auto rounded-full " +
 				(selected === num
-					? "border border-purple-600 bg-purple-600 text-white font-bold"
-					: "border border-gray-300 text-gray-300")
+					? "border border-purple-400 text-purple-400"
+					: "border border-gray-300 text-gray-300 hover:text-white hover:bg-purple-300 hover:border-purple-300")
 			}
 		>
 			{name[num]}
