@@ -1,24 +1,21 @@
 import React, { useEffect, useState } from "react";
 import { Route, Link } from "react-router-dom";
-import BusinessMenu from "../../../../components/Menu/BusinessMenu";
+import OrgMenu from "../../components/Menu/orgMenu";
 import Business from "./components/business";
 import Gallery from "./components/gallery";
 import Intro from "./components/intro";
-import Notice from "../common/notice/notice";
-import NoticeWrite from "../common/notice/noticeWrite";
-import NoticeDetail from "../common/notice/noticeDetail";
+import Notice from "./pages/common/notice/notice";
+import NoticeWrite from "./pages/common/notice/noticeWrite";
+import NoticeDetail from "./pages/common/notice/noticeDetail";
+import Base from "./base";
 
-const Index = (props, { match }) => {
+const Main = (props) => {
 	const [selected, setSelected] = useState(0);
 
 	const changeSelected = (num) => {
 		setSelected(num);
 		window.scrollTo(0, 0);
 	};
-
-	useEffect(() => {
-		console.log("index", match);
-	}, [match]);
 
 	const Content = () => {
 		if (selected === 0) {
@@ -27,11 +24,11 @@ const Index = (props, { match }) => {
 			return <Business />;
 		} else if (selected === 2) {
 			if (props.type === "default") {
-				return <Notice pages={props.pages} />;
+				return <Notice />;
 			} else if (props.type === "noticeWrite") {
-				return <NoticeWrite pages={props.pages} />;
+				return <NoticeWrite />;
 			} else if (props.type === "noticeDetail") {
-				return <NoticeDetail pages={props.pages} />;
+				return <NoticeDetail />;
 			}
 			return <Notice />;
 		} else if (selected === 3) {
@@ -45,10 +42,9 @@ const Index = (props, { match }) => {
 				<div class="flex flex-row justify-start items-center pb-8">
 					{[0, 1, 2, 3].map((element, index) => {
 						return (
-							<BusinessMenu
+							<OrgMenu
 								index={element}
 								selected={selected}
-								pages={props.pages}
 								changeSelected={changeSelected}
 							/>
 						);
@@ -63,4 +59,4 @@ const Index = (props, { match }) => {
 	);
 };
 
-export default Index;
+export default Main;

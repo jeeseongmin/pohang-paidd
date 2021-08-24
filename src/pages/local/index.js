@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Route, Link } from "react-router-dom";
 import LocalTable from "./localTable";
-import LocalMenu from "../../components/LocalMenu";
+import LocalMenu from "../../components/Menu/LocalMenu";
 
 const Index = ({ match }) => {
 	const [selected, setSelected] = useState(0);

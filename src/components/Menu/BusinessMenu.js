@@ -2,7 +2,6 @@ import React from "react";
 import { Route, Link } from "react-router-dom";
 
 const businessMenu = (props) => {
-	console.log("businessMenu", props);
 	const num = props.index;
 	const selected = props.selected;
 	const changeSelected = props.changeSelected;

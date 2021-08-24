@@ -1,11 +1,12 @@
 import React from "react";
 import { Route, Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { setMenu, setSubmenu } from "../reducer/settingSlice";
+import { setMenu, setSubmenu } from "../../reducer/settingSlice";
 
-const Submenu = (props) => {
+// Main Menu in Navbar
+const Sub = (props) => {
 	const dispatch = useDispatch();
-
+	// selected menu in whole page
 	const currentMenu = useSelector((state) => state.setting.menu);
 	const currentSubmenu = useSelector((state) => state.setting.submenu);
 
@@ -50,7 +51,6 @@ const Submenu = (props) => {
 		["공지사항", "건의 및 고충상담", "후원", "자원봉사"],
 		["지역복지"],
 	];
-	const count = "w-1/" + title[menu - 1].length;
 
 	const goSubPage = (num1, num2) => {
 		dispatch(setMenu(num1));
@@ -64,11 +64,10 @@ const Submenu = (props) => {
 				to={address[menu - 1][submenu - 1]}
 				onClick={() => goSubPage(menu, submenu)}
 				class={
-					count +
-					" max-w-xl py-4 text-center bg-purple-white " +
-					(currentSubmenu === submenu
-						? "text-purple-700 bg-white"
-						: "text-white bg-purple-400 hover:bg-purple-300")
+					"text-xs pl-4 py-3 border-b border-gray-200 hover:bg-gray-100 hover:text-purple-700 " +
+					(currentMenu === menu && currentSubmenu === submenu
+						? "text-purple-700"
+						: "text-gray-400")
 				}
 			>
 				{title[menu - 1][submenu - 1]}
@@ -77,4 +76,4 @@ const Submenu = (props) => {
 	);
 };
 
-export default Submenu;
+export default Sub;

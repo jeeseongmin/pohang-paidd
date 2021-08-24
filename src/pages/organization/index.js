@@ -1,20 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Route, Link } from "react-router-dom";
-import OrgMenu from "../../components/orgMenu";
+import OrgMenu from "../../components/Menu/OrgMenu";
 import Business from "./components/business";
 import Gallery from "./components/gallery";
 import Intro from "./components/intro";
 import Notice from "./components/notice";
 
-const Index = ({ match }) => {
+const Index = () => {
 	const [selected, setSelected] = useState(0);
-	console.log(match.params.pages);
-
-	useEffect(() => {
-		if (match.params.pages === 0) {
-			// 늘사랑주간보호센터
-		}
-	}, []);
 
 	const changeSelected = (num) => {
 		setSelected(num);
