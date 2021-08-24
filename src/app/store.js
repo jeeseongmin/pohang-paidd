@@ -1,9 +1,24 @@
 import { configureStore } from "@reduxjs/toolkit";
+import storage from "redux-persist/lib/storage";
+import { combineReducers } from "redux";
+import { persistReducer } from "redux-persist";
+import thunk from "redux-thunk";
+
 import settingReducer from "../reducer/settingSlice";
 
+const reducers = combineReducers({
+	setting: settingReducer,
+});
+
+const persistConfig = {
+	key: "root",
+	storage,
+};
+
+const persistedReducer = persistReducer(persistConfig, reducers);
+
 export const store = configureStore({
-	reducer: {
-		setting: settingReducer,
-		//여기에 다른 리듀서를 추가 하면 됩니다.
-	},
+	reducer: persistedReducer,
+	devTools: process.env.NODE_ENV !== "production",
+	middleware: [thunk],
 });

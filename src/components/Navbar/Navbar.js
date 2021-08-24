@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setMenu, setSubmenu, toggleSidebar } from "../../reducer/settingSlice";
 import Main from "./Main";
 import Sub from "./Sub";
@@ -9,6 +9,7 @@ import { GiHamburgerMenu } from "react-icons/gi";
 
 const Navbar = () => {
 	const dispatch = useDispatch();
+	const sidebar = useSelector((state) => state.setting.sidebar);
 
 	const [overMenu, setOverMenu] = useState([false, false, false, false, false]);
 
@@ -24,13 +25,18 @@ const Navbar = () => {
 		window.scrollTo(0, 0);
 	};
 
-	const toggleSidebar = (state) => {
-		dispatch(toggleSidebar(state));
+	const onToggleSidebar = () => {
+		console.log(sidebar);
+		dispatch(toggleSidebar(sidebar));
 	};
 
 	return (
 		<>
-			<div class="z-40 w-full px-5 h-16 hidden justify-start shadow-lg fixed bg-white lg:flex 2xl:px-36 xl:px-32 lg:px-5">
+			<div
+				class={
+					"z-20 w-full px-5 h-16 hidden justify-start shadow-2xl bg-white lg:flex 2xl:px-36 xl:px-32 lg:px-5 fixed "
+				}
+			>
 				<div class="flex justify-center items-center cursor-pointer">
 					<Link to="/" onClick={() => goPage(0)}>
 						<img src="/image/logo.png" class="h-8 xl:h-10" alt="logo" />
@@ -126,9 +132,17 @@ const Navbar = () => {
 					</div>
 				</div>
 			</div>
-			<div class="z-40 w-full px-5 h-14 flex justify-between shadow-lg fixed bg-white lg:hidden sm:px-10 sm:h-16">
+			<div
+				class={
+					"z-20 w-full px-5 h-14 flex justify-between shadow-2xl bg-white lg:hidden sm:px-10 sm:h-16 fixed "
+				}
+			>
 				<div class="h-full flex justify-center items-center text-purple-300">
-					<GiHamburgerMenu size={28} class="cursor-pointer" />
+					<GiHamburgerMenu
+						onClick={onToggleSidebar}
+						size={28}
+						class="cursor-pointer"
+					/>
 				</div>
 				<div class="flex justify-center items-center cursor-pointer">
 					<Link to="/" onClick={() => goPage(0)}>

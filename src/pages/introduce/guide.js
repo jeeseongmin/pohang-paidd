@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import Subtitle from "../../components/Subtitle";
 const { kakao } = window;
 
 const Guide = () => {
@@ -30,14 +31,14 @@ const Guide = () => {
 	}, []);
 
 	return (
-		<div class="px-36 py-16">
-			<h1 class="text-3xl font-bold mb-8">오시는 길</h1>
-			<div class="w-full h-96 flex flex-col justify-center items-center shadow-xl mb-8">
+		<div class="px-5 2xl:px-36 xl:px-32 md:px-8 py-8 lg:py-16">
+			<Subtitle text={"오시는 길"} />
+			<div class="w-full h-96 flex flex-col justify-center items-center shadow-xl my-8">
 				<div id="map" style={{ width: "100%", height: "400px" }}></div>
 			</div>
 			<div class="text-xl mb-16">경상북도 포항시 북구 새천년대로 1307, 3층</div>
-			<h1 class="text-3xl font-bold mb-8">대중교통</h1>
-			<div class="text-xl mb-8">롯데낙천대 앞 정류장 120번, 121번, 700번</div>
+			<Subtitle text={"대중교통"} />
+			<div class="text-xl my-8">롯데낙천대 앞 정류장 120번, 121번, 700번</div>
 		</div>
 	);
 };

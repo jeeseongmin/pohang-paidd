@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Route, Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { setMenu, setSubmenu } from "../reducer/settingSlice";
@@ -13,6 +13,9 @@ const Submenu = (props) => {
 	const menu = props.menu;
 	const submenu = props.submenu;
 
+	useEffect(() => {
+		console.log("submenu : ", currentSubmenu, submenu);
+	}, []);
 	// target url
 	const address = [
 		[
@@ -65,7 +68,7 @@ const Submenu = (props) => {
 				onClick={() => goSubPage(menu, submenu)}
 				class={
 					count +
-					" max-w-xl py-4 text-center bg-purple-white " +
+					" max-w-xl py-4 text-center text-sm lg:text-base bg-purple-white flex justify-center items-center " +
 					(currentSubmenu === submenu
 						? "text-purple-700 bg-white"
 						: "text-white bg-purple-400 hover:bg-purple-300")

@@ -13,7 +13,7 @@ const Index = ({ match }) => {
 				<div class="h-44 bg-purple-100 flex justify-center items-center ">
 					<h1 class="text-4xl">주요사업</h1>
 				</div>
-				<div class="px-36 w-full cursor-pointer bottom-0 flex flex-row justify-center bg-purple-100">
+				<div class="w-full cursor-pointer bottom-0 flex flex-row justify-center bg-purple-100 px-0 2xl:px-36 xl:px-32 md:px-0">
 					<Submenu menu={2} submenu={1} />
 					<Submenu menu={2} submenu={2} />
 					<Submenu menu={2} submenu={3} />
