@@ -183,7 +183,7 @@ const Home = () => {
 						</Link>
 						<div class="absolute bottom-5 lg:bottom-10 right-10 opacity-50 h-20 lg:h-auto">
 							<img
-								class="w-full h-full"
+								class="h-full object-cover"
 								src="/image/home-img3.png"
 								alt="logo"
 							/>
@@ -202,7 +202,7 @@ const Home = () => {
 						</Link>
 						<div class="absolute bottom-2 lg:bottom-6 right-10 opacity-50 h-32 lg:h-auto">
 							<img
-								class="w-full h-full"
+								class="h-full object-cover"
 								src="/image/home-img4.png"
 								alt="logo"
 							/>

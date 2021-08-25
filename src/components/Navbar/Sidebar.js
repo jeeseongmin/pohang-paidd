@@ -52,7 +52,7 @@ const Sidebar = () => {
 				onClick={() => onToggleMenu(props.num)}
 				class="w-full border-b border-purple-500 flex justify-between items-center"
 			>
-				<Link class="text-xl w-auto font-bold py-2">{props.text}</Link>
+				<Link class="text-lg w-auto py-2">{props.text}</Link>
 				{!toggleArr[props.num] && <img src="/image/arrowUp.png" alt="down" />}
 				{/* <MdKeyboardArrowUp size={28} /> */}
 				{toggleArr[props.num] && <img src="/image/arrowDown.png" alt="up" />}
@@ -79,12 +79,26 @@ const Sidebar = () => {
 				"z-40 w-full h-full absolute top-0 left-0 flex flex-row justify-start items-center "
 			}
 		>
-			<div class="w-2/3 h-full bg-white flex flex-col justify-start items-start py-8 px-4">
-				<div onClick={onToggleSidebar} class="w-full mb-4 text-purple-300">
-					{/* <VscChromeClose size={32} class="cursor-pointer" /> */}
-					<img src="/image/close.png" alt="close" />
+			<div class="w-2/3 h-full bg-white flex flex-col justify-start items-start ">
+				<div
+					class={
+						"z-20 w-auto px-5 h-14 flex justify-between bg-white lg:hidden sm:px-10 sm:h-16"
+					}
+				>
+					<div class="h-full flex justify-center items-center text-purple-300">
+						<div class="h-full flex justify-center items-center">
+							<img
+								onClick={onToggleSidebar}
+								src="/image/close.png"
+								alt="close"
+							/>
+						</div>
+					</div>
 				</div>
-				<div class="w-full flex flex-col mb-4">
+				{/* <div onClick={onToggleSidebar} class="w-full mb-4 text-purple-300">
+					<img src="/image/close.png" alt="close" />
+				</div> */}
+				<div class="w-full flex flex-col mb-6 px-4">
 					<MainText text={"협회소개"} address={"/introduce/intro"} num={1} />
 					{toggleArr[1] && (
 						<div class="flex flex-col">
@@ -121,7 +135,7 @@ const Sidebar = () => {
 						</div>
 					)}
 				</div>
-				<div class="w-full flex flex-col mb-4">
+				<div class="w-full flex flex-col mb-6 px-4">
 					<MainText
 						text={"주요사업"}
 						address={"/business/base/default"}
@@ -156,7 +170,7 @@ const Sidebar = () => {
 						</div>
 					)}
 				</div>
-				<div class="w-full flex flex-col mb-4">
+				<div class="w-full flex flex-col mb-6 px-4">
 					<MainText text={"부설기관"} address={"/organization/0"} num={3} />
 					{toggleArr[3] && (
 						<div class="flex flex-col">
@@ -169,7 +183,7 @@ const Sidebar = () => {
 						</div>
 					)}
 				</div>
-				<div class="w-full flex flex-col mb-4">
+				<div class="w-full flex flex-col mb-6 px-4">
 					<MainText
 						text={"참여마당"}
 						address={"/participation/notice"}
@@ -204,7 +218,7 @@ const Sidebar = () => {
 						</div>
 					)}
 				</div>
-				<div class="w-full flex flex-col mb-4">
+				<div class="w-full flex flex-col mb-6 px-4">
 					<MainText text={"지역복지"} address={"/local"} num={5} />
 					{toggleArr[5] && (
 						<div class="flex flex-col">
@@ -220,7 +234,7 @@ const Sidebar = () => {
 			</div>
 			<div
 				onClick={onToggleSidebar}
-				class={"cursor-pointer flex-1 w-full h-full bg-black opacity-50"}
+				class={"cursor-pointer flex-1 w-full h-full bg-black opacity-50 px-4"}
 			></div>
 		</div>
 	);

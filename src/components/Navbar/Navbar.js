@@ -148,6 +148,7 @@ const Navbar = () => {
 							onClick={onToggleSidebar}
 							src="/image/hamburger.png"
 							alt="hamburger"
+							class="object-cover"
 						/>
 					</div>
 				</div>
