@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
+import Subtitle from "../../../components/Subtitle";
 
 const Business = () => {
 	return (
 		<div>
-			<h1 class="text-3xl mb-8 font-bold">주요사업</h1>
-			<div class="flex flex-wrap justify-start gap-x-32">
-				<div class="w-1/4 flex flex-col justify-between items-center p-4 shadow-lg mb-8 border border-gray-200">
+			<Subtitle text={"주요사업"} />
+			<div class="flex flex-wrap justify-start gap-x-32 mt-4">
+				<div class="w-full lg:w-1/4 md:w-1/3 flex flex-col justify-between items-center p-4 shadow-lg mb-8 border border-gray-200">
 					<div class="text-xl w-full text-center py-4 text-purple-700 border-b-2 border-purple-700">
 						일상생활활동
 					</div>
@@ -18,7 +19,7 @@ const Business = () => {
 						하루 일과 중 용모 단장 및 위생 관리와 식사 예절을 연습합니다.
 					</div>
 				</div>{" "}
-				<div class="w-1/4 flex flex-col justify-between items-center p-4 shadow-lg mb-8 border border-gray-200">
+				<div class="w-full lg:w-1/4 md:w-1/3 flex flex-col justify-between items-center p-4 shadow-lg mb-8 border border-gray-200">
 					<div class="text-xl w-full text-center py-4 text-purple-700 border-b-2 border-purple-700">
 						감수성활동
 					</div>
@@ -31,7 +32,7 @@ const Business = () => {
 						몸과 마음을 건강하게 하는 활동을 합니다.
 					</div>
 				</div>
-				<div class="w-1/4 flex flex-col justify-between items-center p-4 shadow-lg mb-8 border border-gray-200">
+				<div class="w-full lg:w-1/4 md:w-1/3 flex flex-col justify-between items-center p-4 shadow-lg mb-8 border border-gray-200">
 					<div class="text-xl w-full text-center py-4 text-purple-700 border-b-2 border-purple-700">
 						취미여가활동
 					</div>
@@ -47,7 +48,7 @@ const Business = () => {
 						향상하고 유지하기 위함입니다.
 					</div>
 				</div>
-				<div class="w-1/4 flex flex-col justify-between items-center p-4 shadow-lg mb-8 border border-gray-200">
+				<div class="w-full lg:w-1/4 md:w-1/3 flex flex-col justify-between items-center p-4 shadow-lg mb-8 border border-gray-200">
 					<div class="text-xl w-full text-center py-4 text-purple-700 border-b-2 border-purple-700">
 						사회적응활동
 					</div>
@@ -60,7 +61,7 @@ const Business = () => {
 						생각을 잘 표현할 수 있게 연습합니다.
 					</div>
 				</div>
-				<div class="w-1/4 flex flex-col justify-between items-center p-4 shadow-lg mb-8 border border-gray-200">
+				<div class="w-full lg:w-1/4 md:w-1/3 flex flex-col justify-between items-center p-4 shadow-lg mb-8 border border-gray-200">
 					<div class="text-xl w-full text-center py-4 text-purple-700 border-b-2 border-purple-700">
 						상담 및 교육활동
 					</div>
@@ -75,7 +76,7 @@ const Business = () => {
 						교육받은 내용을 사회생활에서 적용할 수 있도록 훈련합니다.
 					</div>
 				</div>
-				<div class="w-1/4 flex flex-col justify-between items-center p-4 shadow-lg mb-8 border border-gray-200">
+				<div class="w-full lg:w-1/4 md:w-1/3 flex flex-col justify-between items-center p-4 shadow-lg mb-8 border border-gray-200">
 					<div class="text-xl w-full text-center py-4 text-purple-700 border-b-2 border-purple-700">
 						캠프 및 동아리 활동
 					</div>
@@ -88,7 +89,7 @@ const Business = () => {
 						수 있습니다.
 					</div>
 				</div>
-				<div class="w-1/4 flex flex-col justify-between items-center p-4 shadow-lg mb-8 border border-gray-200">
+				<div class="w-full lg:w-1/4 md:w-1/3 flex flex-col justify-between items-center p-4 shadow-lg mb-8 border border-gray-200">
 					<div class="text-xl w-full text-center py-4 text-purple-700 border-b-2 border-purple-700">
 						동아리활동
 					</div>

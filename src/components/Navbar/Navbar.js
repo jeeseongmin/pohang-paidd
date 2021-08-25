@@ -138,11 +138,18 @@ const Navbar = () => {
 				}
 			>
 				<div class="h-full flex justify-center items-center text-purple-300">
-					<GiHamburgerMenu
+					{/* <GiHamburgerMenu
 						onClick={onToggleSidebar}
 						size={28}
 						class="cursor-pointer"
-					/>
+					/> */}
+					<div class="h-full flex justify-center items-center">
+						<img
+							onClick={onToggleSidebar}
+							src="/image/hamburger.png"
+							alt="hamburger"
+						/>
+					</div>
 				</div>
 				<div class="flex justify-center items-center cursor-pointer">
 					<Link to="/" onClick={() => goPage(0)}>

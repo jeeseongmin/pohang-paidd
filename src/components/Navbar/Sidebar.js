@@ -10,8 +10,7 @@ import { MdKeyboardArrowUp, MdKeyboardArrowDown } from "react-icons/md";
 const Sidebar = () => {
 	const dispatch = useDispatch();
 	const sidebar = useSelector((state) => state.setting.sidebar);
-	const menu = useSelector((state) => state.setting.menu);
-	const submenu = useSelector((state) => state.setting.submenu);
+	const currentMenu = useSelector((state) => state.setting.menu);
 	const [toggleArr, setToggleArr] = useState([
 		false,
 		false,
@@ -22,14 +21,14 @@ const Sidebar = () => {
 	]);
 
 	useEffect(() => {
-		console.log("menu : ", menu);
 		const cp = [false, false, false, false, false, false];
-		cp[menu] = true;
+		cp[currentMenu] = true;
 		setToggleArr(cp);
 	}, [sidebar]);
 
-	const onToggleSidebar = () => {
-		console.log("onToggleSidebar");
+	const onToggleSidebar = (menu, submenu) => {
+		dispatch(setMenu(menu));
+		dispatch(setSubmenu(submenu));
 		dispatch(toggleSidebar(sidebar));
 	};
 
@@ -51,13 +50,13 @@ const Sidebar = () => {
 		return (
 			<div
 				onClick={() => onToggleMenu(props.num)}
-				class="w-full border-b-2 border-purple-500 flex justify-between items-center"
+				class="w-full border-b border-purple-500 flex justify-between items-center"
 			>
-				<Link to={props.address} class="text-xl w-auto font-bold py-2">
-					{props.text}
-				</Link>
-				{!toggleArr[props.num] && <MdKeyboardArrowUp size={28} />}
-				{toggleArr[props.num] && <MdKeyboardArrowDown size={28} />}
+				<Link class="text-xl w-auto font-bold py-2">{props.text}</Link>
+				{!toggleArr[props.num] && <img src="/image/arrowUp.png" alt="down" />}
+				{/* <MdKeyboardArrowUp size={28} /> */}
+				{toggleArr[props.num] && <img src="/image/arrowDown.png" alt="up" />}
+				{/* <MdKeyboardArrowDown size={28} /> */}
 			</div>
 		);
 	};
@@ -66,7 +65,8 @@ const Sidebar = () => {
 		return (
 			<Link
 				to={props.address}
-				class="cursor-pointer text-sm py-2 text-gray-600"
+				onClick={() => onToggleSidebar(props.menu, props.submenu)}
+				class="cursor-pointer text-sm pl-4 py-3 text-gray-600"
 			>
 				{props.text}
 			</Link>
@@ -80,18 +80,44 @@ const Sidebar = () => {
 			}
 		>
 			<div class="w-2/3 h-full bg-white flex flex-col justify-start items-start py-8 px-4">
-				<div class="w-full mb-4 text-purple-300">
-					<VscChromeClose size={32} class="cursor-pointer" />
+				<div onClick={onToggleSidebar} class="w-full mb-4 text-purple-300">
+					{/* <VscChromeClose size={32} class="cursor-pointer" /> */}
+					<img src="/image/close.png" alt="close" />
 				</div>
 				<div class="w-full flex flex-col mb-4">
 					<MainText text={"협회소개"} address={"/introduce/intro"} num={1} />
 					{toggleArr[1] && (
 						<div class="flex flex-col">
-							<SubText text={"인사말"} address={"/introduce/intro"} />
-							<SubText text={"설립목적"} address={"/introduce/purpose"} />
-							<SubText text={"연혁"} address={"/introduce/history"} />
-							<SubText text={"조직도"} address={"/introduce/org"} />
-							<SubText text={"오시는 길"} address={"/introduce/guide"} />
+							<SubText
+								text={"인사말"}
+								address={"/introduce/intro"}
+								menu={1}
+								submenu={1}
+							/>
+							<SubText
+								text={"설립목적"}
+								address={"/introduce/purpose"}
+								menu={1}
+								submenu={2}
+							/>
+							<SubText
+								text={"연혁"}
+								address={"/introduce/history"}
+								menu={1}
+								submenu={3}
+							/>
+							<SubText
+								text={"조직도"}
+								address={"/introduce/org"}
+								menu={1}
+								submenu={4}
+							/>
+							<SubText
+								text={"오시는 길"}
+								address={"/introduce/guide"}
+								menu={1}
+								submenu={5}
+							/>
 						</div>
 					)}
 				</div>
@@ -103,18 +129,29 @@ const Sidebar = () => {
 					/>
 					{toggleArr[2] && (
 						<div class="flex flex-col">
-							<SubText text={"협회사업"} address={"/business/base/default"} />
 							<SubText
-								text={"포항시지적장애인자립지원센터"}
+								text={"협회사업"}
+								address={"/business/base/default"}
+								menu={2}
+								submenu={1}
+							/>
+							<SubText
+								text={"지적장애인 자립지원센터"}
 								address={"/business/b1/default"}
+								menu={2}
+								submenu={2}
 							/>
 							<SubText
-								text={"장애인활동지원사업"}
+								text={"장애인활동 지원사업"}
 								address={"/business/b2/default"}
+								menu={2}
+								submenu={3}
 							/>
 							<SubText
-								text={"방과후활동서비스사업"}
+								text={"방과후활동 서비스사업"}
 								address={"/business/b3/default"}
+								menu={2}
+								submenu={4}
 							/>
 						</div>
 					)}
@@ -123,7 +160,12 @@ const Sidebar = () => {
 					<MainText text={"부설기관"} address={"/organization/0"} num={3} />
 					{toggleArr[3] && (
 						<div class="flex flex-col">
-							<SubText text={"부설기관"} address={"/organization/0"} />
+							<SubText
+								text={"부설기관"}
+								address={"/organization/0"}
+								menu={3}
+								submenu={1}
+							/>
 						</div>
 					)}
 				</div>
@@ -135,13 +177,30 @@ const Sidebar = () => {
 					/>
 					{toggleArr[4] && (
 						<div class="flex flex-col">
-							<SubText text={"공지사항"} address={"/participation/notice"} />
+							<SubText
+								text={"공지사항"}
+								address={"/participation/notice"}
+								menu={4}
+								submenu={1}
+							/>
 							<SubText
 								text={"건의 및 고충상담"}
 								address={"/participation/counseling"}
+								menu={4}
+								submenu={2}
 							/>
-							<SubText text={"후원"} address={"/participation/support"} />
-							<SubText text={"자원봉사"} address={"/participation/volunteer"} />
+							<SubText
+								text={"후원"}
+								address={"/participation/support"}
+								menu={4}
+								submenu={3}
+							/>
+							<SubText
+								text={"자원봉사"}
+								address={"/participation/volunteer"}
+								menu={4}
+								submenu={4}
+							/>
 						</div>
 					)}
 				</div>
@@ -149,7 +208,12 @@ const Sidebar = () => {
 					<MainText text={"지역복지"} address={"/local"} num={5} />
 					{toggleArr[5] && (
 						<div class="flex flex-col">
-							<SubText text={"지역복지"} address={"/local"} />
+							<SubText
+								text={"지역복지"}
+								address={"/local"}
+								menu={4}
+								submenu={5}
+							/>
 						</div>
 					)}
 				</div>

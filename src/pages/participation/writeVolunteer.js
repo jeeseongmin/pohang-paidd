@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import { Route, Link, withRouter } from "react-router-dom";
 import { AiOutlineCheck } from "react-icons/ai";
-import CreatableSelect from "react-select/creatable";
+import Subtitle from "../../components/Subtitle";
 
 const WriteVolunteer = ({ history }) => {
 	const [info, setInfo] = useState({
@@ -102,10 +102,10 @@ const WriteVolunteer = ({ history }) => {
 		{ value: "50000", label: "50000" },
 	];
 	return (
-		<div class="px-36 py-16">
-			<div class="flex flex-row justify-between items-center mb-8">
+		<div class="w-full h-auto">
+			<div class="flex flex-row justify-between items-center mb-4 md:mb-8">
 				<div>
-					<h1 class="text-3xl font-bold">자원봉사 신청하기</h1>
+					<Subtitle text={"자원봉사 신청하기"} />
 				</div>
 			</div>
 			<form class="border-t-2 border-b-2 border-purple-700 py-6 mb-4">
@@ -173,7 +173,7 @@ const WriteVolunteer = ({ history }) => {
 				<div class="mt-8 mb-4">
 					<h1 class="text-md mb-4 font-bold">개인정보동의</h1>
 				</div>
-				<div class=" w-full h-full border border-black p-4 mb-8">
+				<div class="text-xs md:text-base leading-5 md:leading-7 w-full h-full border border-black p-4 mb-8">
 					<div>
 						본 기관은 고객의 개인정보를 소중하게 생각하며, 고객의 개인정보보호를
 						가장 효과적이고 안전하게 보호하기 위하여 항상 최선의 노력을 다하고
@@ -186,7 +186,7 @@ const WriteVolunteer = ({ history }) => {
 						동의여부를 언제든지 철회할 수 있습니다. 다만, 동의를 하지 않거나
 						철회한 경우 기부금영수증 및 확인서 발급에 제한을 받을 수 있습 니다.
 					</div>
-					<div class="leading-7">
+					<div class="leading-5 md:leading-7">
 						<h1>
 							<span>■ </span>수집항목: 후원자의 이력관리, 확인서 발급에 필요한
 							개인정보{" "}
@@ -223,15 +223,15 @@ const WriteVolunteer = ({ history }) => {
 					>
 						{info.agree && <AiOutlineCheck size={20} class="text-white" />}
 					</div>
-					<div class="cursor-pointer w-auto mx-4 text-sm font-bold">
+					<div class="flex-1 cursor-pointer w-auto mx-4 text-sm font-bold">
 						「개인정보보호법」에 따라 위와 같이 개인정보 수집 및 이용에
 						동의합니다.
 					</div>
 				</div>
 			</form>
-			<div class="flex justify-between items-center">
+			<div class="flex flex-col md:flex-row justify-between items-center">
 				<Link
-					class="cursor-pointer px-16 py-2 border border-purple-700 text-purple-700 flex flex-row items-center hover:bg-purple-500 hover:text-white hover:font-bold"
+					class="w-full md:w-auto mb-4 md:mb-4 justify-center cursor-pointer px-16 py-2 border border-purple-700 text-purple-700 flex flex-row items-center hover:bg-purple-500 hover:text-white hover:font-bold"
 					to="/participation/support"
 					onClick={() => window.scrollTo(0, 0)}
 				>
@@ -239,7 +239,7 @@ const WriteVolunteer = ({ history }) => {
 				</Link>
 				<button
 					onClick={submitInfo}
-					class="cursor-pointer px-16 py-2 border border-purple-700 text-purple-700 flex flex-row items-center hover:bg-purple-500 hover:text-white hover:font-bold "
+					class="w-full md:w-auto cursor-pointer justify-center px-16 py-2 border border-purple-700 text-purple-700 flex flex-row items-center hover:bg-purple-500 hover:text-white hover:font-bold "
 				>
 					제출하기
 				</button>

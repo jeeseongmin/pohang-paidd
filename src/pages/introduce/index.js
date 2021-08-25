@@ -7,6 +7,7 @@ import Org from "./org";
 import Guide from "./guide";
 import Submenu from "../../components/Submenu";
 import { useSelector, useDispatch } from "react-redux";
+import Subtitle from "../../components/Subtitle";
 
 const Index = () => {
 	const dispatch = useDispatch();

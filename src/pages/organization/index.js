@@ -55,7 +55,7 @@ const Index = () => {
 					</Link>
 				</div> */}
 			</div>
-			<div class="w-full h-auto px-36">
+			<div class="w-full h-auto px-5 py-4 2xl:px-36 xl:px-32 md:px-8 lg:py-16">
 				<div class="flex flex-row justify-start items-center py-8">
 					{[0, 1, 2, 3].map((element, index) => {
 						return (

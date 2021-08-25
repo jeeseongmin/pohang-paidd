@@ -38,7 +38,7 @@ const Index = (props) => {
 	return (
 		<div class="h-full z-0">
 			<div class="w-full h-auto">
-				<div class="flex flex-row justify-start items-center pb-8">
+				<div class="flex flex-row justify-start items-center pb-4 md:pb-8">
 					{[0, 1, 2, 3].map((element, index) => {
 						return (
 							<BusinessMenu

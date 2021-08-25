@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
+import Subtitle from "../../../../../components/Subtitle";
 
 const Business = () => {
 	return (
 		<div>
-			<h1 class="text-3xl mb-8 font-bold">주요사업</h1>
-			<div class="flex flex-wrap justify-start gap-x-32">
-				<div class="w-1/4 flex flex-col justify-between items-center p-4 shadow-lg mb-8 border border-gray-200">
+			<Subtitle text={"주요사업"} />
+
+			<div class="flex flex-wrap justify-start gap-x-32 py-2 lg:py-4 mt-4 lg:mt-0">
+				<div class="w-full lg:w-1/4 md:w-1/3 flex flex-col justify-between items-center p-4 shadow-lg mb-8 border border-gray-200">
 					<div class="text-xl w-full text-center py-4 text-purple-700 border-b-2 border-purple-700">
 						자립생활지원
 					</div>
@@ -15,7 +17,7 @@ const Business = () => {
 						<div>작업활동 및 연계지원</div>
 					</div>
 				</div>
-				<div class="w-1/4 flex flex-col justify-between items-center p-4 shadow-lg mb-8 border border-gray-200">
+				<div class="w-full lg:w-1/4 md:w-1/3 flex flex-col justify-between items-center p-4 shadow-lg mb-8 border border-gray-200">
 					<div class="text-xl w-full text-center py-4 text-purple-700 border-b-2 border-purple-700">
 						권익옹호
 					</div>
@@ -26,7 +28,7 @@ const Business = () => {
 						<div>인식개선 후견활동 지원</div>
 					</div>
 				</div>
-				<div class="w-1/4 flex flex-col justify-between items-center p-4 shadow-lg mb-8 border border-gray-200">
+				<div class="w-full lg:w-1/4 md:w-1/3 flex flex-col justify-between items-center p-4 shadow-lg mb-8 border border-gray-200">
 					<div class="text-xl w-full text-center py-4 text-purple-700 border-b-2 border-purple-700">
 						상담과 정보제공
 					</div>
@@ -35,7 +37,7 @@ const Business = () => {
 						<div>정보제공 사업</div>
 					</div>
 				</div>
-				<div class="w-1/4 flex flex-col justify-between items-center p-4 shadow-lg mb-8 border border-gray-200">
+				<div class="w-full lg:w-1/4 md:w-1/3 flex flex-col justify-between items-center p-4 shadow-lg mb-8 border border-gray-200">
 					<div class="text-xl w-full text-center py-4 text-purple-700 border-b-2 border-purple-700">
 						문화체육활동
 					</div>
@@ -44,7 +46,7 @@ const Business = () => {
 						<div>생활체육활동</div>
 					</div>
 				</div>
-				<div class="w-1/4 flex flex-col justify-between items-center p-4 shadow-lg mb-8 border border-gray-200">
+				<div class="w-full lg:w-1/4 md:w-1/3 flex flex-col justify-between items-center p-4 shadow-lg mb-8 border border-gray-200">
 					<div class="text-xl w-full text-center py-4 text-purple-700 border-b-2 border-purple-700">
 						특화사업
 					</div>

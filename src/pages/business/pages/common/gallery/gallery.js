@@ -20,7 +20,7 @@ const Gallery = () => {
 				</div>
 			</div>
 			<div class="w-full flex flex-row flex-wrap border-b border-gray-200 ">
-				<div class="w-full lg:w-1/4 md:w-1/2 px-4 mb-8 cursor-pointer">
+				<div class="w-1/4 px-4 mb-8 cursor-pointer">
 					<div class="mb-4 h-48 object-cover border border-gray-500">
 						<img class="w-full h-full" src="/image/noImage.png" alt="logo" />
 					</div>
@@ -31,7 +31,7 @@ const Gallery = () => {
 						<p class="text-gray-300">21.07.01</p>
 					</div>
 				</div>
-				<div class="w-full lg:w-1/4 md:w-1/2 px-4 mb-8 cursor-pointer">
+				<div class="w-1/4 px-4 mb-8 cursor-pointer">
 					<div class="mb-4 h-48  object-cover border border-gray-500">
 						<img class="w-full h-full" src="/image/noImage.png" alt="logo" />
 					</div>
@@ -42,7 +42,7 @@ const Gallery = () => {
 						<p class="text-gray-300">21.07.01</p>
 					</div>
 				</div>
-				<div class="w-full lg:w-1/4 md:w-1/2 px-4 mb-8 cursor-pointer">
+				<div class="w-1/4 px-4 mb-8 cursor-pointer">
 					<div class="mb-4 h-48  object-cover border border-gray-500">
 						<img class="w-full h-full" src="/image/noImage.png" alt="logo" />
 					</div>
@@ -53,7 +53,7 @@ const Gallery = () => {
 						<p class="text-gray-300">21.07.01</p>
 					</div>
 				</div>
-				<div class="w-full lg:w-1/4 md:w-1/2 px-4 mb-8 cursor-pointer">
+				<div class="w-1/4 px-4 mb-8 cursor-pointer">
 					<div class="mb-4 h-48  object-cover border border-gray-500">
 						<img class="w-full h-full" src="/image/noImage.png" alt="logo" />
 					</div>
@@ -64,7 +64,7 @@ const Gallery = () => {
 						<p class="text-gray-300">21.07.01</p>
 					</div>
 				</div>
-				<div class="w-full lg:w-1/4 md:w-1/2 px-4 mb-8 cursor-pointer">
+				<div class="w-1/4 px-4 mb-8 cursor-pointer">
 					<div class="mb-4 h-48 object-cover border border-gray-500">
 						<img class="w-full h-full" src="/image/noImage.png" alt="logo" />
 					</div>
@@ -75,7 +75,7 @@ const Gallery = () => {
 						<p class="text-gray-300">21.07.01</p>
 					</div>
 				</div>
-				<div class="w-full lg:w-1/4 md:w-1/2 px-4 mb-8 cursor-pointer">
+				<div class="w-1/4 px-4 mb-8 cursor-pointer">
 					<div class="mb-4 h-48  object-cover border border-gray-500">
 						<img class="w-full h-full" src="/image/noImage.png" alt="logo" />
 					</div>
@@ -86,7 +86,7 @@ const Gallery = () => {
 						<p class="text-gray-300">21.07.01</p>
 					</div>
 				</div>
-				<div class="w-full lg:w-1/4 md:w-1/2 px-4 mb-8 cursor-pointer">
+				<div class="w-1/4 px-4 mb-8 cursor-pointer">
 					<div class="mb-4 h-48  object-cover border border-gray-500">
 						<img class="w-full h-full" src="/image/noImage.png" alt="logo" />
 					</div>
@@ -97,7 +97,7 @@ const Gallery = () => {
 						<p class="text-gray-300">21.07.01</p>
 					</div>
 				</div>
-				<div class="w-full lg:w-1/4 md:w-1/2 px-4 mb-8 cursor-pointer">
+				<div class="w-1/4 px-4 mb-8 cursor-pointer">
 					<div class="mb-4 h-48  object-cover border border-gray-500">
 						<img class="w-full h-full" src="/image/noImage.png" alt="logo" />
 					</div>

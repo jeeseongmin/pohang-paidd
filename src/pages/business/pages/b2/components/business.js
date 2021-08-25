@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { BsChevronUp, BsChevronDown } from "react-icons/bs";
+import Subtitle from "../../../../../components/Subtitle";
 
 const Business = () => {
 	const [toggleObj, setToggleObj] = useState({
@@ -15,11 +16,12 @@ const Business = () => {
 
 	return (
 		<div>
-			<h1 class="text-3xl mb-8 font-bold">주요사업</h1>
-			<div class="flex flex-wrap justify-around gap-4">
+			<Subtitle text={"주요사업"} />
+
+			<div class="flex flex-wrap justify-around gap-4 mt-4 md:mt-8">
 				<div
 					onClick={(e) => onToggle(e, "top")}
-					class="cursor-pointer w-full text-xl font-semibold rounded-sm px-4 py-2 border-2 border-purple-300 flex flex-row justify-between items-center"
+					class="text-sm md:text-xl cursor-pointer w-full font-semibold rounded-sm px-2 md:px-4 py-2 border-2 border-purple-300 flex flex-row justify-between items-center"
 				>
 					<span>장애인활동지원사업 이용하기 ( 이용자 )</span>
 					{!toggleObj.top && (
@@ -102,22 +104,22 @@ const Business = () => {
 						</div>
 						<h1 class="font-bold mt-8 mb-4">5. 서비스 내용</h1>
 						<div class="leading-8 mb-8 border-t border-purple-700">
-							<div class="border-b border-gray-200 px-8 py-3 flex flex-row justify-center items-center">
+							<div class="border-b border-gray-200 px-2 lg:px-8 py-3 flex flex-row justify-center items-center">
 								<div class="w-1/4">신체활동지원</div>
 								<div class="flex-1">
 									개인위생관리, 신체기능 유지 및 증진, 식사도움, 실내이동 도움
 									등
 								</div>
 							</div>
-							<div class="border-b border-gray-200 px-8 py-3 flex flex-row justify-center items-center">
+							<div class="border-b border-gray-200 px-2 lg:px-8 py-3 flex flex-row justify-center items-center">
 								<div class="w-1/4">가사활동지원</div>
 								<div class="flex-1">청소 및 주변정돈, 세탁, 취사 등</div>
 							</div>
-							<div class="border-b border-gray-200 px-8 py-3 flex flex-row justify-center items-center">
+							<div class="border-b border-gray-200 px-2 lg:px-8 py-3 flex flex-row justify-center items-center">
 								<div class="w-1/4">사회활동지원</div>
 								<div class="flex-1">등하교 및 출퇴근 지원, 외출 시 동행 등</div>
 							</div>
-							<div class="border-b border-gray-200 px-8 py-3 flex flex-row justify-center items-center">
+							<div class="border-b border-gray-200 px-2 lg:px-8 py-3 flex flex-row justify-center items-center">
 								<div class="w-1/4">그 밖의 제공 서비스</div>
 								<div class="flex-1">
 									수급자 자녀의 양육보조 (만 6세 이하 등 예외적인 경우에 한함)
@@ -125,7 +127,7 @@ const Business = () => {
 									생활상의 문제 상담 및 의사소통 도움 등 열거되지 않은 서비스
 								</div>
 							</div>
-							<div class="px-8 py-3 flex flex-col justify-center items-start">
+							<div class="px-2 lg:px-8 py-3 flex flex-col justify-center items-start">
 								<h1>* 가사활동 지원</h1>
 								<div class="px-4 border-l-4 border-gray-300">
 									· 수급자 외의 가족의 가사활동지원은 포함하지 않음<br></br> ·
@@ -149,7 +151,7 @@ const Business = () => {
 				)}
 				<div
 					onClick={(e) => onToggle(e, "bottom")}
-					class="cursor-pointer w-full text-xl font-semibold rounded-sm px-4 py-2 border-2 border-purple-300 flex flex-row justify-between items-center"
+					class="text-sm md:text-xl cursor-pointer w-full font-semibold rounded-sm px-2 md:px-4 py-2 border-2 border-purple-300 flex flex-row justify-between items-center"
 				>
 					<span>장애인활동지원사업 이용하기 ( 활동지원자 )</span>
 					{!toggleObj.bottom && (

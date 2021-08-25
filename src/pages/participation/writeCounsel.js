@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
 import { Route, Link } from "react-router-dom";
+import Subtitle from "../../components/Subtitle";
 
 const WriteCounsel = () => {
 	const [info, setInfo] = useState({
@@ -56,11 +57,11 @@ const WriteCounsel = () => {
 		setInfo(cp);
 	};
 	return (
-		<div class="px-36 py-16">
+		<div class="w-full h-auto">
 			<div class="flex flex-row justify-between items-center mb-8">
 				<div>
-					<h1 class="text-3xl font-bold mb-2">건의 및 고충상담</h1>
-					<h1 class="text-3xl font-bold">작성하기</h1>
+					<Subtitle text={"건의 및 고충상담"} />
+					<Subtitle text={"작성하기"} />
 				</div>
 			</div>
 			<form class="border-t-2 border-b-2 border-purple-700 py-6 mb-4">
@@ -71,14 +72,14 @@ const WriteCounsel = () => {
 					<input
 						ref={titleRef}
 						type="text"
-						class="flex-1 p-4 border-2 border-gray-300 outline-none mr-4 focus:border-purple-700"
+						class="w-1/2 md:w-auto flex-1 p-4 border-2 border-gray-300 outline-none mr-4 focus:border-purple-700"
 						onChange={(e) => changeInfo(e, "title")}
 						placeholder="제목"
 					/>
 					<input
 						ref={emailRef}
 						type="text"
-						class="w-72 p-4 border-2 border-gray-300 outline-none focus:border-purple-700"
+						class="w-36 md:w-72 p-4 border-2 border-gray-300 outline-none focus:border-purple-700"
 						onChange={(e) => changeInfo(e, "email")}
 						placeholder="이메일"
 					/>
@@ -95,22 +96,22 @@ const WriteCounsel = () => {
 					<input
 						ref={passwordRef}
 						type="password"
-						class="w-60 p-4 border-2 border-gray-300 outline-none mr-4 focus:border-purple-700"
+						class="w-1/2 md:w-60 p-4 border-2 border-gray-300 outline-none mr-4 focus:border-purple-700"
 						onChange={(e) => changeInfo(e, "password")}
 						placeholder="비밀번호"
 					/>
 					<input
 						type="password"
-						class="w-60 p-4 border-2 border-gray-300 outline-none focus:border-purple-700"
+						class="w-1/2 md:w-60 p-4 border-2 border-gray-300 outline-none focus:border-purple-700"
 						onChange={(e) => changeInfo(e, "passwordCheck")}
 						placeholder="비밀번호 확인"
 					/>
 				</div>
 			</form>
 
-			<div class="flex justify-between items-center">
+			<div class="flex flex-col md:flex-row justify-between items-center">
 				<Link
-					class="cursor-pointer px-16 py-2 border border-purple-700 text-purple-700 flex flex-row items-center hover:bg-purple-500 hover:text-white hover:font-bold"
+					class="w-full md:w-auto mb-4 md:mb-4 justify-center cursor-pointer px-16 py-2 border border-purple-700 text-purple-700 flex flex-row items-center hover:bg-purple-500 hover:text-white hover:font-bold"
 					to="/participation/counseling"
 					onClick={() => window.scrollTo(0, 0)}
 				>
@@ -118,7 +119,7 @@ const WriteCounsel = () => {
 				</Link>
 				<button
 					onClick={submitInfo}
-					class="cursor-pointer px-16 py-2 border border-purple-700 text-purple-700 flex flex-row items-center hover:bg-purple-500 hover:text-white hover:font-bold"
+					class="w-full md:w-auto cursor-pointer justify-center px-16 py-2 border border-purple-700 text-purple-700 flex flex-row items-center hover:bg-purple-500 hover:text-white hover:font-bold "
 				>
 					제출하기
 				</button>

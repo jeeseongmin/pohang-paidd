@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { BsSearch } from "react-icons/bs";
+import Subtitle from "../../components/Subtitle";
 
 const Notice = () => {
 	const [page, setPage] = useState(1);
 	return (
-		<div class="px-36 py-16">
-			<div class="flex flex-row justify-between items-center mb-8">
-				<h1 class="text-3xl font-bold">공지사항</h1>
-				<div class="flex flex-row items-center relative">
+		<div>
+			<div class="flex flex-row justify-between items-center mb-4 md:mb-8">
+				<Subtitle text={"공지사항"} />
+				<div class="w-1/2 flex flex-row items-center relative justify-end ">
 					<input
 						type="text"
 						name="name"
@@ -17,51 +18,51 @@ const Notice = () => {
 					<BsSearch size={28} class="cursor-pointer text-gray-300" />
 				</div>
 			</div>
-			<div class="w-full h-auto mb-8">
+			<div class="w-full h-auto mb-8 text-base lg:text-lg">
 				{/* 딱 10개 씩만 로드하기 */}
-				<div class="w-full px-8 py-4 flex justify-end items-center border-b-2 border-purple-600">
+				<div class="w-full px-2 lg:px-8 py-4 flex justify-end items-center border-b-2 border-purple-600">
 					<div class="text-lg flex-1 ">제목</div>
 					<div class="text-lg w-24 ">날짜</div>
 				</div>
-				<div class="cursor-pointer w-full px-8 py-4 flex justify-end items-center border-b border-gray-300 hover:bg-gray-100">
+				<div class="cursor-pointer w-full px-2 lg:px-8 py-4 flex justify-end items-center border-b border-gray-300 hover:bg-gray-100">
 					<div class="text-base flex-1 pr-4 truncate	">
 						제목입니다.제목입니다.제목입니다.제목입니다.제목입니다.제목입니다.제목입니다.제목입니다.제목입니다.제목입니다.제목입니다.제목입니다.제목입니다.제목입니다.제목입니다.제목입니다.제목입니다.제목입니다.제목입니다.제목입니다.제목입니다.제목입니다.제목입니다.제목입니다.제목입니다.
 					</div>
 					<div class="text-base w-24 ">21.05.01</div>
 				</div>
-				<div class="w-full px-8 py-4 flex justify-end items-center border-b border-gray-300">
+				<div class="w-full px-2 lg:px-8 py-4 flex justify-end items-center border-b border-gray-300">
 					<div class="text-base flex-1 pr-4 truncate	">제목입니다.</div>
 					<div class="text-base w-24 ">21.05.01</div>
 				</div>
-				<div class="w-full px-8 py-4 flex justify-end items-center border-b border-gray-300">
+				<div class="w-full px-2 lg:px-8 py-4 flex justify-end items-center border-b border-gray-300">
 					<div class="text-base flex-1 pr-4 truncate	">제목입니다.</div>
 					<div class="text-base w-24 ">21.05.01</div>
 				</div>
-				<div class="w-full px-8 py-4 flex justify-end items-center border-b border-gray-300">
+				<div class="w-full px-2 lg:px-8 py-4 flex justify-end items-center border-b border-gray-300">
 					<div class="text-base flex-1 pr-4 truncate	">제목입니다.</div>
 					<div class="text-base w-24 ">21.05.01</div>
 				</div>
-				<div class="w-full px-8 py-4 flex justify-end items-center border-b border-gray-300">
+				<div class="w-full px-2 lg:px-8 py-4 flex justify-end items-center border-b border-gray-300">
 					<div class="text-base flex-1 pr-4 truncate	">제목입니다.</div>
 					<div class="text-base w-24 ">21.05.01</div>
 				</div>
-				<div class="w-full px-8 py-4 flex justify-end items-center border-b border-gray-300">
+				<div class="w-full px-2 lg:px-8 py-4 flex justify-end items-center border-b border-gray-300">
 					<div class="text-base flex-1 pr-4 truncate	">제목입니다.</div>
 					<div class="text-base w-24 ">21.05.01</div>
 				</div>
-				<div class="w-full px-8 py-4 flex justify-end items-center border-b border-gray-300">
+				<div class="w-full px-2 lg:px-8 py-4 flex justify-end items-center border-b border-gray-300">
 					<div class="text-base flex-1 pr-4 truncate	">제목입니다.</div>
 					<div class="text-base w-24 ">21.05.01</div>
 				</div>
-				<div class="w-full px-8 py-4 flex justify-end items-center border-b border-gray-300">
+				<div class="w-full px-2 lg:px-8 py-4 flex justify-end items-center border-b border-gray-300">
 					<div class="text-base flex-1 pr-4 truncate	">제목입니다.</div>
 					<div class="text-base w-24 ">21.05.01</div>
 				</div>
-				<div class="w-full px-8 py-4 flex justify-end items-center border-b border-gray-300">
+				<div class="w-full px-2 lg:px-8 py-4 flex justify-end items-center border-b border-gray-300">
 					<div class="text-base flex-1 pr-4 truncate	">제목입니다.</div>
 					<div class="text-base w-24 ">21.05.01</div>
 				</div>
-				<div class="w-full px-8 py-4 flex justify-end items-center border-b border-gray-300">
+				<div class="w-full px-2 lg:px-8 py-4 flex justify-end items-center border-b border-gray-300">
 					<div class="text-base flex-1 pr-4 truncate	">제목입니다.</div>
 					<div class="text-base w-24 ">21.05.01</div>
 				</div>

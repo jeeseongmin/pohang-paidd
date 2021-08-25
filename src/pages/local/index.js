@@ -16,8 +16,8 @@ const Index = ({ match }) => {
 			<div class="z-0 h-56 bg-purple-100 flex justify-center items-center relative">
 				<h1 class="text-4xl">지역복지</h1>
 			</div>
-			<div class="w-full h-auto px-36">
-				<div class="py-8 flex flex-wrap">
+			<div class="w-full h-auto px-3 py-2 2xl:px-36 xl:px-32 md:px-3 lg:py-16">
+				<div class="py-4 md:py-8 flex flex-wrap">
 					{[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].map((element, index) => {
 						return (
 							<LocalMenu
@@ -29,7 +29,7 @@ const Index = ({ match }) => {
 					})}
 				</div>
 			</div>
-			<div class="px-36">
+			<div class="w-full h-auto px-3 py-2 2xl:px-36 xl:px-32 md:px-3 lg:py-16">
 				<LocalTable index={selected} key={selected} />
 			</div>
 		</div>

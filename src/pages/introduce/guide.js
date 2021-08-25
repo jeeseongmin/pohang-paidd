@@ -36,9 +36,13 @@ const Guide = () => {
 			<div class="w-full h-96 flex flex-col justify-center items-center shadow-xl my-8">
 				<div id="map" style={{ width: "100%", height: "400px" }}></div>
 			</div>
-			<div class="text-xl mb-16">경상북도 포항시 북구 새천년대로 1307, 3층</div>
+			<div class="text-base md:text-xl mb-16">
+				경상북도 포항시 북구 새천년대로 1307, 3층
+			</div>
 			<Subtitle text={"대중교통"} />
-			<div class="text-xl my-8">롯데낙천대 앞 정류장 120번, 121번, 700번</div>
+			<div class="text-base md:text-xl my-8">
+				롯데낙천대 앞 정류장 120번, 121번, 700번
+			</div>
 		</div>
 	);
 };

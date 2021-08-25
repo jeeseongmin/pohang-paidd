@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { BsSearch } from "react-icons/bs";
+import Subtitle from "../../../../../components/Subtitle";
 
 const Gallery = () => {
 	const [page, setPage] = useState(1);
 	return (
 		<div>
 			<div class="flex flex-row justify-between items-center mb-8">
-				<h1 class="text-3xl font-bold">포토갤러리</h1>
-				<div class="flex flex-row items-center relative">
+				<Subtitle text={"포토갤러리"} />
+				<div class="w-1/2 flex flex-row items-center relative justify-end ">
 					<input
 						type="text"
 						name="name"
@@ -18,7 +19,7 @@ const Gallery = () => {
 				</div>
 			</div>
 			<div class="w-full flex flex-row flex-wrap border-b border-gray-200 ">
-				<div class="w-1/4 px-4 mb-8 cursor-pointer">
+				<div class="w-full lg:w-1/4 md:w-1/2 px-4 mb-8 cursor-pointer">
 					<div class="mb-4 h-48 object-cover border border-gray-500">
 						<img class="w-full h-full" src="/image/noImage.png" alt="logo" />
 					</div>
@@ -29,7 +30,7 @@ const Gallery = () => {
 						<p class="text-gray-300">21.07.01</p>
 					</div>
 				</div>
-				<div class="w-1/4 px-4 mb-8 cursor-pointer">
+				<div class="w-full lg:w-1/4 md:w-1/2 px-4 mb-8 cursor-pointer">
 					<div class="mb-4 h-48  object-cover border border-gray-500">
 						<img class="w-full h-full" src="/image/noImage.png" alt="logo" />
 					</div>
@@ -40,7 +41,7 @@ const Gallery = () => {
 						<p class="text-gray-300">21.07.01</p>
 					</div>
 				</div>
-				<div class="w-1/4 px-4 mb-8 cursor-pointer">
+				<div class="w-full lg:w-1/4 md:w-1/2 px-4 mb-8 cursor-pointer">
 					<div class="mb-4 h-48  object-cover border border-gray-500">
 						<img class="w-full h-full" src="/image/noImage.png" alt="logo" />
 					</div>
@@ -51,7 +52,7 @@ const Gallery = () => {
 						<p class="text-gray-300">21.07.01</p>
 					</div>
 				</div>
-				<div class="w-1/4 px-4 mb-8 cursor-pointer">
+				<div class="w-full lg:w-1/4 md:w-1/2 px-4 mb-8 cursor-pointer">
 					<div class="mb-4 h-48  object-cover border border-gray-500">
 						<img class="w-full h-full" src="/image/noImage.png" alt="logo" />
 					</div>
@@ -62,7 +63,7 @@ const Gallery = () => {
 						<p class="text-gray-300">21.07.01</p>
 					</div>
 				</div>
-				<div class="w-1/4 px-4 mb-8 cursor-pointer">
+				<div class="w-full lg:w-1/4 md:w-1/2 px-4 mb-8 cursor-pointer">
 					<div class="mb-4 h-48 object-cover border border-gray-500">
 						<img class="w-full h-full" src="/image/noImage.png" alt="logo" />
 					</div>
@@ -73,7 +74,7 @@ const Gallery = () => {
 						<p class="text-gray-300">21.07.01</p>
 					</div>
 				</div>
-				<div class="w-1/4 px-4 mb-8 cursor-pointer">
+				<div class="w-full lg:w-1/4 md:w-1/2 px-4 mb-8 cursor-pointer">
 					<div class="mb-4 h-48  object-cover border border-gray-500">
 						<img class="w-full h-full" src="/image/noImage.png" alt="logo" />
 					</div>
@@ -84,7 +85,7 @@ const Gallery = () => {
 						<p class="text-gray-300">21.07.01</p>
 					</div>
 				</div>
-				<div class="w-1/4 px-4 mb-8 cursor-pointer">
+				<div class="w-full lg:w-1/4 md:w-1/2 px-4 mb-8 cursor-pointer">
 					<div class="mb-4 h-48  object-cover border border-gray-500">
 						<img class="w-full h-full" src="/image/noImage.png" alt="logo" />
 					</div>
@@ -95,7 +96,7 @@ const Gallery = () => {
 						<p class="text-gray-300">21.07.01</p>
 					</div>
 				</div>
-				<div class="w-1/4 px-4 mb-8 cursor-pointer">
+				<div class="w-full lg:w-1/4 md:w-1/2 px-4 mb-8 cursor-pointer">
 					<div class="mb-4 h-48  object-cover border border-gray-500">
 						<img class="w-full h-full" src="/image/noImage.png" alt="logo" />
 					</div>
