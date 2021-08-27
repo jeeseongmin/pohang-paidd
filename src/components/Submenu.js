@@ -13,9 +13,6 @@ const Submenu = (props) => {
 	const menu = props.menu;
 	const submenu = props.submenu;
 
-	useEffect(() => {
-		console.log("submenu : ", currentSubmenu, submenu);
-	}, [currentSubmenu]);
 	// target url
 	const address = [
 		[

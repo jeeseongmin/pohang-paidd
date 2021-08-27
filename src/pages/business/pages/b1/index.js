@@ -18,6 +18,7 @@ const Index = (props, { match }) => {
 
 	useEffect(() => {
 		console.log("index", match);
+		console.log(props);
 	}, [match]);
 
 	const Content = () => {

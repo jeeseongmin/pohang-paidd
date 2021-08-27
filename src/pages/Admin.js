@@ -54,7 +54,7 @@ const Admin = ({ history }) => {
 						</div>
 						<div
 							onClick={() => history.push("/")}
-							class="cursor-pointer border py-2 text-center border-purple-700 bg-purple-700 rounded-sm text-white font-bold shadow-xl hover:bg-purple-500"
+							class="cursor-pointer border py-2 text-center border-gray-600 bg-gray-500 rounded-sm text-white font-bold shadow-xl hover:bg-gray-300 hover:border-gray-400"
 						>
 							홈으로
 						</div>

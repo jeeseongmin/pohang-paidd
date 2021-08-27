@@ -1,7 +1,12 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { setMenu, setSubmenu, toggleSidebar } from "../../reducer/settingSlice";
+import {
+	setMenu,
+	setSubmenu,
+	toggleSidebar,
+	toggleProfile,
+} from "../../reducer/settingSlice";
 import Main from "./Main";
 import Sub from "./Sub";
 import { makeStyles } from "@material-ui/core/styles";
@@ -10,6 +15,7 @@ import { GiHamburgerMenu } from "react-icons/gi";
 const Navbar = () => {
 	const dispatch = useDispatch();
 	const sidebar = useSelector((state) => state.setting.sidebar);
+	const profile = useSelector((state) => state.setting.profile);
 
 	const [overMenu, setOverMenu] = useState([false, false, false, false, false]);
 
@@ -26,15 +32,18 @@ const Navbar = () => {
 	};
 
 	const onToggleSidebar = () => {
-		console.log(sidebar);
 		dispatch(toggleSidebar(sidebar));
+	};
+
+	const onToggleProfile = () => {
+		dispatch(toggleProfile(profile));
 	};
 
 	return (
 		<>
 			<div
 				class={
-					"z-20 w-full px-5 h-16 hidden justify-start shadow-2xl bg-white lg:flex 2xl:px-36 xl:px-32 lg:px-5 fixed "
+					"z-20 w-full pl-5 pr-16 h-16 hidden justify-start shadow-2xl bg-white lg:flex 2xl:px-36 xl:px-32 lg:pl-5 fixed "
 				}
 			>
 				<div class="flex justify-center items-center cursor-pointer">
@@ -42,11 +51,11 @@ const Navbar = () => {
 						<img src="/image/logo.png" class="h-8 xl:h-10" alt="logo" />
 					</Link>
 				</div>
-				<div class="z-30 flex-1 flex justify-end items-center">
+				<div class="z-30 flex-1 flex justify-around xl:justify-end items-center">
 					<div
 						onMouseOver={() => hoverAction(0, true)}
 						onMouseOut={() => hoverAction(0, false)}
-						class="h-full relative ml-16 flex items-center"
+						class="h-full relative ml-4 xl:ml-16 flex items-center"
 					>
 						<Main overMenu={overMenu} menu={1} />
 						<div
@@ -65,7 +74,7 @@ const Navbar = () => {
 					<div
 						onMouseOver={() => hoverAction(1, true)}
 						onMouseOut={() => hoverAction(1, false)}
-						class="h-full relative ml-16 flex items-center"
+						class="h-full relative ml-4 xl:ml-16 flex items-center"
 					>
 						<Main overMenu={overMenu} menu={2} />
 						<div
@@ -84,7 +93,7 @@ const Navbar = () => {
 					<div
 						onMouseOver={() => hoverAction(2, true)}
 						onMouseOut={() => hoverAction(2, false)}
-						class="h-full relative ml-16 flex items-center"
+						class="h-full relative ml-4 xl:ml-16 flex items-center"
 					>
 						<Main overMenu={overMenu} menu={3} />
 
@@ -100,7 +109,7 @@ const Navbar = () => {
 					<div
 						onMouseOver={() => hoverAction(3, true)}
 						onMouseOut={() => hoverAction(3, false)}
-						class="h-full relative ml-16 flex items-center"
+						class="h-full relative ml-4 xl:ml-16 flex items-center"
 					>
 						<Main overMenu={overMenu} menu={4} />
 						<div
@@ -118,7 +127,7 @@ const Navbar = () => {
 					<div
 						onMouseOver={() => hoverAction(4, true)}
 						onMouseOut={() => hoverAction(4, false)}
-						class="h-full relative ml-16 flex items-center"
+						class="h-full relative ml-4 xl:ml-16 flex items-center"
 					>
 						<Main overMenu={overMenu} menu={5} />
 						<div
@@ -130,6 +139,17 @@ const Navbar = () => {
 							<Sub menu={5} submenu={1} />
 						</div>
 					</div>
+				</div>
+				<div class="absolute h-full right-2 xl:right-10 w-auto flex justify-end items-center">
+					<img
+						src="/image/profileDefault.png"
+						onClick={onToggleProfile}
+						class="p-1 w-10 h-10 rounded-full cursor-pointer border border-gray-300 object-cover"
+						alt="profile"
+					/>
+					{profile && (
+						<div class="flex flex-col justify-center items-center right-0 top-14 w-60 h-60 bg-white border border-gray-300 rounded-xl absolute"></div>
+					)}
 				</div>
 			</div>
 			<div
@@ -152,10 +172,23 @@ const Navbar = () => {
 						/>
 					</div>
 				</div>
-				<div class="flex justify-center items-center cursor-pointer">
-					<Link to="/" onClick={() => goPage(0)}>
-						<img src="/image/logo.png" class="h-5 sm:h-8" alt="logo" />
-					</Link>
+				<div class="flex flex-row justify-center items-center">
+					<div class="flex justify-center items-center cursor-pointer">
+						<Link to="/" onClick={() => goPage(0)}>
+							<img src="/image/logo.png" class="h-5 sm:h-8" alt="logo" />
+						</Link>
+					</div>
+					<div class="ml-4 h-full w-auto flex justify-end items-center">
+						<img
+							src="/image/profileDefault.png"
+							onClick={onToggleProfile}
+							class="p-1 w-10 h-10 rounded-full cursor-pointer border border-gray-300 object-cover"
+							alt="profile"
+						/>
+						{profile && (
+							<div class="flex flex-col justify-center items-center right-0 top-14 w-60 h-60 bg-white border border-gray-300 rounded-xl absolute"></div>
+						)}
+					</div>
 				</div>
 			</div>
 		</>

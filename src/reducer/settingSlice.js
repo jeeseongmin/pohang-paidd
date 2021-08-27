@@ -11,6 +11,7 @@ const initialState = {
 	menu: 0,
 	submenu: 0,
 	sidebar: false,
+	profile: false,
 };
 
 export const settingSlice = createSlice({
@@ -36,10 +37,19 @@ export const settingSlice = createSlice({
 		toggleSidebar: (state, action) => {
 			state.sidebar = !action.payload;
 		},
+		toggleProfile: (state, action) => {
+			state.profile = !action.payload;
+		},
 	},
 });
 
-export const { login, logout, setMenu, setSubmenu, toggleSidebar } =
-	settingSlice.actions;
+export const {
+	login,
+	logout,
+	setMenu,
+	setSubmenu,
+	toggleSidebar,
+	toggleProfile,
+} = settingSlice.actions;
 
 export default settingSlice.reducer;

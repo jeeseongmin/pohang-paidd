@@ -24,12 +24,22 @@ connection.once("open", () => {
 });
 
 const exercisesRouter = require("./routes/exercises");
-const usersRouter = require("./routes/users");
+const userRouter = require("./routes/user");
 const loginRouter = require("./routes/login");
+const counselingRouter = require("./routes/post/counseling");
+const noticeRouter = require("./routes/post/notice");
+const galleryRouter = require("./routes/post/gallery");
+const supportRouter = require("./routes/post/support");
+const volunteerRouter = require("./routes/post/volunteer");
 
 app.use("/exercises", exercisesRouter);
-app.use("/users", usersRouter);
-app.use("/login", loginRouter);
+app.use("/api/user", userRouter);
+app.use("/api/login", loginRouter);
+app.use("/api/counseling", counselingRouter);
+app.use("/api/notice", noticeRouter);
+app.use("/api/gallery", galleryRouter);
+app.use("/api/support", supportRouter);
+app.use("/api/volunteer", volunteerRouter);
 
 app.listen(port, () => {
 	console.log(`Server is running on port: ${port}`);

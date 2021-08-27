@@ -2,19 +2,24 @@ const mongoose = require("mongoose");
 
 const Schema = mongoose.Schema;
 
-const userSchema = new Schema(
+const gallerySchema = new Schema(
 	{
 		type: {
 			type: String,
 			required: true,
 		},
-		email: {
+		title: {
 			type: String,
 			required: true,
 		},
-		password: {
+		content: {
 			type: String,
 			required: true,
+		},
+		imagePath: {
+			type: String,
+			required: true,
+			max: 100,
 		},
 	},
 	{
@@ -22,6 +27,6 @@ const userSchema = new Schema(
 	}
 );
 
-const User = mongoose.model("User", userSchema);
+const Gallery = mongoose.model("Gallery", gallerySchema);
 
-module.exports = User;
+module.exports = Gallery;
