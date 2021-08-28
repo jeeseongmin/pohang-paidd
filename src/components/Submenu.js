@@ -24,9 +24,9 @@ const Submenu = (props) => {
 		],
 		[
 			"/business/base/default",
-			"/business/b1/default",
-			"/business/b2/default",
-			"/business/b3/default",
+			"/business/org1/default",
+			"/business/org2/default",
+			"/business/org3/default",
 		],
 		["/organization/0"],
 		[

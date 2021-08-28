@@ -155,19 +155,19 @@ const Sidebar = () => {
 							/>
 							<SubText
 								text={"지적장애인 자립지원센터"}
-								address={"/business/b1/default"}
+								address={"/business/org1/default"}
 								menu={2}
 								submenu={2}
 							/>
 							<SubText
 								text={"장애인활동 지원사업"}
-								address={"/business/b2/default"}
+								address={"/business/org2/default"}
 								menu={2}
 								submenu={3}
 							/>
 							<SubText
 								text={"방과후활동 서비스사업"}
-								address={"/business/b3/default"}
+								address={"/business/org3/default"}
 								menu={2}
 								submenu={4}
 							/>

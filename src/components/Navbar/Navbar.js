@@ -34,6 +34,8 @@ const Navbar = () => {
 		email: "",
 	});
 
+	const [modalShow, setModalShow] = useState(false);
+
 	useEffect(() => {
 		if (loginToken) {
 			if (currentEmail !== "" && currentPassword !== "") {
@@ -90,6 +92,14 @@ const Navbar = () => {
 		if (profile === "on") {
 			dispatch(setProfile("off"));
 		} else dispatch(setProfile("on"));
+	};
+
+	const goEditPage = () => {
+		dispatch(setProfile("off"));
+		setModalShow(true);
+		dispatch(setMenu(0));
+		dispatch(setSubmenu(1));
+		history.push("/admin/edit");
 	};
 
 	useEffect(() => {
@@ -222,11 +232,17 @@ const Navbar = () => {
 							alt="profile"
 						/>
 						{profile === "on" ? (
-							<div class="z-30 px-4 py-2 flex flex-col justify-center items-center -right-4 top-14 w-72 h-36 bg-white border border-gray-300 rounded-lg absolute">
+							<div class="z-30 px-4 py-2 flex flex-col justify-center items-center -right-4 top-14 w-72 h-40 bg-white border border-gray-300 rounded-lg absolute">
 								<div class="w-full h-full flex flex-col justify-around">
 									<div class="w-full flex flex-col">
 										<p class="font-bold w-auto">{loginInfo.position}</p>
 										<p class="text-gray-500">ID : {loginInfo.email}</p>
+									</div>
+									<div
+										onClick={goEditPage}
+										class="cursor-pointer w-full py-1 border border-purple-400 text-purple-400 flex justify-center hover:bg-purple-400 hover:text-white"
+									>
+										정보 변경
 									</div>
 									<div
 										onClick={logout}
@@ -278,11 +294,17 @@ const Navbar = () => {
 								alt="profile"
 							/>
 							{profile === "on" ? (
-								<div class="z-30 px-4 py-2 flex flex-col justify-center items-center right-4 top-12 w-60 h-36 bg-white border border-gray-300 rounded-lg absolute">
+								<div class="z-30 px-4 py-2 flex flex-col justify-center items-center right-4 top-12 w-60 h-44 bg-white border border-gray-300 rounded-lg absolute">
 									<div class="w-full h-full flex flex-col justify-around">
 										<div class="w-full flex flex-col">
 											<p class="font-bold">{loginInfo.position}</p>
-											<p class="text-gray-500">{loginInfo.email}</p>
+											<p class="text-gray-500">ID : {loginInfo.email}</p>
+										</div>
+										<div
+											onClick={goEditPage}
+											class="cursor-pointer w-full py-1 border border-purple-400 text-purple-400 flex justify-center hover:bg-purple-400 hover:text-white"
+										>
+											정보 변경
 										</div>
 										<div
 											onClick={logout}

@@ -1,13 +1,28 @@
-import React, { useEffect, useState, useRef } from "react";
-import { Route, Link } from "react-router-dom";
+import React, { useEffect, useRef, useState } from "react";
+import { Link, useHistory } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import axios from "axios";
 
 const NoticeWrite = (props) => {
+	console.log(props);
+	const type = props.pages;
+	const dispatch = useDispatch();
+	const history = useHistory();
 	const [info, setInfo] = useState({
+		type: "",
 		title: "",
 		content: "",
 	});
 	const titleRef = useRef(null);
 	const contentRef = useRef(null);
+
+	const currentEmail = useSelector((state) => state.setting.currentEmail);
+
+	useEffect(() => {
+		const cp = { ...info };
+		cp.type = type;
+		setInfo(cp);
+	}, []);
 
 	const submitInfo = () => {
 		if (info.title === "") {
@@ -16,15 +31,37 @@ const NoticeWrite = (props) => {
 		} else if (info.content === "") {
 			alert("내용을 입력해주세요!");
 			contentRef.current.focus();
-		} else {
-			alert("제출되었습니다!");
+		} else if (currentEmail === "master" || currentEmail === info.type) {
+			axios
+				.post(
+					"/api/notice/add",
+					{
+						type: info.type,
+						title: info.title,
+						content: info.content,
+					},
+					{
+						headers: {
+							"Content-type": "application/json",
+							Accept: "application/json",
+						},
+					}
+				)
+				.then((response) => {
+					history.push("/business/" + info.type + "/notice");
+				})
+				.catch((response) => {
+					console.log("Error!");
+				});
 		}
 	};
+
 	const changeInfo = (e, type) => {
 		const cp = { ...info };
 		cp[type] = e.target.value;
 		setInfo(cp);
 	};
+
 	return (
 		<div>
 			<div class="flex flex-row justify-between items-center mb-8">
@@ -60,7 +97,7 @@ const NoticeWrite = (props) => {
 				</Link>
 				<button
 					onClick={submitInfo}
-					class="w-full md:w-auto cursor-pointer px-0 md:px-16 py-2 justify-center border border-purple-700 text-purple-700 flex flex-row items-center hover:bg-purple-500 hover:text-white hover:font-bold"
+					class="outline-none w-full md:w-auto cursor-pointer px-0 md:px-16 py-2 justify-center border border-purple-700 text-purple-700 flex flex-row items-center hover:bg-purple-500 hover:text-white hover:font-bold"
 				>
 					제출하기
 				</button>

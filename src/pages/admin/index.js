@@ -1,5 +1,5 @@
 import React, { useState, useRef } from "react";
-import { Route, Link } from "react-router-dom";
+import { Route, Link, useHistory } from "react-router-dom";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -7,10 +7,11 @@ import {
 	setLoginToken,
 	setCurrentEmail,
 	setCurrentPassword,
-} from "../reducers/setting";
+} from "../../reducers/setting";
 
-const Admin = ({ history }) => {
+const Index = () => {
 	const dispatch = useDispatch();
+	const history = useHistory();
 	const emailRef = useRef(null);
 	const passwordRef = useRef(null);
 
@@ -98,4 +99,4 @@ const Admin = ({ history }) => {
 	);
 };
 
-export default Admin;
+export default Index;

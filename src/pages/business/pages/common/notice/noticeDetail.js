@@ -4,6 +4,8 @@ import Subtitle from "../../../../../components/Subtitle";
 
 const NoticeDetail = (props) => {
 	const [page, setPage] = useState(1);
+	const id = props.id;
+	console.log(id);
 	return (
 		<div>
 			<div class="flex flex-row justify-between items-center mb-8">

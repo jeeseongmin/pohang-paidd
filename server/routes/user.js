@@ -25,6 +25,12 @@ router.route("/").get((req, res) => {
 		.catch((err) => res.status(400).json("Error: " + err));
 });
 
+router.route("/findbyemail/:email").get((req, res) => {
+	User.find({ email: req.params.email })
+		.then((one) => res.json(one))
+		.catch((err) => res.status(400).json("Error: ") + err);
+});
+
 // Read specific notice
 router.route("/:id").get((req, res) => {
 	User.findById(req.params.id)

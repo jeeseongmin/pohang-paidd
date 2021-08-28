@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { Route, Link } from "react-router-dom";
 import Base from "./base";
-import B1 from "./pages/b1/index";
-import B2 from "./pages/b2/index";
-import B3 from "./pages/b3/index";
+import Org1 from "./pages/org1/index";
+import Org2 from "./pages/org2/index";
+import Org3 from "./pages/org3/index";
 import Submenu from "../../components/Submenu";
 import Layout from "../../components/Layout";
 
@@ -31,14 +31,14 @@ const Index = ({ match }) => {
 						<Route exact path="/business/base/:type">
 							<Base />
 						</Route>
-						<Route exact path="/business/b1/:type">
-							<B1 pages={"b1"} type={match.params.type} />
+						<Route exact path="/business/org1/:type">
+							<Org1 pages={"org1"} type={match.params.type} />
 						</Route>
-						<Route exact path="/business/b2/:type">
-							<B2 pages={"b2"} type={match.params.type} />
+						<Route exact path="/business/org2/:type">
+							<Org2 pages={"org2"} type={match.params.type} />
 						</Route>
-						<Route exact path="/business/b3/:type">
-							<B3 pages={"b3"} type={match.params.type} />
+						<Route exact path="/business/org3/:type">
+							<Org3 pages={"org3"} type={match.params.type} />
 						</Route>
 					</switch>
 				</div>
