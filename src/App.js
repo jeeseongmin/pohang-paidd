@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Route } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -17,6 +17,11 @@ const Routes = () => {
 	const dispatch = useDispatch();
 
 	const sidebar = useSelector((state) => state.setting.sidebar);
+
+	useEffect(() => {
+		console.log("App.js sidebar : ", sidebar);
+	}, []);
+
 	return (
 		<>
 			<div
@@ -37,7 +42,7 @@ const Routes = () => {
 					</switch>
 				</>
 			</div>
-			{sidebar && <Sidebar />}
+			{sidebar === "on" ? <Sidebar /> : null}
 		</>
 	);
 };

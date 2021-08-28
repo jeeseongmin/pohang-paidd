@@ -1,17 +1,20 @@
 const router = require("express").Router();
 let User = require("../models/user.model");
 
-router.route("/login").post((req, res) => {
+router.route("/").post((req, res) => {
 	// 요청된 이메일과 패스워드가 데이터베이스에서 있는지 찾는다.
 	User.findOne(
 		{ email: req.body.email, password: req.body.password },
 		(err, user) => {
 			if (!user) {
-				return res.json({ loginSuccess: false, message: "로그인 실패" });
+				return res.json({
+					loginToken: false,
+					message: "로그인 정보가 일치하지 않습니다.",
+				});
 			} else {
 				return res.json({
-					loginSuccess: true,
-					message: "로그인되었습니다!",
+					loginToken: true,
+					message: "관리자 계정으로 로그인되었습니다!",
 				});
 			}
 		}

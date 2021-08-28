@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { setMenu, setSubmenu, toggleSidebar } from "../../reducer/settingSlice";
+// import { setMenu, setSubmenu, toggleSidebar } from "../../reducer/settingSlice";
+import { setMenu, setSubmenu, setSidebar } from "../../reducers/setting";
 import { GrClose } from "react-icons/gr";
 import { IoCloseOutline } from "react-icons/io5";
 import { VscChromeClose } from "react-icons/vsc";
@@ -27,9 +28,12 @@ const Sidebar = () => {
 	}, [sidebar]);
 
 	const onToggleSidebar = (menu, submenu) => {
+		if (sidebar === "on") {
+			dispatch(setSidebar("off"));
+		} else dispatch(setSidebar("on"));
+
 		dispatch(setMenu(menu));
 		dispatch(setSubmenu(submenu));
-		dispatch(toggleSidebar(sidebar));
 	};
 
 	const onToggleMenu = (target) => {

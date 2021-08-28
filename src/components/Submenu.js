@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Route, Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { setMenu, setSubmenu } from "../reducer/settingSlice";
+import { setMenu, setSubmenu } from "../reducers/setting";
 
 const Submenu = (props) => {
 	const dispatch = useDispatch();

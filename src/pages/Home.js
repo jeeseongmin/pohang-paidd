@@ -1,11 +1,24 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import { Route, Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { setMenu, setSubmenu, toggleSidebar } from "../reducer/settingSlice";
+// import { setMenu, setSubmenu, toggleSidebar } from "../reducer/settingSlice";
+import { setMenu, setSubmenu, setSidebar } from "../reducers/setting";
 import Layout from "../components/Layout";
 
 const Home = () => {
 	const dispatch = useDispatch();
+
+	useEffect(() => {
+		axios
+			.get("/api/user")
+			.then((Response) => {
+				console.log(Response.data);
+			})
+			.catch((Error) => {
+				console.log(Error);
+			});
+	});
 	const goSubPage = (main, sub) => {
 		dispatch(setMenu(main));
 		dispatch(setSubmenu(sub));

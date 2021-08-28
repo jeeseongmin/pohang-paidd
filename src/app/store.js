@@ -1,14 +1,8 @@
-import { configureStore } from "@reduxjs/toolkit";
+import { persistStore, persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
-import { combineReducers } from "redux";
-import { persistReducer } from "redux-persist";
-import thunk from "redux-thunk";
-
-import settingReducer from "../reducer/settingSlice";
-
-const reducers = combineReducers({
-	setting: settingReducer,
-});
+import { composeWithDevTools } from "redux-devtools-extension";
+import { createStore } from "redux";
+import reducers from "../reducers";
 
 const persistConfig = {
 	key: "root",
@@ -17,8 +11,8 @@ const persistConfig = {
 
 const persistedReducer = persistReducer(persistConfig, reducers);
 
-export const store = configureStore({
-	reducer: persistedReducer,
-	devTools: process.env.NODE_ENV !== "production",
-	middleware: [thunk],
-});
+export default function configureStore() {
+	const store = createStore(persistedReducer, {}, composeWithDevTools());
+	const persistor = persistStore(store);
+	return { store, persistor };
+}

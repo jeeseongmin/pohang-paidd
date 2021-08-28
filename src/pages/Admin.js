@@ -1,7 +1,16 @@
 import React, { useState, useRef } from "react";
 import { Route, Link } from "react-router-dom";
+import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
+
+import {
+	setLoginToken,
+	setCurrentEmail,
+	setCurrentPassword,
+} from "../reducers/setting";
 
 const Admin = ({ history }) => {
+	const dispatch = useDispatch();
 	const emailRef = useRef(null);
 	const passwordRef = useRef(null);
 
@@ -17,11 +26,35 @@ const Admin = ({ history }) => {
 	};
 
 	const loginCheck = () => {
-		if (true) {
-		} else {
-			alert("로그인 정보가 없습니다.");
-			emailRef.current.focus();
-		}
+		axios
+			.post(
+				"/api/login",
+				{
+					email: info.email,
+					password: info.password,
+				},
+				{
+					headers: {
+						"Content-type": "application/json",
+						Accept: "application/json",
+					},
+				}
+			)
+			.then((response) => {
+				console.log(response.data);
+				alert(response.data.message);
+				if (response.data.loginToken) {
+					dispatch(setLoginToken(true));
+					dispatch(setCurrentEmail(info.email));
+					dispatch(setCurrentPassword(info.password));
+					history.push("/");
+				} else {
+					emailRef.current.focus();
+				}
+			})
+			.catch((response) => {
+				console.log("Error!");
+			});
 	};
 
 	return (

@@ -1,23 +1,60 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect, useRef } from "react";
+import { Link, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+
 import {
 	setMenu,
 	setSubmenu,
-	toggleSidebar,
-	toggleProfile,
-} from "../../reducer/settingSlice";
+	setSidebar,
+	setProfile,
+	setCurrentEmail,
+	setCurrentPassword,
+	setLoginToken,
+} from "../../reducers/setting";
 import Main from "./Main";
 import Sub from "./Sub";
-import { makeStyles } from "@material-ui/core/styles";
-import { GiHamburgerMenu } from "react-icons/gi";
 
 const Navbar = () => {
+	const history = useHistory();
+	const [isLogin, setIsLogin] = useState(false);
 	const dispatch = useDispatch();
 	const sidebar = useSelector((state) => state.setting.sidebar);
 	const profile = useSelector((state) => state.setting.profile);
+	const loginToken = useSelector((state) => state.setting.loginToken);
+	const currentEmail = useSelector((state) => state.setting.currentEmail);
+	const currentPassword = useSelector((state) => state.setting.currentPassword);
+
+	const profileRef = useRef(null);
+	const subProfileRef = useRef(null);
 
 	const [overMenu, setOverMenu] = useState([false, false, false, false, false]);
+
+	const [loginInfo, setLoginInfo] = useState({
+		position: "",
+		email: "",
+	});
+
+	useEffect(() => {
+		if (loginToken) {
+			if (currentEmail !== "" && currentPassword !== "") {
+				setIsLogin(true);
+				const payload = {
+					position: "",
+					email: currentEmail,
+				};
+				if (currentEmail === "master") {
+					payload.position = "총 관리자";
+				} else if (currentEmail === "org1") {
+					payload.position = "지적장애인 자립지원센터 관리자";
+				} else if (currentEmail === "org2") {
+					payload.position = "장애인활동 지원사업 관리자";
+				} else if (currentEmail === "org3") {
+					payload.position = "방과후활동 지원사업 관리자";
+				}
+				setLoginInfo(payload);
+			}
+		}
+	}, [loginToken]);
 
 	const hoverAction = (menu, TF) => {
 		const cp = [...overMenu];
@@ -31,13 +68,46 @@ const Navbar = () => {
 		window.scrollTo(0, 0);
 	};
 
+	const logout = () => {
+		dispatch(setLoginToken(false));
+		dispatch(setCurrentEmail(""));
+		dispatch(setCurrentPassword(""));
+		dispatch(setProfile("off"));
+
+		alert("로그아웃되었습니다.");
+		history.push("/");
+		window.location.reload();
+	};
+
 	const onToggleSidebar = () => {
-		dispatch(toggleSidebar(sidebar));
+		if (sidebar === "on") {
+			dispatch(setSidebar("off"));
+		} else dispatch(setSidebar("on"));
+		// dispatch(setSidebar(!sidebar));
 	};
 
 	const onToggleProfile = () => {
-		dispatch(toggleProfile(profile));
+		if (profile === "on") {
+			dispatch(setProfile("off"));
+		} else dispatch(setProfile("on"));
 	};
+
+	useEffect(() => {
+		if (profile === "off") return;
+		function handleClick(e) {
+			if (profileRef.current === null || subProfileRef.current === null) {
+				return;
+			} else if (
+				!profileRef.current.contains(e.target) &&
+				!subProfileRef.current.contains(e.target)
+			) {
+				dispatch(setProfile("off"));
+			}
+		}
+		window.addEventListener("click", handleClick);
+
+		return () => window.removeEventListener("click", handleClick);
+	}, [profile]);
 
 	return (
 		<>
@@ -140,17 +210,35 @@ const Navbar = () => {
 						</div>
 					</div>
 				</div>
-				<div class="absolute h-full right-2 xl:right-10 w-auto flex justify-end items-center">
-					<img
-						src="/image/profileDefault.png"
-						onClick={onToggleProfile}
-						class="p-1 w-10 h-10 rounded-full cursor-pointer border border-gray-300 object-cover"
-						alt="profile"
-					/>
-					{profile && (
-						<div class="flex flex-col justify-center items-center right-0 top-14 w-60 h-60 bg-white border border-gray-300 rounded-xl absolute"></div>
-					)}
-				</div>
+				{isLogin ? (
+					<div
+						ref={profileRef}
+						class="absolute h-full right-2 xl:right-10 w-auto flex justify-end items-center"
+					>
+						<img
+							src="/image/profileDefault1.png"
+							onClick={onToggleProfile}
+							class="z-30 p-1 w-10 h-10 rounded-full cursor-pointer object-cover"
+							alt="profile"
+						/>
+						{profile === "on" ? (
+							<div class="z-30 px-4 py-2 flex flex-col justify-center items-center -right-4 top-14 w-72 h-36 bg-white border border-gray-300 rounded-lg absolute">
+								<div class="w-full h-full flex flex-col justify-around">
+									<div class="w-full flex flex-col">
+										<p class="font-bold w-auto">{loginInfo.position}</p>
+										<p class="text-gray-500">ID : {loginInfo.email}</p>
+									</div>
+									<div
+										onClick={logout}
+										class="cursor-pointer w-full py-1 border border-purple-400 text-purple-400 flex justify-center hover:bg-purple-400 hover:text-white"
+									>
+										로그아웃
+									</div>
+								</div>
+							</div>
+						) : null}
+					</div>
+				) : null}
 			</div>
 			<div
 				class={
@@ -178,17 +266,35 @@ const Navbar = () => {
 							<img src="/image/logo.png" class="h-5 sm:h-8" alt="logo" />
 						</Link>
 					</div>
-					<div class="ml-4 h-full w-auto flex justify-end items-center">
-						<img
-							src="/image/profileDefault.png"
-							onClick={onToggleProfile}
-							class="p-1 w-10 h-10 rounded-full cursor-pointer border border-gray-300 object-cover"
-							alt="profile"
-						/>
-						{profile && (
-							<div class="flex flex-col justify-center items-center right-0 top-14 w-60 h-60 bg-white border border-gray-300 rounded-xl absolute"></div>
-						)}
-					</div>
+					{isLogin ? (
+						<div
+							ref={subProfileRef}
+							class="ml-4 h-full w-auto flex justify-end items-center"
+						>
+							<img
+								src="/image/profileDefault1.png"
+								onClick={onToggleProfile}
+								class="z-30 p-1 w-10 h-10 rounded-full cursor-pointer object-cover"
+								alt="profile"
+							/>
+							{profile === "on" ? (
+								<div class="z-30 px-4 py-2 flex flex-col justify-center items-center right-4 top-12 w-60 h-36 bg-white border border-gray-300 rounded-lg absolute">
+									<div class="w-full h-full flex flex-col justify-around">
+										<div class="w-full flex flex-col">
+											<p class="font-bold">{loginInfo.position}</p>
+											<p class="text-gray-500">{loginInfo.email}</p>
+										</div>
+										<div
+											onClick={logout}
+											class="cursor-pointer w-full py-1 border border-purple-400 text-purple-400 flex justify-center hover:bg-purple-400 hover:text-white"
+										>
+											로그아웃
+										</div>
+									</div>
+								</div>
+							) : null}
+						</div>
+					) : null}
 				</div>
 			</div>
 		</>
