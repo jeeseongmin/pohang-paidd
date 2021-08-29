@@ -2,6 +2,8 @@ import React, { useEffect, useState, useRef } from "react";
 import { Route, Link, withRouter } from "react-router-dom";
 import { AiOutlineCheck } from "react-icons/ai";
 import Subtitle from "../../components/Subtitle";
+import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
 
 const WriteVolunteer = ({ history }) => {
 	const [info, setInfo] = useState({
@@ -69,8 +71,33 @@ const WriteVolunteer = ({ history }) => {
 			alert("개인정보 수집 및 이용 동의에 체크해주세요");
 		} else {
 			alert("제출되었습니다!");
-			window.scrollTo(0, 0);
-			history.push("/participation/volunteer");
+			axios
+				.post(
+					"/api/volunteer/add",
+					{
+						status: "unread",
+						name: info.name,
+						birth: info.birth,
+						phone: info.phoneNumber,
+						vms: info.vms,
+						activity: info.activity,
+						hopeContent: info.hopeContent,
+						hopeTime: info.hopeTime,
+					},
+					{
+						headers: {
+							"Content-type": "application/json",
+							Accept: "application/json",
+						},
+					}
+				)
+				.then((response) => {
+					window.scrollTo(0, 0);
+					history.push("/participation/volunteer");
+				})
+				.catch((response) => {
+					console.log("Error!");
+				});
 		}
 	};
 	const changeInfo = (e, type) => {

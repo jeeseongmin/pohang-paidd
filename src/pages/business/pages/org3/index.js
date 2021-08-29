@@ -26,10 +26,9 @@ const Index = (props) => {
 				return <Notice pages={props.pages} />;
 			} else if (props.type === "noticeWrite") {
 				return <NoticeWrite pages={props.pages} />;
-			} else if (props.type === "noticeDetail") {
-				return <NoticeDetail pages={props.pages} />;
+			} else {
+				return <NoticeDetail pages={props.pages} id={props.type} />;
 			}
-			return <Notice />;
 		} else if (selected === 3) {
 			return <Gallery />;
 		}

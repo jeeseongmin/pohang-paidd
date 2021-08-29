@@ -2,13 +2,15 @@ import React, { useEffect, useState } from "react";
 import { BsSearch } from "react-icons/bs";
 import { Route, Link } from "react-router-dom";
 import Subtitle from "../../../../../components/Subtitle";
+import Paging from "../../../../../components/Paging";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
+import { VscChevronLeft, VscChevronRight } from "react-icons/vsc";
 
 const Notice = (props, { match }) => {
 	const [page, setPage] = useState(1);
+	const [totalPage, setTotalPage] = useState(0);
 	const [noticeList, setNoticeList] = useState([]);
-	console.log("notice", props);
 	const currentEmail = useSelector((state) => state.setting.currentEmail);
 	const currentPassword = useSelector((state) => state.setting.currentPassword);
 	const type = props.pages;
@@ -23,24 +25,38 @@ const Notice = (props, { match }) => {
 			.catch((Error) => {
 				console.log(Error);
 			});
-	}, []);
+	}, [page]);
+
+	useEffect(() => {
+		axios
+			.get("/api/notice/type/" + type)
+			.then((Response) => {
+				setTotalPage(Math.ceil(Response.data.length / 10));
+				console.log("totalPage : " + totalPage);
+			})
+			.catch((Error) => {
+				console.log(Error);
+			});
+	}, [noticeList]);
+
+	const dataToText = (date) => {
+		let year = date.substring(2, 4);
+		let month = date.substring(5, 7);
+		let day = date.substring(8, 10);
+		return year + "." + month + "." + day;
+	};
 
 	function NoticeBlock(props) {
 		const data = props.data;
-		console.log(data.createdAt);
-		let year = data.createdAt.substring(2, 4);
-		let month = data.createdAt.substring(5, 7);
-		let day = data.createdAt.substring(8, 10);
-		const dateToText = year + "." + month + "." + day;
-		console.log(dateToText);
+		const date = dataToText(data.createdAt);
 
 		return (
 			<Link
-				to={"/business/" + type + "/noticeDetail"}
+				to={"/business/" + type + "/" + data._id}
 				class="cursor-pointer w-full px-2 lg:px-8 py-4 flex justify-end items-center border-b border-gray-300 hover:bg-gray-100"
 			>
-				<div class="text-base flex-1 pr-4 truncate	">{data.content}</div>
-				<div class="text-base w-24 ">{dateToText}</div>
+				<div class="text-base flex-1 pr-4 truncate	">{data.title}</div>
+				<div class="text-base w-24 ">{date}</div>
 			</Link>
 		);
 	}
@@ -70,43 +86,20 @@ const Notice = (props, { match }) => {
 					noticeList.map((element, index) => {
 						return <NoticeBlock data={element} key={element._id} />;
 					})}
+				{noticeList.length === 0 && (
+					<div class="w-full flex justify-center items-center mt-8">
+						등록된 내용이 없습니다.
+					</div>
+				)}
 			</div>
 			<div class="flex flex-col lg:flex-row justify-center items-center my-8 relative">
-				<div class="flex flex-row w-full justify-center items-center lg:w-auto mb-4 lg:mb-0">
-					<div
-						onClick={() => setPage(1)}
-						class={
-							"mr-2 w-8 h-8 flex justify-center items-center cursor-pointer " +
-							(page === 1
-								? "text-white border-2 border-purple-700 bg-purple-700  "
-								: "border border-gray-300 text-gray-300")
-						}
-					>
-						1
-					</div>
-					<div
-						onClick={() => setPage(2)}
-						class={
-							"mr-2 w-8 h-8 flex justify-center items-center cursor-pointer " +
-							(page === 2
-								? "text-white border-2 border-purple-700 bg-purple-700  "
-								: "border border-gray-300 text-gray-300")
-						}
-					>
-						2
-					</div>
-					<div
-						class={
-							"mr-2 w-8 h-8 flex justify-center items-center cursor-pointer " +
-							(page === 3
-								? "text-white border-2 border-purple-700 bg-purple-700  "
-								: "border border-gray-300 text-gray-300")
-						}
-						onClick={() => setPage(3)}
-					>
-						3
-					</div>
-				</div>
+				<div class="flex flex-row w-full justify-center items-center lg:w-auto mb-4 lg:mb-0"></div>
+				{/* 
+					setPage : 현재 페이지 설정 함수
+					page : 현재 페이지
+					total : 총 페이지
+				 */}
+				<Paging setPage={setPage} page={page} total={totalPage} />
 
 				{currentEmail === "master" || currentEmail === type ? (
 					<div class="relative md:absolute right-0 w-full md:w-auto flex justify-end md:block">

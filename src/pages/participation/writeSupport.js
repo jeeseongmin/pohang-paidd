@@ -3,6 +3,8 @@ import { Route, Link, withRouter } from "react-router-dom";
 import { AiOutlineCheck } from "react-icons/ai";
 import CreatableSelect from "react-select/creatable";
 import Subtitle from "../../components/Subtitle";
+import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
 
 const WriteSupport = ({ history }) => {
 	const [info, setInfo] = useState({
@@ -89,9 +91,36 @@ const WriteSupport = ({ history }) => {
 		} else if (!info.agree) {
 			alert("개인정보 수집 및 이용 동의에 체크해주세요");
 		} else {
-			alert("제출되었습니다!");
-			window.scrollTo(0, 0);
-			history.push("/participation/support");
+			console.log(info);
+			axios
+				.post(
+					"/api/support/add",
+					{
+						status: "unread",
+						name: info.name,
+						private: info.privateNumber,
+						phone: info.phoneNumber,
+						email: info.email,
+						address: info.address,
+						periodical: info.periodicalSupport.content,
+						temporary: info.temporarySupport.content,
+						goods: info.itemSupport.content,
+					},
+					{
+						headers: {
+							"Content-type": "application/json",
+							Accept: "application/json",
+						},
+					}
+				)
+				.then((response) => {
+					window.scrollTo(0, 0);
+					history.push("/participation/support");
+					alert("제출되었습니다!");
+				})
+				.catch((response) => {
+					console.log("Error!");
+				});
 		}
 	};
 	const changeInfo = (e, type) => {

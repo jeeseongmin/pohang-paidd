@@ -28,6 +28,15 @@ router.route("/type/:type/:page").get((req, res) => {
 		.catch((err) => res.status(400).json("Error: ") + err);
 });
 
+// Read specific type notice
+// org1, org2, org3, org4, participation
+router.route("/type/:type").get((req, res) => {
+	Notice.find({ type: req.params.type })
+		.sort({ createdAt: -1 })
+		.then((one) => res.json(one))
+		.catch((err) => res.status(400).json("Error: ") + err);
+});
+
 // paging
 router.route("/:page").get((req, res) => {
 	Notice.find()
