@@ -5,6 +5,7 @@ export const SET_MENU = "SET_MENU";
 export const SET_SUBMENU = "SET_SUBMENU";
 export const SET_SIDEBAR = "SET_SIDEBAR";
 export const SET_PROFILE = "SET_PROFILE";
+export const SET_UID = "SET_UID";
 
 export const setLoginToken = (loginToken) => ({
 	type: SET_LOGIN_TOKEN,
@@ -41,6 +42,11 @@ export const setProfile = (profile) => ({
 	payload: profile,
 });
 
+export const setUid = (uid) => ({
+	type: SET_UID,
+	payload: uid,
+});
+
 const initialState = {
 	loginToken: "login",
 	currentEmail: "",
@@ -49,6 +55,7 @@ const initialState = {
 	submenu: 0,
 	sidebar: "on",
 	profile: "off",
+	uid: "",
 };
 
 const setting = (state = initialState, action) => {
@@ -99,6 +106,13 @@ const setting = (state = initialState, action) => {
 			return {
 				...state,
 				profile: action.payload,
+			};
+		}
+
+		case SET_UID: {
+			return {
+				...state,
+				uid: action.uid,
 			};
 		}
 

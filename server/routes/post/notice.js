@@ -64,8 +64,8 @@ router.route("/add").post((req, res) => {
 });
 
 // Update notice
-router.route("/update/:id").post((req, res) => {
-	Notice.findById(req.params.id)
+router.route("/update").post((req, res) => {
+	Notice.findById(req.body.id)
 		.then((one) => {
 			one.title = req.body.title;
 			one.content = req.body.content;
@@ -78,8 +78,8 @@ router.route("/update/:id").post((req, res) => {
 		.catch((err) => res.status(400).json("Error: " + err));
 });
 
-router.route("/delete/:id").delete((req, res) => {
-	Notice.findByIdAndDelete(req.params.id)
+router.route("/delete").post((req, res) => {
+	Notice.findByIdAndDelete(req.body.id)
 		.then(() => res.json("Notice deleted."))
 		.catch((err) => res.status(400).json("Error: " + err));
 });

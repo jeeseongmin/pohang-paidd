@@ -1,25 +1,24 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { Link, useHistory } from "react-router-dom";
+import Subtitle from "../../../../components/Subtitle";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 
-const NoticeWrite = (props) => {
-	console.log(props);
-	const type = props.pages;
-	const dispatch = useDispatch();
+const EditNotice = (props) => {
 	const history = useHistory();
 	const [info, setInfo] = useState({
-		type: "",
-		title: "",
-		content: "",
+		title: props.info.title,
+		content: props.info.content,
 	});
+	const id = props.id;
+	const pages = props.pages;
 	const titleRef = useRef(null);
 	const contentRef = useRef(null);
+	const API_KEY = process.env.REACT_APP_API_KEY;
 
 	const currentEmail = useSelector((state) => state.setting.currentEmail);
-	const API_KEY = process.env.REACT_APP_API_KEY;
 
 	const changeInfo = (e, type) => {
 		const cp = { ...info };
@@ -28,24 +27,22 @@ const NoticeWrite = (props) => {
 	};
 
 	useEffect(() => {
-		const cp = { ...info };
-		cp.type = type;
-		setInfo(cp);
+		setInfo(props.info);
 	}, []);
 
-	const submitInfo = () => {
+	const editSave = () => {
 		if (info.title === "") {
 			alert("제목을 입력해주세요!");
 			titleRef.current.focus();
 		} else if (info.content === "") {
 			alert("내용을 입력해주세요!");
-		} else if (currentEmail === "master" || currentEmail === info.type) {
-			console.log("제출 : " + info);
+			// contentRef.current.focus();
+		} else if (currentEmail === "master" || currentEmail === "org4") {
 			axios
 				.post(
-					"/api/" + API_KEY + "/notice/add",
+					"/api/" + API_KEY + "/notice/update",
 					{
-						type: info.type,
+						id: id,
 						title: info.title,
 						content: info.content,
 					},
@@ -57,7 +54,8 @@ const NoticeWrite = (props) => {
 					}
 				)
 				.then((response) => {
-					history.push("/business/" + info.type + "/default");
+					alert("저장되었습니다.");
+					history.push("/organization/notice/0");
 				})
 				.catch((response) => {
 					console.log("Error!");
@@ -68,7 +66,7 @@ const NoticeWrite = (props) => {
 	return (
 		<div>
 			<div class="flex flex-row justify-between items-center mb-8">
-				<h1 class="text-3xl font-bold">공지사항 작성</h1>
+				<Subtitle text={"수정하기"} />
 			</div>
 			<div class="w-full h-auto mb-4">
 				{/* 딱 10개 씩만 로드하기 */}
@@ -78,6 +76,7 @@ const NoticeWrite = (props) => {
 						type="text"
 						class="flex-1 p-4 border-2 border-gray-300 outline-none focus:border-purple-700"
 						onChange={(e) => changeInfo(e, "title")}
+						value={info.title}
 						placeholder="제목"
 					/>
 				</div>
@@ -92,7 +91,7 @@ const NoticeWrite = (props) => {
 				<CKEditor
 					editor={ClassicEditor}
 					class="w-full "
-					data=""
+					data={info.content}
 					onInit={(editor) => {
 						// You can store the "editor" and use when it is needed.
 						// console.log("Editor is ready to use!", editor);
@@ -106,42 +105,40 @@ const NoticeWrite = (props) => {
 					}}
 					onReady={(editor) => {
 						// You can store the "editor" and use when it is needed.
-						console.log("Editor is ready to use!", editor);
+						// console.log("Editor is ready to use!", editor);
 					}}
 					onChange={(event, editor) => {
 						const data = editor.getData();
-						console.log({ event, editor, data });
 						setInfo({
 							...info,
 							content: data,
 						});
-						console.log(info);
 					}}
 					onBlur={(event, editor) => {
-						console.log("Blur.", editor);
+						// console.log("Blur.", editor);
 					}}
 					onFocus={(event, editor) => {
-						console.log("Focus.", editor);
+						// console.log("Focus.", editor);
 					}}
 				/>
 			</div>
 			<div class="flex justify-between items-center flex-col md:flex-row">
 				<Link
-					class="mb-4 md:mb-0 w-full md:w-auto  cursor-pointer px-0 md:px-16 py-2 justify-center border border-purple-700 text-purple-700 flex flex-row items-center hover:bg-purple-500 hover:text-white hover:font-bold"
-					to={"/business/" + props.pages + "/default"}
+					class="w-full md:w-auto cursor-pointer mb-4 md:mb-0 px-16 py-2 justify-center border border-purple-700 text-purple-700 flex flex-row items-center hover:bg-purple-500 hover:text-white hover:font-bold"
+					to={"/organization/" + pages + "/0"}
 					onClick={() => window.scrollTo(0, 0)}
 				>
 					뒤로 가기
 				</Link>
-				<button
-					onClick={submitInfo}
-					class="outline-none w-full md:w-auto cursor-pointer px-0 md:px-16 py-2 justify-center border border-purple-700 text-purple-700 flex flex-row items-center hover:bg-purple-500 hover:text-white hover:font-bold"
+				<div
+					onClick={editSave}
+					class="w-full md:w-auto cursor-pointer justify-center px-16 py-2 border border-purple-700 text-purple-700 flex flex-row items-center hover:bg-purple-500 hover:text-white hover:font-bold"
 				>
-					제출하기
-				</button>
+					저장하기
+				</div>
 			</div>
 		</div>
 	);
 };
 
-export default NoticeWrite;
+export default EditNotice;

@@ -8,13 +8,17 @@ import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 
 const NoticeEdit = (props) => {
 	const history = useHistory();
-	const [info, setInfo] = useState({});
+	const [info, setInfo] = useState({
+		title: props.info.title,
+		content: props.info.content,
+	});
 	const id = props.id;
 	const pages = props.pages;
 	const titleRef = useRef(null);
 	const contentRef = useRef(null);
 
 	const currentEmail = useSelector((state) => state.setting.currentEmail);
+	const API_KEY = process.env.REACT_APP_API_KEY;
 
 	const changeInfo = (e, type) => {
 		const cp = { ...info };
@@ -32,13 +36,12 @@ const NoticeEdit = (props) => {
 			titleRef.current.focus();
 		} else if (info.content === "") {
 			alert("내용을 입력해주세요!");
-			contentRef.current.focus();
 		} else if (currentEmail === "master" || currentEmail === info.type) {
-			console.log("제출 : " + info);
 			axios
 				.post(
-					"/api/notice/update/" + id,
+					"/api/" + API_KEY + "/notice/update",
 					{
+						id: id,
 						title: info.title,
 						content: info.content,
 					},
@@ -51,7 +54,7 @@ const NoticeEdit = (props) => {
 				)
 				.then((response) => {
 					alert("저장되었습니다.");
-					history.push("/business/" + info.type + "/" + id);
+					history.push("/business/" + props.pages + "/" + id);
 				})
 				.catch((response) => {
 					console.log("Error!");
@@ -105,18 +108,16 @@ const NoticeEdit = (props) => {
 					}}
 					onChange={(event, editor) => {
 						const data = editor.getData();
-						console.log({ event, editor, data });
 						setInfo({
 							...info,
 							content: data,
 						});
-						console.log(info);
 					}}
 					onBlur={(event, editor) => {
-						console.log("Blur.", editor);
+						// console.log("Blur.", editor);
 					}}
 					onFocus={(event, editor) => {
-						console.log("Focus.", editor);
+						// console.log("Focus.", editor);
 					}}
 				/>
 			</div>

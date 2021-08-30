@@ -25,11 +25,12 @@ const Index = () => {
 		cp[type] = e.target.value;
 		setInfo(cp);
 	};
+	const API_KEY = process.env.REACT_APP_API_KEY;
 
 	const loginCheck = () => {
 		axios
 			.post(
-				"/api/login",
+				"/api/" + API_KEY + "/login",
 				{
 					email: info.email,
 					password: info.password,

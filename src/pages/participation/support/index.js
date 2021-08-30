@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Route, Link } from "react-router-dom";
-import Subtitle from "../../components/Subtitle";
+import Subtitle from "../../../components/Subtitle";
 
-const Support = () => {
+const Index = () => {
 	return (
 		<div>
 			<Subtitle text={"후원"} />
@@ -54,7 +54,7 @@ const Support = () => {
 			</div>
 			<div class="flex justify-center items-center">
 				<Link
-					to="/participation/writeSupport"
+					to="/participation/writeSupport/0"
 					onClick={() => window.scrollTo(0, 0)}
 					class="w-full md:w-auto justify-center cursor-pointer px-16 py-2 border border-purple-700 text-purple-700 flex flex-row items-center hover:bg-purple-500 hover:text-white hover:font-bold"
 				>
@@ -65,4 +65,4 @@ const Support = () => {
 	);
 };
 
-export default Support;
+export default Index;

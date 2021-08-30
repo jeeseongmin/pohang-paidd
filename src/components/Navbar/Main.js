@@ -18,8 +18,8 @@ const Main = (props) => {
 	const address = [
 		"/introduce/intro",
 		"/business/base/default",
-		"/organization/0",
-		"/participation/notice",
+		"/organization/intro/0",
+		"/participation/notice/0",
 		"/local",
 	];
 	const title = ["협회소개", "주요사업", "부설기관", "참여마당", "지역복지"];

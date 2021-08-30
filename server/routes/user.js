@@ -1,21 +1,25 @@
 // import { v4 as uuidv4 } from "uuid";
 const router = require("express").Router();
 let User = require("../models/user.model");
+const bcrypt = require("bcrypt");
 
 // Create
 router.route("/add").post((req, res) => {
-	const one = {
-		type: req.body.type,
-		email: req.body.email,
-		password: req.body.password,
-	};
+	// const encryptedPassowrd = bcrypt.hashSync(req.body.password, 10); // sync
 
-	const newUser = new User(one);
-
-	newUser
-		.save()
-		.then(() => res.json("User added!"))
-		.catch((err) => res.status(400).json("Error: " + err));
+	bcrypt.hash(req.body.password, 10, (err, encryptedPassowrd) => {
+		// async callback
+		const one = {
+			type: req.body.type,
+			email: req.body.email,
+			password: encryptedPassowrd,
+		};
+		const newUser = new User(one);
+		newUser
+			.save()
+			.then(() => res.json("User added!"))
+			.catch((err) => res.status(400).json("Error: " + err));
+	});
 });
 
 // Read

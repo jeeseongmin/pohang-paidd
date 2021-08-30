@@ -49,8 +49,8 @@ router.route("/add").post((req, res) => {
 });
 
 // Update volunteer
-router.route("/update/:id").post((req, res) => {
-	Volunteer.findById(req.params.id)
+router.route("/update").post((req, res) => {
+	Volunteer.findById(req.body.id)
 		.then((one) => {
 			one.status = req.body.status;
 			one.name = req.body.name;
@@ -69,8 +69,8 @@ router.route("/update/:id").post((req, res) => {
 		.catch((err) => res.status(400).json("Error: " + err));
 });
 
-router.route("/delete/:id").delete((req, res) => {
-	Volunteer.findByIdAndDelete(req.params.id)
+router.route("/delete").post((req, res) => {
+	Volunteer.findByIdAndDelete(req.body.id)
 		.then(() => res.json("Volunteer deleted."))
 		.catch((err) => res.status(400).json("Error: " + err));
 });

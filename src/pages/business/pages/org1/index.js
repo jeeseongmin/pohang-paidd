@@ -16,11 +16,6 @@ const Index = (props, { match }) => {
 		window.scrollTo(0, 0);
 	};
 
-	useEffect(() => {
-		console.log("index", match);
-		console.log(props);
-	}, [match]);
-
 	const Content = () => {
 		if (selected === 0) {
 			return <Intro />;

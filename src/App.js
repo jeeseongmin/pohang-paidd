@@ -39,8 +39,12 @@ const Routes = () => {
 						<Route path="/local" component={Local} />
 						<Route path="/introduce/:pages" component={Introduce} />
 						<Route exact path="/business/:pages/:type" component={Business} />
-						<Route path="/organization/:pages" component={Organization} />
-						<Route path="/participation/:pages" component={Participation} />
+						<Route path="/organization/:pages/:type" component={Organization} />
+						<Route
+							exact
+							path="/participation/:pages/:type"
+							component={Participation}
+						/>
 					</switch>
 				</>
 			</div>

@@ -50,8 +50,8 @@ router.route("/add").post((req, res) => {
 });
 
 // Update support
-router.route("/update/:id").post((req, res) => {
-	Support.findById(req.params.id)
+router.route("/update").post((req, res) => {
+	Support.findById(req.body.id)
 		.then((one) => {
 			one.status = req.body.status;
 			one.name = req.body.name;
@@ -71,8 +71,8 @@ router.route("/update/:id").post((req, res) => {
 		.catch((err) => res.status(400).json("Error: " + err));
 });
 
-router.route("/delete/:id").delete((req, res) => {
-	Support.findByIdAndDelete(req.params.id)
+router.route("/delete").post((req, res) => {
+	Support.findByIdAndDelete(req.body.id)
 		.then(() => res.json("Support deleted."))
 		.catch((err) => res.status(400).json("Error: " + err));
 });

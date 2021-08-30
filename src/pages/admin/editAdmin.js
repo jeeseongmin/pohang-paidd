@@ -19,6 +19,7 @@ const EditAdmin = () => {
 
 	const currentEmail = useSelector((state) => state.setting.currentEmail);
 	const currentPassword = useSelector((state) => state.setting.currentPassword);
+	const API_KEY = process.env.REACT_APP_API_KEY;
 
 	const [info, setInfo] = useState({
 		email: "",
@@ -58,12 +59,10 @@ const EditAdmin = () => {
 		else if (info.password !== currentPassword) {
 			alert("현재 비밀번호를 정확히 입력해주세요.");
 		} else {
-			// console.log(getId());
 			let id;
 			await axios
-				.get("/api/user/findbyemail/" + info.email)
+				.get("/api/" + API_KEY + "/user/findbyemail/" + info.email)
 				.then((Response) => {
-					console.log(Response.data[0]._id);
 					id = Response.data[0]._id;
 				})
 				.catch((Error) => {
@@ -72,7 +71,7 @@ const EditAdmin = () => {
 
 			await axios
 				.post(
-					"/api/user/update/" + id,
+					"/api/" + API_KEY + "/user/update/" + id,
 					{
 						email: info.email,
 						password: info.newPassword,
@@ -94,18 +93,6 @@ const EditAdmin = () => {
 				});
 		}
 	}
-
-	const getId = () => {
-		axios
-			.get("/api/user/findbyemail/" + info.email)
-			.then((Response) => {
-				console.log(Response.data[0]._id);
-				return Response.data[0]._id;
-			})
-			.catch((Error) => {
-				console.log(Error);
-			});
-	};
 
 	return (
 		<Layout>

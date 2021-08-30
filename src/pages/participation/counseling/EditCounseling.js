@@ -1,12 +1,16 @@
 import React, { useEffect, useState, useRef } from "react";
-import { Route, Link } from "react-router-dom";
-import Subtitle from "../../components/Subtitle";
+import { Route, Link, useHistory } from "react-router-dom";
+import Subtitle from "../../../components/Subtitle";
+import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
 
-const WriteCounsel = () => {
+const EditCounseling = (props) => {
+	const history = useHistory();
 	const [info, setInfo] = useState({
+		status: "",
 		title: "",
-		email: "",
 		content: "",
+		email: "",
 		password: "",
 		passwordCheck: "",
 	});
@@ -14,6 +18,33 @@ const WriteCounsel = () => {
 	const emailRef = useRef(null);
 	const contentRef = useRef(null);
 	const passwordRef = useRef(null);
+	const currentEmail = useSelector((state) => state.setting.currentEmail);
+	const API_KEY = process.env.REACT_APP_API_KEY;
+
+	const id = props.id;
+
+	useEffect(() => {
+		if (currentEmail === "master") {
+			setInfo({
+				status: props.info.status,
+				title: props.info.title,
+				content: props.info.content,
+				email: props.info.writer,
+				password: props.info.password,
+				passwordCheck: props.info.password,
+			});
+		} else {
+			setInfo({
+				status: props.info.status,
+				title: props.info.title,
+				content: props.info.content,
+				email: props.info.writer,
+				password: "",
+				passwordCheck: "",
+			});
+		}
+	}, []);
+
 	const checkEmail = () => {
 		// 이메일 검증 스크립트 작성
 		var emailVal = info.email;
@@ -28,7 +59,6 @@ const WriteCounsel = () => {
 	};
 
 	const submitInfo = () => {
-		console.log(info);
 		if (info.title === "") {
 			alert("제목을 입력해주세요!");
 			titleRef.current.focus();
@@ -48,7 +78,30 @@ const WriteCounsel = () => {
 			alert("비밀번호가 일치하지 않습니다!");
 			passwordRef.current.focus();
 		} else {
-			alert("제출되었습니다!");
+			axios
+				.post(
+					"/api/" + API_KEY + "/counseling/update",
+					{
+						id: id,
+						title: info.title,
+						content: info.content,
+						// response: "",
+					},
+					{
+						headers: {
+							"Content-type": "application/json",
+							Accept: "application/json",
+						},
+					}
+				)
+				.then((response) => {
+					window.scrollTo(0, 0);
+					history.push("/participation/counseling/0");
+					alert("수정되었습니다!");
+				})
+				.catch((response) => {
+					console.log("Error!");
+				});
 		}
 	};
 	const changeInfo = (e, type) => {
@@ -60,13 +113,12 @@ const WriteCounsel = () => {
 		<div class="w-full h-auto">
 			<div class="flex flex-row justify-between items-center mb-8">
 				<div>
-					<Subtitle text={"건의 및 고충상담"} />
-					<Subtitle text={"작성하기"} />
+					<Subtitle text={"수정하기"} />
 				</div>
 			</div>
 			<form class="border-t-2 border-b-2 border-purple-700 py-6 mb-4">
 				<h1 class="text-sm mb-8">
-					이메일과 비밀번호를 통해 작성된 내용을 수정 및 삭제하실 수 있습니다.
+					등록된 비밀번호를 통해 작성된 내용을 수정 및 삭제하실 수 있습니다.
 				</h1>
 				<div class="flex flex-row justify-start items-center mb-2">
 					<input
@@ -74,6 +126,7 @@ const WriteCounsel = () => {
 						type="text"
 						class="w-1/2 md:w-auto flex-1 p-4 border-2 border-gray-300 outline-none mr-4 focus:border-purple-700"
 						onChange={(e) => changeInfo(e, "title")}
+						value={info.title}
 						placeholder="제목"
 					/>
 					<input
@@ -81,7 +134,9 @@ const WriteCounsel = () => {
 						type="text"
 						class="w-36 md:w-72 p-4 border-2 border-gray-300 outline-none focus:border-purple-700"
 						onChange={(e) => changeInfo(e, "email")}
+						value={info.email}
 						placeholder="이메일"
+						disabled={true}
 					/>
 				</div>
 				<div class="flex flex-row justify-start items-start mb-2">
@@ -89,6 +144,7 @@ const WriteCounsel = () => {
 						ref={contentRef}
 						class="w-full h-96 p-4 border-2 border-gray-300 outline-none focus:border-purple-700 resize-none"
 						onChange={(e) => changeInfo(e, "content")}
+						value={info.content}
 						placeholder="내용"
 					></textarea>
 				</div>
@@ -98,12 +154,14 @@ const WriteCounsel = () => {
 						type="password"
 						class="w-1/2 md:w-60 p-4 border-2 border-gray-300 outline-none mr-4 focus:border-purple-700"
 						onChange={(e) => changeInfo(e, "password")}
+						value={info.password}
 						placeholder="비밀번호"
 					/>
 					<input
 						type="password"
 						class="w-1/2 md:w-60 p-4 border-2 border-gray-300 outline-none focus:border-purple-700"
 						onChange={(e) => changeInfo(e, "passwordCheck")}
+						value={info.passwordCheck}
 						placeholder="비밀번호 확인"
 					/>
 				</div>
@@ -112,7 +170,7 @@ const WriteCounsel = () => {
 			<div class="flex flex-col md:flex-row justify-between items-center">
 				<Link
 					class="w-full md:w-auto mb-4 md:mb-4 justify-center cursor-pointer px-16 py-2 border border-purple-700 text-purple-700 flex flex-row items-center hover:bg-purple-500 hover:text-white hover:font-bold"
-					to="/participation/counseling"
+					to="/participation/counseling/0"
 					onClick={() => window.scrollTo(0, 0)}
 				>
 					뒤로 가기
@@ -128,4 +186,4 @@ const WriteCounsel = () => {
 	);
 };
 
-export default WriteCounsel;
+export default EditCounseling;

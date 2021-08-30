@@ -10,10 +10,6 @@ const Paging = (props) => {
 	const total = props.total;
 
 	useEffect(() => {
-		console.log("Paging : " + page, total);
-	}, []);
-
-	useEffect(() => {
 		// 현재 page에 따라 첫 step과 arr 구성하기
 		// let _step = Math.ceil(page / 5);
 		setStep((Math.ceil(page / 5) - 1) * 5 + 1);
@@ -25,7 +21,6 @@ const Paging = (props) => {
 			}
 		}
 		setArr(_arr);
-		console.log(arr);
 	}, [page, total]);
 
 	function PageBtn(props) {

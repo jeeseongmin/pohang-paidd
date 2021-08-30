@@ -28,12 +28,12 @@ const Submenu = (props) => {
 			"/business/org2/default",
 			"/business/org3/default",
 		],
-		["/organization/0"],
+		["/organization/intro/0"],
 		[
-			"/participation/notice",
-			"/participation/counseling",
-			"/participation/support",
-			"/participation/volunteer",
+			"/participation/notice/0",
+			"/participation/counseling/0",
+			"/participation/support/0",
+			"/participation/volunteer/0",
 		],
 		["/local"],
 	];

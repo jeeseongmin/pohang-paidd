@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { Route, Link, useHistory } from "react-router-dom";
-import Subtitle from "../../../../../components/Subtitle";
+import Subtitle from "../../../components/Subtitle";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import ReactHtmlParser from "react-html-parser";
-import NoticeEdit from "./components/noticeEdit";
+import NoticeEdit from "./EditNotice";
 import Skeleton from "@material-ui/lab/Skeleton";
 
 const NoticeDetail = (props) => {
 	const [loading, setLoading] = useState(false);
+
 	const dispatch = useDispatch();
 	const history = useHistory();
 	const [page, setPage] = useState(1);
@@ -19,7 +20,6 @@ const NoticeDetail = (props) => {
 	const API_KEY = process.env.REACT_APP_API_KEY;
 
 	const id = props.id;
-	console.log(id);
 
 	const [info, setInfo] = useState({
 		type: "",
@@ -48,17 +48,23 @@ const NoticeDetail = (props) => {
 	}, []);
 
 	const deleteNotice = () => {
-		if (currentEmail === "master" || currentEmail === info.type) {
+		if (currentEmail === "master") {
 			axios
-				.post("/api/" + API_KEY + "/notice/delete", {
-					headers: {
-						"Content-type": "application/json",
-						Accept: "application/json",
+				.post(
+					"/api/" + API_KEY + "/notice/delete",
+					{
+						id: id,
 					},
-				})
+					{
+						headers: {
+							"Content-type": "application/json",
+							Accept: "application/json",
+						},
+					}
+				)
 				.then((response) => {
 					alert("삭제되었습니다.");
-					history.push("/business/" + info.type + "/default");
+					history.push("/participation/notice/0");
 				})
 				.catch((response) => {
 					console.log("Error!");
@@ -89,7 +95,7 @@ const NoticeDetail = (props) => {
 								<Skeleton animation="wave" />
 							) : (
 								<>
-									<div class="text-lg flex-1 font-bold">{info.title}</div>
+									<div class="text-lg flex-1 ">{info.title}</div>
 									<div class="text-lg w-24 ">{info.date}</div>
 								</>
 							)}
@@ -103,13 +109,13 @@ const NoticeDetail = (props) => {
 					<div class="flex justify-between items-center flex-col md:flex-row">
 						<Link
 							class="w-full md:w-auto cursor-pointer px-16 py-2 justify-center border border-purple-700 text-purple-700 flex flex-row items-center hover:bg-purple-500 hover:text-white hover:font-bold"
-							to={"/business/" + props.pages + "/default"}
+							to={"/participation/notice/0"}
 							onClick={() => window.scrollTo(0, 0)}
 						>
 							뒤로 가기
 						</Link>
-						{loading &&
-						(currentEmail === "master" || currentEmail === info.type) ? (
+
+						{loading && currentEmail === "master" ? (
 							<div class="w-full md:w-auto flex flex-col md:flex-row">
 								<div
 									onClick={deleteNotice}
@@ -128,7 +134,7 @@ const NoticeDetail = (props) => {
 					</div>
 				</div>
 			) : (
-				<NoticeEdit pages={props.pages} info={info} id={id} />
+				<NoticeEdit pages={"participation"} info={info} id={id} />
 			)}
 			{}
 		</>

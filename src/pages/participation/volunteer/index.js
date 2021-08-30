@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Route, Link } from "react-router-dom";
-import Subtitle from "../../components/Subtitle";
+import Subtitle from "../../../components/Subtitle";
 
-const volunteer = () => {
+const Index = () => {
 	return (
 		<>
 			<div class="mb-8">
@@ -23,7 +23,7 @@ const volunteer = () => {
 			</div>
 			<div class="flex flex-row justify-center items-center my-16">
 				<Link
-					to="/participation/writeVolunteer"
+					to="/participation/writeVolunteer/0"
 					class="w-full md:w-auto justify-center cursor-pointer px-16 py-4 border border-purple-700 text-purple-700 flex flex-row items-center hover:bg-purple-500 hover:text-white hover:font-bold"
 				>
 					자원봉사 신청
@@ -33,4 +33,4 @@ const volunteer = () => {
 	);
 };
 
-export default volunteer;
+export default Index;

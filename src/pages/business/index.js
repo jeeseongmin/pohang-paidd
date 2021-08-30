@@ -8,10 +8,6 @@ import Submenu from "../../components/Submenu";
 import Layout from "../../components/Layout";
 
 const Index = ({ match }) => {
-	useEffect(() => {
-		console.log("match : ", match.params.type);
-	}, [match]);
-
 	return (
 		<Layout>
 			<div class="h-full">

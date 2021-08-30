@@ -9,21 +9,12 @@ import Layout from "../components/Layout";
 const Home = () => {
 	const dispatch = useDispatch();
 
-	useEffect(() => {
-		axios
-			.get("/api/user")
-			.then((Response) => {
-				console.log(Response.data);
-			})
-			.catch((Error) => {
-				console.log(Error);
-			});
-	});
 	const goSubPage = (main, sub) => {
 		dispatch(setMenu(main));
 		dispatch(setSubmenu(sub));
 		window.scrollTo(0, 0);
 	};
+
 	return (
 		<Layout>
 			<div class="w-full h-full">
@@ -192,7 +183,7 @@ const Home = () => {
 								</h1>
 							</div>
 							<Link
-								to="/participation/support"
+								to="/participation/support/0"
 								onClick={() => goSubPage(4, 3)}
 								class="lg:text-xl text-xs w-60 text-center cursor-pointer py-2 px-4 lg:py-3 lg:px-8 border border-purple-700 text-purple-700 rounded-full hover:border-purple-300 hover:bg-purple-300 hover:text-white"
 							>
@@ -211,7 +202,7 @@ const Home = () => {
 								자원봉사
 							</h1>
 							<Link
-								to="/participation/volunteer"
+								to="/participation/volunteer/0"
 								onClick={() => goSubPage(4, 4)}
 								class="lg:text-xl text-xs w-60 text-center cursor-pointer py-2 px-4 lg:py-3 lg:px-8 border border-purple-700 text-purple-700 rounded-full hover:border-purple-300 hover:bg-purple-300 hover:text-white"
 							>

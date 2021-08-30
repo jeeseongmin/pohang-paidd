@@ -1,31 +1,33 @@
-import React, { useState } from "react";
-import { Route, Link } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { Route, Link, useHistory } from "react-router-dom";
 import OrgMenu from "../../components/Menu/OrgMenu";
 import Business from "./components/business";
 import Gallery from "./components/gallery";
 import Intro from "./components/intro";
-import Notice from "./components/notice";
+import Notice from "./components/notice/index";
+import NoticeWrite from "./components/notice/writeNotice";
+import NoticeDetail from "./components/notice/noticeDetail";
 import Layout from "../../components/Layout";
 
-const Index = () => {
+const Index = ({ match }) => {
 	const [selected, setSelected] = useState(0);
-
+	const history = useHistory();
 	const changeSelected = (num) => {
 		setSelected(num);
 		window.scrollTo(0, 0);
 	};
 
-	const Content = () => {
+	useEffect(() => {
 		if (selected === 0) {
-			return <Intro />;
+			history.push("/organization/intro/0");
 		} else if (selected === 1) {
-			return <Business />;
+			history.push("/organization/business/0");
 		} else if (selected === 2) {
-			return <Notice />;
+			history.push("/organization/notice/0");
 		} else if (selected === 3) {
-			return <Gallery />;
+			history.push("/organization/gallery/0");
 		}
-	};
+	}, [selected]);
 
 	return (
 		<Layout>
@@ -71,7 +73,27 @@ const Index = () => {
 					</div>
 
 					<div>
-						<Content />
+						<switch>
+							<Route exact path="/organization/intro/0">
+								<Intro />
+							</Route>
+							<Route exact path="/organization/business/0">
+								<Business />
+							</Route>
+							<Route exact path="/organization/notice/0">
+								<Notice />
+							</Route>
+							<Route exact path="/organization/gallery/0">
+								<Gallery />
+							</Route>
+							<Route exact path="/organization/writeNotice/0">
+								<NoticeWrite />
+							</Route>
+							<Route exact path="/organization/noticeDetail/:id">
+								<NoticeDetail id={match.params.type} />
+							</Route>
+						</switch>
+						{/* <Content /> */}
 					</div>
 				</div>
 			</div>

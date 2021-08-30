@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import { Route, Link, withRouter } from "react-router-dom";
 import { AiOutlineCheck } from "react-icons/ai";
-import Subtitle from "../../components/Subtitle";
+import Subtitle from "../../../components/Subtitle";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -25,6 +25,7 @@ const WriteVolunteer = ({ history }) => {
 	const hopeContentRef = useRef(null);
 	const hopeTimeRef = useRef(null);
 	const agreeRef = useRef(null);
+	const API_KEY = process.env.REACT_APP_API_KEY;
 
 	const checkEmail = () => {
 		// 이메일 검증 스크립트 작성
@@ -73,7 +74,7 @@ const WriteVolunteer = ({ history }) => {
 			alert("제출되었습니다!");
 			axios
 				.post(
-					"/api/volunteer/add",
+					"/api/" + API_KEY + "/volunteer/add",
 					{
 						status: "unread",
 						name: info.name,
@@ -93,7 +94,7 @@ const WriteVolunteer = ({ history }) => {
 				)
 				.then((response) => {
 					window.scrollTo(0, 0);
-					history.push("/participation/volunteer");
+					history.push("/participation/volunteer/0");
 				})
 				.catch((response) => {
 					console.log("Error!");
@@ -259,7 +260,7 @@ const WriteVolunteer = ({ history }) => {
 			<div class="flex flex-col md:flex-row justify-between items-center">
 				<Link
 					class="w-full md:w-auto mb-4 md:mb-4 justify-center cursor-pointer px-16 py-2 border border-purple-700 text-purple-700 flex flex-row items-center hover:bg-purple-500 hover:text-white hover:font-bold"
-					to="/participation/support"
+					to="/participation/support/0"
 					onClick={() => window.scrollTo(0, 0)}
 				>
 					뒤로 가기

@@ -52,6 +52,8 @@ const Navbar = () => {
 					payload.position = "장애인활동 지원사업 관리자";
 				} else if (currentEmail === "org3") {
 					payload.position = "방과후활동 지원사업 관리자";
+				} else if (currentEmail === "org4") {
+					payload.position = "늘사랑보호주간센터 관리자";
 				}
 				setLoginInfo(payload);
 			}
