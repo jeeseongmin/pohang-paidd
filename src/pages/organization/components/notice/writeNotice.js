@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
+import NoticeLayout from "../../../../components/notice/noticeLayout";
 
 const WriteNotice = (props) => {
 	const type = "org4";
@@ -70,51 +71,12 @@ const WriteNotice = (props) => {
 			<div class="flex flex-row justify-between items-center mb-8">
 				<h1 class="text-3xl font-bold">공지사항 작성</h1>
 			</div>
-			<div class="w-full h-auto mb-4">
-				{/* 딱 10개 씩만 로드하기 */}
-				<div class="w-full pt-4 pb-2 mb-2 flex justify-end items-center border-t-2 border-purple-600">
-					<input
-						ref={titleRef}
-						type="text"
-						class="flex-1 p-4 border-2 border-gray-300 outline-none focus:border-purple-700"
-						onChange={(e) => changeInfo(e, "title")}
-						placeholder="제목"
-					/>
-				</div>
-
-				<CKEditor
-					editor={ClassicEditor}
-					class="w-full "
-					data=""
-					onInit={(editor) => {
-						// You can store the "editor" and use when it is needed.
-						editor.editing.view.change((writer) => {
-							writer.setStyle(
-								"height",
-								"50px",
-								editor.editing.view.document.getRoot()
-							);
-						});
-					}}
-					onReady={(editor) => {
-						// You can store the "editor" and use when it is needed.
-						// console.log("Editor is ready to use!", editor);
-					}}
-					onChange={(event, editor) => {
-						const data = editor.getData();
-						setInfo({
-							...info,
-							content: data,
-						});
-					}}
-					onBlur={(event, editor) => {
-						// console.log("Blur.", editor);
-					}}
-					onFocus={(event, editor) => {
-						// console.log("Focus.", editor);
-					}}
-				/>
-			</div>
+			<NoticeLayout
+				titleRef={titleRef}
+				contentRef={contentRef}
+				changeInfo={changeInfo}
+				info={info}
+			/>
 			<div class="flex justify-between items-center flex-col md:flex-row">
 				<Link
 					class="mb-4 md:mb-0 w-full md:w-auto  cursor-pointer px-0 md:px-16 py-2 justify-center border border-purple-700 text-purple-700 flex flex-row items-center hover:bg-purple-500 hover:text-white hover:font-bold"

@@ -4,7 +4,7 @@ import Subtitle from "../../../../../components/Subtitle";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import ReactHtmlParser from "react-html-parser";
-import NoticeEdit from "./components/noticeEdit";
+import NoticeEdit from "./noticeEdit";
 import Skeleton from "@material-ui/lab/Skeleton";
 
 const NoticeDetail = (props) => {

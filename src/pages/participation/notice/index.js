@@ -107,7 +107,7 @@ const Index = () => {
 				{currentEmail === "master" ? (
 					<div class="relative md:absolute right-0 w-full md:w-auto flex justify-end md:block">
 						<Link
-							to={"/participation/writeNotice"}
+							to={"/participation/writeNotice/0"}
 							class="cursor-pointer px-16 py-2 border border-purple-700 text-purple-700 flex flex-row items-center hover:bg-purple-500 hover:text-white hover:font-bold"
 						>
 							작성하기
