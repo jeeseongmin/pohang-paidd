@@ -13,16 +13,11 @@ import Admin from "./pages/admin/index";
 import EditAdmin from "./pages/admin/editAdmin";
 // import Footer from "./components/Footer";
 import Sidebar from "./components/navbar/Sidebar";
-import { setSidebar } from "./reducers/setting";
 
 const Routes = () => {
 	const dispatch = useDispatch();
 
 	const sidebar = useSelector((state) => state.setting.sidebar);
-
-	useEffect(() => {
-		dispatch(setSidebar("off"));
-	}, []);
 
 	return (
 		<>
