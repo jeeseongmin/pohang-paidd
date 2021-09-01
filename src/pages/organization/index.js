@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Route, Link, useHistory } from "react-router-dom";
+import { Route, useHistory } from "react-router-dom";
 import OrgMenu from "../../components/Menu/OrgMenu";
 import Business from "./components/business";
 import Gallery from "./components/gallery";

@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from "react";
-import { Route, Link } from "react-router-dom";
+import React, { useState } from "react";
 import BusinessMenu from "../../../../components/Menu/BusinessMenu";
 import Business from "./components/business";
 import Gallery from "./components/gallery";

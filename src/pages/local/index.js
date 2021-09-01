@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from "react";
-import { Route, Link } from "react-router-dom";
+import React, { useState } from "react";
 import LocalTable from "./localTable";
 import LocalMenu from "../../components/Menu/LocalMenu";
 import Layout from "../../components/Layout";

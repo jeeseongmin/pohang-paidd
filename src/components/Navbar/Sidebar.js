@@ -1,12 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-// import { setMenu, setSubmenu, toggleSidebar } from "../../reducer/settingSlice";
 import { setMenu, setSubmenu, setSidebar } from "../../reducers/setting";
-import { GrClose } from "react-icons/gr";
-import { IoCloseOutline } from "react-icons/io5";
-import { VscChromeClose } from "react-icons/vsc";
-import { MdKeyboardArrowUp, MdKeyboardArrowDown } from "react-icons/md";
 
 const Sidebar = () => {
 	const dispatch = useDispatch();

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { BsChevronUp, BsChevronDown } from "react-icons/bs";
 import Subtitle from "../../../../../components/Subtitle";
 

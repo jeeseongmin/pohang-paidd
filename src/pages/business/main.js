@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from "react";
-import { Route, Link } from "react-router-dom";
+import React, { useState } from "react";
 import OrgMenu from "../../components/Menu/orgMenu";
 import Business from "./components/business";
 import Gallery from "./components/gallery";
@@ -7,7 +6,6 @@ import Intro from "./components/intro";
 import Notice from "./pages/common/notice/notice";
 import NoticeWrite from "./pages/common/notice/noticeWrite";
 import NoticeDetail from "./pages/common/notice/noticeDetail";
-import Base from "./base";
 
 const Main = (props) => {
 	const [selected, setSelected] = useState(0);
