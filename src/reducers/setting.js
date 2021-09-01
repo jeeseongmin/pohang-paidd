@@ -53,7 +53,7 @@ const initialState = {
 	currentPassword: "",
 	menu: 0,
 	submenu: 0,
-	sidebar: "on",
+	sidebar: "off",
 	profile: "off",
 	uid: "",
 };
