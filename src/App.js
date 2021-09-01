@@ -12,7 +12,7 @@ import Local from "./pages/local/index";
 import Admin from "./pages/admin/index";
 import EditAdmin from "./pages/admin/editAdmin";
 // import Footer from "./components/Footer";
-import Sidebar from "./components/navbar/Sidebar";
+import Sidebar from "./components/Navbar/Sidebar";
 
 const Routes = () => {
 	const dispatch = useDispatch();
