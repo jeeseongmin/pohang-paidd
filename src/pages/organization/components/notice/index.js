@@ -16,7 +16,16 @@ const Index = () => {
 	const API_KEY = process.env.REACT_APP_API_KEY;
 	useEffect(() => {
 		axios
-			.get("/api/" + API_KEY + "/notice/type/org4/" + page)
+			.post(
+				"/api/notice/type/org4/" + page,
+				{ key: process.env.REACT_APP_API_KEY },
+				{
+					headers: {
+						"Content-type": "application/json",
+						Accept: "application/json",
+					},
+				}
+			)
 			.then((Response) => {
 				setNoticeList(Response.data);
 			})
@@ -27,7 +36,16 @@ const Index = () => {
 
 	useEffect(() => {
 		axios
-			.get("/api/" + API_KEY + "/notice/type/org4")
+			.post(
+				"/api/notice/type/org4",
+				{ key: process.env.REACT_APP_API_KEY },
+				{
+					headers: {
+						"Content-type": "application/json",
+						Accept: "application/json",
+					},
+				}
+			)
 			.then((Response) => {
 				setTotalPage(Math.ceil(Response.data.length / 10));
 				setLoading(true);

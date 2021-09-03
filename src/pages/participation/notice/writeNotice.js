@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
-import NoticeLayout from "./../../../components/notice/noticeLayout";
+import NoticeLayout from "../../../components/notice/noticeLayout";
 
 const WriteNotice = (props) => {
 	console.log(props);
@@ -16,7 +16,6 @@ const WriteNotice = (props) => {
 	});
 	const titleRef = useRef(null);
 	const contentRef = useRef(null);
-	const API_KEY = process.env.REACT_APP_API_KEY;
 
 	const currentEmail = useSelector((state) => state.setting.currentEmail);
 
@@ -41,9 +40,9 @@ const WriteNotice = (props) => {
 		} else if (currentEmail === "master" || currentEmail === info.type) {
 			axios
 				.post(
-					"/api/" + API_KEY + "/notice/add",
+					"/api/notice/add/" + type,
 					{
-						type: info.type,
+						key: process.env.REACT_APP_API_KEY,
 						title: info.title,
 						content: info.content,
 					},

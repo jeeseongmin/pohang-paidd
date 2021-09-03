@@ -37,7 +37,7 @@ const Navbar = () => {
 	const [modalShow, setModalShow] = useState(false);
 
 	useEffect(() => {
-		if (loginToken) {
+		if (sessionStorage.getItem("loginToken")) {
 			if (currentEmail !== "" && currentPassword !== "") {
 				setIsLogin(true);
 				const payload = {
@@ -58,7 +58,7 @@ const Navbar = () => {
 				setLoginInfo(payload);
 			}
 		}
-	}, [loginToken]);
+	}, [sessionStorage.getItem("loginToken")]);
 
 	const hoverAction = (menu, TF) => {
 		const cp = [...overMenu];
@@ -73,10 +73,13 @@ const Navbar = () => {
 	};
 
 	const logout = () => {
-		dispatch(setLoginToken(false));
+		sessionStorage.setItem("loginToken", false);
+		dispatch(setLoginToken("logout"));
 		dispatch(setCurrentEmail(""));
 		dispatch(setCurrentPassword(""));
 		dispatch(setProfile("off"));
+		dispatch(setMenu(0));
+		dispatch(setSubmenu(0));
 
 		alert("로그아웃되었습니다.");
 		history.push("/");

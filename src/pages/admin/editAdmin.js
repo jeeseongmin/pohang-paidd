@@ -19,7 +19,6 @@ const EditAdmin = () => {
 
 	const currentEmail = useSelector((state) => state.setting.currentEmail);
 	const currentPassword = useSelector((state) => state.setting.currentPassword);
-	const API_KEY = process.env.REACT_APP_API_KEY;
 
 	const [info, setInfo] = useState({
 		email: "",
@@ -61,7 +60,19 @@ const EditAdmin = () => {
 		} else {
 			let id;
 			await axios
-				.get("/api/" + API_KEY + "/user/findbyemail/" + info.email)
+				.post(
+					"/api/user/findbyemail",
+					{
+						key: process.env.REACT_APP_API_KEY,
+						email: info.email,
+					},
+					{
+						headers: {
+							"Content-type": "application/json",
+							Accept: "application/json",
+						},
+					}
+				)
 				.then((Response) => {
 					id = Response.data[0]._id;
 				})
@@ -71,8 +82,9 @@ const EditAdmin = () => {
 
 			await axios
 				.post(
-					"/api/" + API_KEY + "/user/update/" + id,
+					"/api/user/update/" + id,
 					{
+						key: process.env.REACT_APP_API_KEY,
 						email: info.email,
 						password: info.newPassword,
 					},

@@ -17,7 +17,6 @@ const EditNotice = (props) => {
 	const pages = props.pages;
 	const titleRef = useRef(null);
 	const contentRef = useRef(null);
-	const API_KEY = process.env.REACT_APP_API_KEY;
 
 	const currentEmail = useSelector((state) => state.setting.currentEmail);
 
@@ -40,10 +39,9 @@ const EditNotice = (props) => {
 		} else if (currentEmail === "master" || currentEmail === info.type) {
 			axios
 				.post(
-					"/api/" + API_KEY + "/notice/update",
+					"/api/notice/update/" + id,
 					{
-						id: id,
-
+						key: process.env.REACT_APP_API_KEY,
 						title: info.title,
 						content: info.content,
 					},

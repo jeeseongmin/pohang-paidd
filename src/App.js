@@ -13,15 +13,33 @@ import Admin from "./pages/admin/index";
 import EditAdmin from "./pages/admin/editAdmin";
 // import Footer from "./components/Footer";
 import Sidebar from "./components/Navbar/Sidebar";
-import { setSidebar } from "./reducers/setting";
+import {
+	setSidebar,
+	setLoginToken,
+	setCurrentEmail,
+	setCurrentPassword,
+	setMenu,
+	setSubmenu,
+} from "./reducers/setting";
 
-const Routes = () => {
+const Routes = ({ match }) => {
 	const dispatch = useDispatch();
 
 	const sidebar = useSelector((state) => state.setting.sidebar);
 
 	useEffect(() => {
 		dispatch(setSidebar("off"));
+	}, []);
+
+	useEffect(() => {
+		let loginToken = sessionStorage.getItem("loginToken");
+		if (loginToken === null || !loginToken) {
+			dispatch(setLoginToken("logout"));
+			dispatch(setCurrentEmail(""));
+			dispatch(setCurrentPassword(""));
+			dispatch(setMenu(0));
+			dispatch(setSubmenu(0));
+		}
 	}, []);
 
 	return (

@@ -18,7 +18,6 @@ const CounselingDetail = (props) => {
 
 	const currentEmail = useSelector((state) => state.setting.currentEmail);
 	const currentPassword = useSelector((state) => state.setting.currentPassword);
-	const API_KEY = process.env.REACT_APP_API_KEY;
 
 	const id = props.id;
 
@@ -39,12 +38,16 @@ const CounselingDetail = (props) => {
 
 	useEffect(() => {
 		axios
-			.get("/api/" + API_KEY + "/counseling/" + id, {
-				headers: {
-					"Content-type": "application/json",
-					Accept: "application/json",
-				},
-			})
+			.post(
+				"/api/counseling/" + id,
+				{ key: process.env.REACT_APP_API_KEY },
+				{
+					headers: {
+						"Content-type": "application/json",
+						Accept: "application/json",
+					},
+				}
+			)
 			.then((Response) => {
 				const cp = {
 					status: Response.data.status,
@@ -68,9 +71,9 @@ const CounselingDetail = (props) => {
 		if (response !== "" && currentEmail === "master") {
 			axios
 				.post(
-					"/api/" + API_KEY + "/counseling/respond",
+					"/api/counseling/respond/" + id,
 					{
-						id: id,
+						key: process.env.REACT_APP_API_KEY,
 						status: "complete",
 						response: response,
 					},
@@ -99,9 +102,9 @@ const CounselingDetail = (props) => {
 		if (currentEmail === "master") {
 			axios
 				.post(
-					"/api/" + API_KEY + "/counseling/delete",
+					"/api/counseling/delete/" + id,
 					{
-						id: id,
+						key: process.env.REACT_APP_API_KEY,
 					},
 					{
 						headers: {

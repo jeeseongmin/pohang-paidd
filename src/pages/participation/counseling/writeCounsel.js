@@ -16,7 +16,6 @@ const WriteCounsel = () => {
 	const emailRef = useRef(null);
 	const contentRef = useRef(null);
 	const passwordRef = useRef(null);
-	const API_KEY = process.env.REACT_APP_API_KEY;
 
 	const checkEmail = () => {
 		// 이메일 검증 스크립트 작성
@@ -54,9 +53,9 @@ const WriteCounsel = () => {
 		} else {
 			axios
 				.post(
-					"/api/" + API_KEY + "/counseling/add",
+					"/api/counseling/add/unread",
 					{
-						type: "unread",
+						key: process.env.REACT_APP_API_KEY,
 						title: info.title,
 						content: info.content,
 						writer: info.email,

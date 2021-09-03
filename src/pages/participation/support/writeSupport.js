@@ -33,8 +33,6 @@ const WriteSupport = ({ history }) => {
 	const phoneNumberRef = useRef(null);
 	const emailRef = useRef(null);
 	const addressRef = useRef(null);
-	const agreeRef = useRef(null);
-	const API_KEY = process.env.REACT_APP_API_KEY;
 
 	const checkEmail = () => {
 		// 이메일 검증 스크립트 작성
@@ -92,12 +90,11 @@ const WriteSupport = ({ history }) => {
 		} else if (!info.agree) {
 			alert("개인정보 수집 및 이용 동의에 체크해주세요");
 		} else {
-			console.log(info);
 			axios
 				.post(
-					"/api/" + API_KEY + "/support/add",
+					"/api/support/add/unread",
 					{
-						status: "unread",
+						key: process.env.REACT_APP_API_KEY,
 						name: info.name,
 						private: info.privateNumber,
 						phone: info.phoneNumber,

@@ -8,11 +8,9 @@ import "@toast-ui/editor/dist/toastui-editor.css";
 import Viewer from "@toast-ui/editor/dist/toastui-editor-viewer";
 import "@toast-ui/editor/dist/toastui-editor-viewer.css";
 
-import { Editor } from "@toast-ui/react-editor";
 import NoticeLayout from "../../../../../components/notice/noticeLayout";
 
 const NoticeWrite = (props) => {
-	const [contentText, setContentText] = useState("hello react editor world!");
 	const type = props.pages;
 	const dispatch = useDispatch();
 	const history = useHistory();
@@ -25,7 +23,6 @@ const NoticeWrite = (props) => {
 	const contentRef = useRef(null);
 
 	const currentEmail = useSelector((state) => state.setting.currentEmail);
-	const API_KEY = process.env.REACT_APP_API_KEY;
 
 	const changeInfo = (e, type) => {
 		const cp = { ...info };
@@ -49,9 +46,9 @@ const NoticeWrite = (props) => {
 		} else if (currentEmail === "master" || currentEmail === info.type) {
 			axios
 				.post(
-					"/api/" + API_KEY + "/notice/add",
+					"/api/notice/add/" + type,
 					{
-						type: info.type,
+						key: process.env.REACT_APP_API_KEY,
 						title: info.title,
 						content: info.content,
 					},

@@ -7,6 +7,7 @@ import {
 	setLoginToken,
 	setCurrentEmail,
 	setCurrentPassword,
+	setProfile,
 } from "../../reducers/setting";
 
 const Index = () => {
@@ -25,13 +26,13 @@ const Index = () => {
 		cp[type] = e.target.value;
 		setInfo(cp);
 	};
-	const API_KEY = process.env.REACT_APP_API_KEY;
 
 	const loginCheck = () => {
 		axios
 			.post(
-				"/api/" + API_KEY + "/login",
+				"/api/login",
 				{
+					key: process.env.REACT_APP_API_KEY,
 					email: info.email,
 					password: info.password,
 				},
@@ -43,12 +44,12 @@ const Index = () => {
 				}
 			)
 			.then((response) => {
-				console.log(response.data);
-				alert(response.data.message);
 				if (response.data.loginToken) {
-					dispatch(setLoginToken(true));
+					dispatch(setLoginToken("login"));
 					dispatch(setCurrentEmail(info.email));
 					dispatch(setCurrentPassword(info.password));
+					dispatch(setProfile("off"));
+					sessionStorage.setItem("loginToken", true);
 					history.push("/");
 				} else {
 					emailRef.current.focus();

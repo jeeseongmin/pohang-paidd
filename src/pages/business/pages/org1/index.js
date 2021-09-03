@@ -1,11 +1,15 @@
 import React, { useState } from "react";
 import BusinessMenu from "../../../../components/Menu/BusinessMenu";
 import Business from "./components/business";
-import Gallery from "./components/gallery";
+
 import Intro from "./components/intro";
 import Notice from "../common/notice/notice";
 import NoticeWrite from "../common/notice/noticeWrite";
 import NoticeDetail from "../common/notice/noticeDetail";
+
+import Gallery from "../common/gallery/gallery";
+import GalleryDetail from "../common/gallery/galleryDetail";
+import GalleryWrite from "../common/gallery/galleryWrite";
 
 const Index = (props, { match }) => {
 	const [selected, setSelected] = useState(0);
@@ -29,7 +33,13 @@ const Index = (props, { match }) => {
 				return <NoticeDetail pages={props.pages} id={props.type} />;
 			}
 		} else if (selected === 3) {
-			return <Gallery />;
+			if (props.type === "default") {
+				return <Gallery pages={props.pages} />;
+			} else if (props.type === "galleryWrite") {
+				return <GalleryWrite pages={props.pages} />;
+			} else {
+				return <GalleryDetail pages={props.pages} id={props.type} />;
+			}
 		}
 	};
 

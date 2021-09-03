@@ -6,13 +6,12 @@ require("dotenv").config();
 
 const app = express();
 const port = process.env.PORT || 5000;
+app.use(express.static("uploads"));
 
 app.use(cors());
 app.use(express.json());
 
 const uri = process.env.ATLAS_URI;
-
-const API_KEY = process.env.REACT_APP_API_KEY;
 
 mongoose.connect(uri, {
 	useUnifiedTopology: true,
@@ -33,15 +32,17 @@ const noticeRouter = require("./routes/post/notice");
 const galleryRouter = require("./routes/post/gallery");
 const supportRouter = require("./routes/post/support");
 const volunteerRouter = require("./routes/post/volunteer");
+const imageRouter = require("./routes/post/image");
 
 app.use("/exercises", exercisesRouter);
-app.use("/api/" + API_KEY + "/user", userRouter);
-app.use("/api/" + API_KEY + "/login", loginRouter);
-app.use("/api/" + API_KEY + "/counseling", counselingRouter);
-app.use("/api/" + API_KEY + "/notice", noticeRouter);
-app.use("/api/" + API_KEY + "/gallery", galleryRouter);
-app.use("/api/" + API_KEY + "/support", supportRouter);
-app.use("/api/" + API_KEY + "/volunteer", volunteerRouter);
+app.use("/api/user", userRouter);
+app.use("/api/login", loginRouter);
+app.use("/api/counseling", counselingRouter);
+app.use("/api/notice", noticeRouter);
+app.use("/api/gallery", galleryRouter);
+app.use("/api/support", supportRouter);
+app.use("/api/volunteer", volunteerRouter);
+app.use("/api/image", imageRouter);
 
 app.listen(port, () => {
 	console.log(`Server is running on port: ${port}`);

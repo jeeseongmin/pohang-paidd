@@ -15,11 +15,21 @@ const Index = () => {
 	const [counselingList, setCounselingList] = useState([]);
 	const currentEmail = useSelector((state) => state.setting.currentEmail);
 	const currentPassword = useSelector((state) => state.setting.currentPassword);
-	const API_KEY = process.env.REACT_APP_API_KEY;
 
 	useEffect(() => {
 		axios
-			.get("/api/" + API_KEY + "/counseling/page/" + page)
+			.post(
+				"/api/counseling/page/" + page,
+				{
+					key: process.env.REACT_APP_API_KEY,
+				},
+				{
+					headers: {
+						"Content-type": "application/json",
+						Accept: "application/json",
+					},
+				}
+			)
 			.then((Response) => {
 				setCounselingList(Response.data);
 			})
@@ -30,7 +40,16 @@ const Index = () => {
 
 	useEffect(() => {
 		axios
-			.get("/api/" + API_KEY + "/counseling")
+			.post(
+				"/api/counseling",
+				{ key: process.env.REACT_APP_API_KEY },
+				{
+					headers: {
+						"Content-type": "application/json",
+						Accept: "application/json",
+					},
+				}
+			)
 			.then((Response) => {
 				setTotalPage(Math.ceil(Response.data.length / 10));
 				setLoading(true);
@@ -61,8 +80,8 @@ const Index = () => {
 			window.scrollTo(0, 0);
 			if (currentEmail === "master" && status === "unread") {
 				axios
-					.post("/api/" + API_KEY + "/counseling/read", {
-						id: id,
+					.post("/api/counseling/read/" + id, {
+						key: process.env.REACT_APP_API_KEY,
 						status: "read",
 					})
 					.then((response) => {

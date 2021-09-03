@@ -5,7 +5,6 @@ import Subtitle from "../../../../../components/Subtitle";
 import Paging from "../../../../../components/Paging";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
-import { VscChevronLeft, VscChevronRight } from "react-icons/vsc";
 import CircularProgress from "@material-ui/core/CircularProgress";
 
 const Notice = (props, { match }) => {
@@ -16,13 +15,20 @@ const Notice = (props, { match }) => {
 	const currentEmail = useSelector((state) => state.setting.currentEmail);
 	const currentPassword = useSelector((state) => state.setting.currentPassword);
 	const type = props.pages;
-	const API_KEY = process.env.REACT_APP_API_KEY;
 
 	useEffect(() => {
 		axios
-			.get("/api/" + API_KEY + "/notice/type/" + type + "/" + page)
+			.post(
+				"/api/notice/type/" + type + "/" + page,
+				{ key: process.env.REACT_APP_API_KEY },
+				{
+					headers: {
+						"Content-type": "application/json",
+						Accept: "application/json",
+					},
+				}
+			)
 			.then((Response) => {
-				console.log(Response.data);
 				setNoticeList(Response.data);
 			})
 			.catch((Error) => {
@@ -32,7 +38,16 @@ const Notice = (props, { match }) => {
 
 	useEffect(() => {
 		axios
-			.get("/api/" + API_KEY + "/notice/type/" + type)
+			.post(
+				"/api/notice/type/" + type,
+				{ key: process.env.REACT_APP_API_KEY },
+				{
+					headers: {
+						"Content-type": "application/json",
+						Accept: "application/json",
+					},
+				}
+			)
 			.then((Response) => {
 				setTotalPage(Math.ceil(Response.data.length / 10));
 				setLoading(true);

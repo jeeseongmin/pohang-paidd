@@ -3,6 +3,8 @@ const router = require("express").Router();
 let User = require("../models/user.model");
 const bcrypt = require("bcrypt");
 
+const API_KEY = process.env.REACT_APP_API_KEY;
+
 // Create
 router.route("/add").post((req, res) => {
 	// const encryptedPassowrd = bcrypt.hashSync(req.body.password, 10); // sync
@@ -23,43 +25,52 @@ router.route("/add").post((req, res) => {
 });
 
 // Read
-router.route("/").get((req, res) => {
-	User.find()
-		.then((all) => res.json(all))
-		.catch((err) => res.status(400).json("Error: " + err));
+router.route("/").post((req, res) => {
+	if (req.body.key === API_KEY) {
+		User.find()
+			.then((all) => res.json(all))
+			.catch((err) => res.status(400).json("Error: " + err));
+	} else return res.json({ message: "fail" });
 });
 
-router.route("/findbyemail/:email").get((req, res) => {
-	User.find({ email: req.params.email })
-		.then((one) => res.json(one))
-		.catch((err) => res.status(400).json("Error: ") + err);
+router.route("/findbyemail").post((req, res) => {
+	if (req.body.key === API_KEY) {
+		User.find({ email: req.body.email })
+			.then((one) => res.json(one))
+			.catch((err) => res.status(400).json("Error: ") + err);
+	} else return res.status(400).json("Error");
 });
 
 // Read specific notice
-router.route("/:id").get((req, res) => {
-	User.findById(req.params.id)
-		.then((one) => res.json(one))
-		.catch((err) => res.status(400).json("Error: ") + err);
+router.route("/:id").post((req, res) => {
+	if (req.body.key === API_KEY) {
+		User.findById(req.params.id)
+			.then((one) => res.json(one))
+			.catch((err) => res.status(400).json("Error: ") + err);
+	} else return res.status(400).json("Error");
 });
 
 // Password Update
 router.route("/update/:id").post((req, res) => {
-	User.findById(req.params.id)
-		.then((one) => {
-			one.password = req.body.password;
-
-			one
-				.save()
-				.then(() => res.json("User Email & Password updated!"))
-				.catch((err) => res.status(400).json("Error: " + err));
-		})
-		.catch((err) => res.status(400).json("Error: " + err));
+	if (req.body.key === API_KEY) {
+		User.findById(req.params.id)
+			.then((one) => {
+				one.password = req.body.password;
+				one
+					.save()
+					.then(() => res.json("User Email & Password updated!"))
+					.catch((err) => res.status(400).json("Error: " + err));
+			})
+			.catch((err) => res.status(400).json("Error: " + err));
+	} else return res.status(400).json("Error");
 });
 
-router.route("/delete/:id").delete((req, res) => {
-	User.findByIdAndDelete(req.params.id)
-		.then(() => res.json("User deleted."))
-		.catch((err) => res.status(400).json("Error: " + err));
+router.route("/delete/:id").post((req, res) => {
+	if (req.body.key === API_KEY) {
+		User.findByIdAndDelete(req.params.id)
+			.then(() => res.json("User deleted."))
+			.catch((err) => res.status(400).json("Error: " + err));
+	} else return res.status(400).json("Error");
 });
 
 module.exports = router;

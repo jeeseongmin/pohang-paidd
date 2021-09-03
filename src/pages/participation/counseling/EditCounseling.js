@@ -19,7 +19,6 @@ const EditCounseling = (props) => {
 	const contentRef = useRef(null);
 	const passwordRef = useRef(null);
 	const currentEmail = useSelector((state) => state.setting.currentEmail);
-	const API_KEY = process.env.REACT_APP_API_KEY;
 
 	const id = props.id;
 
@@ -80,9 +79,9 @@ const EditCounseling = (props) => {
 		} else {
 			axios
 				.post(
-					"/api/" + API_KEY + "/counseling/update",
+					"/api/counseling/update/" + id,
 					{
-						id: id,
+						key: process.env.REACT_APP_API_KEY,
 						title: info.title,
 						content: info.content,
 						// response: "",

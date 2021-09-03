@@ -2,55 +2,65 @@
 const router = require("express").Router();
 let Volunteer = require("../../models/volunteer.model");
 
+const API_KEY = process.env.REACT_APP_API_KEY;
+
 // Read all volunteer
-router.route("/").get((req, res) => {
-	Volunteer.find()
-		.sort({ createdAt: -1 })
-		.then((all) => res.json(all))
-		.catch((err) => res.status(400).json("Error: " + err));
+router.route("/").post((req, res) => {
+	if (req.body.key === API_KEY) {
+		Volunteer.find()
+			.sort({ createdAt: -1 })
+			.then((all) => res.json(all))
+			.catch((err) => res.status(400).json("Error: " + err));
+	} else res.status(400).json("Error");
 });
 
 // Read specific volunteer
-router.route("/:id").get((req, res) => {
-	Volunteer.findById(req.params.id)
-		.then((one) => res.json(one))
-		.catch((err) => res.status(400).json("Error: ") + err);
+router.route("/:id").post((req, res) => {
+	if (req.body.key === API_KEY) {
+		Volunteer.findById(req.params.id)
+			.then((one) => res.json(one))
+			.catch((err) => res.status(400).json("Error: ") + err);
+	} else res.status(400).json("Error");
 });
 
 // paging
-router.route("/:page").get((req, res) => {
-	Volunteer.find()
-		.sort({ createdAt: -1 })
-		.skip((req.params.page - 1) * 10)
-		.limit(10)
-		.then((all) => res.json(all))
-		.catch((err) => res.status(400).json("Error: " + err));
+router.route("/page/:page").post((req, res) => {
+	if (req.body.key === API_KEY) {
+		Volunteer.find()
+			.sort({ createdAt: -1 })
+			.skip((req.params.page - 1) * 10)
+			.limit(10)
+			.then((all) => res.json(all))
+			.catch((err) => res.status(400).json("Error: " + err));
+	} else res.status(400).json("Error");
 });
 
 // Create volunteer
-router.route("/add").post((req, res) => {
-	const one = {
-		status: req.body.status,
-		name: req.body.name,
-		birth: req.body.birth,
-		phone: req.body.phone,
-		vms: req.body.vms,
-		activity: req.body.activity,
-		hopeContent: req.body.hopeContent,
-		hopeTime: req.body.hopeTime,
-	};
+router.route("/add/:status").post((req, res) => {
+	if (req.body.key === API_KEY) {
+		const one = {
+			status: req.params.status,
+			name: req.body.name,
+			birth: req.body.birth,
+			phone: req.body.phone,
+			vms: req.body.vms,
+			activity: req.body.activity,
+			hopeContent: req.body.hopeContent,
+			hopeTime: req.body.hopeTime,
+		};
 
-	const newOne = new Volunteer(one);
+		const newOne = new Volunteer(one);
 
-	newOne
-		.save()
-		.then(() => res.json("Volunteer added!"))
-		.catch((err) => res.status(400).json("Error: " + err));
+		newOne
+			.save()
+			.then(() => res.json("Volunteer added!"))
+			.catch((err) => res.status(400).json("Error: " + err));
+	} else res.status(400).json("Error");
 });
 
 // Update volunteer
-router.route("/update").post((req, res) => {
-	Volunteer.findById(req.body.id)
+router.route("/update/:id").post((req, res) => {
+	Volunteer.findById(req.params.id)
 		.then((one) => {
 			one.status = req.body.status;
 			one.name = req.body.name;
@@ -69,10 +79,12 @@ router.route("/update").post((req, res) => {
 		.catch((err) => res.status(400).json("Error: " + err));
 });
 
-router.route("/delete").post((req, res) => {
-	Volunteer.findByIdAndDelete(req.body.id)
-		.then(() => res.json("Volunteer deleted."))
-		.catch((err) => res.status(400).json("Error: " + err));
+router.route("/delete/:id").post((req, res) => {
+	if (req.body.key === API_KEY) {
+		Volunteer.findByIdAndDelete(req.params.id)
+			.then(() => res.json("Volunteer deleted."))
+			.catch((err) => res.status(400).json("Error: " + err));
+	} else res.status(400).json("Error");
 });
 
 module.exports = router;

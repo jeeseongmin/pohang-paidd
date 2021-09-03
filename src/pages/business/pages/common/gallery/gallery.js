@@ -1,9 +1,99 @@
 import React, { useEffect, useState } from "react";
 import { BsSearch } from "react-icons/bs";
-import Subtitle from "../../../../../components/Subtitle";
+import { Route, Link } from "react-router-dom";
 
-const Gallery = () => {
+import Subtitle from "../../../../../components/Subtitle";
+import Paging from "../../../../../components/Paging";
+import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
+import CircularProgress from "@material-ui/core/CircularProgress";
+
+const Gallery = (props) => {
+	const [loading, setLoading] = useState(false);
 	const [page, setPage] = useState(1);
+	const [totalPage, setTotalPage] = useState(0);
+	const [galleryList, setGalleryList] = useState([]);
+
+	const currentEmail = useSelector((state) => state.setting.currentEmail);
+	const currentPassword = useSelector((state) => state.setting.currentPassword);
+	const type = props.pages;
+
+	useEffect(() => {
+		axios
+			.post(
+				"/api/gallery/type/" + type + "/" + page,
+				{ key: process.env.REACT_APP_API_KEY },
+				{
+					headers: {
+						"Content-type": "application/json",
+						Accept: "application/json",
+					},
+				}
+			)
+			.then((Response) => {
+				setGalleryList(Response.data);
+			})
+			.catch((Error) => {
+				console.log(Error);
+			});
+	}, [page]);
+
+	useEffect(() => {
+		axios
+			.post(
+				"/api/gallery/type/" + type,
+				{ key: process.env.REACT_APP_API_KEY },
+				{
+					headers: {
+						"Content-type": "application/json",
+						Accept: "application/json",
+					},
+				}
+			)
+			.then((Response) => {
+				setTotalPage(Math.ceil(Response.data.length / 8));
+				setLoading(true);
+			})
+			.catch((Error) => {
+				console.log(Error);
+			});
+	}, [galleryList]);
+
+	const dataToText = (date) => {
+		let year = date.substring(2, 4);
+		let month = date.substring(5, 7);
+		let day = date.substring(8, 10);
+		return year + "." + month + "." + day;
+	};
+
+	function GalleryBlock(props) {
+		const data = props.data;
+		const date = dataToText(data.createdAt);
+
+		return (
+			<>
+				<Link
+					to={"/business/" + type + "/" + data._id}
+					class="w-full md:w-1/2 lg:w-1/4 px-4 mb-8 cursor-pointer"
+				>
+					<div class="mb-4 h-48 border border-gray-100 shadow-xl">
+						<img
+							class="w-full h-full object-cover"
+							src={"/" + data.imgList[0]}
+							alt="logo"
+						/>
+					</div>
+					<div>
+						<h1>
+							<b>{data.title}</b>
+						</h1>
+						<p class="text-gray-300">{date}</p>
+					</div>
+				</Link>
+			</>
+		);
+	}
+
 	return (
 		<div>
 			<div class="flex flex-row justify-between items-center mb-8">
@@ -20,129 +110,39 @@ const Gallery = () => {
 				</div>
 			</div>
 			<div class="w-full flex flex-row flex-wrap border-b border-gray-200 ">
-				<div class="w-1/4 px-4 mb-8 cursor-pointer">
-					<div class="mb-4 h-48 object-cover border border-gray-500">
-						<img class="w-full h-full" src="/image/noImage.png" alt="logo" />
+				{galleryList.length !== 0 ? (
+					galleryList.map((element, index) => {
+						return <GalleryBlock data={element} key={element._id} />;
+					})
+				) : loading ? (
+					<div class="w-full flex justify-center items-center mb-8">
+						등록된 내용이 없습니다.
 					</div>
-					<div>
-						<h1>
-							<b>제목1</b>
-						</h1>
-						<p class="text-gray-300">21.07.01</p>
+				) : (
+					<div class="py-4 w-full flex justify-center">
+						<CircularProgress />
 					</div>
-				</div>
-				<div class="w-1/4 px-4 mb-8 cursor-pointer">
-					<div class="mb-4 h-48  object-cover border border-gray-500">
-						<img class="w-full h-full" src="/image/noImage.png" alt="logo" />
-					</div>
-					<div>
-						<h1>
-							<b>제목2</b>
-						</h1>
-						<p class="text-gray-300">21.07.01</p>
-					</div>
-				</div>
-				<div class="w-1/4 px-4 mb-8 cursor-pointer">
-					<div class="mb-4 h-48  object-cover border border-gray-500">
-						<img class="w-full h-full" src="/image/noImage.png" alt="logo" />
-					</div>
-					<div>
-						<h1>
-							<b>제목3</b>
-						</h1>
-						<p class="text-gray-300">21.07.01</p>
-					</div>
-				</div>
-				<div class="w-1/4 px-4 mb-8 cursor-pointer">
-					<div class="mb-4 h-48  object-cover border border-gray-500">
-						<img class="w-full h-full" src="/image/noImage.png" alt="logo" />
-					</div>
-					<div>
-						<h1>
-							<b>제목4</b>
-						</h1>
-						<p class="text-gray-300">21.07.01</p>
-					</div>
-				</div>
-				<div class="w-1/4 px-4 mb-8 cursor-pointer">
-					<div class="mb-4 h-48 object-cover border border-gray-500">
-						<img class="w-full h-full" src="/image/noImage.png" alt="logo" />
-					</div>
-					<div>
-						<h1>
-							<b>제목5</b>
-						</h1>
-						<p class="text-gray-300">21.07.01</p>
-					</div>
-				</div>
-				<div class="w-1/4 px-4 mb-8 cursor-pointer">
-					<div class="mb-4 h-48  object-cover border border-gray-500">
-						<img class="w-full h-full" src="/image/noImage.png" alt="logo" />
-					</div>
-					<div>
-						<h1>
-							<b>제목6</b>
-						</h1>
-						<p class="text-gray-300">21.07.01</p>
-					</div>
-				</div>
-				<div class="w-1/4 px-4 mb-8 cursor-pointer">
-					<div class="mb-4 h-48  object-cover border border-gray-500">
-						<img class="w-full h-full" src="/image/noImage.png" alt="logo" />
-					</div>
-					<div>
-						<h1>
-							<b>제목7</b>
-						</h1>
-						<p class="text-gray-300">21.07.01</p>
-					</div>
-				</div>
-				<div class="w-1/4 px-4 mb-8 cursor-pointer">
-					<div class="mb-4 h-48  object-cover border border-gray-500">
-						<img class="w-full h-full" src="/image/noImage.png" alt="logo" />
-					</div>
-					<div>
-						<h1>
-							<b>제목8</b>
-						</h1>
-						<p class="text-gray-300">21.07.01</p>
-					</div>
-				</div>
+				)}
 			</div>
-			<div class="flex flex-row justify-center items-center py-8">
-				<div
-					onClick={() => setPage(1)}
-					class={
-						"mr-2 w-8 h-8 flex justify-center items-center cursor-pointer " +
-						(page === 1
-							? "text-white border-2 border-purple-700 bg-purple-700  "
-							: "border border-gray-300 text-gray-300")
-					}
-				>
-					1
-				</div>
-				<div
-					onClick={() => setPage(2)}
-					class={
-						"mr-2 w-8 h-8 flex justify-center items-center cursor-pointer " +
-						(page === 2
-							? "text-white border-2 border-purple-700 bg-purple-700  "
-							: "border border-gray-300 text-gray-300")
-					}
-				>
-					2
-				</div>
-				<div
-					class={
-						"mr-2 w-8 h-8 flex justify-center items-center cursor-pointer " +
-						(page === 3
-							? "text-white border-2 border-purple-700 bg-purple-700  "
-							: "border border-gray-300 text-gray-300")
-					}
-					onClick={() => setPage(3)}
-				>
-					3
-				</div>
+			<div class="flex flex-col lg:flex-row justify-center items-center my-8 relative">
+				<div class="flex flex-row w-full justify-center items-center lg:w-auto mb-4 lg:mb-0"></div>
+				{/* 
+					setPage : 현재 페이지 설정 함수
+					page : 현재 페이지
+					total : 총 페이지
+				 */}
+				<Paging setPage={setPage} page={page} total={totalPage} />
+
+				{currentEmail === "master" || currentEmail === type ? (
+					<div class="relative md:absolute right-0 w-full md:w-auto flex justify-end md:block">
+						<Link
+							to={"/business/" + type + "/galleryWrite"}
+							class="cursor-pointer px-16 py-2 border border-purple-700 text-purple-700 flex flex-row items-center hover:bg-purple-500 hover:text-white hover:font-bold"
+						>
+							작성하기
+						</Link>
+					</div>
+				) : null}
 			</div>
 		</div>
 	);

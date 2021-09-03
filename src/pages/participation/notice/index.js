@@ -14,10 +14,18 @@ const Index = () => {
 	const [totalPage, setTotalPage] = useState(0);
 	const [noticeList, setNoticeList] = useState([]);
 	const currentEmail = useSelector((state) => state.setting.currentEmail);
-	const API_KEY = process.env.REACT_APP_API_KEY;
 	useEffect(() => {
 		axios
-			.get("/api/" + API_KEY + "/notice/type/participation/" + page)
+			.post(
+				"/api/notice/type/participation/" + page,
+				{ key: process.env.REACT_APP_API_KEY },
+				{
+					headers: {
+						"Content-type": "application/json",
+						Accept: "application/json",
+					},
+				}
+			)
 			.then((Response) => {
 				setNoticeList(Response.data);
 			})
@@ -28,7 +36,16 @@ const Index = () => {
 
 	useEffect(() => {
 		axios
-			.get("/api/" + API_KEY + "/notice/type/participation")
+			.post(
+				"/api/notice/type/participation",
+				{ key: process.env.REACT_APP_API_KEY },
+				{
+					headers: {
+						"Content-type": "application/json",
+						Accept: "application/json",
+					},
+				}
+			)
 			.then((Response) => {
 				setTotalPage(Math.ceil(Response.data.length / 10));
 				setLoading(true);

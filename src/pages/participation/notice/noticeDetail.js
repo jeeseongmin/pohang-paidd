@@ -17,7 +17,6 @@ const NoticeDetail = (props) => {
 
 	const currentEmail = useSelector((state) => state.setting.currentEmail);
 	const currentPassword = useSelector((state) => state.setting.currentPassword);
-	const API_KEY = process.env.REACT_APP_API_KEY;
 
 	const id = props.id;
 
@@ -30,7 +29,16 @@ const NoticeDetail = (props) => {
 
 	useEffect(() => {
 		axios
-			.get("/api/" + API_KEY + "/notice/" + id)
+			.post(
+				"/api/notice/" + id,
+				{ key: process.env.REACT_APP_API_KEY },
+				{
+					headers: {
+						"Content-type": "application/json",
+						Accept: "application/json",
+					},
+				}
+			)
 			.then((Response) => {
 				console.log(Response.data);
 				const cp = {
@@ -51,9 +59,9 @@ const NoticeDetail = (props) => {
 		if (currentEmail === "master") {
 			axios
 				.post(
-					"/api/" + API_KEY + "/notice/delete",
+					"/api/notice/delete/" + id,
 					{
-						id: id,
+						key: process.env.REACT_APP_API_KEY,
 					},
 					{
 						headers: {

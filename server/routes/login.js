@@ -1,11 +1,12 @@
 const router = require("express").Router();
 let User = require("../models/user.model");
 const bcrypt = require("bcrypt");
+const API_KEY = process.env.REACT_APP_API_KEY;
 
 router.route("/").post((req, res) => {
 	// 요청된 이메일과 패스워드가 데이터베이스에서 있는지 찾는다.
 	User.findOne({ email: req.body.email }, (err, user) => {
-		if (!user) {
+		if (!user || req.body.key !== API_KEY) {
 			return res.json({
 				loginToken: false,
 				message: "로그인 정보가 일치하지 않습니다.",

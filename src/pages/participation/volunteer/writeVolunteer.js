@@ -3,7 +3,6 @@ import { Route, Link, withRouter } from "react-router-dom";
 import { AiOutlineCheck } from "react-icons/ai";
 import Subtitle from "../../../components/Subtitle";
 import axios from "axios";
-import { useDispatch, useSelector } from "react-redux";
 
 const WriteVolunteer = ({ history }) => {
 	const [info, setInfo] = useState({
@@ -24,21 +23,6 @@ const WriteVolunteer = ({ history }) => {
 	const activityRef = useRef(null);
 	const hopeContentRef = useRef(null);
 	const hopeTimeRef = useRef(null);
-	const agreeRef = useRef(null);
-	const API_KEY = process.env.REACT_APP_API_KEY;
-
-	const checkEmail = () => {
-		// 이메일 검증 스크립트 작성
-		var emailVal = info.email;
-		var regExp =
-			"/^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i";
-		// 검증에 사용할 정규식 변수 regExp에 저장
-		if (emailVal.match(regExp) != null) {
-			return true;
-		} else {
-			return false;
-		}
-	};
 
 	const submitInfo = () => {
 		if (info.name === "") {
@@ -71,12 +55,11 @@ const WriteVolunteer = ({ history }) => {
 		} else if (!info.agree) {
 			alert("개인정보 수집 및 이용 동의에 체크해주세요");
 		} else {
-			alert("제출되었습니다!");
 			axios
 				.post(
-					"/api/" + API_KEY + "/volunteer/add",
+					"/api/volunteer/add/unread",
 					{
-						status: "unread",
+						key: process.env.REACT_APP_API_KEY,
 						name: info.name,
 						birth: info.birth,
 						phone: info.phoneNumber,
@@ -94,6 +77,7 @@ const WriteVolunteer = ({ history }) => {
 				)
 				.then((response) => {
 					window.scrollTo(0, 0);
+					alert("제출되었습니다!");
 					history.push("/participation/volunteer/0");
 				})
 				.catch((response) => {
@@ -107,28 +91,12 @@ const WriteVolunteer = ({ history }) => {
 		setInfo(cp);
 	};
 
-	const toggleSupportType = (e, type) => {
-		const cp = { ...info };
-		cp[type].status = !cp[type].status;
-		setInfo(cp);
-	};
-
 	const toggleAgree = (e, type) => {
 		const cp = { ...info };
 		cp[type] = !cp[type];
 		setInfo(cp);
 	};
-	const changeSupportItem = (value, type) => {
-		const cp = { ...info };
-		cp[type].content = value.value;
-		setInfo(cp);
-	};
 
-	const periodicalOptions = [
-		{ value: "10000", label: "10000" },
-		{ value: "30000", label: "30000" },
-		{ value: "50000", label: "50000" },
-	];
 	return (
 		<div class="w-full h-auto">
 			<div class="flex flex-row justify-between items-center mb-4 md:mb-8">

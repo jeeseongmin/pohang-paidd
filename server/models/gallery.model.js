@@ -16,10 +16,9 @@ const gallerySchema = new Schema(
 			type: String,
 			required: true,
 		},
-		imagePath: {
-			type: String,
+		imgList: {
+			type: [String],
 			required: true,
-			max: 100,
 		},
 	},
 	{

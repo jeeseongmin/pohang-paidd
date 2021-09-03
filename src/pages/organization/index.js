@@ -2,11 +2,16 @@ import React, { useState, useEffect } from "react";
 import { Route, useHistory } from "react-router-dom";
 import OrgMenu from "../../components/Menu/OrgMenu";
 import Business from "./components/business";
-import Gallery from "./components/gallery";
 import Intro from "./components/intro";
+
 import Notice from "./components/notice/index";
 import NoticeWrite from "./components/notice/writeNotice";
 import NoticeDetail from "./components/notice/noticeDetail";
+
+import Gallery from "./components/gallery/index";
+import GalleryWrite from "./components/gallery/galleryWrite";
+import GalleryDetail from "./components/gallery/galleryDetail";
+
 import Layout from "../../components/Layout";
 
 const Index = ({ match }) => {
@@ -85,6 +90,12 @@ const Index = ({ match }) => {
 							</Route>
 							<Route exact path="/organization/gallery/0">
 								<Gallery />
+							</Route>
+							<Route exact path="/organization/galleryWrite/0">
+								<GalleryWrite id={match.params.type} />
+							</Route>
+							<Route exact path="/organization/galleryDetail/:id">
+								<GalleryDetail id={match.params.type} />
 							</Route>
 							<Route exact path="/organization/writeNotice/0">
 								<NoticeWrite />

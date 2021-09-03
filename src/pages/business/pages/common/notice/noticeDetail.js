@@ -16,10 +16,8 @@ const NoticeDetail = (props) => {
 
 	const currentEmail = useSelector((state) => state.setting.currentEmail);
 	const currentPassword = useSelector((state) => state.setting.currentPassword);
-	const API_KEY = process.env.REACT_APP_API_KEY;
 
 	const id = props.id;
-	console.log(id);
 
 	const [info, setInfo] = useState({
 		type: "",
@@ -30,9 +28,17 @@ const NoticeDetail = (props) => {
 
 	useEffect(() => {
 		axios
-			.get("/api/" + API_KEY + "/notice/" + id)
+			.post(
+				"/api/notice/" + id,
+				{ key: process.env.REACT_APP_API_KEY },
+				{
+					headers: {
+						"Content-type": "application/json",
+						Accept: "application/json",
+					},
+				}
+			)
 			.then((Response) => {
-				console.log(Response.data);
 				const cp = {
 					type: Response.data.type,
 					title: Response.data.title,
@@ -50,12 +56,18 @@ const NoticeDetail = (props) => {
 	const deleteNotice = () => {
 		if (currentEmail === "master" || currentEmail === info.type) {
 			axios
-				.post("/api/" + API_KEY + "/notice/delete", {
-					headers: {
-						"Content-type": "application/json",
-						Accept: "application/json",
+				.post(
+					"/api/notice/delete/" + id,
+					{
+						key: process.env.REACT_APP_API_KEY,
 					},
-				})
+					{
+						headers: {
+							"Content-type": "application/json",
+							Accept: "application/json",
+						},
+					}
+				)
 				.then((response) => {
 					alert("삭제되었습니다.");
 					history.push("/business/" + info.type + "/default");

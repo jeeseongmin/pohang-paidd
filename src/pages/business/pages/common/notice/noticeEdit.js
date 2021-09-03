@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
-import NoticeLayout from "./../../../../../components/notice/noticeLayout";
+import NoticeLayout from "../../../../../components/notice/noticeLayout";
 
 const NoticeEdit = (props) => {
 	const history = useHistory();
@@ -17,9 +17,7 @@ const NoticeEdit = (props) => {
 	const pages = props.pages;
 	const titleRef = useRef(null);
 	const contentRef = useRef(null);
-
 	const currentEmail = useSelector((state) => state.setting.currentEmail);
-	const API_KEY = process.env.REACT_APP_API_KEY;
 
 	const changeInfo = (e, type) => {
 		const cp = { ...info };
@@ -40,9 +38,10 @@ const NoticeEdit = (props) => {
 		} else if (currentEmail === "master" || currentEmail === info.type) {
 			axios
 				.post(
-					"/api/" + API_KEY + "/notice/update",
+					"/api/notice/update/" + id,
 					{
-						id: id,
+						// id: id,
+						key: process.env.REACT_APP_API_KEY,
 						title: info.title,
 						content: info.content,
 					},
