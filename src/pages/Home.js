@@ -5,9 +5,16 @@ import { useDispatch, useSelector } from "react-redux";
 // import { setMenu, setSubmenu, toggleSidebar } from "../reducer/settingSlice";
 import { setMenu, setSubmenu, setSidebar } from "../reducers/setting";
 import Layout from "../components/Layout";
+import Slider from "../components/Slider";
 
 const Home = () => {
 	const dispatch = useDispatch();
+	const [photoList, setPhotoList] = useState([]);
+
+	useEffect(() => {
+		dispatch(setMenu(0));
+		dispatch(setSubmenu(0));
+	}, []);
 
 	const goSubPage = (main, sub) => {
 		dispatch(setMenu(main));
@@ -19,29 +26,13 @@ const Home = () => {
 		<Layout>
 			<div class="w-full h-full">
 				{/* section 1 */}
-				<div class="px-10 py-10 bg-purple-100 h-auto flex flex-row 2xl:px-36 xl:px-32 lg:px-10 lg:py-16 md:py-4">
-					<div class="w-1/2 hidden justify-center items-center md:flex">
-						<img
-							src="/image/home-img1.png"
-							alt="main-img1"
-							class="h-3/4 lg:h-full"
-						/>
-					</div>
-					<div class="pb-0 flex flex-col justify-end md:pb-16">
-						<h3 class="text-pink-400 mb-6 text-lg md:text-2xl">RENEWAL OPEN</h3>
-						<h3 class="text-xl lg:text-3xl md:text-2xl mb-2">안녕하세요.</h3>
-						<h3 class="text-xl lg:text-3xl md:text-2xl mb-2">새롭게 열린</h3>
-						<h3 class="text-xl lg:text-3xl md:text-2xl mb-2">
-							<b>포항발달장애인협회</b> 입니다.
-						</h3>
-					</div>
-				</div>
+				<Slider />
 
 				{/* section 2 */}
 				<div class="flex flex-row pt-10 lg:pt-16 px-5 2xl:px-36 xl:px-32 md:px-8">
 					<div class="w-full lg:w-1/2">
 						<h1 class="text-xl font-semibold mb-2 lg:text-3xl">
-							발달장애인협회
+							경북지적발달장애인복지협회 포항시지부
 						</h1>
 						<h1 class="text-xl font-semibold lg:text-3xl">사업소개</h1>
 						<div class="text-md py-4 md:text-xl md:py-8">

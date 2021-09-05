@@ -12,6 +12,7 @@ const Notice = (props, { match }) => {
 	const [page, setPage] = useState(1);
 	const [totalPage, setTotalPage] = useState(0);
 	const [noticeList, setNoticeList] = useState([]);
+	const [findText, setFindText] = useState("");
 	const currentEmail = useSelector((state) => state.setting.currentEmail);
 	const currentPassword = useSelector((state) => state.setting.currentPassword);
 	const type = props.pages;
@@ -34,7 +35,7 @@ const Notice = (props, { match }) => {
 			.catch((Error) => {
 				console.log(Error);
 			});
-	}, [page]);
+	}, [page, findText]);
 
 	useEffect(() => {
 		axios
@@ -55,7 +56,13 @@ const Notice = (props, { match }) => {
 			.catch((Error) => {
 				console.log(Error);
 			});
-	}, [noticeList]);
+	}, [noticeList, findText]);
+
+	const changeText = (e) => {
+		const cp = e.target.value;
+		setFindText(cp);
+		console.log(cp);
+	};
 
 	const dataToText = (date) => {
 		let year = date.substring(2, 4);
@@ -89,6 +96,9 @@ const Notice = (props, { match }) => {
 						type="text"
 						name="name"
 						placeholder="검색어"
+						autocomplete="off"
+						onChange={changeText}
+						value={findText}
 						class="w-full h-full py-2 px-4 mr-2 border-2 border-gray-300 outline-none focus:border-purple-600 "
 					/>
 					<BsSearch size={28} class="cursor-pointer text-gray-300" />

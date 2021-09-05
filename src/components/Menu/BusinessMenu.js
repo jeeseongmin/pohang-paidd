@@ -1,12 +1,17 @@
 import React from "react";
 import { Route, Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 
-const businessMenu = (props) => {
+const BusinessMenu = (props) => {
+	const menu = useSelector((state) => state.setting.menu);
+	const submenu = useSelector((state) => state.setting.submenu);
+
 	const num = props.index;
 	const selected = props.selected;
 	const changeSelected = props.changeSelected;
 
 	const name = ["센터소개", "주요사업", "공지사항", "포토갤러리"];
+	const name2 = ["사업소개", "주요사업", "공지사항", "포토갤러리"];
 
 	return (
 		<Link
@@ -19,9 +24,9 @@ const businessMenu = (props) => {
 					: "border border-gray-300 text-gray-300 hover:text-white hover:bg-purple-300 hover:border-purple-300")
 			}
 		>
-			{name[num]}
+			{menu === 2 && (submenu === 3 || submenu === 4) ? name2[num] : name[num]}
 		</Link>
 	);
 };
 
-export default businessMenu;
+export default BusinessMenu;

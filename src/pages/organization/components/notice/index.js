@@ -86,6 +86,7 @@ const Index = () => {
 						type="text"
 						name="name"
 						placeholder="검색어"
+						autocomplete="off"
 						class="w-full h-full py-2 px-4 mr-2 border-2 border-gray-300 outline-none focus:border-purple-700 "
 					/>
 					<BsSearch size={28} class="cursor-pointer text-gray-300" />

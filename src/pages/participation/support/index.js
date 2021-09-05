@@ -1,11 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { Route, Link } from "react-router-dom";
 import Subtitle from "../../../components/Subtitle";
+import { useDispatch, useSelector } from "react-redux";
 
 const Index = () => {
+	const currentEmail = useSelector((state) => state.setting.currentEmail);
+
 	return (
 		<div>
-			<Subtitle text={"후원"} />
+			<div class="flex flex-row justify-between">
+				<Subtitle text={"후원"} />
+			</div>
 
 			<div class="py-8 mb-8">
 				<div class="text-base lg:text-lg leading-7 lg:leading-9">
@@ -52,14 +57,28 @@ const Index = () => {
 					</div>
 				</div>
 			</div>
-			<div class="flex justify-center items-center">
+			<div
+				class={
+					"mt-8 flex items-center flex-col md:flex-row " +
+					(currentEmail === "master" ? "justify-around" : "justify-center")
+				}
+			>
 				<Link
 					to="/participation/writeSupport/0"
 					onClick={() => window.scrollTo(0, 0)}
-					class="w-full md:w-auto justify-center cursor-pointer px-16 py-2 border border-purple-700 text-purple-700 flex flex-row items-center hover:bg-purple-500 hover:text-white hover:font-bold"
+					class="w-full md:w-auto justify-center cursor-pointer mb-4 md:mb-0 px-16 py-2 border border-purple-700 text-purple-700 flex flex-row items-center hover:bg-purple-500 hover:text-white hover:font-bold"
 				>
 					후원 신청
 				</Link>
+				{currentEmail === "master" ? (
+					<Link
+						to="/participation/supportList/0"
+						onClick={() => window.scrollTo(0, 0)}
+						class="w-full md:w-auto justify-center cursor-pointer px-2 md:px-16 py-2 border border-purple-700 text-purple-700 flex flex-row items-center hover:bg-purple-500 hover:text-white hover:font-bold"
+					>
+						후원 목록
+					</Link>
+				) : null}
 			</div>
 		</div>
 	);

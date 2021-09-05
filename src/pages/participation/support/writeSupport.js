@@ -1,12 +1,13 @@
 import React, { useEffect, useState, useRef } from "react";
-import { Route, Link, withRouter } from "react-router-dom";
+import { Route, Link, withRouter, useHistory } from "react-router-dom";
 import { AiOutlineCheck } from "react-icons/ai";
 import CreatableSelect from "react-select/creatable";
 import Subtitle from "../../../components/Subtitle";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 
-const WriteSupport = ({ history }) => {
+const WriteSupport = () => {
+	const history = useHistory();
 	const [info, setInfo] = useState({
 		name: "",
 		privateNumber: "",
@@ -225,14 +226,14 @@ const WriteSupport = ({ history }) => {
 						>
 							<div
 								onClick={(e) => toggleSupportType(e, "periodicalSupport")}
-								class="mx-4 text-sm"
+								class="cursor-pointer mx-4 text-sm"
 							>
 								정기후원
 							</div>
 							<div
 								onClick={(e) => toggleSupportType(e, "periodicalSupport")}
 								class={
-									"w-0 h-6 border-r " +
+									"cursor-pointer w-0 h-6 border-r " +
 									(info.periodicalSupport.status
 										? "border-black"
 										: "border-gray-500")
@@ -240,7 +241,7 @@ const WriteSupport = ({ history }) => {
 							></div>
 							<div
 								onClick={(e) => toggleSupportType(e, "periodicalSupport")}
-								class="ml-4 text-sm hidden md:inline-block"
+								class="cursor-pointer ml-4 text-sm hidden md:inline-block"
 							>
 								금액 입력 :{" "}
 							</div>
@@ -295,14 +296,14 @@ const WriteSupport = ({ history }) => {
 						>
 							<div
 								onClick={(e) => toggleSupportType(e, "temporarySupport")}
-								class="mx-4 text-sm"
+								class="cursor-pointer mx-4 text-sm"
 							>
 								일시후원
 							</div>
 							<div
 								onClick={(e) => toggleSupportType(e, "temporarySupport")}
 								class={
-									"w-0 h-6 border-r " +
+									"cursor-pointer w-0 h-6 border-r " +
 									(info.temporarySupport.status
 										? "border-black"
 										: "border-gray-500")
@@ -310,7 +311,7 @@ const WriteSupport = ({ history }) => {
 							></div>
 							<div
 								onClick={(e) => toggleSupportType(e, "temporarySupport")}
-								class="ml-4 text-sm hidden md:inline-block"
+								class="cursor-pointer ml-4 text-sm hidden md:inline-block"
 							>
 								금액 입력 :{" "}
 							</div>
@@ -363,20 +364,20 @@ const WriteSupport = ({ history }) => {
 						>
 							<div
 								onClick={(e) => toggleSupportType(e, "itemSupport")}
-								class="mx-4 text-sm"
+								class="cursor-pointer mx-4 text-sm"
 							>
 								물품후원
 							</div>
 							<div
 								onClick={(e) => toggleSupportType(e, "itemSupport")}
 								class={
-									"w-0 h-6 border-r " +
+									"cursor-pointer w-0 h-6 border-r " +
 									(info.itemSupport.status ? "border-black" : "border-gray-500")
 								}
 							></div>
 							<div
 								onClick={(e) => toggleSupportType(e, "itemSupport")}
-								class="ml-4 text-sm hidden md:inline-block"
+								class="cursor-pointer ml-4 text-sm hidden md:inline-block"
 							>
 								물품 입력 :{" "}
 							</div>

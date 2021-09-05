@@ -12,7 +12,7 @@ const Business = () => {
 						자립생활지원
 					</div>
 					<div class="h-48 text-center text-lg flex flex-col justify-center items-center py-8">
-						<div>자립생활기술자원</div>
+						<div>자립생활기술지원</div>
 						<div>사회활동지원</div>
 						<div>작업활동 및 연계지원</div>
 					</div>
@@ -25,7 +25,8 @@ const Business = () => {
 						<div>자조모임지원</div>
 						<div>자기권리 주장활동 지원</div>
 						<div>서포터 양성 및 활동지원</div>
-						<div>인식개선 후견활동 지원</div>
+						<div>인식개선 </div>
+						<div>후견활동 지원</div>
 					</div>
 				</div>
 				<div class="w-full lg:w-1/4 md:w-1/3 flex flex-col justify-between items-center p-4 shadow-lg mb-8 border border-gray-200">

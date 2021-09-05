@@ -149,19 +149,19 @@ const Sidebar = () => {
 								submenu={1}
 							/>
 							<SubText
-								text={"지적장애인 자립지원센터"}
+								text={"지적장애인자립지원센터"}
 								address={"/business/org1/default"}
 								menu={2}
 								submenu={2}
 							/>
 							<SubText
-								text={"장애인활동 지원사업"}
+								text={"장애인활동지원사업"}
 								address={"/business/org2/default"}
 								menu={2}
 								submenu={3}
 							/>
 							<SubText
-								text={"방과후활동 서비스사업"}
+								text={"방과후활동지원서비스사업"}
 								address={"/business/org3/default"}
 								menu={2}
 								submenu={4}
@@ -170,12 +170,16 @@ const Sidebar = () => {
 					)}
 				</div>
 				<div class="w-full flex flex-col mb-6 px-4">
-					<MainText text={"부설기관"} address={"/organization/0"} num={3} />
+					<MainText
+						text={"부설기관"}
+						address={"/organization/intro/0"}
+						num={3}
+					/>
 					{toggleArr[3] && (
 						<div class="flex flex-col">
 							<SubText
 								text={"부설기관"}
-								address={"/organization/0"}
+								address={"/organization/intro/0"}
 								menu={3}
 								submenu={1}
 							/>
@@ -185,32 +189,32 @@ const Sidebar = () => {
 				<div class="w-full flex flex-col mb-6 px-4">
 					<MainText
 						text={"참여마당"}
-						address={"/participation/notice"}
+						address={"/participation/notice/0"}
 						num={4}
 					/>
 					{toggleArr[4] && (
 						<div class="flex flex-col">
 							<SubText
 								text={"공지사항"}
-								address={"/participation/notice"}
+								address={"/participation/notice/0"}
 								menu={4}
 								submenu={1}
 							/>
 							<SubText
 								text={"건의 및 고충상담"}
-								address={"/participation/counseling"}
+								address={"/participation/counseling/0"}
 								menu={4}
 								submenu={2}
 							/>
 							<SubText
 								text={"후원"}
-								address={"/participation/support"}
+								address={"/participation/support/0"}
 								menu={4}
 								submenu={3}
 							/>
 							<SubText
 								text={"자원봉사"}
-								address={"/participation/volunteer"}
+								address={"/participation/volunteer/0"}
 								menu={4}
 								submenu={4}
 							/>

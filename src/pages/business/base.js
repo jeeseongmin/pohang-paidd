@@ -18,7 +18,7 @@ const Base = () => {
 					</div>
 					<div class="w-full md:w-1/3 lg:w-1/4 flex flex-col justify-between items-center p-4 shadow-lg mb-4 lg:mb-8 border border-gray-200">
 						<div class="text-xl w-full text-center py-4 text-purple-700 border-b-2 border-purple-700">
-							가족지원센터
+							가족지원사업
 						</div>
 						<div class="h-full text-center text-lg flex flex-col justify-center items-center py-8">
 							<div>가족상담, 교육</div>

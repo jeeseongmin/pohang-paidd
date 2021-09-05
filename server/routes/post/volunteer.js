@@ -27,7 +27,7 @@ router.route("/:id").post((req, res) => {
 router.route("/page/:page").post((req, res) => {
 	if (req.body.key === API_KEY) {
 		Volunteer.find()
-			.sort({ createdAt: -1 })
+			.sort({ status: -1, createdAt: -1 })
 			.skip((req.params.page - 1) * 10)
 			.limit(10)
 			.then((all) => res.json(all))
@@ -58,25 +58,43 @@ router.route("/add/:status").post((req, res) => {
 	} else res.status(400).json("Error");
 });
 
+// Respond counseling
+router.route("/read/:id").post((req, res) => {
+	if (req.body.key === process.env.REACT_APP_API_KEY) {
+		Volunteer.findById(req.params.id)
+			.then((one) => {
+				one.status = req.body.status;
+
+				one
+					.save()
+					.then(() => res.json("Support read!"))
+					.catch((err) => res.status(400).json("Error: " + err));
+			})
+			.catch((err) => res.status(400).json("Error: " + err));
+	} else return res.status(400).json("Error");
+});
+
 // Update volunteer
 router.route("/update/:id").post((req, res) => {
-	Volunteer.findById(req.params.id)
-		.then((one) => {
-			one.status = req.body.status;
-			one.name = req.body.name;
-			one.birth = req.body.birth;
-			one.phone = req.body.phone;
-			one.vms = req.body.vms;
-			one.activity = req.body.activity;
-			one.hopeContent = req.body.hopeContent;
-			one.hopeTime = req.body.hopeTime;
+	if (req.body.key === process.env.REACT_APP_API_KEY) {
+		Volunteer.findById(req.params.id)
+			.then((one) => {
+				one.status = req.body.status;
+				one.name = req.body.name;
+				one.birth = req.body.birth;
+				one.phone = req.body.phone;
+				one.vms = req.body.vms;
+				one.activity = req.body.activity;
+				one.hopeContent = req.body.hopeContent;
+				one.hopeTime = req.body.hopeTime;
 
-			one
-				.save()
-				.then(() => res.json("Volunteer updated!"))
-				.catch((err) => res.status(400).json("Error: " + err));
-		})
-		.catch((err) => res.status(400).json("Error: " + err));
+				one
+					.save()
+					.then(() => res.json("Volunteer updated!"))
+					.catch((err) => res.status(400).json("Error: " + err));
+			})
+			.catch((err) => res.status(400).json("Error: " + err));
+	} else res.status(400).json("Error");
 });
 
 router.route("/delete/:id").post((req, res) => {

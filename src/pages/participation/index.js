@@ -7,6 +7,8 @@ import WriteNotice from "./notice/writeNotice";
 import NoticeDetail from "./notice/noticeDetail";
 // 자원봉사 탭
 import Volunteer from "./volunteer";
+import VolunteerList from "./volunteer/volunteerList";
+import VolunteerDetail from "./volunteer/volunteerDetail";
 import WriteVolunteer from "./volunteer/writeVolunteer";
 // 건의 및 고충 상담 탭
 import Counseling from "./counseling";
@@ -14,6 +16,8 @@ import WriteCounsel from "./counseling/writeCounsel";
 import CounselingDetail from "./counseling/counselingDetail";
 // 후원 탭
 import Support from "./support";
+import SupportList from "./support/supportList";
+import SupportDetail from "./support/supportDetail";
 import WriteSupport from "./support/writeSupport";
 
 import Submenu from "../../components/Submenu";
@@ -48,6 +52,12 @@ const Index = ({ match }) => {
 						<Route exact path="/participation/writeCounsel/0">
 							<WriteCounsel />
 						</Route>
+						<Route exact path="/participation/writeVolunteer/0">
+							<WriteVolunteer />
+						</Route>
+						<Route exact path="/participation/writeSupport/0">
+							<WriteSupport />
+						</Route>
 						<Route exact path="/participation/counseling/0">
 							<Counseling />
 						</Route>
@@ -57,14 +67,20 @@ const Index = ({ match }) => {
 						<Route exact path="/participation/support/0">
 							<Support />
 						</Route>
+						<Route exact path="/participation/supportList/0">
+							<SupportList />
+						</Route>
+						<Route exact path="/participation/supportDetail/:id">
+							<SupportDetail id={match.params.type} />
+						</Route>
 						<Route exact path="/participation/volunteer/0">
 							<Volunteer />
 						</Route>
-						<Route exact path="/participation/writeVolunteer/0">
-							<WriteVolunteer />
+						<Route exact path="/participation/volunteerList/0">
+							<VolunteerList />
 						</Route>
-						<Route exact path="/participation/writeSupport/0">
-							<WriteSupport />
+						<Route exact path="/participation/volunteerDetail/:id">
+							<VolunteerDetail id={match.params.type} />
 						</Route>
 					</switch>
 				</div>

@@ -25,7 +25,7 @@ router.route("/:id").post((req, res) => {
 router.route("/page/:page").post((req, res) => {
 	if (req.body.key === process.env.REACT_APP_API_KEY) {
 		Support.find()
-			.sort({ createdAt: -1 })
+			.sort({ status: -1, createdAt: -1 })
 			.skip((req.params.page - 1) * 10)
 			.limit(10)
 			.then((all) => res.json(all))
@@ -55,6 +55,22 @@ router.route("/add/:status").post((req, res) => {
 			.then(() => res.json("Support added!"))
 			.catch((err) => res.status(400).json("Error: " + err));
 	} else res.status(400).json("Error");
+});
+
+// Respond counseling
+router.route("/read/:id").post((req, res) => {
+	if (req.body.key === process.env.REACT_APP_API_KEY) {
+		Support.findById(req.params.id)
+			.then((one) => {
+				one.status = req.body.status;
+
+				one
+					.save()
+					.then(() => res.json("Support read!"))
+					.catch((err) => res.status(400).json("Error: " + err));
+			})
+			.catch((err) => res.status(400).json("Error: " + err));
+	} else return res.status(400).json("Error");
 });
 
 // Update support

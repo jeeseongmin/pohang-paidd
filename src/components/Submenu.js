@@ -42,9 +42,9 @@ const Submenu = (props) => {
 		["인사말", "설립목적", "연혁", "조직도", "오시는 길"],
 		[
 			"협회사업",
-			"지적장애인 지원센터",
-			"장애인활동 지원사업",
-			"방과후활동 지원사업",
+			"지적장애인자립지원센터",
+			"장애인활동지원사업",
+			"방과후활동지원서비스사업",
 		],
 		["늘사랑주간보호센터"],
 		["공지사항", "건의 및 고충상담", "후원", "자원봉사"],
@@ -78,14 +78,14 @@ const Submenu = (props) => {
 					<span class="inline-block md:hidden">
 						{title[menu - 1][submenu - 1].substr(0, 5)}
 						<br></br>
-						{title[menu - 1][submenu - 1].substr(6, 10)}
+						{title[menu - 1][submenu - 1].substr(5, 10)}
 					</span>
 				)}
 				{menu === 2 && (
 					<span class="inline-block md:hidden">
 						{title[menu - 1][submenu - 1].substr(0, 5)}
 						<br></br>
-						{title[menu - 1][submenu - 1].substr(6, 10)}
+						{title[menu - 1][submenu - 1].substr(5, 10)}
 					</span>
 				)}
 				{menu === 4 && (
