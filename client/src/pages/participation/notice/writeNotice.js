@@ -5,7 +5,6 @@ import axios from "axios";
 import NoticeLayout from "../../../components/notice/noticeLayout";
 
 const WriteNotice = (props) => {
-	console.log(props);
 	const type = "participation";
 	const dispatch = useDispatch();
 	const history = useHistory();

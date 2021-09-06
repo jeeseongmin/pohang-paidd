@@ -61,7 +61,6 @@ const Notice = (props, { match }) => {
 	const changeText = (e) => {
 		const cp = e.target.value;
 		setFindText(cp);
-		console.log(cp);
 	};
 
 	const dataToText = (date) => {

@@ -15,9 +15,7 @@ const Index = () => {
 
 	const currentMenu = useSelector((state) => state.setting.menu);
 	const currentSubmenu = useSelector((state) => state.setting.submenu);
-	useEffect(() => {
-		console.log("Index : ", currentMenu, currentSubmenu);
-	}, [currentSubmenu]);
+
 	return (
 		<Layout>
 			<div class="h-full">

@@ -13,7 +13,6 @@ const Index = () => {
 	const [totalPage, setTotalPage] = useState(0);
 	const [noticeList, setNoticeList] = useState([]);
 	const currentEmail = useSelector((state) => state.setting.currentEmail);
-	const API_KEY = process.env.REACT_APP_API_KEY;
 	useEffect(() => {
 		axios
 			.post(

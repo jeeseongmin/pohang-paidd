@@ -40,7 +40,6 @@ const NoticeDetail = (props) => {
 				}
 			)
 			.then((Response) => {
-				console.log(Response.data);
 				const cp = {
 					type: Response.data.type,
 					title: Response.data.title,

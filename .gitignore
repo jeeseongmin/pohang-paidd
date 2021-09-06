@@ -11,6 +11,10 @@
 # production
 /build
 
+# database
+dbconfig.js
+keyconfig.js
+
 # misc
 .DS_Store
 .env*

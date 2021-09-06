@@ -31,7 +31,6 @@ const WriteCounsel = () => {
 	};
 
 	const submitInfo = () => {
-		console.log(info);
 		if (info.title === "") {
 			alert("제목을 입력해주세요!");
 			titleRef.current.focus();

@@ -47,28 +47,28 @@ const Home = () => {
 								협회 사업
 							</Link>
 							<Link
-								to="/business/b1/default"
+								to="/business/org1/default"
 								onClick={() => goSubPage(2, 2)}
 								class="lg:text-base lg:p-4 py-2 px-4 text-xs cursor-pointer mr-4 mb-4 border border-purple-700 text-purple-700 rounded-full hover:border-purple-300 hover:bg-purple-300 hover:text-white"
 							>
 								포항시지적장애인자립지원센터
 							</Link>
 							<Link
-								to="/business/b2/default"
+								to="/business/org2/default"
 								onClick={() => goSubPage(2, 3)}
 								class="lg:text-base py-2 px-4 lg:p-4 text-xs cursor-pointer mr-4 mb-4 border border-purple-700 text-purple-700 rounded-full hover:border-purple-300 hover:bg-purple-300 hover:text-white"
 							>
 								장애인활동사업
 							</Link>
 							<Link
-								to="/business/b3/default"
+								to="/business/org3/default"
 								onClick={() => goSubPage(2, 4)}
 								class="lg:text-base lg:p-4 text-xs cursor-pointer mr-4 mb-4 py-2 px-4 border border-purple-700 text-purple-700 rounded-full hover:border-purple-300 hover:bg-purple-300 hover:text-white"
 							>
 								방과후 활동 서비스 사업
 							</Link>
 							<Link
-								to="/organization/0"
+								to="/organization/intro/0"
 								onClick={() => goSubPage(2, 5)}
 								class="lg:text-base lg:p-4 text-xs cursor-pointer mr-4 mb-4 py-2 px-4 border border-purple-700 text-purple-700 rounded-full hover:border-purple-300 hover:bg-purple-300 hover:text-white"
 							>
