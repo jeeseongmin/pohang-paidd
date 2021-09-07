@@ -164,7 +164,7 @@ const Home = () => {
 						</div>
 					</div>
 					<div class="w-full flex flex-col lg:flex-row">
-						<div class="w-full lg:w-1/2 h-40 lg:h-96 mr-0 lg:mr-4 mb-8 lg:mb-0 p-8 border border-purple-300 bg-purple-100 relative">
+						<div class="w-full lg:w-1/2 h-60 md:h-40 lg:h-96 mr-0 lg:mr-4 mb-8 lg:mb-0 p-8 border border-purple-300 bg-white relative">
 							<div class="flex flex-row items-end justify-start lg:justify-between mb-8 ">
 								<h1 class="text-xl lg:text-3xl text-purple-600 font-semibold">
 									후원
@@ -173,39 +173,39 @@ const Home = () => {
 									정기후원/일시후원/물품후원
 								</h1>
 							</div>
-							<Link
-								to="/participation/support/0"
-								onClick={() => goSubPage(4, 3)}
-								class="lg:text-xl text-xs w-60 text-center cursor-pointer py-2 px-4 lg:py-3 lg:px-8 border border-purple-700 text-purple-700 rounded-full hover:border-purple-300 hover:bg-purple-300 hover:text-white"
-							>
-								자세히 보기
-							</Link>
-							<div class="absolute bottom-5 lg:bottom-10 right-10 opacity-50 h-20 lg:h-auto">
+							<div class="absolute bottom-0 lg:bottom-0 right-2 h-1/2 md:h-full lg:h-auto">
 								<img
 									class="h-full object-cover"
 									src="/image/home-img3.png"
 									alt="logo"
 								/>
 							</div>
-						</div>
-						<div class="w-full lg:w-1/2 ml-0 h-40 lg:h-96 lg:ml-4 p-8 border border-purple-300 bg-purple-100 relative">
-							<h1 class="text-xl lg:text-3xl text-purple-600 font-semibold mb-8 ">
-								자원봉사
-							</h1>
 							<Link
-								to="/participation/volunteer/0"
-								onClick={() => goSubPage(4, 4)}
-								class="lg:text-xl text-xs w-60 text-center cursor-pointer py-2 px-4 lg:py-3 lg:px-8 border border-purple-700 text-purple-700 rounded-full hover:border-purple-300 hover:bg-purple-300 hover:text-white"
+								to="/participation/support/0"
+								onClick={() => goSubPage(4, 3)}
+								class="z-50 lg:text-xl text-xs w-60 text-center cursor-pointer py-2 px-4 lg:py-3 lg:px-8 border border-purple-700 text-purple-700 rounded-full hover:border-purple-300 hover:bg-purple-300 hover:text-white"
 							>
 								자세히 보기
 							</Link>
-							<div class="absolute bottom-2 lg:bottom-6 right-10 opacity-50 h-32 lg:h-auto">
+						</div>
+						<div class="w-full lg:w-1/2 ml-0 h-60 md:h-40 lg:h-96 lg:ml-4 p-8 border border-purple-300 bg-white relative">
+							<h1 class="text-xl lg:text-3xl text-purple-600 font-semibold mb-8 ">
+								자원봉사
+							</h1>
+							<div class="absolute bottom-0 lg:bottom-0 right-2 h-2/3 md:h-full lg:h-auto">
 								<img
 									class="h-full object-cover"
 									src="/image/home-img4.png"
 									alt="logo"
 								/>
 							</div>
+							<Link
+								to="/participation/volunteer/0"
+								onClick={() => goSubPage(4, 4)}
+								class="z-50 lg:text-xl bg-white text-xs w-60 text-center cursor-pointer py-2 px-4 lg:py-3 lg:px-8 border border-purple-700 text-purple-700 rounded-full hover:border-purple-300 hover:bg-purple-300 hover:text-white"
+							>
+								자세히 보기
+							</Link>
 						</div>
 					</div>
 				</div>

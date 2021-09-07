@@ -3,36 +3,65 @@ import SlideBlock from "react-slick";
 
 const Slider = () => {
 	const settings = {
-		dots: false,
+		dots: true,
 		fade: true,
-		arrows: false,
+		arrows: true,
 		infinite: true,
 		speed: 500,
 		slidesToShow: 1,
-		// autoplay: true,
-		// autoplaySpeed: 3000,
+		autoplay: true,
+		autoplaySpeed: 3000,
 		slidesToScroll: 1,
 	};
 	return (
 		<>
 			<SlideBlock {...settings}>
 				<div class="">
-					<div class="h-48 md:h-96 py-0 lg:py-8 px-10 bg-purple-100 flex flex-row items-center 2xl:px-36 xl:px-32 lg:px-10 md:py-4">
-						<div class=" h-full w-1/2 hidden justify-center items-center md:flex">
+					<div class="w-full h-auto lg:h-2/4 flex flex-row items-center">
+						<img
+							src="/image/slide1-img1.png"
+							alt="main-img1"
+							class="object-cover w-full hidden lg:block"
+						/>
+						{/* <img
+							src="/image/slide1-img2.png"
+							alt="main-img1"
+							class="object-cover w-full block lg:hidden"
+						/> */}
+					</div>
+				</div>
+				<div>
+					<div class="w-full h-auto lg:h-2/4 shadow-sm flex flex-row ">
+						<img
+							src="/image/slide2-img1.png"
+							alt="main-img1"
+							class="object-cover w-full hidden lg:block"
+						/>
+						{/* <img
+							src="/image/slide2-img2.png"
+							alt="main-img1"
+							class="object-cover w-full block lg:hidden"
+						/> */}
+					</div>
+				</div>
+			</SlideBlock>
+			{/* <SlideBlock {...settings}>
+				<div class="">
+					<div class="h-auto py-0 lg:py-8 px-10 bg-purple-100 flex flex-row items-center 2xl:px-36 xl:px-32 lg:px-10 md:py-4">
+						<div class="my-8 h-96 md:h-96 w-1/2 hidden justify-center items-center md:flex">
 							<img
 								src="/image/home-img1.png"
 								alt="main-img1"
 								class="object-cover h-3/4 lg:h-full"
 							/>
 						</div>
-						<div class="pl-8 pb-0 flex flex-col justify-end ">
+						<div class="mt-4 mb-8 h-48 md:h-auto pl-8 pb-0 flex flex-col justify-end ">
 							<h3 class="text-pink-400 mb-6 text-lg md:text-2xl">
 								RENEWAL OPEN
 							</h3>
 							<h3 class="text-xl lg:text-2xl md:text-2xl mb-2 lg:mb-4">
 								안녕하세요. 새롭게 열린
 							</h3>
-							{/* <h3 class="text-xl lg:text-2xl md:text-2xl mb-2 lg:mb-4"></h3> */}
 							<h3 class="text-xl lg:text-2xl md:text-2xl mb-2 lg:mb-4">
 								<b>경북지적발달장애인복지협회</b>
 							</h3>
@@ -43,9 +72,35 @@ const Slider = () => {
 					</div>
 				</div>
 				<div>
-					<div class="px-10 py-10 bg-purple-100 h-auto flex flex-row 2xl:px-36 xl:px-32 lg:px-10 lg:py-16 md:py-4"></div>
+					<div class="h-60 md:h-96 w-full shadow-sm flex flex-row relative ">
+						<img
+							src="/image/slider-img2-bg.png"
+							alt="main-img1"
+							class="z-10 object-cover w-full h-full md:h-auto absolute"
+						/>
+						<div class="my-8 lg:my-16 z-40 w-1/2 h-full justify-end items-center hidden md:flex relative">
+							<img
+								src="/image/slider-img2-comp1.png"
+								alt="slider-img2"
+								class="object-cover bottom-0 mr-0 lg:mr-16 h-3/4 lg:h-full absolute"
+							/>
+						</div>
+						<div class="my-0 md:my-8 lg:my-16 z-40 w-full md:w-1/2 h-full pl-0 md:pl-8 flex-col justify-center items-center md:items-start flex">
+							<div class="w-auto h-full flex flex-col justify-center items-center">
+								<h3 class="text-xl lg:text-2xl md:text-2xl mb-2 lg:mb-4">
+									<b>포항시 발달장애인 분들의</b>
+								</h3>
+								<h3 class="text-xl lg:text-2xl md:text-2xl mb-2 lg:mb-4">
+									<b>행복한 삶을 위하여</b>
+								</h3>
+								<h3 class="text-xl lg:text-2xl md:text-2xl lg:mb-4">
+									<b>저희가 도와드리겠습니다.</b>
+								</h3>
+							</div>
+						</div>
+					</div>
 				</div>
-			</SlideBlock>
+			</SlideBlock> */}
 		</>
 	);
 };

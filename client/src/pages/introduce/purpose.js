@@ -13,20 +13,6 @@ const purpose = () => {
 						src="/image/intro-purpose.png"
 						alt="purpose"
 					/>
-					<div class="absolute w-full h-full top-0 flex flex-col justify-center items-center">
-						<div class="text-green-800 text-center">
-							<div class="text-xs md:text-sm lg:text-xl leading-7 md:leading-10 mb-0 lg:mb-2">
-								경북지적발달장애인복지협회<br class="block md:hidden"></br>{" "}
-								포항시지부는
-							</div>
-							<div class="text-xs md:text-sm lg:text-xl leading-7 md:leading-10 mb-0 lg:mb-2">
-								발달장애인의 권익을 옹호하고
-							</div>
-							<div class="text-xs md:text-sm lg:text-xl leading-7 md:leading-10">
-								복지증진에 기여하고자 합니다.
-							</div>
-						</div>
-					</div>
 				</div>
 			</div>
 		</>
