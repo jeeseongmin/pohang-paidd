@@ -7,8 +7,10 @@ import axios from "axios";
 // import { backUrl } from "../../config/config";
 import { MdCancel } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
+import CircularProgress from "@material-ui/core/CircularProgress";
 
 const GalleryLayout = (props) => {
+	const [loading, setLoading] = useState(true);
 	const history = useHistory();
 	const info = props.info;
 	const changeInfo = props.changeInfo;
@@ -42,18 +44,27 @@ const GalleryLayout = (props) => {
 	// 	});
 	// }, [img]);
 
+	useEffect(() => {
+		console.log(window.location.href);
+		console.log(window.location.hostname);
+		console.log(window.location.pathname);
+		console.log(window.location.origin);
+	}, []);
+
 	const buttonClick = () => {
 		buttonRef.current.click();
 	};
 
 	const onChange = async (e) => {
+		setLoading(false);
 		const formData = new FormData();
 		formData.append("file", e.target.files[0]);
 		// 서버의 upload API 호출
 		const res = await axios.post("/api/image/upload", formData);
 		const cp = [...info.imgList];
-		await cp.push(res.data.url);
+		await cp.push({ filename: res.data.filename, id: res.data.id });
 		await changeInfo(cp, "imgList");
+		setLoading(true);
 	};
 
 	const removeImg = async (index) => {
@@ -66,11 +77,11 @@ const GalleryLayout = (props) => {
 			await changeInfo(cp, "imgList");
 		} else {
 			const cp = [...info.imgList];
-			const name = cp[index];
+			const id = cp[index].id;
 			cp.splice(index, 1);
 			changeInfo(cp, "imgList");
 
-			await axios.post("/api/image/delete", { name: name });
+			await axios.get("/api/image/delete/" + id);
 		}
 	};
 
@@ -103,26 +114,47 @@ const GalleryLayout = (props) => {
 					이미지 업로드
 				</button>
 			</div>
-			<div class="w-full border-2 border-gray-300 px-4 py-4 mb-2 flex flex-wrap">
-				{info.imgList.length === 0 ? (
+			<div
+				class={
+					"w-full border-2 border-gray-300 px-4 py-4 mb-2 flex flex-wrap " +
+					(loading ? "text-center" : "")
+				}
+			>
+				{info.imgList.length === 0 && loading ? (
 					<div class="text-gray-500">업로드된 이미지가 없습니다.</div>
-				) : null}
-				{info.imgList.map((element, index) => {
-					return (
-						<div class="w-24 mb-4 border border-gray-300 rounded-md relative mx-4">
-							<img
-								class="w-full h-24 object-contain"
-								src={"/" + element}
-								alt="imgList"
-							/>
-							<MdCancel
-								onClick={() => removeImg(index)}
-								size={24}
-								class="cursor-pointer rounded-full bg-white absolute -top-2 -right-2"
-							/>
-						</div>
-					);
-				})}
+				) : loading ? (
+					info.imgList.map((element, index) => {
+						return (
+							<div class="w-24 mb-4 border border-gray-300 rounded-md relative mx-4">
+								<img
+									class="w-full h-24 object-contain"
+									src={
+										window.location.origin +
+										"/api/image/view/" +
+										element.filename
+									}
+									alt="imgList"
+								/>
+								{/* <img
+									class="w-full h-24 object-contain"
+									src={
+										"http://localhost:5000/api/image/view/" + element.filename
+									}
+									alt="imgList"
+								/> */}
+								<MdCancel
+									onClick={() => removeImg(index)}
+									size={24}
+									class="cursor-pointer rounded-full bg-white absolute -top-2 -right-2"
+								/>
+							</div>
+						);
+					})
+				) : (
+					<div class="w-full h-24 my-2 py-4 flex justify-center items-center text-center">
+						<CircularProgress />
+					</div>
+				)}
 			</div>
 			<div class="cursor-pointer w-full pt-2 pb-4 flex justify-end items-center">
 				<textarea

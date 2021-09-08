@@ -3,8 +3,6 @@ import { Link, useHistory } from "react-router-dom";
 import Subtitle from "../../../../../components/Subtitle";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
-import { CKEditor } from "@ckeditor/ckeditor5-react";
-import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import GalleryLayout from "../../../../../components/gallery/galleryLayout";
 
 const GalleryEdit = (props) => {
@@ -45,6 +43,7 @@ const GalleryEdit = (props) => {
 			titleRef.current.focus();
 		} else if (info.content === "") {
 			alert("내용을 입력해주세요!");
+			contentRef.current.focus();
 		} else if (info.imgList.length === 0) {
 			alert("하나 이상의 이미지를 업로드 해주세요.");
 		} else if (currentEmail === "master" || currentEmail === info.type) {
@@ -52,7 +51,6 @@ const GalleryEdit = (props) => {
 				.post(
 					"/api/gallery/update/" + id,
 					{
-						// id: id,
 						key: process.env.REACT_APP_API_KEY,
 						title: info.title,
 						content: info.content,

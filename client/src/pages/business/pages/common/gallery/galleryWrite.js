@@ -48,6 +48,7 @@ const GalleryWrite = (props) => {
 		} else if (info.imgList.length === 0) {
 			alert("1개 이상의 이미지를 업로드 해주세요.");
 		} else if (currentEmail === "master" || currentEmail === info.type) {
+			console.log("info", info);
 			axios
 				.post(
 					"/api/gallery/add/" + type,

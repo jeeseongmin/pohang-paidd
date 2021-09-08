@@ -17,7 +17,7 @@ const gallerySchema = new Schema(
 			required: true,
 		},
 		imgList: {
-			type: [String],
+			type: [Object],
 			required: true,
 		},
 	},

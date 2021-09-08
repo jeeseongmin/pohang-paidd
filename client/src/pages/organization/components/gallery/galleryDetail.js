@@ -4,7 +4,6 @@ import Subtitle from "../../../../components/Subtitle";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import ReactHtmlParser from "react-html-parser";
-// import NoticeEdit from "./noticeEdit";
 import Skeleton from "@material-ui/lab/Skeleton";
 import GalleryEdit from "./galleryEdit";
 
@@ -16,7 +15,6 @@ const GalleryDetail = (props) => {
 	const [isEdit, setIsEdit] = useState(false);
 
 	const currentEmail = useSelector((state) => state.setting.currentEmail);
-	const currentPassword = useSelector((state) => state.setting.currentPassword);
 
 	const id = props.id;
 
@@ -117,12 +115,24 @@ const GalleryDetail = (props) => {
 						<div class="w-full px-2 lg:px-8 py-4 flex flex-col justify-end items-center border-t border-gray-300">
 							{info.imgList.map((element, index) => {
 								return (
-									<div class="w-3/4 flex justify-center items-center my-4">
+									<div class="w-1/2 flex justify-center items-center my-4">
 										<img
 											class="w-full object-cover"
-											src={"/" + element}
+											src={
+												window.location.origin +
+												"/api/image/view/" +
+												element.filename
+											}
 											alt="img"
 										/>
+										{/* <img
+											class="w-full object-cover"
+											src={
+												"http://localhost:5000/api/image/view/" +
+												element.filename
+											}
+											alt="img"
+										/> */}
 									</div>
 								);
 							})}

@@ -5,7 +5,7 @@ const Slider = () => {
 	const settings = {
 		dots: true,
 		fade: true,
-		arrows: true,
+		arrows: false,
 		infinite: true,
 		speed: 500,
 		slidesToShow: 1,
@@ -17,11 +17,11 @@ const Slider = () => {
 		<>
 			<SlideBlock {...settings}>
 				<div class="">
-					<div class="w-full h-auto lg:h-2/4 flex flex-row items-center">
+					<div class="w-full h-auto lg:h-2/4 flex flex-row items-center ">
 						<img
 							src="/image/slide1-img1.png"
 							alt="main-img1"
-							class="object-cover w-full hidden lg:block"
+							class="object-cover w-full"
 						/>
 						{/* <img
 							src="/image/slide1-img2.png"
@@ -35,7 +35,7 @@ const Slider = () => {
 						<img
 							src="/image/slide2-img1.png"
 							alt="main-img1"
-							class="object-cover w-full hidden lg:block"
+							class="object-cover w-full"
 						/>
 						{/* <img
 							src="/image/slide2-img2.png"

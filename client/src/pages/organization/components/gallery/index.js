@@ -79,9 +79,21 @@ const Index = (props) => {
 					<div class="mb-4 h-48 border border-gray-100 shadow-xl">
 						<img
 							class="w-full h-full object-cover"
-							src={"/" + data.imgList[0]}
+							src={
+								window.location.origin +
+								"/api/image/view/" +
+								data.imgList[0].filename
+							}
 							alt="logo"
 						/>
+						{/* <img
+							class="w-full h-full object-cover"
+							src={
+								"http://localhost:5000/api/image/view/" +
+								data.imgList[0].filename
+							}
+							alt="logo"
+						/> */}
 					</div>
 					<div>
 						<h1>

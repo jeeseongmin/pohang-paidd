@@ -50,6 +50,7 @@ const Index = () => {
 					dispatch(setCurrentPassword(info.password));
 					dispatch(setProfile("off"));
 					sessionStorage.setItem("loginToken", true);
+					alert("로그인되었습니다.");
 					history.push("/");
 				} else {
 					emailRef.current.focus();
