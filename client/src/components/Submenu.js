@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Route, Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { setMenu, setSubmenu } from "../reducers/setting";
+import { setMenu, setSubmenu, setSelected } from "../reducers/setting";
 
 const Submenu = (props) => {
 	const dispatch = useDispatch();
@@ -24,9 +24,9 @@ const Submenu = (props) => {
 		],
 		[
 			"/business/base/default",
-			"/business/org1/default",
-			"/business/org2/default",
-			"/business/org3/default",
+			"/business/org1/intro",
+			"/business/org2/intro",
+			"/business/org3/intro",
 		],
 		["/organization/intro/0"],
 		[
@@ -56,6 +56,13 @@ const Submenu = (props) => {
 		dispatch(setMenu(num1));
 		dispatch(setSubmenu(num2));
 		window.scrollTo(0, 0);
+		if (num1 === 1) {
+			if (num2 !== 0) {
+				dispatch(setSelected(0));
+			}
+		} else if (num1 === 2) {
+			dispatch(setSelected(0));
+		}
 	};
 
 	return (

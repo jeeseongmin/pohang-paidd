@@ -10,16 +10,41 @@ import Slider from "../components/Slider";
 const Home = () => {
 	const dispatch = useDispatch();
 	const [photoList, setPhotoList] = useState([]);
+	const [galleryList, setGalleryList] = useState([]);
 
 	useEffect(() => {
 		dispatch(setMenu(0));
 		dispatch(setSubmenu(0));
+		axios
+			.post(
+				"/api/gallery",
+				{ key: process.env.REACT_APP_API_KEY },
+				{
+					headers: {
+						"Content-type": "application/json",
+						Accept: "application/json",
+					},
+				}
+			)
+			.then((Response) => {
+				setGalleryList(Response.data);
+			})
+			.catch((Error) => {
+				console.log(Error);
+			});
 	}, []);
 
 	const goSubPage = (main, sub) => {
 		dispatch(setMenu(main));
 		dispatch(setSubmenu(sub));
 		window.scrollTo(0, 0);
+	};
+
+	const dataToText = (date) => {
+		let year = date.substring(2, 4);
+		let month = date.substring(5, 7);
+		let day = date.substring(8, 10);
+		return year + "." + month + "." + day;
 	};
 
 	return (
@@ -81,79 +106,59 @@ const Home = () => {
 					</div>
 				</div>
 				{/* section 3 */}
-				<div class="flex flex-col px-5 py-8 2xl:px-36 xl:px-32 md:px-8">
-					<div class="w-full">
-						<h1 class="text-xl font-semibold lg:text-3xl">소식</h1>
-						<div class="text-md py-4 md:text-xl md:py-8">
-							발달장애인협회에서는 어떤 일들이 있었을까요?
-						</div>
-					</div>
-					<div class="w-full">
-						<div class="flex justify-end items-center"></div>
-						<div class="w-full flex flex-row flex-wrap ">
-							<div class="w-1/2 px-2 md:w-1/4 md:px-4">
-								<div class="cursor-pointer mb-4 h-36 object-cover border border-gray-500 md:h-48">
-									<img
-										class="w-full h-full"
-										src="/image/noImage.png"
-										alt="logo"
-									/>
+				{galleryList.length === 0 ? null : (
+					<div class="flex flex-col px-5 py-8 2xl:px-36 xl:px-32 md:px-8">
+						<div class="w-full">
+							<h1 class="text-xl font-semibold lg:text-3xl">소식</h1>
+							<div class="w-full flex flex-row justify-between items-center">
+								<div class="text-md py-4 md:text-xl md:py-8">
+									발달장애인협회에서는 어떤 일들이 있었을까요?
 								</div>
-								<div>
-									<h1>
-										<b>제목1</b>
-									</h1>
-									<p class="text-gray-300">21.07.01</p>
-								</div>
-							</div>
-							<div class="w-1/2 px-2 md:w-1/4 md:px-4">
-								<div class="cursor-pointer mb-4 h-36 object-cover border border-gray-500 md:h-48">
-									<img
-										class="w-full h-full"
-										src="/image/noImage.png"
-										alt="logo"
-									/>
-								</div>
-								<div>
-									<h1>
-										<b>제목2</b>
-									</h1>
-									<p class="text-gray-300">21.07.01</p>
-								</div>
-							</div>
-							<div class="w-1/2 px-4 md:w-1/4 hidden md:block">
-								<div class="cursor-pointer mb-4 h-48  object-cover border border-gray-500">
-									<img
-										class="w-full h-full"
-										src="/image/noImage.png"
-										alt="logo"
-									/>
-								</div>
-								<div>
-									<h1>
-										<b>제목3</b>
-									</h1>
-									<p class="text-gray-300">21.07.01</p>
-								</div>
-							</div>
-							<div class="w-1/2 px-4 md:w-1/4 hidden md:block">
-								<div class="cursor-pointer mb-4 h-48  object-cover border border-gray-500">
-									<img
-										class="w-full h-full"
-										src="/image/noImage.png"
-										alt="logo"
-									/>
-								</div>
-								<div>
-									<h1>
-										<b>제목4</b>
-									</h1>
-									<p class="text-gray-300">21.07.01</p>
+								<div class="flex flex-row border border-black">
+									<div class="w-3 h-3 rounded-full bg-gray-300 cursor-pointer"></div>
 								</div>
 							</div>
 						</div>
+						<div class="w-full">
+							<div class="flex justify-end items-center"></div>
+							<div class="w-full flex flex-row flex-wrap ">
+								{galleryList.map((element, index) => {
+									const destination =
+										element.type === "org4"
+											? "/organization/galleryDetail/" + element._id
+											: "/business/" + element.type + "/" + element._id;
+									return (
+										<Link
+											to={destination}
+											class="w-1/2 lg:w-1/4 px-2 md:w-1/4 md:px-4 mb-4 lg:mb-0"
+										>
+											<div class="cursor-pointer mb-4 h-36 object-cover border border-gray-200 md:h-48">
+												<img
+													class="w-full h-full"
+													src={
+														window.location.origin +
+														"/api/image/view/" +
+														element.imgList[0].filename
+													}
+													alt="logo"
+												/>
+											</div>
+											<div>
+												<h1 class="truncate">
+													<b>{element.title}</b>
+												</h1>
+												<p class="text-gray-300">
+													{dataToText(element.createdAt)}
+												</p>
+											</div>
+										</Link>
+									);
+								})}
+							</div>
+						</div>
 					</div>
-				</div>
+				)}
+
 				{/* section 4 */}
 				<div class="flex flex-col px-5 py-16 2xl:px-36 xl:px-32 md:px-8">
 					<div class="w-full">

@@ -10,6 +10,7 @@ import {
 	setCurrentEmail,
 	setCurrentPassword,
 	setLoginToken,
+	setSelected,
 } from "../../reducers/setting";
 import Main from "./Main";
 import Sub from "./Sub";

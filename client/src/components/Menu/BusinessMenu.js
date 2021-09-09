@@ -1,8 +1,9 @@
 import React from "react";
-import { Route, Link } from "react-router-dom";
+import { Route, Link, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
 const BusinessMenu = (props) => {
+	const history = useHistory();
 	const menu = useSelector((state) => state.setting.menu);
 	const submenu = useSelector((state) => state.setting.submenu);
 
@@ -12,6 +13,17 @@ const BusinessMenu = (props) => {
 
 	const name = ["센터소개", "주요사업", "공지사항", "포토갤러리"];
 	const name2 = ["사업소개", "주요사업", "공지사항", "포토갤러리"];
+
+	const url = [
+		"/business/org1/intro",
+		"/business/org1/business",
+		"/business/org1/notice",
+		"/business/org1/gallery",
+	];
+	const onChange = (num) => {
+		changeSelected(num);
+		history.push(url[num]);
+	};
 
 	return (
 		<Link

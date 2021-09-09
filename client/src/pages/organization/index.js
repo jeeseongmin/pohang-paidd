@@ -23,16 +23,24 @@ const Index = ({ match }) => {
 	};
 
 	useEffect(() => {
-		if (selected === 0) {
-			history.push("/organization/intro/0");
-		} else if (selected === 1) {
-			history.push("/organization/business/0");
-		} else if (selected === 2) {
-			history.push("/organization/notice/0");
-		} else if (selected === 3) {
-			history.push("/organization/gallery/0");
+		if (window.location.pathname.includes("notice")) {
+			history.push(window.location.pathname);
+			setSelected(2);
+		} else if (window.location.pathname.includes("gallery")) {
+			history.push(window.location.pathname);
+			setSelected(3);
+		} else {
+			if (selected === 0) {
+				history.push("/organization/intro/0");
+			} else if (selected === 1) {
+				history.push("/organization/business/0");
+			} else if (selected === 2) {
+				history.push("/organization/notice/0");
+			} else if (selected === 3) {
+				history.push("/organization/gallery/0");
+			}
 		}
-	}, [selected]);
+	}, []);
 
 	return (
 		<Layout>
@@ -89,16 +97,16 @@ const Index = ({ match }) => {
 								<Notice />
 							</Route>
 							<Route exact path="/organization/gallery/0">
-								<Gallery />
+								<Gallery pages={"org4"} />
 							</Route>
 							<Route exact path="/organization/galleryWrite/0">
 								<GalleryWrite id={match.params.type} />
 							</Route>
 							<Route exact path="/organization/galleryDetail/:id">
-								<GalleryDetail id={match.params.type} />
+								<GalleryDetail id={match.params.type} pages={"org4"} />
 							</Route>
 							<Route exact path="/organization/writeNotice/0">
-								<NoticeWrite />
+								<NoticeWrite pages={"org4"} />
 							</Route>
 							<Route exact path="/organization/noticeDetail/:id">
 								<NoticeDetail id={match.params.type} />

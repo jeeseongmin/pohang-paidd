@@ -1,7 +1,7 @@
 import React from "react";
 import { Route, Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { setMenu, setSubmenu } from "../../reducers/setting";
+import { setMenu, setSubmenu, setSelected } from "../../reducers/setting";
 
 // Main Menu in Navbar
 const Main = (props) => {
@@ -27,6 +27,7 @@ const Main = (props) => {
 	const goPage = (num) => {
 		dispatch(setMenu(num));
 		dispatch(setSubmenu(1));
+		dispatch(setSelected(0));
 		window.scrollTo(0, 0);
 	};
 	return (

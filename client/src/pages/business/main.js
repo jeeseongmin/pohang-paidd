@@ -7,8 +7,10 @@ import Notice from "./pages/common/notice/notice";
 import NoticeWrite from "./pages/common/notice/noticeWrite";
 import NoticeDetail from "./pages/common/notice/noticeDetail";
 import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 
 const Main = (props) => {
+	const history = useHistory();
 	const [selected, setSelected] = useState(0);
 	const changeSelected = (num) => {
 		setSelected(num);
@@ -16,21 +18,29 @@ const Main = (props) => {
 	};
 
 	const Content = () => {
-		if (selected === 0) {
-			return <Intro />;
-		} else if (selected === 1) {
-			return <Business />;
-		} else if (selected === 2) {
-			if (props.type === "default") {
+		if (window.location.pathname.includes("notice")) {
+			history.push(window.location.pathname);
+			setSelected(2);
+		} else if (window.location.pathname.includes("gallery")) {
+			history.push(window.location.pathname);
+			setSelected(3);
+		} else {
+			if (selected === 0) {
+				return <Intro />;
+			} else if (selected === 1) {
+				return <Business />;
+			} else if (selected === 2) {
+				if (props.type === "default") {
+					return <Notice />;
+				} else if (props.type === "noticeWrite") {
+					return <NoticeWrite />;
+				} else if (props.type === "noticeDetail") {
+					return <NoticeDetail />;
+				}
 				return <Notice />;
-			} else if (props.type === "noticeWrite") {
-				return <NoticeWrite />;
-			} else if (props.type === "noticeDetail") {
-				return <NoticeDetail />;
+			} else if (selected === 3) {
+				return <Gallery />;
 			}
-			return <Notice />;
-		} else if (selected === 3) {
-			return <Gallery />;
 		}
 	};
 

@@ -73,9 +73,7 @@ const GalleryDetail = (props) => {
 					alert("삭제되었습니다.");
 					history.push("/organization/gallery/0");
 					for (let i = 0; i < info.imgList.length; i++) {
-						axios.post("/api/image/delete", {
-							name: info.imgList[i],
-						});
+						axios.get("/api/image/delete/" + info.imgList[i].id);
 					}
 				})
 				.catch((response) => {

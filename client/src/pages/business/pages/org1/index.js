@@ -10,8 +10,10 @@ import NoticeDetail from "../common/notice/noticeDetail";
 import Gallery from "../common/gallery/gallery";
 import GalleryDetail from "../common/gallery/galleryDetail";
 import GalleryWrite from "../common/gallery/galleryWrite";
+import { useHistory } from "react-router-dom";
 
 const Index = (props, { match }) => {
+	const history = useHistory();
 	const [selected, setSelected] = useState(0);
 
 	const changeSelected = (num) => {
@@ -20,25 +22,33 @@ const Index = (props, { match }) => {
 	};
 
 	const Content = () => {
-		if (selected === 0) {
-			return <Intro />;
-		} else if (selected === 1) {
-			return <Business />;
-		} else if (selected === 2) {
-			if (props.type === "default") {
-				return <Notice pages={props.pages} />;
-			} else if (props.type === "noticeWrite") {
-				return <NoticeWrite pages={props.pages} />;
-			} else {
-				return <NoticeDetail pages={props.pages} id={props.type} />;
-			}
-		} else if (selected === 3) {
-			if (props.type === "default") {
-				return <Gallery pages={props.pages} />;
-			} else if (props.type === "galleryWrite") {
-				return <GalleryWrite pages={props.pages} />;
-			} else {
-				return <GalleryDetail pages={props.pages} id={props.type} />;
+		if (window.location.pathname.includes("notice")) {
+			history.push(window.location.pathname);
+			setSelected(2);
+		} else if (window.location.pathname.includes("gallery")) {
+			history.push(window.location.pathname);
+			setSelected(3);
+		} else {
+			if (selected === 0) {
+				return <Intro />;
+			} else if (selected === 1) {
+				return <Business />;
+			} else if (selected === 2) {
+				if (props.type === "default") {
+					return <Notice pages={props.pages} />;
+				} else if (props.type === "noticeWrite") {
+					return <NoticeWrite pages={props.pages} />;
+				} else {
+					return <NoticeDetail pages={props.pages} id={props.type} />;
+				}
+			} else if (selected === 3) {
+				if (props.type === "default") {
+					return <Gallery pages={props.pages} />;
+				} else if (props.type === "galleryWrite") {
+					return <GalleryWrite pages={props.pages} />;
+				} else {
+					return <GalleryDetail pages={props.pages} id={props.type} />;
+				}
 			}
 		}
 	};
