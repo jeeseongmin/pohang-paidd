@@ -10,7 +10,6 @@ const GalleryWrite = (props) => {
 	const dispatch = useDispatch();
 	const history = useHistory();
 	const [info, setInfo] = useState({
-		type: "",
 		title: "",
 		content: "",
 		imgList: [],

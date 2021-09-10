@@ -25,9 +25,9 @@ const Sub = (props) => {
 		],
 		[
 			"/business/base/default",
-			"/business/org1/default",
-			"/business/org2/default",
-			"/business/org3/default",
+			"/business/org1/intro",
+			"/business/org2/intro",
+			"/business/org3/intro",
 		],
 		["/organization/intro/0"],
 		[

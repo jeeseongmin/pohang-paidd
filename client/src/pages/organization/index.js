@@ -100,7 +100,7 @@ const Index = ({ match }) => {
 								<Gallery pages={"org4"} />
 							</Route>
 							<Route exact path="/organization/galleryWrite/0">
-								<GalleryWrite id={match.params.type} />
+								<GalleryWrite pages={"org4"} id={match.params.type} />
 							</Route>
 							<Route exact path="/organization/galleryDetail/:id">
 								<GalleryDetail id={match.params.type} pages={"org4"} />

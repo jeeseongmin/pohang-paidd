@@ -69,12 +69,11 @@ const Gallery = (props) => {
 	function GalleryBlock(props) {
 		const data = props.data;
 		const date = dataToText(data.createdAt);
-		console.log("GalleryBlock", data);
 
 		return (
 			<>
 				<Link
-					to={"/business/" + type + "/" + data._id}
+					to={"/business/" + type + "/gallery/" + data._id}
 					class="w-full md:w-1/2 lg:w-1/4 px-4 mb-8 cursor-pointer"
 				>
 					<div class="mb-4 h-48 border border-gray-100 shadow-xl">
@@ -113,14 +112,14 @@ const Gallery = (props) => {
 				<Subtitle text={"포토갤러리"} />
 
 				<div class="w-1/2 flex flex-row items-center relative justify-end ">
-					<input
+					{/* <input
 						type="text"
 						name="name"
 						placeholder="검색어"
 						autocomplete="off"
 						class="w-full h-full py-2 px-4 mr-2 border border-gray-300 outline-none"
 					/>
-					<BsSearch size={28} class="cursor-pointer text-gray-300" />
+					<BsSearch size={28} class="cursor-pointer text-gray-300" /> */}
 				</div>
 			</div>
 			<div class="w-full flex flex-row flex-wrap border-b border-gray-200 ">
@@ -150,7 +149,7 @@ const Gallery = (props) => {
 				{currentEmail === "master" || currentEmail === type ? (
 					<div class="relative md:absolute right-0 w-full md:w-auto flex justify-end md:block">
 						<Link
-							to={"/business/" + type + "/galleryWrite"}
+							to={"/business/" + type + "/gallery/write"}
 							class="cursor-pointer px-16 py-2 border border-purple-700 text-purple-700 flex flex-row items-center hover:bg-purple-500 hover:text-white hover:font-bold"
 						>
 							작성하기

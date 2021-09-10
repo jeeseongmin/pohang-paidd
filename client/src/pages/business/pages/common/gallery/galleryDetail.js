@@ -6,6 +6,7 @@ import axios from "axios";
 import ReactHtmlParser from "react-html-parser";
 import Skeleton from "@material-ui/lab/Skeleton";
 import GalleryEdit from "./galleryEdit";
+import CircularProgress from "@material-ui/core/CircularProgress";
 
 const GalleryDetail = (props) => {
 	const [loading, setLoading] = useState(false);
@@ -71,7 +72,7 @@ const GalleryDetail = (props) => {
 				)
 				.then((response) => {
 					alert("삭제되었습니다.");
-					history.push("/business/" + info.type + "/default");
+					history.push("/business/" + info.type + "/gallery");
 					for (let i = 0; i < info.imgList.length; i++) {
 						axios.post("/api/image/delete", {
 							name: info.imgList[i],
@@ -113,29 +114,33 @@ const GalleryDetail = (props) => {
 							)}
 						</div>
 						<div class="w-full px-2 lg:px-8 py-4 flex flex-col justify-end items-center border-t border-gray-300">
-							{info.imgList.map((element, index) => {
-								return (
-									<div class="w-1/2 flex justify-center items-center my-4">
-										<img
-											class="w-full object-cover"
-											src={
-												window.location.origin +
-												"/api/image/view/" +
-												element.filename
-											}
-											alt="img"
-										/>
-										{/* <img
-											class="w-full object-cover"
-											src={
-												"http://localhost:5000/api/image/view/" +
-												element.filename
-											}
-											alt="img"
-										/> */}
-									</div>
-								);
-							})}
+							{!loading ? (
+								<CircularProgress />
+							) : (
+								info.imgList.map((element, index) => {
+									return (
+										<div class="w-1/2 flex justify-center items-center my-4">
+											<img
+												class="w-full object-cover"
+												src={
+													window.location.origin +
+													"/api/image/view/" +
+													element.filename
+												}
+												alt="img"
+											/>
+											{/* <img
+													class="w-full object-cover"
+													src={
+														"http://localhost:5000/api/image/view/" +
+														element.filename
+													}
+													alt="img"
+												/> */}
+										</div>
+									);
+								})
+							)}
 						</div>
 						<div class="w-full px-2 lg:px-8 py-4 flex justify-end items-center border-t border-gray-300">
 							<div class="h-24 text-base flex-1 pr-4 truncate	">
@@ -146,7 +151,7 @@ const GalleryDetail = (props) => {
 					<div class="flex justify-between items-center flex-col md:flex-row">
 						<Link
 							class="w-full md:w-auto cursor-pointer px-16 py-2 justify-center border border-purple-700 text-purple-700 flex flex-row items-center hover:bg-purple-500 hover:text-white hover:font-bold"
-							to={"/business/" + props.pages + "/default"}
+							to={"/business/" + props.pages + "/gallery"}
 							onClick={() => window.scrollTo(0, 0)}
 						>
 							뒤로 가기

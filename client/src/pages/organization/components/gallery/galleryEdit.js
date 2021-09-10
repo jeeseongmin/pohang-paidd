@@ -65,7 +65,7 @@ const GalleryEdit = (props) => {
 				)
 				.then((response) => {
 					alert("저장되었습니다.");
-					history.push("/organization/gallery/0");
+					history.push("/organization/galleryDetail/" + id);
 					for (let i = 0; i < deletedList.length; i++) {
 						axios.post("/api/image/delete", {
 							name: deletedList[i],

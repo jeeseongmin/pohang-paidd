@@ -54,7 +54,7 @@ const NoticeEdit = (props) => {
 				)
 				.then((response) => {
 					alert("저장되었습니다.");
-					history.push("/business/" + props.pages + "/" + id);
+					history.push("/business/" + props.pages + "/notice/" + id);
 				})
 				.catch((response) => {
 					console.log("Error!");
@@ -77,7 +77,7 @@ const NoticeEdit = (props) => {
 			<div class="flex justify-between items-center flex-col md:flex-row">
 				<Link
 					class="w-full md:w-auto cursor-pointer mb-4 md:mb-0 px-16 py-2 justify-center border border-purple-700 text-purple-700 flex flex-row items-center hover:bg-purple-500 hover:text-white hover:font-bold"
-					to={"/business/" + pages + "/default"}
+					to={"/business/" + pages + "/notice"}
 					onClick={() => window.scrollTo(0, 0)}
 				>
 					뒤로 가기

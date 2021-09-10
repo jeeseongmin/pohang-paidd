@@ -13,6 +13,7 @@ import GalleryWrite from "../common/gallery/galleryWrite";
 
 const Index = (props) => {
 	const [selected, setSelected] = useState(0);
+	const name = ["intro", "business", "notice", "gallery"];
 
 	const changeSelected = (num) => {
 		setSelected(num);
@@ -20,26 +21,46 @@ const Index = (props) => {
 	};
 
 	const Content = () => {
-		if (selected === 0) {
+		const pathname = window.location.pathname;
+		// /business/org/intro
+		if (pathname.includes("intro")) {
+			setSelected(0);
 			return <Intro />;
-		} else if (selected === 1) {
-			return <Business />;
-		} else if (selected === 2) {
-			if (props.type === "default") {
+		} else if (pathname.includes("notice")) {
+			setSelected(2);
+			// list : /business/org/notice
+			if (pathname.split("/").length === 4) {
 				return <Notice pages={props.pages} />;
-			} else if (props.type === "noticeWrite") {
+			}
+			// write : /business/org/notice/write
+			else if (pathname.includes("write")) {
 				return <NoticeWrite pages={props.pages} />;
-			} else {
-				return <NoticeDetail pages={props.pages} id={props.type} />;
 			}
-		} else if (selected === 3) {
-			if (props.type === "default") {
+			// detail : /business/org/notice/:id
+			else {
+				const id = pathname.split("/")[4];
+				return <NoticeDetail pages={props.pages} id={id} />;
+			}
+		} else if (window.location.pathname.includes("gallery")) {
+			setSelected(3);
+			// list : /business/org/gallery
+			if (pathname.split("/").length === 4) {
 				return <Gallery pages={props.pages} />;
-			} else if (props.type === "galleryWrite") {
-				return <GalleryWrite pages={props.pages} />;
-			} else {
-				return <GalleryDetail pages={props.pages} id={props.type} />;
 			}
+			// write : /business/org/gallery/write
+			else if (pathname.includes("write")) {
+				return <GalleryWrite pages={props.pages} />;
+			}
+			// detail : /business/org/gallery/:id
+			else {
+				const id = pathname.split("/")[4];
+				return <GalleryDetail pages={props.pages} id={id} />;
+			}
+		}
+		// /business/org/business
+		else if (pathname.includes("business")) {
+			setSelected(1);
+			return <Business />;
 		}
 	};
 
@@ -54,6 +75,7 @@ const Index = (props) => {
 								selected={selected}
 								pages={props.pages}
 								changeSelected={changeSelected}
+								type={name[index]}
 							/>
 						);
 					})}

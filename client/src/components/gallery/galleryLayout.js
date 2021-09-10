@@ -44,13 +44,6 @@ const GalleryLayout = (props) => {
 	// 	});
 	// }, [img]);
 
-	useEffect(() => {
-		console.log(window.location.href);
-		console.log(window.location.hostname);
-		console.log(window.location.pathname);
-		console.log(window.location.origin);
-	}, []);
-
 	const buttonClick = () => {
 		buttonRef.current.click();
 	};

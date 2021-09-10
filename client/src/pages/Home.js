@@ -47,6 +47,16 @@ const Home = () => {
 		return year + "." + month + "." + day;
 	};
 
+	const goGallery = (type) => {
+		if (type === "org4") {
+			dispatch(setMenu(3));
+			dispatch(setSubmenu(1));
+		} else {
+			dispatch(setMenu(2));
+			dispatch(setSubmenu(3));
+		}
+	};
+
 	return (
 		<Layout>
 			<div class="w-full h-full">
@@ -114,8 +124,8 @@ const Home = () => {
 								<div class="text-md py-4 md:text-xl md:py-8">
 									발달장애인협회에서는 어떤 일들이 있었을까요?
 								</div>
-								<div class="flex flex-row border border-black">
-									<div class="w-3 h-3 rounded-full bg-gray-300 cursor-pointer"></div>
+								<div class="flex flex-row">
+									{/* <div class="w-3 h-3 rounded-full bg-gray-300 cursor-pointer"></div> */}
 								</div>
 							</div>
 						</div>
@@ -123,36 +133,42 @@ const Home = () => {
 							<div class="flex justify-end items-center"></div>
 							<div class="w-full flex flex-row flex-wrap ">
 								{galleryList.map((element, index) => {
-									const destination =
-										element.type === "org4"
-											? "/organization/galleryDetail/" + element._id
-											: "/business/" + element.type + "/" + element._id;
-									return (
-										<Link
-											to={destination}
-											class="w-1/2 lg:w-1/4 px-2 md:w-1/4 md:px-4 mb-4 lg:mb-0"
-										>
-											<div class="cursor-pointer mb-4 h-36 object-cover border border-gray-200 md:h-48">
-												<img
-													class="w-full h-full"
-													src={
-														window.location.origin +
-														"/api/image/view/" +
-														element.imgList[0].filename
-													}
-													alt="logo"
-												/>
-											</div>
-											<div>
-												<h1 class="truncate">
-													<b>{element.title}</b>
-												</h1>
-												<p class="text-gray-300">
-													{dataToText(element.createdAt)}
-												</p>
-											</div>
-										</Link>
-									);
+									if (index < 4) {
+										const destination =
+											element.type === "org4"
+												? "/organization/galleryDetail/" + element._id
+												: "/business/" +
+												  element.type +
+												  "/gallery/" +
+												  element._id;
+										return (
+											<Link
+												to={destination}
+												onClick={() => goGallery(element.type)}
+												class="w-1/2 lg:w-1/4 px-2 md:w-1/4 md:px-4 mb-4 lg:mb-0"
+											>
+												<div class="cursor-pointer mb-4 h-36 border border-gray-200 md:h-48">
+													<img
+														class="w-full h-full object-cover"
+														src={
+															window.location.origin +
+															"/api/image/view/" +
+															element.imgList[0].filename
+														}
+														alt="logo"
+													/>
+												</div>
+												<div>
+													<h1 class="truncate">
+														<b>{element.title}</b>
+													</h1>
+													<p class="text-gray-300">
+														{dataToText(element.createdAt)}
+													</p>
+												</div>
+											</Link>
+										);
+									}
 								})}
 							</div>
 						</div>
@@ -178,32 +194,25 @@ const Home = () => {
 									정기후원/일시후원/물품후원
 								</h1>
 							</div>
-							<div class="absolute bottom-0 lg:bottom-0 right-2 h-1/2 md:h-full lg:h-auto">
+							<Link
+								to="/participation/support/0"
+								onClick={() => goSubPage(4, 3)}
+								class="z-40 lg:text-xl text-xs w-40 lg:w-50 text-center cursor-pointer py-2 px-4 lg:py-3 lg:px-8 border border-purple-700 text-purple-700 rounded-full hover:border-purple-300 hover:bg-purple-300 hover:text-white"
+							>
+								자세히 보기
+							</Link>
+							<div class="z-20 absolute bottom-0 lg:bottom-0 right-2 h-1/2 md:h-full lg:h-1/2 xl:h-auto">
 								<img
 									class="h-full object-cover"
 									src="/image/home-img3.png"
 									alt="logo"
 								/>
 							</div>
-							<Link
-								to="/participation/support/0"
-								onClick={() => goSubPage(4, 3)}
-								class="z-50 lg:text-xl text-xs w-60 text-center cursor-pointer py-2 px-4 lg:py-3 lg:px-8 border border-purple-700 text-purple-700 rounded-full hover:border-purple-300 hover:bg-purple-300 hover:text-white"
-							>
-								자세히 보기
-							</Link>
 						</div>
 						<div class="w-full lg:w-1/2 ml-0 h-60 md:h-40 lg:h-96 lg:ml-4 p-8 border border-purple-300 bg-white relative">
 							<h1 class="text-xl lg:text-3xl text-purple-600 font-semibold mb-8 ">
 								자원봉사
 							</h1>
-							<div class="absolute bottom-0 lg:bottom-0 right-2 h-2/3 md:h-full lg:h-auto">
-								<img
-									class="h-full object-cover"
-									src="/image/home-img4.png"
-									alt="logo"
-								/>
-							</div>
 							<Link
 								to="/participation/volunteer/0"
 								onClick={() => goSubPage(4, 4)}
@@ -211,6 +220,13 @@ const Home = () => {
 							>
 								자세히 보기
 							</Link>
+							<div class="absolute bottom-0 lg:bottom-0 right-2 h-1/2 md:h-full lg:h-1/2 xl:h-auto">
+								<img
+									class="h-full object-cover"
+									src="/image/home-img4.png"
+									alt="logo"
+								/>
+							</div>
 						</div>
 					</div>
 				</div>

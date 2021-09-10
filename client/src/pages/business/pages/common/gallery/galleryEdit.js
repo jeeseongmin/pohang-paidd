@@ -65,7 +65,7 @@ const GalleryEdit = (props) => {
 				)
 				.then((response) => {
 					alert("저장되었습니다.");
-					history.push("/business/" + props.pages + "/" + id);
+					history.push("/business/" + props.pages + "/gallery/" + id);
 					for (let i = 0; i < deletedList.length; i++) {
 						axios.post("/api/image/delete", {
 							name: deletedList[i],
@@ -95,7 +95,7 @@ const GalleryEdit = (props) => {
 			<div class="flex justify-between items-center flex-col md:flex-row">
 				<Link
 					class="w-full md:w-auto cursor-pointer mb-4 md:mb-0 px-16 py-2 justify-center border border-purple-700 text-purple-700 flex flex-row items-center hover:bg-purple-500 hover:text-white hover:font-bold"
-					to={"/business/" + pages + "/default"}
+					to={"/business/" + pages + "/gallery"}
 					onClick={() => window.scrollTo(0, 0)}
 				>
 					뒤로 가기

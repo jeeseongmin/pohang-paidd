@@ -112,14 +112,14 @@ const Index = (props) => {
 				<Subtitle text={"포토갤러리"} />
 
 				<div class="w-1/2 flex flex-row items-center relative justify-end ">
-					<input
+					{/* <input
 						type="text"
 						name="name"
 						placeholder="검색어"
 						autocomplete="off"
 						class="w-full h-full py-2 px-4 mr-2 border border-gray-300 outline-none"
 					/>
-					<BsSearch size={28} class="cursor-pointer text-gray-300" />
+					<BsSearch size={28} class="cursor-pointer text-gray-300" /> */}
 				</div>
 			</div>
 			<div class="w-full flex flex-row flex-wrap border-b border-gray-200 ">

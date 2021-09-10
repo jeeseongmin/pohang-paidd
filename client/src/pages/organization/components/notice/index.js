@@ -81,14 +81,14 @@ const Index = () => {
 			<div class="flex flex-row justify-between items-center mb-4 md:mb-8">
 				<Subtitle text={"공지사항"} />
 				<div class="w-1/2 flex flex-row items-center relative justify-end ">
-					<input
+					{/* <input
 						type="text"
 						name="name"
 						placeholder="검색어"
 						autocomplete="off"
 						class="w-full h-full py-2 px-4 mr-2 border-2 border-gray-300 outline-none focus:border-purple-700 "
 					/>
-					<BsSearch size={28} class="cursor-pointer text-gray-300" />
+					<BsSearch size={28} class="cursor-pointer text-gray-300" /> */}
 				</div>
 			</div>
 			<div class="w-full h-auto mb-8 text-base lg:text-lg">

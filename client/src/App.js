@@ -57,7 +57,7 @@ const Routes = ({ match }) => {
 						<Route exact path="/admin/edit" component={EditAdmin} />
 						<Route path="/local" component={Local} />
 						<Route path="/introduce/:pages" component={Introduce} />
-						<Route exact path="/business/:pages/:type" component={Business} />
+						<Route path="/business/:pages/:type" component={Business} />
 						<Route path="/organization/:pages/:type" component={Organization} />
 						<Route
 							exact

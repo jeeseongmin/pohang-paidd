@@ -70,7 +70,7 @@ const NoticeDetail = (props) => {
 				)
 				.then((response) => {
 					alert("삭제되었습니다.");
-					history.push("/business/" + info.type + "/default");
+					history.push("/business/" + info.type + "/notice");
 				})
 				.catch((response) => {
 					console.log("Error!");
@@ -115,7 +115,7 @@ const NoticeDetail = (props) => {
 					<div class="flex justify-between items-center flex-col md:flex-row">
 						<Link
 							class="w-full md:w-auto cursor-pointer px-16 py-2 justify-center border border-purple-700 text-purple-700 flex flex-row items-center hover:bg-purple-500 hover:text-white hover:font-bold"
-							to={"/business/" + props.pages + "/default"}
+							to={"/business/" + props.pages + "/notice"}
 							onClick={() => window.scrollTo(0, 0)}
 						>
 							뒤로 가기

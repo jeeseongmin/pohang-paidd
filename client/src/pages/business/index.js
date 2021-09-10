@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Route } from "react-router-dom";
 import Base from "./base";
 import Org1 from "./pages/org1/index";
@@ -8,6 +8,9 @@ import Submenu from "../../components/Submenu";
 import Layout from "../../components/Layout";
 
 const Index = ({ match }) => {
+	useEffect(() => {
+		console.log(match.params.type);
+	}, []);
 	return (
 		<Layout>
 			<div class="h-full">
@@ -27,7 +30,18 @@ const Index = ({ match }) => {
 						<Route exact path="/business/base/:type">
 							<Base />
 						</Route>
-						<Route exact path="/business/org1/:type">
+
+						<Route path="/business/org1/:type">
+							<Org1 pages={"org1"} type={match.params.type} />
+						</Route>
+						<Route path="/business/org2/:type">
+							<Org2 pages={"org2"} type={match.params.type} />
+						</Route>
+						<Route path="/business/org3/:type">
+							<Org3 pages={"org3"} type={match.params.type} />
+						</Route>
+
+						{/* <Route exact path="/business/org1/:type">
 							<Org1 pages={"org1"} type={match.params.type} />
 						</Route>
 						<Route exact path="/business/org2/:type">
@@ -35,7 +49,7 @@ const Index = ({ match }) => {
 						</Route>
 						<Route exact path="/business/org3/:type">
 							<Org3 pages={"org3"} type={match.params.type} />
-						</Route>
+						</Route> */}
 					</switch>
 				</div>
 			</div>

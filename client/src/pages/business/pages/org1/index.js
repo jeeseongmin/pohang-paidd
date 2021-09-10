@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import BusinessMenu from "../../../../components/Menu/BusinessMenu";
 import Business from "./components/business";
 
@@ -15,6 +15,7 @@ import { useHistory } from "react-router-dom";
 const Index = (props, { match }) => {
 	const history = useHistory();
 	const [selected, setSelected] = useState(0);
+	const name = ["intro", "business", "notice", "gallery"];
 
 	const changeSelected = (num) => {
 		setSelected(num);
@@ -22,34 +23,47 @@ const Index = (props, { match }) => {
 	};
 
 	const Content = () => {
-		if (window.location.pathname.includes("notice")) {
-			history.push(window.location.pathname);
+		const pathname = window.location.pathname;
+		const test = "/business/org1/notice/write";
+		// /business/org/intro
+		if (pathname.includes("intro")) {
+			setSelected(0);
+			return <Intro />;
+		} else if (pathname.includes("notice")) {
 			setSelected(2);
-		} else if (window.location.pathname.includes("gallery")) {
-			history.push(window.location.pathname);
-			setSelected(3);
-		} else {
-			if (selected === 0) {
-				return <Intro />;
-			} else if (selected === 1) {
-				return <Business />;
-			} else if (selected === 2) {
-				if (props.type === "default") {
-					return <Notice pages={props.pages} />;
-				} else if (props.type === "noticeWrite") {
-					return <NoticeWrite pages={props.pages} />;
-				} else {
-					return <NoticeDetail pages={props.pages} id={props.type} />;
-				}
-			} else if (selected === 3) {
-				if (props.type === "default") {
-					return <Gallery pages={props.pages} />;
-				} else if (props.type === "galleryWrite") {
-					return <GalleryWrite pages={props.pages} />;
-				} else {
-					return <GalleryDetail pages={props.pages} id={props.type} />;
-				}
+			// list : /business/org/notice
+			if (pathname.split("/").length === 4) {
+				return <Notice pages={props.pages} />;
 			}
+			// write : /business/org/notice/write
+			else if (pathname.includes("write")) {
+				return <NoticeWrite pages={props.pages} />;
+			}
+			// detail : /business/org/notice/:id
+			else {
+				const id = pathname.split("/")[4];
+				return <NoticeDetail pages={props.pages} id={id} />;
+			}
+		} else if (window.location.pathname.includes("gallery")) {
+			setSelected(3);
+			// list : /business/org/gallery
+			if (pathname.split("/").length === 4) {
+				return <Gallery pages={props.pages} />;
+			}
+			// write : /business/org/gallery/write
+			else if (pathname.includes("write")) {
+				return <GalleryWrite pages={props.pages} />;
+			}
+			// detail : /business/org/gallery/:id
+			else {
+				const id = pathname.split("/")[4];
+				return <GalleryDetail pages={props.pages} id={id} />;
+			}
+		}
+		// /business/org/business
+		else if (pathname.includes("business")) {
+			setSelected(1);
+			return <Business />;
 		}
 	};
 
@@ -64,6 +78,7 @@ const Index = (props, { match }) => {
 								selected={selected}
 								pages={props.pages}
 								changeSelected={changeSelected}
+								type={name[index]}
 							/>
 						);
 					})}

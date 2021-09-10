@@ -22,13 +22,13 @@ const BusinessMenu = (props) => {
 	];
 	const onChange = (num) => {
 		changeSelected(num);
-		history.push(url[num]);
+		// history.push(url[num]);
 	};
 
 	return (
 		<Link
-			onClick={() => changeSelected(num)}
-			to={"/business/" + props.pages + "/default"}
+			onClick={() => onChange(num)}
+			to={"/business/" + props.pages + "/" + props.type}
 			class={
 				"cursor-pointer text-xs lg:text-sm mr-2 mb-2 px-2 md:px-4 py-2 w-auto rounded-full " +
 				(selected === num
