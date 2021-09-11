@@ -134,7 +134,7 @@ const Navbar = () => {
 			>
 				<div class="flex justify-center items-center cursor-pointer">
 					<Link to="/" onClick={() => goPage(0)}>
-						<img src="/image/logo.png" class="h-8 xl:h-10" alt="logo" />
+						<img src="/image/logo.png" class="h-full xl:h-full" alt="logo" />
 					</Link>
 				</div>
 				<div class="z-30 flex-1 flex justify-around xl:justify-end items-center">

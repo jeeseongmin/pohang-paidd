@@ -31,11 +31,11 @@ const Slider = () => {
 					</div>
 				</div>
 				<div>
-					<div class="w-full h-auto lg:h-2/4 shadow-sm flex flex-row ">
+					<div class="w-full h-full lg:h-2/4 shadow-sm flex flex-row ">
 						<img
 							src="/image/slide2-img1.png"
 							alt="main-img1"
-							class="object-cover w-full"
+							class="object-cover w-full h-1/2"
 						/>
 						{/* <img
 							src="/image/slide2-img2.png"

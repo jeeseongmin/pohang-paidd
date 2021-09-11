@@ -176,56 +176,59 @@ const Home = () => {
 				)}
 
 				{/* section 4 */}
-				<div class="flex flex-col px-5 py-16 2xl:px-36 xl:px-32 md:px-8">
-					<div class="w-full">
+				<div class="flex flex-col lg:flex-row px-5 py-16 2xl:px-36 xl:px-32 md:px-8">
+					<div class="w-full lg:w-1/3 mr-8">
 						<h1 class="text-xl font-semibold lg:text-3xl">후원 및 자원봉사</h1>
 						<div class="text-md py-4 md:text-xl md:py-8">
 							더 많은 발달장애인에게 좋은 서비스를 지원할 수 있도록 후원과
 							자원봉사 신청을 받습니다.
 						</div>
 					</div>
-					<div class="w-full flex flex-col lg:flex-row">
-						<div class="w-full lg:w-1/2 h-60 md:h-40 lg:h-96 mr-0 lg:mr-4 mb-8 lg:mb-0 p-8 border border-purple-300 bg-white relative">
-							<div class="flex flex-row items-end justify-start lg:justify-between mb-8 ">
-								<h1 class="text-xl lg:text-3xl text-purple-600 font-semibold">
-									후원
-								</h1>
-								<h1 class="text-xs lg:text-xl text-purple-600 ml-8 lg:ml-0">
-									정기후원/일시후원/물품후원
-								</h1>
-							</div>
-							<Link
-								to="/participation/support/0"
-								onClick={() => goSubPage(4, 3)}
-								class="z-40 lg:text-xl text-xs w-40 lg:w-50 text-center cursor-pointer py-2 px-4 lg:py-3 lg:px-8 border border-purple-700 text-purple-700 rounded-full hover:border-purple-300 hover:bg-purple-300 hover:text-white"
-							>
-								자세히 보기
-							</Link>
-							<div class="z-20 absolute bottom-0 lg:bottom-0 right-2 h-1/2 md:h-full lg:h-1/2 xl:h-auto">
+					<div class="flex-1 flex flex-row">
+						<div class="w-1/2 flex flex-col justify-center items-center px-4 pb-4 md:pb-8 border border-gray-100 shadow-lg bg-white relative mr-4">
+							<div class="z-20 w-full">
 								<img
-									class="h-full object-cover"
+									class="w-full object-cover"
 									src="/image/home-img3.png"
 									alt="logo"
 								/>
 							</div>
+							<div class="flex flex-row items-end justify-start lg:justify-between my-4">
+								<h1 class="text-xl lg:text-3xl text-purple-600 font-semibold">
+									후원
+								</h1>
+							</div>
+							<div class="w-full px-0 md:px-4 text-center flex">
+								<Link
+									to="/participation/support/0"
+									onClick={() => goSubPage(4, 3)}
+									class="w-full z-40 lg:text-xl text-xs py-2 md:py-3 cursor-pointer border border-purple-700 text-purple-700 rounded-full hover:border-purple-300 hover:bg-purple-300 hover:text-white"
+								>
+									자세히 보기
+								</Link>
+							</div>
 						</div>
-						<div class="w-full lg:w-1/2 ml-0 h-60 md:h-40 lg:h-96 lg:ml-4 p-8 border border-purple-300 bg-white relative">
-							<h1 class="text-xl lg:text-3xl text-purple-600 font-semibold mb-8 ">
-								자원봉사
-							</h1>
-							<Link
-								to="/participation/volunteer/0"
-								onClick={() => goSubPage(4, 4)}
-								class="z-50 lg:text-xl bg-white text-xs w-60 text-center cursor-pointer py-2 px-4 lg:py-3 lg:px-8 border border-purple-700 text-purple-700 rounded-full hover:border-purple-300 hover:bg-purple-300 hover:text-white"
-							>
-								자세히 보기
-							</Link>
-							<div class="absolute bottom-0 lg:bottom-0 right-2 h-1/2 md:h-full lg:h-1/2 xl:h-auto">
+						<div class="w-1/2 flex flex-col justify-center items-center px-4 pb-4 md:pb-8 border border-gray-100 shadow-lg bg-white relative">
+							<div class="z-20 w-full">
 								<img
-									class="h-full object-cover"
+									class="w-full object-cover"
 									src="/image/home-img4.png"
 									alt="logo"
 								/>
+							</div>
+							<div class="flex flex-row items-end justify-start lg:justify-between my-4">
+								<h1 class="text-xl lg:text-3xl text-purple-600 font-semibold">
+									자원봉사
+								</h1>
+							</div>
+							<div class="w-full px-0 md:px-4 text-center flex">
+								<Link
+									to="/participation/volunteer/0"
+									onClick={() => goSubPage(4, 4)}
+									class="w-full z-40 lg:text-xl text-xs py-2 md:py-3 cursor-pointer border border-purple-700 text-purple-700 rounded-full hover:border-purple-300 hover:bg-purple-300 hover:text-white"
+								>
+									자세히 보기
+								</Link>
 							</div>
 						</div>
 					</div>
