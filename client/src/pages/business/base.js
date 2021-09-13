@@ -7,8 +7,8 @@ const Base = () => {
 			<Subtitle text={"협회사업"} />
 
 			<div class="w-full flex justify-center items-center mt-8">
-				<div class="flex flex-wrap gap-x-32 gap-y-10 justify-between lg:justify-start">
-					<div class="w-full md:w-1/3 lg:w-1/4 pb-4 flex flex-col justify-between items-center shadow-lg mb-4 lg:mb-8 border border-gray-200">
+				<div class="w-full grid grid-flow-row grid-cols-1 grid-rows-5 md:grid-cols-2 md:grid-rows-3 lg:grid-cols-4 lg:grid-rows-2 gap-x-8 mt-8">
+					<div class="w-full pb-4 flex flex-col justify-between items-center shadow-lg mb-4 lg:mb-8 border border-gray-200">
 						<div class="w-full h-60 bg-gray-200">
 							<img
 								class="w-full h-full object-cover"
@@ -24,7 +24,7 @@ const Base = () => {
 						</div>
 					</div>
 
-					<div class="w-full md:w-1/3 lg:w-1/4 pb-4 flex flex-col justify-between items-center shadow-lg mb-4 lg:mb-8 border border-gray-200">
+					<div class="w-full pb-4 flex flex-col justify-between items-center shadow-lg mb-4 lg:mb-8 border border-gray-200">
 						<div class="w-full h-60 bg-gray-200">
 							<img
 								class="w-full h-full object-cover"
@@ -40,7 +40,7 @@ const Base = () => {
 						</div>
 					</div>
 
-					<div class="w-full md:w-1/3 lg:w-1/4 pb-4 flex flex-col justify-between items-center shadow-lg mb-4 lg:mb-8 border border-gray-200">
+					<div class="w-full pb-4 flex flex-col justify-between items-center shadow-lg mb-4 lg:mb-8 border border-gray-200">
 						<div class="w-full h-60 bg-gray-200">
 							<img
 								class="w-full h-full object-cover"
@@ -56,7 +56,7 @@ const Base = () => {
 						</div>
 					</div>
 
-					<div class="w-full md:w-1/3 lg:w-1/4 pb-4 flex flex-col justify-between items-center shadow-lg mb-4 lg:mb-8 border border-gray-200">
+					<div class="w-full pb-4 flex flex-col justify-between items-center shadow-lg mb-4 lg:mb-8 border border-gray-200">
 						<div class="w-full h-60 bg-gray-200">
 							<img
 								class="w-full h-full object-cover"
@@ -71,7 +71,7 @@ const Base = () => {
 							<div>단체 협력 사업</div>
 						</div>
 					</div>
-					<div class="w-full md:w-1/3 lg:w-1/4 pb-4 flex flex-col justify-between items-center shadow-lg mb-4 lg:mb-8 border border-gray-200">
+					<div class="w-full pb-4 flex flex-col justify-between items-center shadow-lg mb-4 lg:mb-8 border border-gray-200">
 						<div class="w-full h-60 bg-gray-200">
 							<img
 								class="w-full h-full object-cover"

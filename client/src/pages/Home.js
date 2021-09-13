@@ -35,9 +35,9 @@ const Home = () => {
 	}, []);
 
 	const goSubPage = (main, sub) => {
+		window.scrollTo(0, 0);
 		dispatch(setMenu(main));
 		dispatch(setSubmenu(sub));
-		window.scrollTo(0, 0);
 	};
 
 	const dataToText = (date) => {
@@ -82,21 +82,21 @@ const Home = () => {
 								협회 사업
 							</Link>
 							<Link
-								to="/business/org1/default"
+								to="/business/org1/intro"
 								onClick={() => goSubPage(2, 2)}
 								class="lg:text-base lg:p-4 py-2 px-4 text-xs cursor-pointer mr-4 mb-4 border border-purple-700 text-purple-700 rounded-full hover:border-purple-300 hover:bg-purple-300 hover:text-white"
 							>
 								포항시지적장애인자립지원센터
 							</Link>
 							<Link
-								to="/business/org2/default"
+								to="/business/org2/intro"
 								onClick={() => goSubPage(2, 3)}
 								class="lg:text-base py-2 px-4 lg:p-4 text-xs cursor-pointer mr-4 mb-4 border border-purple-700 text-purple-700 rounded-full hover:border-purple-300 hover:bg-purple-300 hover:text-white"
 							>
 								장애인활동사업
 							</Link>
 							<Link
-								to="/business/org3/default"
+								to="/business/org3/intro"
 								onClick={() => goSubPage(2, 4)}
 								class="lg:text-base lg:p-4 text-xs cursor-pointer mr-4 mb-4 py-2 px-4 border border-purple-700 text-purple-700 rounded-full hover:border-purple-300 hover:bg-purple-300 hover:text-white"
 							>

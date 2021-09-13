@@ -28,8 +28,20 @@ const Index = ({ match }) => {
 		<Layout>
 			<div class="h-full z-0">
 				<div>
-					<div class="z-0 h-44 bg-purple-100 flex justify-center items-center ">
+					<div class="z-0 h-44 bg-purple-100 flex justify-center items-center relative">
 						<h1 class="text-4xl">참여마당</h1>
+						<div class="absolute w-full h-1/2 lg:h-full flex flex-row justify-between items-center bottom-0 px-0 2xl:px-36 xl:px-32 md:px-8">
+							<img
+								src="/image/index4-img1.png"
+								alt="index-img"
+								class="h-full object-cover"
+							/>
+							<img
+								src="/image/index4-img2.png"
+								alt="index-img"
+								class="h-full object-cover"
+							/>
+						</div>
 					</div>
 					<div class="w-full cursor-pointer bottom-0 flex flex-row justify-center bg-purple-100 px-0 2xl:px-36 xl:px-32 md:px-8">
 						<Submenu menu={4} submenu={1} />

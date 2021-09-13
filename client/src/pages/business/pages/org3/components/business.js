@@ -6,8 +6,8 @@ const Business = () => {
 		<div>
 			<Subtitle text={"주요사업"} />
 
-			<div class="flex flex-wrap justify-start gap-x-32 py-2 lg:py-4 mt-4 lg:mt-0">
-				<div class="w-full md:w-1/3 lg:w-1/4 pb-4 flex flex-col justify-start items-start shadow-lg mb-4 lg:mb-8 border border-gray-200">
+			<div class="w-full grid grid-flow-row grid-cols-1 grid-rows-5 md:grid-cols-2 md:grid-rows-3 lg:grid-cols-4 lg:grid-rows-2 gap-x-8 mt-8">
+				<div class="w-full pb-4 flex flex-col justify-start items-start shadow-lg mb-4 lg:mb-8 border border-gray-200">
 					<div class="w-full h-60 bg-gray-200">
 						<img
 							class="w-full h-full object-cover"
@@ -25,7 +25,7 @@ const Business = () => {
 						<div>힐링활동</div>
 					</div>
 				</div>
-				<div class="w-full md:w-1/3 lg:w-1/4 pb-4 flex flex-col justify-start items-start shadow-lg mb-4 lg:mb-8 border border-gray-200">
+				<div class="w-full pb-4 flex flex-col justify-start items-start shadow-lg mb-4 lg:mb-8 border border-gray-200">
 					<div class="w-full h-60 bg-gray-200">
 						<img
 							class="w-full h-full object-cover"
@@ -42,7 +42,7 @@ const Business = () => {
 						<div>직업탐색활동</div>
 					</div>
 				</div>
-				<div class="w-full md:w-1/3 lg:w-1/4 pb-4 flex flex-col justify-start items-start shadow-lg mb-4 lg:mb-8 border border-gray-200">
+				<div class="w-full pb-4 flex flex-col justify-start items-start shadow-lg mb-4 lg:mb-8 border border-gray-200">
 					<div class="w-full h-60 bg-gray-200">
 						<img
 							class="w-full h-full object-cover"
@@ -60,7 +60,7 @@ const Business = () => {
 						<div>미래계획활동</div>
 					</div>
 				</div>
-				<div class="w-full md:w-1/3 lg:w-1/4 pb-4 flex flex-col justify-start items-start shadow-lg mb-4 lg:mb-8 border border-gray-200">
+				<div class="w-full pb-4 flex flex-col justify-start items-start shadow-lg mb-4 lg:mb-8 border border-gray-200">
 					<div class="w-full h-60 bg-gray-200">
 						<img
 							class="w-full h-full object-cover"
@@ -76,7 +76,7 @@ const Business = () => {
 						<div>체험활동</div>
 					</div>
 				</div>
-				<div class="w-full md:w-1/3 lg:w-1/4 pb-4 flex flex-col justify-start items-start shadow-lg mb-4 lg:mb-8 border border-gray-200">
+				<div class="w-full pb-4 flex flex-col justify-start items-start shadow-lg mb-4 lg:mb-8 border border-gray-200">
 					<div class="w-full h-60 bg-gray-200">
 						<img
 							class="w-full h-full object-cover"

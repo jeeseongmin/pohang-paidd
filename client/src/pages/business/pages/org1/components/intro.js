@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Subtitle from "../../../../../components/Subtitle";
 
 const Intro = () => {
@@ -7,6 +7,9 @@ const Intro = () => {
 			"https://www.youtube.com/channel/UCqfPNO_8tBFwmxHXPFkqGkA/featured";
 		window.open(url, "_blank");
 	};
+	useEffect(() => {
+		window.scrollTo(0, 0);
+	}, []);
 	return (
 		<div>
 			<Subtitle text={"센터소개"} />

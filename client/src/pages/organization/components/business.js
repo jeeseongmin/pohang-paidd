@@ -5,8 +5,8 @@ const Business = () => {
 	return (
 		<div>
 			<Subtitle text={"주요사업"} />
-			<div class="flex flex-wrap justify-start gap-x-32 mt-4">
-				<div class="w-full md:w-1/3 lg:w-1/4 flex flex-col justify-start items-start shadow-lg mb-4 lg:mb-8 border border-gray-200">
+			<div class="w-full grid grid-flow-row grid-cols-1 grid-rows-7 md:grid-cols-2 md:grid-rows-4 lg:grid-cols-4 lg:grid-rows-2 gap-x-8 mt-8">
+				<div class="w-full flex flex-col justify-start items-start shadow-lg mb-4 lg:mb-8 border border-gray-200">
 					<div class="w-full h-60 bg-gray-200">
 						<img
 							class="w-full h-full object-cover"
@@ -35,7 +35,7 @@ const Business = () => {
 						</div>
 					</div>
 				</div>
-				<div class="w-full md:w-1/3 lg:w-1/4 flex flex-col justify-start items-start shadow-lg mb-4 lg:mb-8 border border-gray-200">
+				<div class="w-full flex flex-col justify-start items-start shadow-lg mb-4 lg:mb-8 border border-gray-200">
 					<div class="w-full h-60 bg-gray-200">
 						<img
 							class="w-full h-full object-cover"
@@ -64,7 +64,7 @@ const Business = () => {
 						</div>
 					</div>
 				</div>
-				<div class="w-full md:w-1/3 lg:w-1/4 flex flex-col justify-start items-start shadow-lg mb-4 lg:mb-8 border border-gray-200">
+				<div class="w-full flex flex-col justify-start items-start shadow-lg mb-4 lg:mb-8 border border-gray-200">
 					<div class="w-full h-60 bg-gray-200">
 						<img
 							class="w-full h-full object-cover"
@@ -95,7 +95,7 @@ const Business = () => {
 					</div>
 				</div>
 
-				<div class="w-full md:w-1/3 lg:w-1/4 flex flex-col justify-start items-start shadow-lg mb-4 lg:mb-8 border border-gray-200">
+				<div class="w-full flex flex-col justify-start items-start shadow-lg mb-4 lg:mb-8 border border-gray-200">
 					<div class="w-full h-60 bg-gray-200">
 						<img
 							class="w-full h-full object-cover"
@@ -125,7 +125,7 @@ const Business = () => {
 					</div>
 				</div>
 
-				<div class="w-full md:w-1/3 lg:w-1/4 flex flex-col justify-start items-start shadow-lg mb-4 lg:mb-8 border border-gray-200">
+				<div class="w-full flex flex-col justify-start items-start shadow-lg mb-4 lg:mb-8 border border-gray-200">
 					<div class="w-full h-60 bg-gray-200">
 						<img
 							class="w-full h-full object-cover"
@@ -158,7 +158,7 @@ const Business = () => {
 					</div>
 				</div>
 
-				<div class="w-full md:w-1/3 lg:w-1/4 flex flex-col justify-start items-start shadow-lg mb-4 lg:mb-8 border border-gray-200">
+				<div class="w-full flex flex-col justify-start items-start shadow-lg mb-4 lg:mb-8 border border-gray-200">
 					<div class="w-full h-60 bg-gray-200">
 						<img
 							class="w-full h-full object-cover"
@@ -187,7 +187,7 @@ const Business = () => {
 						</div>
 					</div>
 				</div>
-				<div class="w-full md:w-1/3 lg:w-1/4 flex flex-col justify-start items-start shadow-lg mb-4 lg:mb-8 border border-gray-200">
+				<div class="w-full flex flex-col justify-start items-start shadow-lg mb-4 lg:mb-8 border border-gray-200">
 					<div class="w-full h-60 bg-gray-200">
 						<img
 							class="w-full h-full object-cover"
