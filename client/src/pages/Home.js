@@ -68,12 +68,14 @@ const Home = () => {
 				<Slider />
 
 				{/* section 2 */}
-				<div class="flex flex-row pt-10 lg:pt-16 px-5 2xl:px-36 xl:px-32 md:px-8">
-					<div class="w-full lg:w-1/2">
+				<div class="flex flex-row items-center pt-10 lg:pt-16 px-5 2xl:px-36 xl:px-32 md:px-8">
+					<div class="h-auto w-full lg:w-1/2">
 						<h1 class="text-xl font-semibold mb-2 lg:text-3xl">
-							경북지적발달장애인복지협회 포항시지부
+							경북지적발달장애인복지협회
 						</h1>
-						<h1 class="text-xl font-semibold lg:text-3xl">사업소개</h1>
+						<h1 class="text-xl font-semibold lg:text-3xl">
+							포항시지부 사업소개
+						</h1>
 						<div class="text-md py-4 md:text-xl md:py-8">
 							발달장애인협회에서 진행되는 사업들을 살펴보세요.
 						</div>
@@ -116,7 +118,7 @@ const Home = () => {
 						</div>
 					</div>
 					<div class="flex-1 hidden flex-col justify-end items-center lg:flex">
-						<img src="/image/home-img2.png" alt="main-img2" />
+						<img src="/image/home-img2.png" class="w-2/3" alt="main-img2" />
 					</div>
 				</div>
 				{/* section 3 */}
