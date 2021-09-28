@@ -21,9 +21,15 @@ const LocalMenu = (props) => {
 		"응급상담 및 병원",
 	];
 
+	const onChange = (num) => {
+		changeSelected(num);
+
+		document.getElementById("scrollRef").scrollTo(0, 0);
+	};
+
 	return (
 		<div
-			onClick={() => changeSelected(num)}
+			onClick={() => onChange(num)}
 			class={
 				"cursor-pointer text-xs md:text-sm mr-2 mb-2 px-2 md:px-4 py-1 md:py-2 w-auto rounded-full " +
 				(selected === num

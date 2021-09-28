@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Route } from "react-router-dom";
 import Base from "./base";
 import Org1 from "./pages/org1/index";
@@ -8,17 +8,31 @@ import Submenu from "../../components/Submenu";
 import Layout from "../../components/Layout";
 
 const Index = ({ match }) => {
+	const [transForm, setTransForm] = useState(false);
+
 	useEffect(() => {
-		console.log(match.params.type);
+		setTransForm(true);
+	}, []);
+
+	useEffect(() => {
 		window.scrollTo(0, 0);
 	}, []);
 	return (
 		<Layout>
 			<div class="h-full">
-				<div>
+				<div class="relative mb-24 md:mb-16 lg:mb-8">
 					<div class="h-44 bg-purple-100 flex justify-center items-center relative">
-						<h1 class="text-4xl">주요사업</h1>
-						<div class="absolute w-full h-1/2 lg:h-full flex flex-row justify-between items-center bottom-0 px-0 2xl:px-36 xl:px-32 md:px-8">
+						<h1 class="text-2xl font-bold md:font-normal md:text-4xl">
+							주요사업
+						</h1>
+						<div
+							class={
+								"-bottom-10 absolute w-full h-1/2 lg:h-full flex flex-row justify-between items-center px-0 2xl:px-36 xl:px-32 md:px-8 " +
+								(transForm
+									? "transform -translate-y-10 delay-150 duration-700 "
+									: "")
+							}
+						>
 							<img
 								src="/image/index2-img1.png"
 								alt="index-img"
@@ -31,7 +45,7 @@ const Index = ({ match }) => {
 							/>
 						</div>
 					</div>
-					<div class="w-full cursor-pointer bottom-0 flex flex-row justify-center bg-purple-100 px-0 2xl:px-36 xl:px-32 md:px-0">
+					<div class="w-full cursor-pointer absolute bottom-22 flex flex-row justify-center bg-purple-100 px-0 2xl:px-36 xl:px-32 md:px-0">
 						<Submenu menu={2} submenu={1} key={1} />
 						<Submenu menu={2} submenu={2} Key={2} />
 						<Submenu menu={2} submenu={3} key={3} />

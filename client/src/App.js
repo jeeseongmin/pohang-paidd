@@ -45,8 +45,9 @@ const Routes = ({ match }) => {
 	return (
 		<>
 			<div
+				id="scrollRef"
 				class={
-					"z-20 h-screen select-none relative overflow-y-scroll " +
+					"z-20 h-screen select-none relative overflow-y-scroll scrollbar-hide " +
 					(sidebar ? "" : "")
 				}
 			>

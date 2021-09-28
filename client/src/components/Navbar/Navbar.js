@@ -70,7 +70,7 @@ const Navbar = () => {
 	const goPage = (num) => {
 		dispatch(setMenu(num));
 		dispatch(setSubmenu(1));
-		window.scrollTo(0, 0);
+		document.getElementById("scrollRef").scrollTo(0, 0);
 	};
 
 	const logout = () => {

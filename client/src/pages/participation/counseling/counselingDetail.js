@@ -37,6 +37,7 @@ const CounselingDetail = (props) => {
 	};
 
 	useEffect(() => {
+		document.getElementById("scrollRef").scrollTo(0, 0);
 		axios
 			.post(
 				"/api/counseling/" + id,
@@ -88,6 +89,8 @@ const CounselingDetail = (props) => {
 					alert("응답하였습니다.");
 					window.scrollTo(0, 0);
 					history.push("/participation/counseling/0");
+					document.getElementById("scrollRef").scrollTo(0, 0);
+
 					setState("default");
 				})
 				.catch((response) => {
@@ -116,6 +119,7 @@ const CounselingDetail = (props) => {
 				.then((response) => {
 					alert("삭제되었습니다.");
 					history.push("/participation/counseling/0");
+					document.getElementById("scrollRef").scrollTo(0, 0);
 				})
 				.catch((response) => {
 					console.log("Error!");
@@ -135,6 +139,7 @@ const CounselingDetail = (props) => {
 	const goEdit = () => {
 		if (info.status === "unread" || currentEmail === "master") {
 			setState("edit");
+			document.getElementById("scrollRef").scrollTo(0, 0);
 		} else {
 			alert("이미 접수되어 수정이 불가합니다.");
 		}
@@ -242,7 +247,9 @@ const CounselingDetail = (props) => {
 						<Link
 							class="w-full md:w-auto cursor-pointer px-16 py-2 justify-center border border-purple-700 text-purple-700 flex flex-row items-center hover:bg-purple-500 hover:text-white hover:font-bold"
 							to={"/participation/counseling/0"}
-							onClick={() => window.scrollTo(0, 0)}
+							onClick={() =>
+								document.getElementById("scrollRef").scrollTo(0, 0)
+							}
 						>
 							뒤로 가기
 						</Link>

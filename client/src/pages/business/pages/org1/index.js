@@ -11,6 +11,7 @@ import Gallery from "../common/gallery/gallery";
 import GalleryDetail from "../common/gallery/galleryDetail";
 import GalleryWrite from "../common/gallery/galleryWrite";
 import { useHistory } from "react-router-dom";
+import { HiHome } from "react-icons/hi";
 
 const Index = (props, { match }) => {
 	const history = useHistory();

@@ -60,11 +60,16 @@ const Sidebar = () => {
 		);
 	};
 
+	const goSubpage = (menu, submenu) => {
+		onToggleSidebar(menu, submenu);
+		document.getElementById("scrollRef").scrollTo(0, 0);
+	};
+
 	const SubText = (props) => {
 		return (
 			<Link
 				to={props.address}
-				onClick={() => onToggleSidebar(props.menu, props.submenu)}
+				onClick={() => goSubpage(props.menu, props.submenu)}
 				class="cursor-pointer text-sm pl-4 py-3 text-gray-600"
 			>
 				{props.text}

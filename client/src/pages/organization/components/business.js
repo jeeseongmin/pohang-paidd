@@ -1,10 +1,17 @@
 import React, { useState, useEffect } from "react";
 import Subtitle from "../../../components/Subtitle";
+import { HiHome } from "react-icons/hi";
 
 const Business = () => {
 	return (
 		<div>
 			<Subtitle text={"주요사업"} />
+			<div class="mt-1 mb-4 w-full hidden lg:flex flex-row text-sm text-gray-400 items-center">
+				<div class="mr-2">
+					<HiHome size={16} />
+				</div>
+				Home {">"} 부설기관 {">"} 늘사랑주간보호센터 {">"} 주요사업
+			</div>
 			<div class="w-full grid grid-flow-row grid-cols-1 grid-rows-7 md:grid-cols-2 md:grid-rows-4 lg:grid-cols-4 lg:grid-rows-2 gap-x-8 mt-8">
 				<div class="w-full flex flex-col justify-start items-start shadow-lg mb-4 lg:mb-8 border border-gray-200">
 					<div class="w-full h-60 bg-gray-200">

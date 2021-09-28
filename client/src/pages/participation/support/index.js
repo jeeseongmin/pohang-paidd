@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Route, Link } from "react-router-dom";
 import Subtitle from "../../../components/Subtitle";
 import { useDispatch, useSelector } from "react-redux";
+import { HiHome } from "react-icons/hi";
 
 const Index = () => {
 	const currentEmail = useSelector((state) => state.setting.currentEmail);
@@ -11,7 +12,12 @@ const Index = () => {
 			<div class="flex flex-row justify-between">
 				<Subtitle text={"후원"} />
 			</div>
-
+			<div class="mt-2 mb-2 w-full hidden lg:flex flex-row text-sm text-gray-400 items-center">
+				<div class="mr-2">
+					<HiHome size={16} />
+				</div>
+				Home {">"} 참여마당 {">"} 후원
+			</div>
 			<div class="py-8 mb-8">
 				<div class="text-base lg:text-lg leading-7 lg:leading-9">
 					더 많은 발달장애인에게 좋은 서비스를 지원할 수 있도록 후원과 자원봉사
@@ -65,7 +71,7 @@ const Index = () => {
 			>
 				<Link
 					to="/participation/writeSupport/0"
-					onClick={() => window.scrollTo(0, 0)}
+					onClick={() => document.getElementById("scrollRef").scrollTo(0, 0)}
 					class="w-full md:w-auto justify-center cursor-pointer mb-4 md:mb-0 px-16 py-2 border border-purple-700 text-purple-700 flex flex-row items-center hover:bg-purple-500 hover:text-white hover:font-bold"
 				>
 					후원 신청
@@ -73,7 +79,7 @@ const Index = () => {
 				{currentEmail === "master" ? (
 					<Link
 						to="/participation/supportList/0"
-						onClick={() => window.scrollTo(0, 0)}
+						onClick={() => document.getElementById("scrollRef").scrollTo(0, 0)}
 						class="w-full md:w-auto justify-center cursor-pointer px-2 md:px-16 py-2 border border-purple-700 text-purple-700 flex flex-row items-center hover:bg-purple-500 hover:text-white hover:font-bold"
 					>
 						후원 목록

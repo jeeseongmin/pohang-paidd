@@ -1,11 +1,17 @@
 import React from "react";
 import Subtitle from "../../components/Subtitle";
+import { HiHome } from "react-icons/hi";
 
 const Base = () => {
 	return (
 		<div>
 			<Subtitle text={"협회사업"} />
-
+			<div class="mt-2 w-full hidden lg:flex flex-row text-sm text-gray-400 items-center">
+				<div class="mr-2">
+					<HiHome size={16} />
+				</div>
+				Home {">"} 주요사업 {">"} 협회사업
+			</div>
 			<div class="w-full flex justify-center items-center mt-8">
 				<div class="w-full grid grid-flow-row grid-cols-1 grid-rows-5 md:grid-cols-2 md:grid-rows-3 lg:grid-cols-4 lg:grid-rows-2 gap-x-8 mt-8">
 					<div class="w-full pb-4 flex flex-col justify-between items-center shadow-lg mb-4 lg:mb-8 border border-gray-200">

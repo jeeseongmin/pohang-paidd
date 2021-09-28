@@ -27,6 +27,7 @@ const WriteNotice = (props) => {
 	};
 
 	useEffect(() => {
+		document.getElementById("scrollRef").scrollTo(0, 0);
 		const cp = { ...info };
 		cp.type = type;
 		setInfo(cp);
@@ -58,6 +59,7 @@ const WriteNotice = (props) => {
 				.then((response) => {
 					alert("업로드되었습니다.");
 					history.push("/organization/notice/0");
+					document.getElementById("scrollRef").scrollTo(0, 0);
 				})
 				.catch((response) => {
 					console.log("Error!");

@@ -65,7 +65,8 @@ const GalleryEdit = (props) => {
 				)
 				.then((response) => {
 					alert("저장되었습니다.");
-					history.push("/business/" + props.pages + "/gallery/" + id);
+					history.push("/business/" + props.pages + "/gallery");
+					document.getElementById("scrollRef").scrollTo(0, 0);
 					for (let i = 0; i < deletedList.length; i++) {
 						axios.post("/api/image/delete", {
 							name: deletedList[i],

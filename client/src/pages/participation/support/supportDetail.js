@@ -225,7 +225,9 @@ const SupportDetail = (props) => {
 						<Link
 							class="w-full md:w-auto mb-4 md:mb-4 justify-center cursor-pointer px-16 py-2 border border-purple-700 text-purple-700 flex flex-row items-center hover:bg-purple-500 hover:text-white hover:font-bold"
 							to="/participation/supportList/0"
-							onClick={() => window.scrollTo(0, 0)}
+							onClick={() =>
+								document.getElementById("scrollRef").scrollTo(0, 0)
+							}
 						>
 							뒤로 가기
 						</Link>

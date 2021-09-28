@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import Subtitle from "../../../../../components/Subtitle";
+import { HiHome } from "react-icons/hi";
 
 const Intro = () => {
 	const moveUrl = function () {
@@ -13,7 +14,12 @@ const Intro = () => {
 	return (
 		<div>
 			<Subtitle text={"센터소개"} />
-
+			<div class="my-2 mb-8 w-full hidden lg:flex flex-row text-sm text-gray-400 items-center">
+				<div class="mr-2">
+					<HiHome size={16} />
+				</div>
+				Home {">"} 주요사업 {">"} 지적장애인자립지원센터 {">"} 센터소개
+			</div>
 			<div class="text-base lg:text-xl font-bold leading-9 py-2 lg:py-4">
 				포항시지적장애인자립지원센터
 			</div>

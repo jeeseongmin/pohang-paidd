@@ -28,6 +28,8 @@ const GalleryDetail = (props) => {
 	});
 
 	useEffect(() => {
+		document.getElementById("scrollRef").scrollTo(0, 0);
+
 		axios
 			.post(
 				"/api/gallery/" + id,
@@ -73,6 +75,8 @@ const GalleryDetail = (props) => {
 				.then((response) => {
 					alert("삭제되었습니다.");
 					history.push("/business/" + info.type + "/gallery");
+					document.getElementById("scrollRef").scrollTo(0, 0);
+
 					for (let i = 0; i < info.imgList.length; i++) {
 						axios.post("/api/image/delete", {
 							name: info.imgList[i],
@@ -92,6 +96,11 @@ const GalleryDetail = (props) => {
 		let month = date.substring(5, 7);
 		let day = date.substring(8, 10);
 		return year + "." + month + "." + day;
+	};
+
+	const goEdit = () => {
+		setIsEdit(true);
+		document.getElementById("scrollRef").scrollTo(0, 0);
 	};
 
 	return (
@@ -152,7 +161,9 @@ const GalleryDetail = (props) => {
 						<Link
 							class="w-full md:w-auto cursor-pointer px-16 py-2 justify-center border border-purple-700 text-purple-700 flex flex-row items-center hover:bg-purple-500 hover:text-white hover:font-bold"
 							to={"/business/" + props.pages + "/gallery"}
-							onClick={() => window.scrollTo(0, 0)}
+							onClick={() =>
+								document.getElementById("scrollRef").scrollTo(0, 0)
+							}
 						>
 							뒤로 가기
 						</Link>
@@ -166,7 +177,7 @@ const GalleryDetail = (props) => {
 									삭제하기
 								</div>
 								<div
-									onClick={() => setIsEdit(true)}
+									onClick={goEdit}
 									class="w-full md:w-auto justify-center cursor-pointer px-16 py-2 border border-purple-700 text-purple-700 flex flex-row items-center hover:bg-purple-500 hover:text-white hover:font-bold"
 								>
 									수정하기

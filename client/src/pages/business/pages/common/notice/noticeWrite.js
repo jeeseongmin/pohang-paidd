@@ -31,6 +31,7 @@ const NoticeWrite = (props) => {
 	};
 
 	useEffect(() => {
+		document.getElementById("scrollRef").scrollTo(0, 0);
 		const cp = { ...info };
 		cp.type = type;
 		setInfo(cp);
@@ -61,6 +62,7 @@ const NoticeWrite = (props) => {
 				)
 				.then((response) => {
 					history.push("/business/" + info.type + "/notice");
+					document.getElementById("scrollRef").scrollTo(0, 0);
 				})
 				.catch((response) => {
 					console.log("Error!");

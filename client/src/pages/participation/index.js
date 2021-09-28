@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Route } from "react-router-dom";
 
 // 공지사항 탭
@@ -24,13 +24,28 @@ import Submenu from "../../components/Submenu";
 import Layout from "../../components/Layout";
 
 const Index = ({ match }) => {
+	const [transForm, setTransForm] = useState(false);
+
+	useEffect(() => {
+		setTransForm(true);
+	}, []);
+
 	return (
 		<Layout>
 			<div class="h-full z-0">
-				<div>
+				<div class="relative mb-16 lg:mb-8">
 					<div class="z-0 h-44 bg-purple-100 flex justify-center items-center relative">
-						<h1 class="text-4xl">참여마당</h1>
-						<div class="absolute w-full h-1/2 lg:h-full flex flex-row justify-between items-center bottom-0 px-0 2xl:px-36 xl:px-32 md:px-8">
+						<h1 class="text-2xl font-bold md:font-normal md:text-4xl">
+							참여마당
+						</h1>
+						<div
+							class={
+								"z-30 absolute w-full h-1/2 lg:h-full flex flex-row justify-between items-center -bottom-10 px-0 2xl:px-36 xl:px-32 md:px-8 " +
+								(transForm
+									? "transform -translate-y-10 delay-150 duration-700 "
+									: "")
+							}
+						>
 							<img
 								src="/image/index4-img1.png"
 								alt="index-img"
@@ -43,7 +58,7 @@ const Index = ({ match }) => {
 							/>
 						</div>
 					</div>
-					<div class="w-full cursor-pointer bottom-0 flex flex-row justify-center bg-purple-100 px-0 2xl:px-36 xl:px-32 md:px-8">
+					<div class="z-40 absolute w-full cursor-pointer bottom-22 flex flex-row justify-center bg-purple-100 px-0 2xl:px-36 xl:px-32 md:px-8">
 						<Submenu menu={4} submenu={1} />
 						<Submenu menu={4} submenu={2} />
 						<Submenu menu={4} submenu={3} />

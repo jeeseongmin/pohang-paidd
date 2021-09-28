@@ -6,6 +6,7 @@ import Paging from "../../../../../components/Paging";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import CircularProgress from "@material-ui/core/CircularProgress";
+import { HiHome } from "react-icons/hi";
 
 const Notice = (props, { match }) => {
 	const [loading, setLoading] = useState(false);
@@ -16,6 +17,17 @@ const Notice = (props, { match }) => {
 	const currentEmail = useSelector((state) => state.setting.currentEmail);
 	const currentPassword = useSelector((state) => state.setting.currentPassword);
 	const type = props.pages;
+	const [subtitle, setSubtitle] = useState("");
+
+	useEffect(() => {
+		if (window.location.href.includes("org1")) {
+			setSubtitle("지적장애인자립지원센터");
+		} else if (window.location.href.includes("org2")) {
+			setSubtitle("장애인활동지원사업");
+		} else if (window.location.href.includes("org3")) {
+			setSubtitle("방과후활동지원서비스사업");
+		}
+	}, [window.location.href]);
 
 	useEffect(() => {
 		axios
@@ -87,9 +99,8 @@ const Notice = (props, { match }) => {
 
 	return (
 		<div>
-			<div class="flex flex-row justify-between items-center mb-8">
+			<div class="flex flex-row justify-between items-center mb-8 lg:mb-2">
 				<Subtitle text={"공지사항"} />
-
 				<div class="w-1/2 flex flex-row items-center relative justify-end ">
 					{/* <input
 						type="text"
@@ -99,9 +110,15 @@ const Notice = (props, { match }) => {
 						onChange={changeText}
 						value={findText}
 						class="w-full h-full py-2 px-4 mr-2 border-2 border-gray-300 outline-none focus:border-purple-600 "
-					/>
+						/>
 					<BsSearch size={28} class="cursor-pointer text-gray-300" /> */}
 				</div>
+			</div>
+			<div class="mb-12 w-full hidden lg:flex flex-row text-sm text-gray-400 items-center">
+				<div class="mr-2">
+					<HiHome size={16} />
+				</div>
+				Home {">"} 주요사업 {">"} {subtitle} {">"} 공지사항
 			</div>
 			<div class="w-full h-auto mb-8 text-base lg:text-lg">
 				{/* 딱 10개 씩만 로드하기 */}

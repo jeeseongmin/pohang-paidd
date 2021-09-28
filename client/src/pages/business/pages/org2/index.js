@@ -10,6 +10,7 @@ import NoticeDetail from "../common/notice/noticeDetail";
 import Gallery from "../common/gallery/gallery";
 import GalleryDetail from "../common/gallery/galleryDetail";
 import GalleryWrite from "../common/gallery/galleryWrite";
+import { HiHome } from "react-icons/hi";
 
 const Index = (props) => {
 	const [selected, setSelected] = useState(0);

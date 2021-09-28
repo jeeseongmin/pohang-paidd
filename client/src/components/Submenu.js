@@ -56,6 +56,7 @@ const Submenu = (props) => {
 		dispatch(setMenu(num1));
 		dispatch(setSubmenu(num2));
 		window.scrollTo(0, 0);
+		document.getElementById("scrollRef").scrollTo(0, 0);
 		if (num1 === 1) {
 			if (num2 !== 0) {
 				dispatch(setSelected(0));

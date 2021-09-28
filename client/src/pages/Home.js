@@ -11,6 +11,7 @@ const Home = () => {
 	const dispatch = useDispatch();
 	const [photoList, setPhotoList] = useState([]);
 	const [galleryList, setGalleryList] = useState([]);
+	const [loading, setLoading] = useState(false);
 
 	useEffect(() => {
 		dispatch(setMenu(0));
@@ -28,6 +29,7 @@ const Home = () => {
 			)
 			.then((Response) => {
 				setGalleryList(Response.data);
+				setLoading(true);
 			})
 			.catch((Error) => {
 				console.log(Error);
@@ -35,9 +37,10 @@ const Home = () => {
 	}, []);
 
 	const goSubPage = (main, sub) => {
-		window.scrollTo(0, 0);
 		dispatch(setMenu(main));
 		dispatch(setSubmenu(sub));
+		window.scrollTo(0, 0);
+		document.getElementById("scrollRef").scrollTo(0, 0);
 	};
 
 	const dataToText = (date) => {
@@ -55,6 +58,7 @@ const Home = () => {
 			dispatch(setMenu(2));
 			dispatch(setSubmenu(3));
 		}
+		document.getElementById("scrollRef").scrollTo(0, 0);
 	};
 
 	return (
@@ -143,6 +147,7 @@ const Home = () => {
 												  element._id;
 										return (
 											<Link
+												key={element.id}
 												to={destination}
 												onClick={() => goGallery(element.type)}
 												class="w-1/2 lg:w-1/4 px-2 md:w-1/4 md:px-4 mb-4 lg:mb-0"

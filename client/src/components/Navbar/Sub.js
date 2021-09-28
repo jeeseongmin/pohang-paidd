@@ -56,6 +56,7 @@ const Sub = (props) => {
 		dispatch(setMenu(num1));
 		dispatch(setSubmenu(num2));
 		window.scrollTo(0, 0);
+		document.getElementById("scrollRef").scrollTo(0, 0);
 	};
 
 	return (

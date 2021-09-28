@@ -6,6 +6,7 @@ import Paging from "../../../components/Paging";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import CircularProgress from "@material-ui/core/CircularProgress";
+import { HiHome } from "react-icons/hi";
 
 const Index = () => {
 	const [loading, setLoading] = useState(false);
@@ -79,9 +80,9 @@ const Index = () => {
 
 	return (
 		<div>
-			<div class="flex flex-row justify-between items-center mb-4 md:mb-8">
+			<div class="flex flex-row justify-between items-center mb-4 md:mb-0">
 				<Subtitle text={"공지사항"} />
-				<div class="w-1/2 flex flex-row items-center relative justify-end ">
+				{/* <div class="w-1/2 flex flex-row items-center relative justify-end ">
 					<input
 						type="text"
 						name="name"
@@ -90,7 +91,13 @@ const Index = () => {
 						class="w-full h-full py-2 px-4 mr-2 border-2 border-gray-300 outline-none focus:border-purple-700 "
 					/>
 					<BsSearch size={28} class="cursor-pointer text-gray-300" />
+				</div> */}
+			</div>
+			<div class="mt-2 mb-4 w-full hidden lg:flex flex-row text-sm text-gray-400 items-center">
+				<div class="mr-2">
+					<HiHome size={16} />
 				</div>
+				Home {">"} 참여마당 {">"} 공지사항
 			</div>
 			<div class="w-full h-auto mb-8 text-base lg:text-lg">
 				{/* 딱 10개 씩만 로드하기 */}

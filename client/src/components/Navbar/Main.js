@@ -29,6 +29,7 @@ const Main = (props) => {
 		dispatch(setSubmenu(1));
 		dispatch(setSelected(0));
 		window.scrollTo(0, 0);
+		document.getElementById("scrollRef").scrollTo(0, 0);
 	};
 	return (
 		<>

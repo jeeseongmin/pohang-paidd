@@ -33,6 +33,7 @@ const GalleryWrite = (props) => {
 	};
 
 	useEffect(() => {
+		document.getElementById("scrollRef").scrollTo(0, 0);
 		const cp = { ...info };
 		cp.type = type;
 		setInfo(cp);
@@ -68,6 +69,7 @@ const GalleryWrite = (props) => {
 				.then((response) => {
 					alert("업로드 되었습니다.");
 					history.push("/business/" + info.type + "/gallery");
+					document.getElementById("scrollRef").scrollTo(0, 0);
 				})
 				.catch((response) => {
 					console.log("Error!");

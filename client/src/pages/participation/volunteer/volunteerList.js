@@ -151,6 +151,7 @@ const VolunteerList = () => {
 				<div class="flex w-full mb-8 absolute mt-8">
 					<Link
 						to="/participation/volunteer/0"
+						onClick={() => document.getElementById("scrollRef").scrollTo(0, 0)}
 						class="w-auto justify-center cursor-pointer px-2 md:px-16 py-2 border border-purple-700 text-purple-700 flex flex-row items-center hover:bg-purple-500 hover:text-white hover:font-bold"
 					>
 						뒤로가기

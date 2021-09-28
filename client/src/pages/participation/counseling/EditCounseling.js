@@ -97,6 +97,7 @@ const EditCounseling = (props) => {
 					window.scrollTo(0, 0);
 					history.push("/participation/counseling/0");
 					alert("수정되었습니다!");
+					document.getElementById("scrollRef").scrollTo(0, 0);
 				})
 				.catch((response) => {
 					console.log("Error!");
@@ -151,6 +152,7 @@ const EditCounseling = (props) => {
 					<input
 						ref={passwordRef}
 						type="password"
+						disabled={true}
 						class="w-1/2 md:w-60 p-4 border-2 border-gray-300 outline-none mr-4 focus:border-purple-700"
 						onChange={(e) => changeInfo(e, "password")}
 						value={info.password}
@@ -158,6 +160,7 @@ const EditCounseling = (props) => {
 					/>
 					<input
 						type="password"
+						disabled={true}
 						class="w-1/2 md:w-60 p-4 border-2 border-gray-300 outline-none focus:border-purple-700"
 						onChange={(e) => changeInfo(e, "passwordCheck")}
 						value={info.passwordCheck}
@@ -170,7 +173,7 @@ const EditCounseling = (props) => {
 				<Link
 					class="w-full md:w-auto mb-4 md:mb-4 justify-center cursor-pointer px-16 py-2 border border-purple-700 text-purple-700 flex flex-row items-center hover:bg-purple-500 hover:text-white hover:font-bold"
 					to="/participation/counseling/0"
-					onClick={() => window.scrollTo(0, 0)}
+					onClick={() => document.getElementById("scrollRef").scrollTo(0, 0)}
 				>
 					뒤로 가기
 				</Link>

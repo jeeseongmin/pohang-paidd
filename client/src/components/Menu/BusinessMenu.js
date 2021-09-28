@@ -22,7 +22,7 @@ const BusinessMenu = (props) => {
 	];
 	const onChange = (num) => {
 		changeSelected(num);
-		// history.push(url[num]);
+		document.getElementById("scrollRef").scrollTo(0, 0);
 	};
 
 	return (

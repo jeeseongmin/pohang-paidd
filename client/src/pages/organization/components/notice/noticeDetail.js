@@ -29,6 +29,8 @@ const NoticeDetail = (props) => {
 	});
 
 	useEffect(() => {
+		document.getElementById("scrollRef").scrollTo(0, 0);
+
 		axios
 			.post(
 				"/api/notice/" + id,
@@ -75,6 +77,7 @@ const NoticeDetail = (props) => {
 				.then((response) => {
 					alert("삭제되었습니다.");
 					history.push("/organization/notice/0");
+					document.getElementById("scrollRef").scrollTo(0, 0);
 				})
 				.catch((response) => {
 					console.log("Error!");
@@ -91,6 +94,10 @@ const NoticeDetail = (props) => {
 		return year + "." + month + "." + day;
 	};
 
+	const goEdit = () => {
+		setIsEdit(true);
+		document.getElementById("scrollRef").scrollTo(0, 0);
+	};
 	return (
 		<>
 			{!isEdit ? (
@@ -120,7 +127,9 @@ const NoticeDetail = (props) => {
 						<Link
 							class="w-full md:w-auto cursor-pointer px-16 py-2 justify-center border border-purple-700 text-purple-700 flex flex-row items-center hover:bg-purple-500 hover:text-white hover:font-bold"
 							to={"/organization/notice/0"}
-							onClick={() => window.scrollTo(0, 0)}
+							onClick={() =>
+								document.getElementById("scrollRef").scrollTo(0, 0)
+							}
 						>
 							뒤로 가기
 						</Link>
@@ -134,7 +143,7 @@ const NoticeDetail = (props) => {
 									삭제하기
 								</div>
 								<div
-									onClick={() => setIsEdit(true)}
+									onClick={goEdit}
 									class="w-full md:w-auto justify-center cursor-pointer px-16 py-2 border border-purple-700 text-purple-700 flex flex-row items-center hover:bg-purple-500 hover:text-white hover:font-bold"
 								>
 									수정하기

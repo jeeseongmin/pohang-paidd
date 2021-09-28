@@ -1,11 +1,17 @@
 import React from "react";
 import Subtitle from "../../../../../components/Subtitle";
+import { HiHome } from "react-icons/hi";
 
 const Intro = () => {
 	return (
 		<div>
 			<Subtitle text={"사업소개"} />
-
+			<div class="mt-2 mb-8 w-full hidden lg:flex flex-row text-sm text-gray-400 items-center">
+				<div class="mr-2">
+					<HiHome size={16} />
+				</div>
+				Home {">"} 주요사업 {">"} 장애인활동사업 {">"} 사업소개
+			</div>
 			<div class="text-base lg:text-xl font-bold leading-9 py-2 lg:py-4">
 				장애인활동지원사업
 			</div>

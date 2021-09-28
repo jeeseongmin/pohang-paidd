@@ -1,5 +1,6 @@
 import React from "react";
 import dataList from "./data/list";
+import { HiHome } from "react-icons/hi";
 
 const LocalTable = (props) => {
 	const num = props.index;
@@ -21,8 +22,14 @@ const LocalTable = (props) => {
 	];
 
 	return (
-		<div>
-			<div class="text-2xl mt-0 md:mt-4 mb-8 font-bold">{name[num]}</div>
+		<div class="select-text">
+			<div class="text-2xl mt-0 md:mt-0 mb-0 font-bold">{name[num]}</div>
+			<div class="mt-2 mb-8 w-full hidden lg:flex flex-row text-sm text-gray-400 items-center">
+				<div class="mr-2">
+					<HiHome size={16} />
+				</div>
+				Home {">"} 지역복지 {">"} {name[num]}
+			</div>
 			<div class="w-full h-auto mb-8 ">
 				{/* 딱 10개 씩만 로드하기 */}
 				<div class="w-full px-2 text-base lg:text-lg lg:px-8 py-2 flex justify-end items-center border-t-2 border-b-2 border-purple-600">

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { BsChevronUp, BsChevronDown } from "react-icons/bs";
 import Subtitle from "../../../../../components/Subtitle";
+import { HiHome } from "react-icons/hi";
 
 const Business = () => {
 	const [toggleObj, setToggleObj] = useState({
@@ -17,7 +18,12 @@ const Business = () => {
 	return (
 		<div>
 			<Subtitle text={"주요사업"} />
-
+			<div class="mt-2 mb-12 w-full hidden lg:flex flex-row text-sm text-gray-400 items-center">
+				<div class="mr-2">
+					<HiHome size={16} />
+				</div>
+				Home {">"} 주요사업 {">"} 장애인활동사업 {">"} 주요사업
+			</div>
 			<div class="flex flex-wrap justify-around gap-4 mt-4 md:mt-8">
 				<div
 					onClick={(e) => onToggle(e, "top")}

@@ -1,10 +1,17 @@
 import React from "react";
 import Subtitle from "../../../components/Subtitle";
+import { HiHome } from "react-icons/hi";
 
 const Intro = () => {
 	return (
 		<div>
 			<Subtitle text={"센터소개"} />
+			<div class="mt-1 mb-4 w-full hidden lg:flex flex-row text-sm text-gray-400 items-center">
+				<div class="mr-2">
+					<HiHome size={16} />
+				</div>
+				Home {">"} 부설기관 {">"} 늘사랑주간보호센터 {">"} 센터소개
+			</div>
 			<div class="text-xl font-bold leading-9 py-2 md:py-4">
 				늘사랑주간보호센터
 			</div>

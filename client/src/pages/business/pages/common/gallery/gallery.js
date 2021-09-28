@@ -7,6 +7,7 @@ import Paging from "../../../../../components/Paging";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import CircularProgress from "@material-ui/core/CircularProgress";
+import { HiHome } from "react-icons/hi";
 
 const Gallery = (props) => {
 	const [loading, setLoading] = useState(false);
@@ -17,7 +18,17 @@ const Gallery = (props) => {
 	const currentEmail = useSelector((state) => state.setting.currentEmail);
 	const currentPassword = useSelector((state) => state.setting.currentPassword);
 	const type = props.pages;
+	const [subtitle, setSubtitle] = useState("");
 
+	useEffect(() => {
+		if (window.location.href.includes("org1")) {
+			setSubtitle("지적장애인자립지원센터");
+		} else if (window.location.href.includes("org2")) {
+			setSubtitle("장애인활동지원사업");
+		} else if (window.location.href.includes("org3")) {
+			setSubtitle("방과후활동지원서비스사업");
+		}
+	}, [window.location.href]);
 	useEffect(() => {
 		axios
 			.post(
@@ -108,7 +119,7 @@ const Gallery = (props) => {
 
 	return (
 		<div>
-			<div class="flex flex-row justify-between items-center mb-8">
+			<div class="flex flex-row justify-between items-center mb-8 lg:mb-2">
 				<Subtitle text={"포토갤러리"} />
 
 				<div class="w-1/2 flex flex-row items-center relative justify-end ">
@@ -121,6 +132,12 @@ const Gallery = (props) => {
 					/>
 					<BsSearch size={28} class="cursor-pointer text-gray-300" /> */}
 				</div>
+			</div>
+			<div class="mb-16 w-full hidden lg:flex flex-row text-sm text-gray-400 items-center">
+				<div class="mr-2">
+					<HiHome size={16} />
+				</div>
+				Home {">"} 주요사업 {">"} {subtitle} {">"} 포토갤러리
 			</div>
 			<div class="w-full flex flex-row flex-wrap border-b border-gray-200 ">
 				{galleryList.length !== 0 ? (

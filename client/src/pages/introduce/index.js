@@ -12,17 +12,31 @@ import Layout from "../../components/Layout";
 
 const Index = () => {
 	const dispatch = useDispatch();
+	const [transForm, setTransForm] = useState(false);
+
+	useEffect(() => {
+		setTransForm(true);
+	}, []);
 
 	const currentMenu = useSelector((state) => state.setting.menu);
 	const currentSubmenu = useSelector((state) => state.setting.submenu);
 
 	return (
 		<Layout>
-			<div class="h-full">
-				<div>
-					<div class="h-44 bg-purple-100 flex justify-center items-center relative">
-						<h1 class="text-4xl">협회소개</h1>
-						<div class="absolute w-full h-1/2 lg:h-full flex flex-row justify-between items-center bottom-0 px-0 2xl:px-36 xl:px-32 md:px-8">
+			<div class="h-full z-0">
+				<div class="relative mb-8">
+					<div class="z-30 h-44 bg-purple-100 flex justify-center items-center relative">
+						<h1 class="text-2xl font-bold md:font-normal md:text-4xl">
+							협회소개
+						</h1>
+						<div
+							class={
+								"-bottom-10 z-30 absolute w-full h-1/2 lg:h-full flex flex-row justify-between items-center px-0 2xl:px-36 xl:px-32 md:px-8 " +
+								(transForm
+									? "transform -translate-y-10 delay-150 duration-700 "
+									: "")
+							}
+						>
 							<img
 								src="/image/index1-img1.png"
 								alt="index-img"
@@ -35,7 +49,7 @@ const Index = () => {
 							/>
 						</div>
 					</div>
-					<div class="w-full cursor-pointer bottom-0 flex flex-row justify-center bg-purple-100 px-0 2xl:px-36 xl:px-32 md:px-8">
+					<div class="absolute bottom-22 z-40 w-full cursor-pointer flex flex-row justify-center bg-purple-100 px-0 2xl:px-36 xl:px-32 md:px-8">
 						<Submenu menu={1} submenu={1} />
 						<Submenu menu={1} submenu={2} />
 						<Submenu menu={1} submenu={3} />

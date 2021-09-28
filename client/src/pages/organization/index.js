@@ -21,6 +21,11 @@ const Index = ({ match }) => {
 		setSelected(num);
 		window.scrollTo(0, 0);
 	};
+	const [transForm, setTransForm] = useState(false);
+
+	useEffect(() => {
+		setTransForm(true);
+	}, []);
 
 	useEffect(() => {
 		if (window.location.pathname.includes("notice")) {
@@ -46,17 +51,33 @@ const Index = ({ match }) => {
 		<Layout>
 			<div class="h-full z-0">
 				<div class="z-0 h-56 bg-purple-100 flex justify-center items-center relative">
-					<h1 class="text-4xl">늘사랑주간보호센터</h1>
-					<div class="absolute w-full h-1/2 lg:h-full flex flex-row justify-between items-center bottom-0 px-0 2xl:px-36 xl:px-32 md:px-8">
+					<h1 class="z-50 text-2xl font-bold md:font-normal md:text-4xl">
+						늘사랑주간보호센터
+					</h1>
+					<div
+						class={
+							"z-30 absolute w-full h-1/2 lg:h-full hidden lg:flex flex-row justify-between items-center bottom-0 px-0 2xl:px-36 xl:px-32  "
+						}
+					>
 						<img
 							src="/image/index3-img1.png"
 							alt="index-img"
-							class="h-full object-cover"
+							class={
+								"h-full translate-x-0 lg:translate-x-10 object-cover " +
+								(transForm
+									? "transform translate-x-30 delay-150 duration-700 "
+									: "")
+							}
 						/>
 						<img
 							src="/image/index3-img2.png"
 							alt="index-img"
-							class="h-full object-cover"
+							class={
+								"h-full -translate-x-0 lg:-translate-x-10 object-cover " +
+								(transForm
+									? "transform -translate-x-16 delay-150 duration-700 "
+									: "")
+							}
 						/>
 					</div>
 					{/* 나중에 부설기관이 늘어나면 추가하기 */}
@@ -84,7 +105,7 @@ const Index = ({ match }) => {
 					</Link>
 				</div> */}
 				</div>
-				<div class="w-full h-auto px-5 py-4 2xl:px-36 xl:px-32 md:px-8 lg:py-16">
+				<div class="w-full h-auto px-5 py-4 2xl:px-36 xl:px-32 md:px-8">
 					<div class="flex flex-row justify-start items-center py-8">
 						{[0, 1, 2, 3].map((element, index) => {
 							return (
