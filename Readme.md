@@ -26,4 +26,4 @@
 - 프로젝트를 cafe24에 어떻게 업로드시키는 지
   아래 사이트에 정리되어있습니다.
 
-[정리 사이트] (https://velog.io/@peration/React-server-client-%EA%B0%9C%EB%B0%9C)
+[정리 사이트](https://velog.io/@peration/React-server-client-%EA%B0%9C%EB%B0%9C)
