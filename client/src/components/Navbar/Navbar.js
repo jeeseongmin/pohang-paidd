@@ -132,16 +132,20 @@ const Navbar = () => {
 					"z-20 w-full pl-5 pr-16 h-16 hidden justify-start shadow-lg bg-white lg:flex 2xl:px-36 xl:px-32 lg:pl-5 fixed "
 				}
 			>
-				<div class="flex justify-center items-center cursor-pointer">
-					<Link to="/" onClick={() => goPage(0)}>
-						<img src="/image/logo.png" class="h-full xl:h-full" alt="logo" />
+				<div class="flex h-full justify-center items-center cursor-pointer">
+					<Link class="h-full" to="/" onClick={() => goPage(0)}>
+						<img
+							src="/image/logo.png"
+							class="h-full xl:h-full object-cover"
+							alt="logo"
+						/>
 					</Link>
 				</div>
 				<div class="z-30 flex-1 flex justify-around xl:justify-end items-center">
 					<div
 						onMouseOver={() => hoverAction(0, true)}
 						onMouseOut={() => hoverAction(0, false)}
-						class="h-full relative ml-4 xl:ml-16 flex items-center"
+						class="h-full relative ml-4 xl:ml-12 flex items-center"
 					>
 						<Main overMenu={overMenu} menu={1} />
 						<div
@@ -160,7 +164,7 @@ const Navbar = () => {
 					<div
 						onMouseOver={() => hoverAction(1, true)}
 						onMouseOut={() => hoverAction(1, false)}
-						class="h-full relative ml-4 xl:ml-16 flex items-center"
+						class="h-full relative ml-4 xl:ml-12 flex items-center"
 					>
 						<Main overMenu={overMenu} menu={2} />
 						<div
@@ -179,7 +183,7 @@ const Navbar = () => {
 					<div
 						onMouseOver={() => hoverAction(2, true)}
 						onMouseOut={() => hoverAction(2, false)}
-						class="h-full relative ml-4 xl:ml-16 flex items-center"
+						class="h-full relative ml-4 xl:ml-12 flex items-center"
 					>
 						<Main overMenu={overMenu} menu={3} />
 
@@ -195,7 +199,7 @@ const Navbar = () => {
 					<div
 						onMouseOver={() => hoverAction(3, true)}
 						onMouseOut={() => hoverAction(3, false)}
-						class="h-full relative ml-4 xl:ml-16 flex items-center"
+						class="h-full relative ml-4 xl:ml-12 flex items-center"
 					>
 						<Main overMenu={overMenu} menu={4} />
 						<div
@@ -213,7 +217,7 @@ const Navbar = () => {
 					<div
 						onMouseOver={() => hoverAction(4, true)}
 						onMouseOut={() => hoverAction(4, false)}
-						class="h-full relative ml-4 xl:ml-16 flex items-center"
+						class="h-full relative ml-4 xl:ml-12 flex items-center"
 					>
 						<Main overMenu={overMenu} menu={5} />
 						<div

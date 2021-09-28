@@ -13,8 +13,12 @@ const history = () => {
 				Home {">"} 협회소개 {">"} 연혁
 			</div>
 			<div class="flex flex-col justify-center items-center my-8">
-				<div>
-					<img src="/image/intro-img2.png" alt="history" />
+				<div class="w-auto flex flex-row justify-center">
+					<img
+						src="/image/intro-img2.png"
+						alt="history"
+						class="w-full mx-8 md:w-2/3 md:mx-0 lg:w-1/2"
+					/>
 				</div>
 			</div>
 		</div>

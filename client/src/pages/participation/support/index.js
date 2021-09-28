@@ -18,7 +18,7 @@ const Index = () => {
 				</div>
 				Home {">"} 참여마당 {">"} 후원
 			</div>
-			<div class="py-8 mb-8">
+			<div class="py-8 mb-2 md:mb-4">
 				<div class="text-base lg:text-lg leading-7 lg:leading-9">
 					더 많은 발달장애인에게 좋은 서비스를 지원할 수 있도록 후원과 자원봉사
 					신청을 받고 있습니다.{" "}
@@ -28,8 +28,12 @@ const Index = () => {
 					혜택을 받을 수 있습니다. (기부영수증 발급)
 				</div>
 			</div>
-			<div class="flex flex-row justify-center items-center mb-8">
-				<img src="/image/participation-img1.png" alt="" />
+			<div class="flex flex-row justify-center items-center mb-8 lg:mb-16">
+				<img
+					src="/image/participation-img1.png"
+					alt=""
+					class="w-full md:w-3/4 lg:w-2/3"
+				/>
 			</div>
 			<div class="w-full flex flex-col justify-center items-start mb-8">
 				<h1 class="px-2 lg:px-4 pb-4 text-xl md:text-2xl text-purple-700 font-bold">
