@@ -1,7 +1,8 @@
 import React from "react";
-import Subtitle from "../../components/Subtitle";
 import { HiHome } from "react-icons/hi";
-const intro = () => {
+import Subtitle from "../../components/Subtitle";
+
+const Intro = () => {
 	return (
 		<div class="px-5 2xl:px-36 xl:px-32 md:px-8 py-8 lg:py-16">
 			<Subtitle text={"인사말"} />
@@ -11,21 +12,20 @@ const intro = () => {
 				</div>
 				Home {">"} 협회소개 {">"} 인사말
 			</div>
-
 			<div class="py-4 lg:py-8 flex flex-col justify-center items-center">
 				<img
-					src="/image/intro-img.png"
+					src="/image/Intro-img.png"
 					class="w-full object-cover px-16"
-					alt="intro-img"
+					alt="Intro-img"
 				/>
 				<img
-					src="/image/intro-text.png"
+					src="/image/Intro-text.png"
 					class="w-1/2 object-cover mt-8 lg:mt-4"
-					alt="intro-ext"
+					alt="Intro-ext"
 				/>
 			</div>
 		</div>
 	);
 };
 
-export default intro;
+export default Intro;
