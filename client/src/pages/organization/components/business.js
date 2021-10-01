@@ -17,7 +17,7 @@ const Business = () => {
 					<div class="w-full h-60 bg-gray-200">
 						<img
 							class="w-full h-full object-cover"
-							src="/image/noImage.png"
+							src="/image/org-p1.jpg"
 							alt="img"
 						/>
 					</div>
@@ -46,7 +46,7 @@ const Business = () => {
 					<div class="w-full h-60 bg-gray-200">
 						<img
 							class="w-full h-full object-cover"
-							src="/image/noImage.png"
+							src="/image/org-p2.jpg"
 							alt="img"
 						/>
 					</div>
@@ -75,7 +75,7 @@ const Business = () => {
 					<div class="w-full h-60 bg-gray-200">
 						<img
 							class="w-full h-full object-cover"
-							src="/image/noImage.png"
+							src="/image/org-p3.jpg"
 							alt="img"
 						/>
 					</div>
@@ -106,7 +106,7 @@ const Business = () => {
 					<div class="w-full h-60 bg-gray-200">
 						<img
 							class="w-full h-full object-cover"
-							src="/image/noImage.png"
+							src="/image/org-p4.jpg"
 							alt="img"
 						/>
 					</div>
@@ -136,7 +136,7 @@ const Business = () => {
 					<div class="w-full h-60 bg-gray-200">
 						<img
 							class="w-full h-full object-cover"
-							src="/image/noImage.png"
+							src="/image/org-p5.jpg"
 							alt="img"
 						/>
 					</div>
@@ -169,7 +169,7 @@ const Business = () => {
 					<div class="w-full h-60 bg-gray-200">
 						<img
 							class="w-full h-full object-cover"
-							src="/image/noImage.png"
+							src="/image/org-p6.jpg"
 							alt="img"
 						/>
 					</div>
@@ -198,7 +198,7 @@ const Business = () => {
 					<div class="w-full h-60 bg-gray-200">
 						<img
 							class="w-full h-full object-cover"
-							src="/image/noImage.png"
+							src="/image/org-p7.jpg"
 							alt="img"
 						/>
 					</div>
