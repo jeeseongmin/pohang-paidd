@@ -14,12 +14,12 @@ const Intro = () => {
 			</div>
 			<div class="py-4 lg:py-8 flex flex-col justify-center items-center">
 				<img
-					src="/image/Intro-img.png"
+					src="/image/intro-img.png"
 					class="w-full object-cover px-16"
 					alt="Intro-img"
 				/>
 				<img
-					src="/image/Intro-text.png"
+					src="/image/intro-text.png"
 					class="w-1/2 object-cover mt-8 lg:mt-4"
 					alt="Intro-ext"
 				/>

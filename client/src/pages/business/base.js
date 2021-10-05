@@ -18,7 +18,7 @@ const Base = () => {
 						<div class="w-full h-60 bg-gray-200">
 							<img
 								class="w-full h-full object-cover"
-								src="/image/noImage.png"
+								src="/image/base-img1.jpg"
 								alt="img"
 							/>
 						</div>
@@ -34,7 +34,7 @@ const Base = () => {
 						<div class="w-full h-60 bg-gray-200">
 							<img
 								class="w-full h-full object-cover"
-								src="/image/noImage.png"
+								src="/image/base-img2.jpg"
 								alt="img"
 							/>
 						</div>
@@ -50,7 +50,7 @@ const Base = () => {
 						<div class="w-full h-60 bg-gray-200">
 							<img
 								class="w-full h-full object-cover"
-								src="/image/noImage.png"
+								src="/image/base-img3.jpg"
 								alt="img"
 							/>
 						</div>
@@ -66,7 +66,7 @@ const Base = () => {
 						<div class="w-full h-60 bg-gray-200">
 							<img
 								class="w-full h-full object-cover"
-								src="/image/noImage.png"
+								src="/image/base-img4.jpg"
 								alt="img"
 							/>
 						</div>
@@ -81,7 +81,7 @@ const Base = () => {
 						<div class="w-full h-60 bg-gray-200">
 							<img
 								class="w-full h-full object-cover"
-								src="/image/noImage.png"
+								src="/image/base-img5.jpg"
 								alt="img"
 							/>
 						</div>
