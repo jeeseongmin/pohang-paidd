@@ -90,14 +90,11 @@ const Business = () => {
 						/>
 					</div>
 					<div class="text-lg px-4 w-full pt-4 pb-2 text-purple-700 font-bold">
-						권익옹호
+						특화사업
 					</div>
 					<div class="w-full px-4 text-base flex flex-col py-2 ">
-						<div>자조모임지원</div>
-						<div>자기권리 주장활동 지원</div>
-						<div>서포터 양성 및 활동지원</div>
-						<div>인식개선 </div>
-						<div>후견활동 지원</div>
+						<div>뷰티플러스사업</div>
+						<div>특수교육대상학생 계절학교</div>
 					</div>
 				</div>
 			</div>
