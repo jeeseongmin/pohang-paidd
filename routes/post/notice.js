@@ -28,8 +28,8 @@ router.route("/type/:type/:page").post((req, res) => {
 	if (req.body.key === API_KEY) {
 		Notice.find({ type: req.params.type })
 			.sort({ createdAt: -1 })
-			.skip((req.params.page - 1) * 10)
-			.limit(10)
+			.skip((req.params.page - 1) * 1)
+			.limit(1)
 			.then((one) => res.json(one))
 			.catch((err) => res.status(400).json("Error: ") + err);
 	} else res.status(400).json("Error");
@@ -40,6 +40,41 @@ router.route("/type/:type/:page").post((req, res) => {
 router.route("/type/:type").post((req, res) => {
 	if (req.body.key === API_KEY) {
 		Notice.find({ type: req.params.type })
+			.sort({ createdAt: -1 })
+			.then((one) => res.json(one))
+			.catch((err) => res.status(400).json("Error: ") + err);
+	} else res.status(400).json("Error");
+});
+
+// { $text: { $search: req.params.text } }
+router.route("/search/:type/:page").post((req, res) => {
+	if (req.body.key === API_KEY) {
+		let search = req.body.text;
+		Notice.find({
+			$and: [
+				{ type: req.params.type },
+				{ title: { $regex: search, $options: "i" } },
+			],
+		})
+			.sort({ createdAt: -1 })
+			.skip((req.params.page - 1) * 1)
+			.limit(1)
+			.then((one) => res.json(one))
+			.catch((err) => res.status(400).json("Error: ") + err);
+	} else res.status(400).json("Error");
+});
+
+// Read specific type notice
+// org1, org2, org3, org4, participation
+router.route("/search/:type").post((req, res) => {
+	if (req.body.key === API_KEY) {
+		let search = req.body.text;
+		Notice.find({
+			$and: [
+				{ type: req.params.type },
+				{ title: { $regex: search, $options: "i" } },
+			],
+		})
 			.sort({ createdAt: -1 })
 			.then((one) => res.json(one))
 			.catch((err) => res.status(400).json("Error: ") + err);

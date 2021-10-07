@@ -176,7 +176,7 @@ const Business = () => {
 					<div class="flex flex-col justify-between">
 						<div>
 							<div class="text-lg px-4 w-full pt-4 pb-2 text-purple-700 font-bold">
-								캠프 및 동아리 활동
+								캠프활동
 							</div>
 							<div class="w-full px-4 text-base flex flex-col pt-2 pb-8">
 								<div>"느려도 우리가 해요"(캠프)</div>
@@ -187,7 +187,7 @@ const Business = () => {
 								<div class="w-full border-t border-purple-300"></div>
 							</div>
 							<div class="w-full px-4 text-gray-300 text-sm pb-8">
-								1년에 2회 이상 이곳저곳에서 다양한 경험을 합니다.이 훈련은
+								1년에 2회 이상 이곳저곳에서 다양한 경험을 합니다.이 활동은
 								가족과 떨어져 동료들과 함께 며칠 지내는 것입니다. 혼자 지내는
 								연습을 해 볼 수 있습니다.
 							</div>

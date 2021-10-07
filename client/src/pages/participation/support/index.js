@@ -24,7 +24,7 @@ const Index = () => {
 					신청을 받고 있습니다.{" "}
 				</div>
 				<div class="text-base lg:text-lg mb-4 md:mb-8 leading-7 lg:leading-9">
-					후원금 및 물품후원은 법인세법 24조 및 소득세법 34조에 의해 소득공제
+					후원금 및 후원물품은 법인세법 24조 및 소득세법 34조에 의해 소득공제
 					혜택을 받을 수 있습니다. (기부영수증 발급)
 				</div>
 			</div>
@@ -41,9 +41,9 @@ const Index = () => {
 				</h1>
 				<div class=" w-full border-t-2 border-purple-700">
 					<div class="px-2 lg:px-4 flex flex-col md:flex-row text-xl py-2 border-b-2 border-gray-300">
-						<div class="w-48 leading-10 mr-8 font-bold md:font-normal">
+						<div class="w-48 leading-10 mr-8 font-bold md:font-normal flex justify-center items-center">
 							<div>포항시 지부</div>
-							<div></div>
+							{/* <div></div> */}
 						</div>
 						<div class="flex-1 leading-10 text-base md:text-xl ">
 							<div class="leading-7 md:leading-10">
@@ -54,9 +54,10 @@ const Index = () => {
 						</div>
 					</div>
 					<div class="px-2 lg:px-4 flex flex-col md:flex-row text-xl py-2 border-b-2 border-gray-300">
-						<div class="w-48 leading-10 mr-8 font-bold md:font-normal">
-							<div>늘사랑주간보호센터</div>
-							<div></div>
+						<div class="w-48 leading-10 mr-8 font-bold md:font-normal flex justify-center items-center">
+							<div class="text-center">
+								늘사랑주간보호센터<br></br>(사회복지이용시설)
+							</div>
 						</div>
 						<div class="flex-1 leading-10 text-base md:text-xl">
 							<div class="leading-7 md:leading-10">

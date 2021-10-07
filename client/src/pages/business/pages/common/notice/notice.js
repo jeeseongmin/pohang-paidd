@@ -10,6 +10,8 @@ import { HiHome } from "react-icons/hi";
 
 const Notice = (props, { match }) => {
 	const [loading, setLoading] = useState(false);
+	const [loadingPaging, setLoadingPaging] = useState(false);
+	const [isSearch, setIsSearch] = useState(false);
 	const [page, setPage] = useState(1);
 	const [totalPage, setTotalPage] = useState(0);
 	const [noticeList, setNoticeList] = useState([]);
@@ -19,6 +21,22 @@ const Notice = (props, { match }) => {
 	const type = props.pages;
 	const [subtitle, setSubtitle] = useState("");
 
+	function PageBtn(props) {
+		const current = props.current;
+		return (
+			<div
+				onClick={() => setPage(current)}
+				class={
+					"mr-2 w-8 h-8 flex justify-center items-center cursor-pointer " +
+					(page === current
+						? "text-white border-2 border-purple-700 bg-purple-700  "
+						: "border border-gray-300 text-gray-300 hover:bg-purple-300 hover:text-purple-500")
+				}
+			>
+				{current}
+			</div>
+		);
+	}
 	useEffect(() => {
 		if (window.location.href.includes("org1")) {
 			setSubtitle("지적장애인자립지원센터");
@@ -29,46 +47,121 @@ const Notice = (props, { match }) => {
 		}
 	}, [window.location.href]);
 
-	useEffect(() => {
-		axios
-			.post(
-				"/api/notice/type/" + type + "/" + page,
-				{ key: process.env.REACT_APP_API_KEY },
-				{
-					headers: {
-						"Content-type": "application/json",
-						Accept: "application/json",
-					},
-				}
-			)
-			.then((Response) => {
-				setNoticeList(Response.data);
-			})
-			.catch((Error) => {
-				console.log(Error);
-			});
-	}, [page, findText]);
+	const enterkey = () => {
+		if (window.event.keyCode === 13) {
+			searchList();
+		}
+	};
+
+	const searchList = () => {
+		setIsSearch(true);
+		setPage(1);
+		if (findText !== "") {
+			axios
+				.post(
+					"/api/notice/search/" + type + "/" + page,
+					{ key: process.env.REACT_APP_API_KEY, text: findText },
+					{
+						headers: {
+							"Content-type": "application/json",
+							Accept: "application/json",
+						},
+					}
+				)
+				.then((Response) => {
+					console.log(Response);
+					setNoticeList(Response.data);
+				})
+				.catch((Error) => {
+					console.log(Error);
+				});
+		}
+	};
 
 	useEffect(() => {
-		axios
-			.post(
-				"/api/notice/type/" + type,
-				{ key: process.env.REACT_APP_API_KEY },
-				{
-					headers: {
-						"Content-type": "application/json",
-						Accept: "application/json",
-					},
-				}
-			)
-			.then((Response) => {
-				setTotalPage(Math.ceil(Response.data.length / 10));
-				setLoading(true);
-			})
-			.catch((Error) => {
-				console.log(Error);
-			});
-	}, [noticeList, findText]);
+		// findText가 공백이면
+		if (isSearch) {
+			axios
+				.post(
+					"/api/notice/search/" + type + "/" + page,
+					{ key: process.env.REACT_APP_API_KEY, text: findText },
+					{
+						headers: {
+							"Content-type": "application/json",
+							Accept: "application/json",
+						},
+					}
+				)
+				.then((Response) => {
+					console.log(Response);
+					setNoticeList(Response.data);
+				})
+				.catch((Error) => {
+					console.log(Error);
+				});
+		} else {
+			axios
+				.post(
+					"/api/notice/type/" + type + "/" + page,
+					{ key: process.env.REACT_APP_API_KEY },
+					{
+						headers: {
+							"Content-type": "application/json",
+							Accept: "application/json",
+						},
+					}
+				)
+				.then((Response) => {
+					setNoticeList(Response.data);
+				})
+				.catch((Error) => {
+					console.log(Error);
+				});
+		}
+	}, [page]);
+
+	useEffect(() => {
+		setLoading(false);
+		if (isSearch) {
+			axios
+				.post(
+					"/api/notice/search/" + type,
+					{ key: process.env.REACT_APP_API_KEY, text: findText },
+					{
+						headers: {
+							"Content-type": "application/json",
+							Accept: "application/json",
+						},
+					}
+				)
+				.then((Response) => {
+					setTotalPage(Math.ceil(Response.data.length / 10));
+					setLoading(true);
+				})
+				.catch((Error) => {
+					console.log(Error);
+				});
+		} else {
+			axios
+				.post(
+					"/api/notice/type/" + type,
+					{ key: process.env.REACT_APP_API_KEY },
+					{
+						headers: {
+							"Content-type": "application/json",
+							Accept: "application/json",
+						},
+					}
+				)
+				.then((Response) => {
+					setTotalPage(Math.ceil(Response.data.length / 1));
+					setLoading(true);
+				})
+				.catch((Error) => {
+					console.log(Error);
+				});
+		}
+	}, [noticeList]);
 
 	const changeText = (e) => {
 		const cp = e.target.value;
@@ -99,26 +192,38 @@ const Notice = (props, { match }) => {
 
 	return (
 		<div>
-			<div class="flex flex-row justify-between items-center mb-8 lg:mb-2">
-				<Subtitle text={"공지사항"} />
+			<div class="flex flex-row items-center justify-between mb-4 lg:mb-12">
+				<div class="flex flex-col">
+					<div class="flex flex-row justify-between items-center mb-0 lg:mb-2">
+						<Subtitle text={"공지사항"} />
+					</div>
+					<div class="w-full hidden lg:flex flex-row text-sm text-gray-400 items-center">
+						<div class="mr-2">
+							<HiHome size={16} />
+						</div>
+						Home {">"} 주요사업 {">"} {subtitle} {">"} 공지사항
+					</div>
+				</div>
 				<div class="w-1/2 flex flex-row items-center relative justify-end ">
-					{/* <input
+					<input
 						type="text"
 						name="name"
-						placeholder="검색어"
+						placeholder="검색하기"
 						autocomplete="off"
 						onChange={changeText}
 						value={findText}
-						class="w-full h-full py-2 px-4 mr-2 border-2 border-gray-300 outline-none focus:border-purple-600 "
-						/>
-					<BsSearch size={28} class="cursor-pointer text-gray-300" /> */}
+						onKeyUp={enterkey}
+						class="w-full h-full py-2 px-4 mr-2 border-2 border-gray-300 outline-none focus:border-purple-600 transition delay-50 duration-300 "
+					/>
+					<BsSearch
+						size={28}
+						onClick={searchList}
+						class={
+							"cursor-pointer transition delay-50 duration-300 " +
+							(findText === "" ? "text-gray-300" : "text-purple-600")
+						}
+					/>
 				</div>
-			</div>
-			<div class="mb-12 w-full hidden lg:flex flex-row text-sm text-gray-400 items-center">
-				<div class="mr-2">
-					<HiHome size={16} />
-				</div>
-				Home {">"} 주요사업 {">"} {subtitle} {">"} 공지사항
 			</div>
 			<div class="w-full h-auto mb-8 text-base lg:text-lg">
 				{/* 딱 10개 씩만 로드하기 */}
@@ -154,6 +259,7 @@ const Notice = (props, { match }) => {
 					page : 현재 페이지
 					total : 총 페이지
 				 */}
+				{/* {loading && <Paging setPage={setPage} page={page} total={totalPage} />} */}
 				<Paging setPage={setPage} page={page} total={totalPage} />
 
 				{currentEmail === "master" || currentEmail === type ? (

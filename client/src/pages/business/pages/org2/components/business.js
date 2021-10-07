@@ -51,7 +51,7 @@ const Business = () => {
 							요양법」에 의한 장기요양 급여를 받는 사람은 제외<br></br> ·
 							활동지원 수급자였다가 만65세 이후에 「노인장기요양보험법」에 따른
 							장기요양급여를 신청하여 장기요양 등급 외 판정을 받아
-							활동지원급여가 적절하다고 판단된 장애인 (소득 수준 이나 장애유형에
+							활동지원급여가 적절하다고 판단된 장애인 (소득 수준이나 장애유형에
 							관계없이 신청가능)
 						</div>
 						<p class="mb-2">- 서비스 신청 제외 대상(법 제 5조)</p>
@@ -142,13 +142,10 @@ const Business = () => {
 									배우자가 출산 후 6개월 이내에 한하여 예외적으로 인정)
 								</div>
 							</div>
-							<h1 class="font-bold mt-8 mb-4">
-								6. 본인부담금 (시행일 : 20.06.01)
-							</h1>
+							<h1 class="font-bold mt-8 mb-4">6. 본인부담금</h1>
 							<div class="leading-8 mb-8">
 								1) 기초생활수급자 : 면제<br></br>2) 차상위자 : 20,000원<br></br>
-								3) 기준 중위소득 70%, 120%, 180%로 분류되어 차등 부과 (21,000원
-								~)<br></br>
+								3) 기준 중위소득 70%, 120%, 180%로 분류되어 차등 부과 <br></br>
 								4) 본인부담금 납부 : 전월 25일~말일까지 납부되어야 바우처 자동
 								생성<br></br>
 							</div>
@@ -159,7 +156,7 @@ const Business = () => {
 					onClick={(e) => onToggle(e, "bottom")}
 					class="text-sm md:text-xl cursor-pointer w-full font-semibold rounded-sm px-2 md:px-4 py-2 border-2 border-purple-300 flex flex-row justify-between items-center"
 				>
-					<span>장애인활동지원사업 이용하기 ( 활동지원자 )</span>
+					<span>장애인활동지원사업 이용하기 ( 활동지원사 )</span>
 					{!toggleObj.bottom && (
 						<div class="text-gray-400">
 							<BsChevronUp size={28} />
@@ -209,7 +206,7 @@ const Business = () => {
 						</div>
 						<h1 class="font-bold mt-8 mb-4">4. 근무시간</h1>
 						<div class="leading-8 mb-8">
-							<span class="invisible">4. </span>이용자와 협의 후 조정 가능
+							<span class="invisible">4. </span>이용자 지원 요청 시간
 						</div>
 						<h1 class="font-bold mt-8 mb-4">5. 모집방법</h1>
 						<div class="leading-8 mb-8">
@@ -222,7 +219,7 @@ const Business = () => {
 						</div>
 						<h1 class="font-bold mt-8 mb-4">7. 근무조건 및 기타사항</h1>
 						<div class="leading-8 mb-8">
-							<span class="invisible">7. </span>1) 급여 : 시간 장
+							<span class="invisible">7. </span>1) 급여 : 시간 당
 							10,470원(최저임금+주휴수당) + 별도의 수당<br></br>{" "}
 							<span class="invisible">7. </span>2) 배상책임 및 단체상해보험 가입
 							<br></br>
@@ -238,8 +235,8 @@ const Business = () => {
 						</div>
 						<h1 class="font-bold mt-8 mb-4">8. 접수방법</h1>
 						<div class="leading-8 mb-8">
-							<span class="invisible">8. </span>교육이수증 사본 1부, 사진 1매,
-							유사자격증(해당자)
+							<span class="invisible">8. </span>방문접수(매월 2, 3주 / 월~금 /
+							14:00 ~ 17:00)
 						</div>
 					</div>
 				)}
