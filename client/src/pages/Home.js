@@ -83,35 +83,35 @@ const Home = () => {
 							<Link
 								to="/business/base/default"
 								onClick={() => goSubPage(2, 1)}
-								class="lg:text-base lg:p-4 py-2 px-4 text-xs cursor-pointer mr-4 mb-4 border border-purple-700 text-purple-700 rounded-full hover:border-purple-300 hover:bg-purple-300 hover:text-white"
+								class="lg:text-base lg:p-4 py-2 px-4 text-xs cursor-pointer mr-4 mb-4 border border-purple-700 text-purple-700 rounded-full transition delay-50 duration-300 hover:border-purple-300 hover:bg-purple-300 hover:text-white"
 							>
 								협회 사업
 							</Link>
 							<Link
 								to="/business/org1/intro"
 								onClick={() => goSubPage(2, 2)}
-								class="lg:text-base lg:p-4 py-2 px-4 text-xs cursor-pointer mr-4 mb-4 border border-purple-700 text-purple-700 rounded-full hover:border-purple-300 hover:bg-purple-300 hover:text-white"
+								class="lg:text-base lg:p-4 py-2 px-4 text-xs cursor-pointer mr-4 mb-4 border border-purple-700 text-purple-700 rounded-full hover:border-purple-300 transition delay-50 duration-300 hover:bg-purple-300 hover:text-white"
 							>
 								포항시지적장애인자립지원센터
 							</Link>
 							<Link
 								to="/business/org2/intro"
 								onClick={() => goSubPage(2, 3)}
-								class="lg:text-base py-2 px-4 lg:p-4 text-xs cursor-pointer mr-4 mb-4 border border-purple-700 text-purple-700 rounded-full hover:border-purple-300 hover:bg-purple-300 hover:text-white"
+								class="lg:text-base py-2 px-4 lg:p-4 text-xs cursor-pointer mr-4 mb-4 border border-purple-700 text-purple-700 rounded-full hover:border-purple-300 hover:bg-purple-300 transition delay-50 duration-300 hover:text-white"
 							>
 								장애인활동사업
 							</Link>
 							<Link
 								to="/business/org3/intro"
 								onClick={() => goSubPage(2, 4)}
-								class="lg:text-base lg:p-4 text-xs cursor-pointer mr-4 mb-4 py-2 px-4 border border-purple-700 text-purple-700 rounded-full hover:border-purple-300 hover:bg-purple-300 hover:text-white"
+								class="lg:text-base lg:p-4 text-xs cursor-pointer mr-4 mb-4 py-2 px-4 border border-purple-700 text-purple-700 rounded-full hover:border-purple-300 hover:bg-purple-300 transition delay-50 duration-300 hover:text-white"
 							>
 								방과후 활동 서비스 사업
 							</Link>
 							<Link
 								to="/organization/intro/0"
 								onClick={() => goSubPage(2, 5)}
-								class="lg:text-base lg:p-4 text-xs cursor-pointer mr-4 mb-4 py-2 px-4 border border-purple-700 text-purple-700 rounded-full hover:border-purple-300 hover:bg-purple-300 hover:text-white"
+								class="lg:text-base lg:p-4 text-xs cursor-pointer mr-4 mb-4 py-2 px-4 border border-purple-700 text-purple-700 rounded-full hover:border-purple-300 hover:bg-purple-300 transition delay-50 duration-300 hover:text-white"
 							>
 								늘사랑주간보호센터
 							</Link>
@@ -209,7 +209,7 @@ const Home = () => {
 								<Link
 									to="/participation/support/0"
 									onClick={() => goSubPage(4, 3)}
-									class="w-full z-40 lg:text-xl text-xs py-2 md:py-3 cursor-pointer border border-purple-700 text-purple-700 rounded-full hover:border-purple-300 hover:bg-purple-300 hover:text-white"
+									class="w-full z-40 lg:text-xl text-xs py-2 md:py-3 cursor-pointer border border-purple-700 text-purple-700 rounded-full transition delay-50 duration-300 hover:border-purple-300 hover:bg-purple-300 hover:text-white"
 								>
 									자세히 보기
 								</Link>
@@ -232,7 +232,7 @@ const Home = () => {
 								<Link
 									to="/participation/volunteer/0"
 									onClick={() => goSubPage(4, 4)}
-									class="w-full z-40 lg:text-xl text-xs py-2 md:py-3 cursor-pointer border border-purple-700 text-purple-700 rounded-full hover:border-purple-300 hover:bg-purple-300 hover:text-white"
+									class="w-full z-40 lg:text-xl text-xs py-2 md:py-3 cursor-pointer border border-purple-700 text-purple-700 rounded-full transition delay-50 duration-300 hover:border-purple-300 hover:bg-purple-300 hover:text-white"
 								>
 									자세히 보기
 								</Link>

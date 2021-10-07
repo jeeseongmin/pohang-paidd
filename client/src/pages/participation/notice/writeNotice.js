@@ -77,7 +77,7 @@ const WriteNotice = (props) => {
 			/>
 			<div class="flex justify-between items-center flex-col md:flex-row">
 				<Link
-					class="mb-4 md:mb-0 w-full md:w-auto  cursor-pointer px-0 md:px-16 py-2 justify-center border border-purple-700 text-purple-700 flex flex-row items-center hover:bg-purple-500 hover:text-white hover:font-bold"
+					class="mb-4 md:mb-0 w-full md:w-auto  cursor-pointer px-0 md:px-16 py-2 justify-center border border-purple-700 text-purple-700 flex flex-row items-center transition delay-50 duration-300 hover:bg-purple-500 hover:text-white hover:font-bold"
 					to={"/participation/notice/0"}
 					onClick={() => document.getElementById("scrollRef").scrollTo(0, 0)}
 				>
@@ -85,7 +85,7 @@ const WriteNotice = (props) => {
 				</Link>
 				<button
 					onClick={submitInfo}
-					class="outline-none w-full md:w-auto cursor-pointer px-0 md:px-16 py-2 justify-center border border-purple-700 text-purple-700 flex flex-row items-center hover:bg-purple-500 hover:text-white hover:font-bold"
+					class="outline-none w-full md:w-auto cursor-pointer px-0 md:px-16 py-2 justify-center border border-purple-700 text-purple-700 flex flex-row items-center transition delay-50 duration-300 hover:bg-purple-500 hover:text-white hover:font-bold"
 				>
 					제출하기
 				</button>

@@ -37,7 +37,7 @@ const Main = (props) => {
 				to={address[menu - 1]}
 				onClick={() => goPage(menu)}
 				class={
-					"pl-4 font-semibold text-lg " +
+					"pl-4 font-semibold text-lg transition delay-50 duration-300 " +
 					(overMenu[menu - 1] || current === menu ? "text-purple-700" : "")
 				}
 			>

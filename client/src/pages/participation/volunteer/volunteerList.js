@@ -5,25 +5,56 @@ import Paging from "../../../components/Paging";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import CircularProgress from "@material-ui/core/CircularProgress";
+import { BsSearch } from "react-icons/bs";
 
 const VolunteerList = () => {
 	const [loading, setLoading] = useState(false);
-
+	const [isSearch, setIsSearch] = useState(false);
+	const [findText, setFindText] = useState("");
 	const [page, setPage] = useState(1);
 	const history = useHistory();
 	const [totalPage, setTotalPage] = useState(0);
 	const [volunteerList, setVolunteerList] = useState([]);
 	const currentEmail = useSelector((state) => state.setting.currentEmail);
 	const currentPassword = useSelector((state) => state.setting.currentPassword);
+	const enterkey = () => {
+		if (window.event.keyCode === 13) {
+			searchList();
+		}
+	};
 
-	useEffect(() => {
-		if (currentEmail === "master") {
+	const changeText = (e) => {
+		const cp = e.target.value;
+		setFindText(cp);
+	};
+
+	const searchList = () => {
+		setIsSearch(true);
+		setPage(1);
+		if (findText !== "") {
+			axios
+				.post(
+					"/api/volunteer/search/page/" + page,
+					{ key: process.env.REACT_APP_API_KEY, text: findText },
+					{
+						headers: {
+							"Content-type": "application/json",
+							Accept: "application/json",
+						},
+					}
+				)
+				.then((Response) => {
+					setVolunteerList(Response.data);
+				})
+				.catch((Error) => {
+					console.log(Error);
+				});
+		} else {
+			setIsSearch(false);
 			axios
 				.post(
 					"/api/volunteer/page/" + page,
-					{
-						key: process.env.REACT_APP_API_KEY,
-					},
+					{ key: process.env.REACT_APP_API_KEY },
 					{
 						headers: {
 							"Content-type": "application/json",
@@ -38,28 +69,95 @@ const VolunteerList = () => {
 					console.log(Error);
 				});
 		}
+	};
+	useEffect(() => {
+		if (currentEmail === "master") {
+			if (isSearch) {
+				axios
+					.post(
+						"/api/volunteer/search/page/" + page,
+						{
+							key: process.env.REACT_APP_API_KEY,
+							text: findText,
+						},
+						{
+							headers: {
+								"Content-type": "application/json",
+								Accept: "application/json",
+							},
+						}
+					)
+					.then((Response) => {
+						setVolunteerList(Response.data);
+					})
+					.catch((Error) => {
+						console.log(Error);
+					});
+			} else {
+				axios
+					.post(
+						"/api/volunteer/page/" + page,
+						{
+							key: process.env.REACT_APP_API_KEY,
+						},
+						{
+							headers: {
+								"Content-type": "application/json",
+								Accept: "application/json",
+							},
+						}
+					)
+					.then((Response) => {
+						setVolunteerList(Response.data);
+					})
+					.catch((Error) => {
+						console.log(Error);
+					});
+			}
+		}
 	}, [page]);
 
 	useEffect(() => {
 		if (currentEmail === "master") {
-			axios
-				.post(
-					"/api/volunteer",
-					{ key: process.env.REACT_APP_API_KEY },
-					{
-						headers: {
-							"Content-type": "application/json",
-							Accept: "application/json",
-						},
-					}
-				)
-				.then((Response) => {
-					setTotalPage(Math.ceil(Response.data.length / 10));
-					setLoading(true);
-				})
-				.catch((Error) => {
-					console.log(Error);
-				});
+			if (isSearch) {
+				axios
+					.post(
+						"/api/volunteer/search",
+						{ key: process.env.REACT_APP_API_KEY, text: findText },
+						{
+							headers: {
+								"Content-type": "application/json",
+								Accept: "application/json",
+							},
+						}
+					)
+					.then((Response) => {
+						setTotalPage(Math.ceil(Response.data.length / 10));
+						setLoading(true);
+					})
+					.catch((Error) => {
+						console.log(Error);
+					});
+			} else {
+				axios
+					.post(
+						"/api/volunteer",
+						{ key: process.env.REACT_APP_API_KEY },
+						{
+							headers: {
+								"Content-type": "application/json",
+								Accept: "application/json",
+							},
+						}
+					)
+					.then((Response) => {
+						setTotalPage(Math.ceil(Response.data.length / 10));
+						setLoading(true);
+					})
+					.catch((Error) => {
+						console.log(Error);
+					});
+			}
 		}
 	}, [volunteerList]);
 
@@ -114,8 +212,28 @@ const VolunteerList = () => {
 	}
 	return (
 		<div>
-			<div class="flex flex-row justify-start items-center mb-4 md:mb-8">
+			<div class="flex flex-row justify-between items-center mb-4 md:mb-8">
 				<Subtitle text={"자원봉사 신청목록"} />
+				<div class="w-1/2 flex flex-row items-center relative justify-end ">
+					<input
+						type="text"
+						name="name"
+						placeholder="이름, 연락처, 생년월일, 희망봉사내용 검색하기"
+						autocomplete="off"
+						onChange={changeText}
+						value={findText}
+						onKeyUp={enterkey}
+						class="w-full h-full py-2 px-4 mr-2 border-2 border-gray-300 outline-none focus:border-purple-600 transition delay-50 duration-300 "
+					/>
+					<BsSearch
+						size={28}
+						onClick={searchList}
+						class={
+							"cursor-pointer transition delay-50 duration-300 " +
+							(findText === "" ? "text-gray-300" : "text-purple-600")
+						}
+					/>
+				</div>
 			</div>
 			<div class="w-full h-auto mb-8">
 				{/* 딱 10개 씩만 로드하기 */}

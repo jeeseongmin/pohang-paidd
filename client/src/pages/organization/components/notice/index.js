@@ -14,45 +14,142 @@ const Index = () => {
 	const [totalPage, setTotalPage] = useState(0);
 	const [noticeList, setNoticeList] = useState([]);
 	const currentEmail = useSelector((state) => state.setting.currentEmail);
+	const [isSearch, setIsSearch] = useState(false);
+	const [findText, setFindText] = useState("");
+	const enterkey = () => {
+		if (window.event.keyCode === 13) {
+			searchList();
+		}
+	};
+
+	const changeText = (e) => {
+		const cp = e.target.value;
+		setFindText(cp);
+	};
+
+	const searchList = () => {
+		setIsSearch(true);
+		setPage(1);
+		if (findText !== "") {
+			axios
+				.post(
+					"/api/notice/search/org4/" + page,
+					{ key: process.env.REACT_APP_API_KEY, text: findText },
+					{
+						headers: {
+							"Content-type": "application/json",
+							Accept: "application/json",
+						},
+					}
+				)
+				.then((Response) => {
+					setNoticeList(Response.data);
+				})
+				.catch((Error) => {
+					console.log(Error);
+				});
+		} else {
+			setIsSearch(false);
+			axios
+				.post(
+					"/api/notice/type/org4/" + page,
+					{ key: process.env.REACT_APP_API_KEY },
+					{
+						headers: {
+							"Content-type": "application/json",
+							Accept: "application/json",
+						},
+					}
+				)
+				.then((Response) => {
+					setNoticeList(Response.data);
+				})
+				.catch((Error) => {
+					console.log(Error);
+				});
+		}
+	};
 	useEffect(() => {
-		axios
-			.post(
-				"/api/notice/type/org4/" + page,
-				{ key: process.env.REACT_APP_API_KEY },
-				{
-					headers: {
-						"Content-type": "application/json",
-						Accept: "application/json",
-					},
-				}
-			)
-			.then((Response) => {
-				setNoticeList(Response.data);
-			})
-			.catch((Error) => {
-				console.log(Error);
-			});
+		if (isSearch) {
+			axios
+				.post(
+					"/api/notice/search/org4/" + page,
+					{ key: process.env.REACT_APP_API_KEY, text: findText },
+					{
+						headers: {
+							"Content-type": "application/json",
+							Accept: "application/json",
+						},
+					}
+				)
+				.then((Response) => {
+					setNoticeList(Response.data);
+				})
+				.catch((Error) => {
+					console.log(Error);
+				});
+		} else {
+			axios
+				.post(
+					"/api/notice/type/org4/" + page,
+					{ key: process.env.REACT_APP_API_KEY },
+					{
+						headers: {
+							"Content-type": "application/json",
+							Accept: "application/json",
+						},
+					}
+				)
+				.then((Response) => {
+					setNoticeList(Response.data);
+				})
+				.catch((Error) => {
+					console.log(Error);
+				});
+		}
 	}, [page]);
 
 	useEffect(() => {
-		axios
-			.post(
-				"/api/notice/type/org4",
-				{ key: process.env.REACT_APP_API_KEY },
-				{
-					headers: {
-						"Content-type": "application/json",
-						Accept: "application/json",
-					},
-				}
-			)
-			.then((Response) => {
-				setTotalPage(Math.ceil(Response.data.length / 10));
-				setLoading(true);
-			})
-			.catch((Error) => {
-				console.log(Error);
-			});
+		setLoading(false);
+		if (isSearch) {
+			axios
+				.post(
+					"/api/notice/search/org4",
+					{ key: process.env.REACT_APP_API_KEY, text: findText },
+					{
+						headers: {
+							"Content-type": "application/json",
+							Accept: "application/json",
+						},
+					}
+				)
+				.then((Response) => {
+					setTotalPage(Math.ceil(Response.data.length / 10));
+					setLoading(true);
+				})
+				.catch((Error) => {
+					console.log(Error);
+				});
+		} else {
+			axios
+				.post(
+					"/api/notice/type/org4",
+					{ key: process.env.REACT_APP_API_KEY },
+					{
+						headers: {
+							"Content-type": "application/json",
+							Accept: "application/json",
+						},
+					}
+				)
+				.then((Response) => {
+					setTotalPage(Math.ceil(Response.data.length / 10));
+					setLoading(true);
+				})
+				.catch((Error) => {
+					console.log(Error);
+				});
+		}
 	}, [noticeList]);
 
 	const dataToText = (date) => {
@@ -79,24 +176,39 @@ const Index = () => {
 
 	return (
 		<div>
-			<div class="flex flex-row justify-between items-center mb-4 md:mb-0">
-				<Subtitle text={"공지사항"} />
+			<div class="flex flex-row items-center justify-between mb-4 lg:mb-12">
+				<div class="flex flex-col">
+					<div class="flex flex-row justify-between items-center mb-4 md:mb-0">
+						<Subtitle text={"공지사항"} />
+						<div class="w-1/2 flex flex-row items-center relative justify-end "></div>
+					</div>
+					<div class="mt-1 mb-4 w-full hidden lg:flex flex-row text-sm text-gray-400 items-center">
+						<div class="mr-2">
+							<HiHome size={16} />
+						</div>
+						Home {">"} 부설기관 {">"} 늘사랑주간보호센터 {">"} 공지사항
+					</div>
+				</div>
 				<div class="w-1/2 flex flex-row items-center relative justify-end ">
-					{/* <input
+					<input
 						type="text"
 						name="name"
-						placeholder="검색어"
+						placeholder="제목, 내용 검색하기"
 						autocomplete="off"
-						class="w-full h-full py-2 px-4 mr-2 border-2 border-gray-300 outline-none focus:border-purple-700 "
+						onChange={changeText}
+						value={findText}
+						onKeyUp={enterkey}
+						class="w-full h-full py-2 px-4 mr-2 border-2 border-gray-300 outline-none focus:border-purple-600 transition delay-50 duration-300 "
 					/>
-					<BsSearch size={28} class="cursor-pointer text-gray-300" /> */}
+					<BsSearch
+						size={28}
+						onClick={searchList}
+						class={
+							"cursor-pointer transition delay-50 duration-300 " +
+							(findText === "" ? "text-gray-300" : "text-purple-600")
+						}
+					/>
 				</div>
-			</div>
-			<div class="mt-1 mb-4 w-full hidden lg:flex flex-row text-sm text-gray-400 items-center">
-				<div class="mr-2">
-					<HiHome size={16} />
-				</div>
-				Home {">"} 부설기관 {">"} 늘사랑주간보호센터 {">"} 공지사항
 			</div>
 			<div class="w-full h-auto mb-8 text-base lg:text-lg">
 				{/* 딱 10개 씩만 로드하기 */}

@@ -77,7 +77,7 @@ const Index = () => {
 				<Link
 					to="/participation/writeSupport/0"
 					onClick={() => document.getElementById("scrollRef").scrollTo(0, 0)}
-					class="w-full md:w-auto justify-center cursor-pointer mb-4 md:mb-0 px-16 py-2 border border-purple-700 text-purple-700 flex flex-row items-center hover:bg-purple-500 hover:text-white hover:font-bold"
+					class="w-full md:w-auto justify-center transition delay-50 duration-300 cursor-pointer mb-4 md:mb-0 px-16 py-2 border border-purple-700 text-purple-700 flex flex-row items-center hover:bg-purple-500 hover:text-white hover:font-bold"
 				>
 					후원 신청
 				</Link>
@@ -85,7 +85,7 @@ const Index = () => {
 					<Link
 						to="/participation/supportList/0"
 						onClick={() => document.getElementById("scrollRef").scrollTo(0, 0)}
-						class="w-full md:w-auto justify-center cursor-pointer px-2 md:px-16 py-2 border border-purple-700 text-purple-700 flex flex-row items-center hover:bg-purple-500 hover:text-white hover:font-bold"
+						class="w-full md:w-auto justify-center transition delay-50 duration-300 cursor-pointer px-2 md:px-16 py-2 border border-purple-700 text-purple-700 flex flex-row items-center hover:bg-purple-500 hover:text-white hover:font-bold"
 					>
 						후원 목록
 					</Link>

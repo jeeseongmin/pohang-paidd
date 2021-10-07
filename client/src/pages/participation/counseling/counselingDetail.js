@@ -212,7 +212,7 @@ const CounselingDetail = (props) => {
 							<div class="w-full p-4 h-auto mb-8 border-b-2 border-purple-600">
 								<textarea
 									// ref={contentRef}
-									class="w-full h-48 p-4 border-2 border-gray-300 outline-none focus:border-purple-700 resize-none"
+									class="w-full h-48 p-4 border-2 transition delay-50 duration-300 border-gray-300 outline-none focus:border-purple-700 resize-none"
 									onChange={(e) => changeResponse(e)}
 									value={response}
 									placeholder="응답할 내용을 입력하세요."
@@ -220,7 +220,7 @@ const CounselingDetail = (props) => {
 								<div class="w-full flex justify-end my-4">
 									<div
 										onClick={respondCounseling}
-										class="w-full md:w-auto my-4 md:my-0 justify-center cursor-pointer px-16 py-2 border border-purple-700 text-purple-700 flex flex-row items-center hover:bg-purple-500 hover:text-white hover:font-bold"
+										class="w-full md:w-auto transition delay-50 duration-300 my-4 md:my-0 justify-center cursor-pointer px-16 py-2 border border-purple-700 text-purple-700 flex flex-row items-center hover:bg-purple-500 hover:text-white hover:font-bold"
 									>
 										응답하기
 									</div>
@@ -245,7 +245,7 @@ const CounselingDetail = (props) => {
 					) : null}
 					<div class="flex justify-between items-center flex-col md:flex-row">
 						<Link
-							class="w-full md:w-auto cursor-pointer px-16 py-2 justify-center border border-purple-700 text-purple-700 flex flex-row items-center hover:bg-purple-500 hover:text-white hover:font-bold"
+							class="w-full md:w-auto cursor-pointer px-16 py-2 justify-center transition delay-50 duration-300 border border-purple-700 text-purple-700 flex flex-row items-center hover:bg-purple-500 hover:text-white hover:font-bold"
 							to={"/participation/counseling/0"}
 							onClick={() =>
 								document.getElementById("scrollRef").scrollTo(0, 0)
@@ -257,13 +257,13 @@ const CounselingDetail = (props) => {
 							<div class="w-full md:w-auto flex flex-col md:flex-row">
 								<div
 									onClick={deleteCounseling}
-									class="w-full md:w-auto my-4 md:my-0 justify-center mr-4 cursor-pointer px-16 py-2 border border-purple-700 text-purple-700 flex flex-row items-center hover:bg-purple-500 hover:text-white hover:font-bold"
+									class="w-full md:w-auto my-4 md:my-0 justify-center mr-4 cursor-pointer px-16 py-2 transition delay-50 duration-300 border border-purple-700 text-purple-700 flex flex-row items-center hover:bg-purple-500 hover:text-white hover:font-bold"
 								>
 									삭제하기
 								</div>
 								<div
 									onClick={goEdit}
-									class="w-full md:w-auto justify-center cursor-pointer px-16 py-2 border border-purple-700 text-purple-700 flex flex-row items-center hover:bg-purple-500 hover:text-white hover:font-bold"
+									class="w-full md:w-auto justify-center cursor-pointer px-16 py-2 transition delay-50 duration-300 border border-purple-700 text-purple-700 flex flex-row items-center hover:bg-purple-500 hover:text-white hover:font-bold"
 								>
 									수정하기
 								</div>

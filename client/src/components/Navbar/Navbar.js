@@ -145,13 +145,13 @@ const Navbar = () => {
 					<div
 						onMouseOver={() => hoverAction(0, true)}
 						onMouseOut={() => hoverAction(0, false)}
-						class="h-full relative ml-4 xl:ml-12 flex items-center"
+						class="h-full relative ml-4 xl:ml-12 flex items-center "
 					>
 						<Main overMenu={overMenu} menu={1} />
 						<div
 							class={
-								"border-t border-l border-r border-gray-100 w-36 absolute top-14 shadow-lg flex flex-col bg-white " +
-								(overMenu[0] ? "block" : "hidden")
+								"border-t border-l border-r transition delay-50 duration-300 border-gray-100 w-36 absolute top-14 shadow-lg flex flex-col bg-white " +
+								(overMenu[0] ? "block opacity-100" : "hidden opaicty-0")
 							}
 						>
 							<Sub menu={1} submenu={1} />
@@ -169,7 +169,7 @@ const Navbar = () => {
 						<Main overMenu={overMenu} menu={2} />
 						<div
 							class={
-								"border-t border-l border-r border-gray-100 w-56 absolute top-14 shadow-lg flex flex-col bg-white " +
+								"border-t border-l border-r transition delay-50 duration-300 border-gray-100 w-56 absolute top-14 shadow-lg flex flex-col bg-white " +
 								(overMenu[1] ? "block" : "hidden")
 							}
 						>
@@ -189,7 +189,7 @@ const Navbar = () => {
 
 						<div
 							class={
-								"border-t border-l border-r border-gray-100 w-36 absolute top-14 shadow-lg flex flex-col bg-white " +
+								"border-t border-l border-r transition delay-50 duration-300 border-gray-100 w-36 absolute top-14 shadow-lg flex flex-col bg-white " +
 								(overMenu[2] ? "block" : "hidden")
 							}
 						>
@@ -204,7 +204,7 @@ const Navbar = () => {
 						<Main overMenu={overMenu} menu={4} />
 						<div
 							class={
-								"border-t border-l border-r border-gray-100 w-36 absolute top-14 shadow-lg flex flex-col bg-white " +
+								"border-t border-l border-r transition delay-50 duration-300 border-gray-100 w-36 absolute top-14 shadow-lg flex flex-col bg-white " +
 								(overMenu[3] ? "block" : "hidden")
 							}
 						>
@@ -222,7 +222,7 @@ const Navbar = () => {
 						<Main overMenu={overMenu} menu={5} />
 						<div
 							class={
-								"border-t border-l border-r border-gray-100 w-36 absolute top-14 shadow-lg flex flex-col bg-white " +
+								"border-t border-l border-r transition delay-50 duration-300 border-gray-100 w-36 absolute top-14 shadow-lg flex flex-col bg-white " +
 								(overMenu[4] ? "block" : "hidden")
 							}
 						>
@@ -250,13 +250,13 @@ const Navbar = () => {
 									</div>
 									<div
 										onClick={goEditPage}
-										class="cursor-pointer w-full py-1 border border-purple-400 text-purple-400 flex justify-center hover:bg-purple-400 hover:text-white"
+										class="cursor-pointer w-full py-1 border border-purple-400 text-purple-400 flex justify-center transition delay-50 duration-300 hover:bg-purple-400 hover:text-white"
 									>
 										정보 변경
 									</div>
 									<div
 										onClick={logout}
-										class="cursor-pointer w-full py-1 border border-purple-400 text-purple-400 flex justify-center hover:bg-purple-400 hover:text-white"
+										class="cursor-pointer w-full py-1 border border-purple-400 text-purple-400 flex justify-center transition delay-50 duration-300 hover:bg-purple-400 hover:text-white"
 									>
 										로그아웃
 									</div>
@@ -312,13 +312,13 @@ const Navbar = () => {
 										</div>
 										<div
 											onClick={goEditPage}
-											class="cursor-pointer w-full py-1 border border-purple-400 text-purple-400 flex justify-center hover:bg-purple-400 hover:text-white"
+											class="cursor-pointer w-full py-1 border border-purple-400 text-purple-400 flex justify-center transition delay-50 duration-300 hover:bg-purple-400 hover:text-white"
 										>
 											정보 변경
 										</div>
 										<div
 											onClick={logout}
-											class="cursor-pointer w-full py-1 border border-purple-400 text-purple-400 flex justify-center hover:bg-purple-400 hover:text-white"
+											class="cursor-pointer w-full py-1 border border-purple-400 text-purple-400 flex justify-center transition delay-50 duration-300 hover:bg-purple-400 hover:text-white"
 										>
 											로그아웃
 										</div>

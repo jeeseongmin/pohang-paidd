@@ -12,6 +12,20 @@ router.route("/").post((req, res) => {
 			.catch((err) => res.status(400).json("Error: " + err));
 	} else return res.status(400).json("Error");
 });
+router.route("/search").post((req, res) => {
+	if (req.body.key === API_KEY) {
+		let search = req.body.text;
+		Counseling.find({
+			$or: [
+				{ title: { $regex: search, $options: "i" } },
+				{ content: { $regex: search, $options: "i" } },
+			],
+		})
+			.sort({ createdAt: -1 })
+			.then((all) => res.json(all))
+			.catch((err) => res.status(400).json("Error: " + err));
+	} else return res.status(400).json("Error");
+});
 
 // Read specific counseling
 router.route("/:id").post((req, res) => {
@@ -26,6 +40,23 @@ router.route("/:id").post((req, res) => {
 router.route("/page/:page").post((req, res) => {
 	if (req.body.key === API_KEY) {
 		Counseling.find()
+			.sort({ createdAt: -1 })
+			.skip((req.params.page - 1) * 10)
+			.limit(10)
+			.then((all) => res.json(all))
+			.catch((err) => res.status(400).json("Error: " + err));
+	} else return res.status(400).json("Error");
+});
+
+router.route("/search/page/:page").post((req, res) => {
+	if (req.body.key === API_KEY) {
+		let search = req.body.text;
+		Counseling.find({
+			$or: [
+				{ title: { $regex: search, $options: "i" } },
+				{ content: { $regex: search, $options: "i" } },
+			],
+		})
 			.sort({ createdAt: -1 })
 			.skip((req.params.page - 1) * 10)
 			.limit(10)

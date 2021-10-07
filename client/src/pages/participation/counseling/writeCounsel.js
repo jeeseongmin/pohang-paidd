@@ -100,14 +100,14 @@ const WriteCounsel = () => {
 					<input
 						ref={titleRef}
 						type="text"
-						class="w-1/2 md:w-auto flex-1 p-4 border-2 border-gray-300 outline-none mr-4 focus:border-purple-700"
+						class="w-1/2 md:w-auto flex-1 p-4 border-2 transition delay-50 duration-300 border-gray-300 outline-none mr-4 focus:border-purple-700"
 						onChange={(e) => changeInfo(e, "title")}
 						placeholder="제목"
 					/>
 					<input
 						ref={emailRef}
 						type="text"
-						class="w-36 md:w-72 p-4 border-2 border-gray-300 outline-none focus:border-purple-700"
+						class="w-36 md:w-72 p-4 border-2 border-gray-300 transition delay-50 duration-300 outline-none focus:border-purple-700"
 						onChange={(e) => changeInfo(e, "email")}
 						placeholder="이메일"
 					/>
@@ -115,7 +115,7 @@ const WriteCounsel = () => {
 				<div class="flex flex-row justify-start items-start mb-2">
 					<textarea
 						ref={contentRef}
-						class="w-full h-96 p-4 border-2 border-gray-300 outline-none focus:border-purple-700 resize-none"
+						class="w-full h-96 p-4 border-2 border-gray-300 transition delay-50 duration-300 outline-none focus:border-purple-700 resize-none"
 						onChange={(e) => changeInfo(e, "content")}
 						placeholder="내용"
 					></textarea>
@@ -124,13 +124,13 @@ const WriteCounsel = () => {
 					<input
 						ref={passwordRef}
 						type="password"
-						class="w-1/2 md:w-60 p-4 border-2 border-gray-300 outline-none mr-4 focus:border-purple-700"
+						class="w-1/2 md:w-60 p-4 border-2 border-gray-300 transition delay-50 duration-300 outline-none mr-4 focus:border-purple-700"
 						onChange={(e) => changeInfo(e, "password")}
 						placeholder="비밀번호"
 					/>
 					<input
 						type="password"
-						class="w-1/2 md:w-60 p-4 border-2 border-gray-300 outline-none focus:border-purple-700"
+						class="w-1/2 md:w-60 p-4 border-2 border-gray-300 transition delay-50 duration-300 outline-none focus:border-purple-700"
 						onChange={(e) => changeInfo(e, "passwordCheck")}
 						placeholder="비밀번호 확인"
 					/>
@@ -139,7 +139,7 @@ const WriteCounsel = () => {
 
 			<div class="flex flex-col md:flex-row justify-between items-center">
 				<Link
-					class="w-full md:w-auto mb-4 md:mb-4 justify-center cursor-pointer px-16 py-2 border border-purple-700 text-purple-700 flex flex-row items-center hover:bg-purple-500 hover:text-white hover:font-bold"
+					class="w-full md:w-auto mb-4 md:mb-4 justify-center transition delay-50 duration-300 cursor-pointer px-16 py-2 border border-purple-700 text-purple-700 flex flex-row items-center hover:bg-purple-500 hover:text-white hover:font-bold"
 					to="/participation/counseling/0"
 					onClick={() => document.getElementById("scrollRef").scrollTo(0, 0)}
 				>
@@ -147,7 +147,7 @@ const WriteCounsel = () => {
 				</Link>
 				<button
 					onClick={submitInfo}
-					class="w-full md:w-auto cursor-pointer justify-center px-16 py-2 border border-purple-700 text-purple-700 flex flex-row items-center hover:bg-purple-500 hover:text-white hover:font-bold "
+					class="w-full md:w-auto cursor-pointer justify-center transition delay-50 duration-300 px-16 py-2 border border-purple-700 text-purple-700 flex flex-row items-center hover:bg-purple-500 hover:text-white hover:font-bold "
 				>
 					제출하기
 				</button>

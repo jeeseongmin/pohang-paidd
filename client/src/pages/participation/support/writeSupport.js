@@ -166,14 +166,14 @@ const WriteSupport = () => {
 					<input
 						ref={nameRef}
 						type="text"
-						class="w-1/2 p-4 border-2 border-gray-300 outline-none mr-4 focus:border-purple-700"
+						class="w-1/2 p-4 transition delay-50 duration-300 border-2 border-gray-300 outline-none mr-4 focus:border-purple-700"
 						onChange={(e) => changeInfo(e, "name")}
 						placeholder="성명(단체명)"
 					/>
 					<input
 						ref={privateNumberRef}
 						type="text"
-						class="w-1/2 p-4 border-2 border-gray-300 outline-none focus:border-purple-700"
+						class="w-1/2 p-4 transition delay-50 duration-300 border-2 border-gray-300 outline-none focus:border-purple-700"
 						onChange={(e) => changeInfo(e, "privateNumber")}
 						placeholder="주민(사업자)번호 (하이픈은 제외하고 입력해주세요)"
 					/>
@@ -182,14 +182,14 @@ const WriteSupport = () => {
 					<input
 						ref={phoneNumberRef}
 						type="text"
-						class="w-1/2 p-4 border-2 border-gray-300 outline-none mr-4 focus:border-purple-700"
+						class="w-1/2 p-4 transition delay-50 duration-300 border-2 border-gray-300 outline-none mr-4 focus:border-purple-700"
 						onChange={(e) => changeInfo(e, "phoneNumber")}
 						placeholder="휴대폰번호 (하이픈은 제외하고 입력해주세요)"
 					/>
 					<input
 						ref={emailRef}
 						type="text"
-						class="w-1/2 p-4 border-2 border-gray-300 outline-none focus:border-purple-700"
+						class="w-1/2 p-4 transition delay-50 duration-300 border-2 border-gray-300 outline-none focus:border-purple-700"
 						onChange={(e) => changeInfo(e, "email")}
 						placeholder="이메일"
 					/>
@@ -198,7 +198,7 @@ const WriteSupport = () => {
 					<input
 						ref={addressRef}
 						type="text"
-						class="w-full p-4 border-2 border-gray-300 outline-none focus:border-purple-700"
+						class="w-full p-4 transition delay-50 duration-300 border-2 border-gray-300 outline-none focus:border-purple-700"
 						onChange={(e) => changeInfo(e, "address")}
 						placeholder="주소"
 					/>
@@ -469,7 +469,7 @@ const WriteSupport = () => {
 			</form>
 			<div class="flex flex-col md:flex-row justify-between items-center">
 				<Link
-					class="w-full md:w-auto mb-4 md:mb-4 justify-center cursor-pointer px-16 py-2 border border-purple-700 text-purple-700 flex flex-row items-center hover:bg-purple-500 hover:text-white hover:font-bold"
+					class="w-full md:w-auto mb-4 md:mb-4 transition delay-50 duration-300 justify-center cursor-pointer px-16 py-2 border border-purple-700 text-purple-700 flex flex-row items-center hover:bg-purple-500 hover:text-white hover:font-bold"
 					to="/participation/support/0"
 					onClick={() => document.getElementById("scrollRef").scrollTo(0, 0)}
 				>
@@ -477,7 +477,7 @@ const WriteSupport = () => {
 				</Link>
 				<button
 					onClick={submitInfo}
-					class="w-full md:w-auto cursor-pointer justify-center px-16 py-2 border border-purple-700 text-purple-700 flex flex-row items-center hover:bg-purple-500 hover:text-white hover:font-bold "
+					class="w-full md:w-auto cursor-pointer transition delay-50 duration-300 justify-center px-16 py-2 border border-purple-700 text-purple-700 flex flex-row items-center hover:bg-purple-500 hover:text-white hover:font-bold "
 				>
 					제출하기
 				</button>

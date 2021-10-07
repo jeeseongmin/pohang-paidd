@@ -65,7 +65,7 @@ const Sub = (props) => {
 				to={address[menu - 1][submenu - 1]}
 				onClick={() => goSubPage(menu, submenu)}
 				class={
-					"text-xs pl-4 py-3 border-b border-gray-200 hover:bg-gray-100 hover:text-purple-700 " +
+					"text-xs pl-4 py-3 border-b transition delay-50 duration-300 border-gray-200 hover:bg-gray-100 hover:text-purple-700 " +
 					(currentMenu === menu && currentSubmenu === submenu
 						? "text-purple-700"
 						: "text-gray-400")

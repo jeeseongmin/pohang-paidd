@@ -2,19 +2,13 @@ import React, { useEffect, useState } from "react";
 import { VscChevronLeft, VscChevronRight } from "react-icons/vsc";
 
 const Paging = (props) => {
-	const [step, setStep] = useState(1);
 	const [arr, setArr] = useState([]);
 	const [start, setStart] = useState(1);
 	const [end, setEnd] = useState(5);
 	const setPage = props.setPage;
 	const page = props.page;
 	const total = props.total;
-	console.log(page, total);
 	useEffect(() => {
-		// 현재 page에 따라 첫 step과 arr 구성하기
-		// let _step = Math.ceil(page / 5);
-		// setStep((Math.ceil(page / 5) - 1) * 5 + 1);
-		//
 		let _arr = [];
 		for (let i = 1; i <= total; i++) {
 			if (i <= total) {
@@ -25,13 +19,8 @@ const Paging = (props) => {
 	}, [page, total]);
 
 	const nextPage = () => {
-		if (page % 5 === 0) {
-			const cp = page + 1;
-			setPage(cp);
-		} else {
-			const cp = end + 1;
-			setPage(cp);
-		}
+		const cp = end + 1;
+		setPage(cp);
 		const _start = end + 1;
 		setStart(_start);
 		const _end = end + 5;
@@ -39,18 +28,18 @@ const Paging = (props) => {
 		else setEnd(_end);
 	};
 	const prevPage = () => {
-		if ((page - 1) % 5 === 0) {
-			const cp = page - 1;
-			setPage(cp);
-		} else {
-			const cp = page - 1;
-			setPage(cp);
-		}
+		const cp = start - 1;
+		setPage(cp);
+
 		const _end = start - 1;
-		if (total < start) setEnd(total);
-		else setEnd(_end);
-		const _start = end + 1;
-		setStart(_start);
+		setEnd(_end);
+		const _start = start - 5;
+
+		if (1 < _start) {
+			setStart(_start);
+		} else {
+			setStart(1);
+		}
 	};
 
 	function PageBtn(props) {

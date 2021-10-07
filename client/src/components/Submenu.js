@@ -73,7 +73,7 @@ const Submenu = (props) => {
 				onClick={() => goSubPage(menu, submenu)}
 				class={
 					count +
-					" max-w-xl py-4 text-center text-sm lg:text-base bg-purple-white flex justify-center items-center " +
+					" max-w-xl py-4 text-center text-sm transition delay-50 duration-300 lg:text-base bg-purple-white flex justify-center items-center " +
 					(currentSubmenu === submenu
 						? "text-purple-700 bg-white"
 						: "text-white bg-purple-400 hover:bg-purple-300")

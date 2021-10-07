@@ -35,15 +35,22 @@ const LocalTable = (props) => {
 			<div class="w-full h-auto mb-8 ">
 				{/* 딱 10개 씩만 로드하기 */}
 				<div class="w-full px-2 text-base lg:text-lg lg:px-8 py-2 flex justify-end items-center border-t-2 border-b-2 border-purple-600">
-					<div class="w-2/4 text-center">기관명</div>
+					<div class="w-2/4">기관명</div>
 					<div class="w-1/4 ">전화번호</div>
 					<div class="w-1/4 ">주소</div>
 				</div>
 
 				{dataList[num].map((element, index) => {
 					return (
-						<div class="cursor-pointer text-sm lg:text-base w-full px-2 lg:px-8 py-4 flex justify-end items-center border-b border-gray-300 hover:bg-gray-100">
-							<div class="w-2/4 pr-4">{element.name}</div>
+						<div
+							class={
+								"cursor-pointer text-sm lg:text-base w-full px-2 lg:px-8 py-4 flex justify-end items-center " +
+								(index === dataList[num].length - 1
+									? "border-b-2 border-purple-600 hover:bg-gray-100"
+									: "border-b border-gray-300 hover:bg-gray-100")
+							}
+						>
+							1<div class="w-2/4 pr-4">{element.name}</div>
 							<div class="w-1/4 ">054-{element.phone}</div>
 							<div class="w-1/4 ">{element.address}</div>
 						</div>
