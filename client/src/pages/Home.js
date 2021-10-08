@@ -228,6 +228,7 @@ const Home = () => {
 									자원봉사
 								</h1>
 							</div>
+							transition delay-50 duration-300
 							<div class="w-full px-0 md:px-4 text-center flex">
 								<Link
 									to="/participation/volunteer/0"
