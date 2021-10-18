@@ -24,7 +24,7 @@ const Intro = () => {
 			</div>
 			<div class="mb-16 text-sm lg:text-base">
 				<div class="px-2 lg:px-8 py-3 flex flex-row justify-start items-center border-b-2 border-purple-700">
-					<div class="text-xl lg:text-2xl text-purple-700">사업현황</div>
+					<div class="text-xl lg:text-2xl text-purple-700">시설현황</div>
 				</div>
 				<div class="px-2 lg:px-8 py-3 flex flex-row justify-center items-center border-b border-gray-300">
 					<div class="w-1/6">기관명</div>
@@ -70,7 +70,7 @@ const Intro = () => {
 				</div>
 				<div class="px-2 lg:px-8 py-3 flex flex-row justify-center items-center border-b border-gray-300">
 					<div class="w-1/6">이용시간</div>
-					<div class="flex-1">평일 09:00 ~ 18:00</div>
+					<div class="flex-1">평일 09:30 ~ 16:30</div>
 				</div>
 				<div class="px-2 lg:px-8 py-3 flex flex-row justify-center items-center border-b border-gray-300">
 					<div class="w-1/6">이용료</div>
@@ -80,7 +80,7 @@ const Intro = () => {
 					<div class="w-1/6">이용절차</div>
 					<div class="flex-1">
 						<img
-							src="/image/org-intro-img1.jpg"
+							src="/image/org-intro-img1.png"
 							alt="img"
 							class="h-auto xl:h-36 object-cover"
 						/>
@@ -125,7 +125,7 @@ const Intro = () => {
 				</div>
 				<div class="px-2 lg:px-8 py-3 flex flex-row justify-center items-center border-b border-gray-300">
 					<div class="w-1/6">사회복지사</div>
-					<div class="w-1/6">박은숙</div>
+					<div class="w-1/6">이윤미</div>
 					<div class="w-2/6">070-5154-6973</div>
 					<div class="w-2/6">프로그램 진행 / 이용자 지원</div>
 				</div>
