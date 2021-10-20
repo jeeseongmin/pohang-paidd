@@ -14,7 +14,7 @@ const org = () => {
 			</div>
 			<div class="w-full flex flex-row justify-center items-center my-8">
 				<img
-					class="object-cover w-3/4"
+					class="object-cover w-2/4"
 					src="/image/intro-img3.png"
 					alt="history"
 				/>

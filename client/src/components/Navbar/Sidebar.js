@@ -166,7 +166,7 @@ const Sidebar = () => {
 								submenu={3}
 							/>
 							<SubText
-								text={"방과후활동지원서비스사업"}
+								text={"방과후활동서비스사업"}
 								address={"/business/org3/intro"}
 								menu={2}
 								submenu={4}

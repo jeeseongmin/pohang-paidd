@@ -45,7 +45,7 @@ const Sub = (props) => {
 			"협회사업",
 			"지적장애인자립지원센터",
 			"장애인활동지원사업",
-			"방과후활동지원서비스사업",
+			"방과후활동서비스사업",
 		],
 		["늘사랑주간보호센터"],
 		["공지사항", "건의 및 고충상담", "후원", "자원봉사"],
@@ -65,7 +65,7 @@ const Sub = (props) => {
 				to={address[menu - 1][submenu - 1]}
 				onClick={() => goSubPage(menu, submenu)}
 				class={
-					"text-xs pl-4 py-3 border-b transition delay-50 duration-300 border-gray-200 hover:bg-gray-100 hover:text-purple-700 " +
+					"text-sm pl-4 py-3 border-b transition delay-50 duration-300 border-gray-200 hover:bg-gray-100 hover:text-purple-700 " +
 					(currentMenu === menu && currentSubmenu === submenu
 						? "text-purple-700"
 						: "text-gray-400")

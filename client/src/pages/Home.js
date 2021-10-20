@@ -106,7 +106,7 @@ const Home = () => {
 								onClick={() => goSubPage(2, 4)}
 								class="lg:text-base lg:p-4 text-xs cursor-pointer mr-4 mb-4 py-2 px-4 border border-purple-700 text-purple-700 rounded-full hover:border-purple-300 hover:bg-purple-300 transition delay-50 duration-300 hover:text-white"
 							>
-								방과후 활동 서비스 사업
+								방과후활동서비스사업
 							</Link>
 							<Link
 								to="/organization/intro/0"

@@ -10,13 +10,13 @@ const Intro = () => {
 				<div class="mr-2">
 					<HiHome size={16} />
 				</div>
-				Home {">"} 주요사업 {">"} 방과후활동지원서비스사업 {">"} 사업소개
+				Home {">"} 주요사업 {">"} 방과후활동서비스사업 {">"} 사업소개
 			</div>
 			<div class="text-base lg:text-xl font-bold leading-9 py-2 lg:py-4">
-				방과후활동지원서비스사업
+				방과후활동서비스사업
 			</div>
 			<div class="text-base lg:text-lg mb-8 leading-7 lg:leading-9">
-				방과후활동지원서비스사업의 목적은,<br></br>
+				방과후활동서비스사업의 목적은,<br></br>
 				발달장애학생에게 그룹형 활동서비스를 제공하여 의미 있는 여가활동 및
 				성인기 자립준비를 지원합니다.<br></br>
 				또한 다양한 참여 프로그램으로 방과후 돌봄 사각지대를 해소하고 부모의
@@ -35,7 +35,7 @@ const Intro = () => {
 						</span>
 					</div>
 					<div class="w-1/6 block md:hidden">사업명</div>
-					<div class="flex-1">청소년발달장애학생 방과후활동지원서비스</div>
+					<div class="flex-1">청소년발달장애학생 방과후활동서비스</div>
 				</div>
 				<div class="px-2 lg:px-8 py-3 flex flex-row justify-center items-center border-b border-gray-300">
 					<div class="w-1/6 hidden md:block">

@@ -52,7 +52,7 @@ const Navbar = () => {
 				} else if (currentEmail === "org2") {
 					payload.position = "장애인활동 지원사업 관리자";
 				} else if (currentEmail === "org3") {
-					payload.position = "방과후활동 지원사업 관리자";
+					payload.position = "방과후활동 서비스사업 관리자";
 				} else if (currentEmail === "org4") {
 					payload.position = "늘사랑보호주간센터 관리자";
 				}
@@ -150,7 +150,7 @@ const Navbar = () => {
 						<Main overMenu={overMenu} menu={1} />
 						<div
 							class={
-								"border-t border-l border-r transition delay-50 duration-300 border-gray-100 w-36 absolute top-14 shadow-lg flex flex-col bg-white " +
+								"border-t border-l border-r transition delay-50 duration-300 border-gray-100 w-40 absolute top-14 shadow-lg flex flex-col bg-white " +
 								(overMenu[0] ? "block opacity-100" : "hidden opaicty-0")
 							}
 						>
@@ -189,7 +189,7 @@ const Navbar = () => {
 
 						<div
 							class={
-								"border-t border-l border-r transition delay-50 duration-300 border-gray-100 w-36 absolute top-14 shadow-lg flex flex-col bg-white " +
+								"border-t border-l border-r transition delay-50 duration-300 border-gray-100 w-40 absolute top-14 shadow-lg flex flex-col bg-white " +
 								(overMenu[2] ? "block" : "hidden")
 							}
 						>
@@ -204,7 +204,7 @@ const Navbar = () => {
 						<Main overMenu={overMenu} menu={4} />
 						<div
 							class={
-								"border-t border-l border-r transition delay-50 duration-300 border-gray-100 w-36 absolute top-14 shadow-lg flex flex-col bg-white " +
+								"border-t border-l border-r transition delay-50 duration-300 border-gray-100 w-40 absolute top-14 shadow-lg flex flex-col bg-white " +
 								(overMenu[3] ? "block" : "hidden")
 							}
 						>
@@ -222,7 +222,7 @@ const Navbar = () => {
 						<Main overMenu={overMenu} menu={5} />
 						<div
 							class={
-								"border-t border-l border-r transition delay-50 duration-300 border-gray-100 w-36 absolute top-14 shadow-lg flex flex-col bg-white " +
+								"border-t border-l border-r transition delay-50 duration-300 border-gray-100 w-40 absolute top-14 shadow-lg flex flex-col bg-white " +
 								(overMenu[4] ? "block" : "hidden")
 							}
 						>
