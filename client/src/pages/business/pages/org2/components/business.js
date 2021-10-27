@@ -219,8 +219,8 @@ const Business = () => {
 						</div>
 						<h1 class="font-bold mt-8 mb-4">7. 근무조건 및 기타사항</h1>
 						<div class="leading-8 mb-8">
-							<span class="invisible">7. </span>1) 급여 : 시간 당
-							10,470원(최저임금+주휴수당) + 별도의 수당<br></br>{" "}
+							<span class="invisible">7. </span>1) 급여 :
+							최저임금+주휴수당+별도의 수당<br></br>{" "}
 							<span class="invisible">7. </span>2) 배상책임 및 단체상해보험 가입
 							<br></br>
 							<span class="invisible">7. </span>3) 4대보험 가입 (월 60시간 이상){" "}

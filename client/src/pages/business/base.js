@@ -89,7 +89,7 @@ const Base = () => {
 							지역사회자원개발사업
 						</div>
 						<div class="w-full px-4 text-base flex flex-col py-2 ">
-							<div>사회복지 전문가 역량강화 연수</div>
+							<div>후원자 및 자원봉사자 개발</div>
 						</div>
 					</div>
 				</div>

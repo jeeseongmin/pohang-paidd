@@ -4,8 +4,7 @@ import { HiHome } from "react-icons/hi";
 
 const Intro = () => {
 	const moveUrl = function () {
-		const url =
-			"https://www.youtube.com/channel/UCqfPNO_8tBFwmxHXPFkqGkA/featured";
+		const url = "https://www.youtube.com/channel/UCqfPNO_8tBFwmxHXPFkqGkA";
 		window.open(url, "_blank");
 	};
 	useEffect(() => {
@@ -18,7 +17,7 @@ const Intro = () => {
 				<div class="mr-2">
 					<HiHome size={16} />
 				</div>
-				Home {">"} 주요사업 {">"} 지적장애인자립지원센터 {">"} 센터소개
+				Home {">"} 주요사업 {">"} 포항시지적장애인자립지원센터 {">"} 센터소개
 			</div>
 			<div class="text-base lg:text-xl font-bold leading-9 py-2 lg:py-4">
 				포항시지적장애인자립지원센터
@@ -100,7 +99,8 @@ const Intro = () => {
 						class="flex-1 cursor-pointer hover:text-purple-300"
 						onClick={moveUrl}
 					>
-						경북지적발달장애인복지협회 포항시지부 유튜브채널
+						{/* 경북지적발달장애인복지협회 포항시지부 유튜브채널 */}
+						https://www.youtube.com/channel/UCqfPNO_8tBFwmxHXPFkqGkA
 					</div>
 				</div>
 			</div>
@@ -166,10 +166,12 @@ const Intro = () => {
 					<div class="text-xl lg:text-2xl text-purple-700">직원현황</div>
 				</div>
 				<div class="px-2 lg:px-8 py-3 flex flex-row justify-center items-center border-b-2 border-purple-700">
-					<div class="w-1/6">직위</div>
-					<div class="w-1/6">성명</div>
-					<div class="w-2/6">전화번호</div>
-					<div class="w-2/6">업무내용</div>
+					<div class="w-1/6">
+						<span class="w-16 flex justify-center">직위</span>
+					</div>
+					<div class="w-1/6 text-center">성명</div>
+					<div class="w-2/6 text-center">전화번호</div>
+					<div class="w-2/6 text-center">업무내용</div>
 				</div>
 				<div class="px-2 lg:px-8 py-3 flex flex-row justify-center items-center border-b border-gray-300">
 					<div class="w-1/6 hidden md:block">
@@ -180,8 +182,8 @@ const Intro = () => {
 						</span>
 					</div>
 					<div class="w-1/6 block md:hidden">센터장</div>
-					<div class="w-1/6">김옥희</div>
-					<div class="w-2/6">054-244-9588</div>
+					<div class="w-1/6 text-center">김옥희</div>
+					<div class="w-2/6 text-center">054-249-9588</div>
 					<div class="w-2/6">자립지원센터 총괄</div>
 				</div>
 				<div class="px-2 lg:px-8 py-3 flex flex-row justify-center items-center border-b border-gray-300">
@@ -194,8 +196,8 @@ const Intro = () => {
 						</span>
 					</div>
 					<div class="w-1/6 block md:hidden">사무국장</div>
-					<div class="w-1/6">조혜령</div>
-					<div class="w-2/6">054-249-9588</div>
+					<div class="w-1/6 text-center">조혜령</div>
+					<div class="w-2/6 text-center">054-249-9588</div>
 					<div class="w-2/6">
 						직원 및 이용자 고충처리담당, <br></br>예결산 관련 회계 총괄
 					</div>
@@ -208,8 +210,8 @@ const Intro = () => {
 						</span>
 					</div>
 					<div class="w-1/6 block md:hidden">팀장</div>
-					<div class="w-1/6">임낭기</div>
-					<div class="w-2/6">070-5154-6981</div>
+					<div class="w-1/6 text-center">임낭기</div>
+					<div class="w-2/6 text-center">070-5154-6981</div>
 					<div class="w-2/6">
 						권익옹호지원사업, 이용자 고충처리,<br></br>자원봉사자 관리
 					</div>
@@ -224,8 +226,8 @@ const Intro = () => {
 						</span>
 					</div>
 					<div class="w-1/6 block md:hidden">전문요원</div>
-					<div class="w-1/6">김민정</div>
-					<div class="w-2/6">070-5154-6982</div>
+					<div class="w-1/6 text-center">김민정</div>
+					<div class="w-2/6 text-center">070-5154-6982</div>
 					<div class="w-2/6">
 						자립생활지원사업, 차량 및 시설물 관리,<br></br>협회후원금 관련 업무
 					</div>
@@ -240,8 +242,8 @@ const Intro = () => {
 						</span>
 					</div>
 					<div class="w-1/6 block md:hidden">전문요원</div>
-					<div class="w-1/6">양수정</div>
-					<div class="w-2/6">070-5154-4930</div>
+					<div class="w-1/6 text-center">양수정</div>
+					<div class="w-2/6 text-center">070-5154-4930</div>
 					<div class="w-2/6">
 						문화체육활동지원사업, 장애인일자리사업, <br></br>입회회원 관리
 					</div>

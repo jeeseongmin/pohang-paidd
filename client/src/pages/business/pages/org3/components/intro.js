@@ -156,10 +156,12 @@ const Intro = () => {
 					<div class="text-xl lg:text-2xl text-purple-700">직원현황</div>
 				</div>
 				<div class="px-2 lg:px-8 py-3 flex flex-row justify-center items-center border-b-2 border-purple-700">
-					<div class="w-1/6">직위</div>
-					<div class="w-1/6">성명</div>
-					<div class="w-2/6">전화번호</div>
-					<div class="w-2/6">업무내용</div>
+					<div class="w-1/6">
+						<span class="w-16 flex justify-center">직위</span>
+					</div>
+					<div class="w-1/6 text-center">성명</div>
+					<div class="w-2/6 text-center">전화번호</div>
+					<div class="w-2/6 text-center">업무내용</div>
 				</div>
 				<div class="px-2 lg:px-8 py-3 flex flex-row justify-center items-center border-b border-gray-300">
 					<div class="w-1/6 hidden md:block">
@@ -170,8 +172,8 @@ const Intro = () => {
 						</span>
 					</div>
 					<div class="w-1/6 block md:hidden">시설장</div>
-					<div class="w-1/6">김옥희</div>
-					<div class="w-2/6">054-5154-5600</div>
+					<div class="w-1/6 text-center">김옥희</div>
+					<div class="w-2/6 text-center">070-5154-5600</div>
 					<div class="w-2/6">방과후활동서비스 총괄</div>
 				</div>
 				<div class="px-2 lg:px-8 py-3 flex flex-row justify-center items-center border-b border-gray-300">
@@ -184,8 +186,8 @@ const Intro = () => {
 						</span>
 					</div>
 					<div class="w-1/6 block md:hidden">전담인력</div>
-					<div class="w-1/6">임현숙</div>
-					<div class="w-2/6">070-5154-5600</div>
+					<div class="w-1/6 text-center">임현숙</div>
+					<div class="w-2/6 text-center">070-5154-5600</div>
 					<div class="w-2/6">
 						이용자 모집 및 상담, 사례관리 <br></br>협력기관 연계 및 관리,
 						프로그램 계획 및 운영
@@ -201,8 +203,8 @@ const Intro = () => {
 						</span>
 					</div>
 					<div class="w-1/6 block md:hidden">제공인력</div>
-					<div class="w-1/6">손해경</div>
-					<div class="w-2/6">070-5154-5600</div>
+					<div class="w-1/6 text-center">손해경</div>
+					<div class="w-2/6 text-center">070-5154-5600</div>
 					<div class="w-2/6">
 						이용자 모집 및 상담,<br></br>프로그램 계획 및 진행
 					</div>

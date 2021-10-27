@@ -14,7 +14,6 @@ const LocalTable = (props) => {
 		"방문목욕기관",
 		"주간활동지원기관",
 		"방과후활동기관",
-		"응급/긴급기관",
 		"기타공공기관",
 		"화재 및 재난",
 		"응급 상황",
@@ -50,7 +49,7 @@ const LocalTable = (props) => {
 									: "border-b border-gray-300 hover:bg-gray-100")
 							}
 						>
-							1<div class="w-2/4 pr-4">{element.name}</div>
+							<div class="w-2/4 pr-4">{element.name}</div>
 							<div class="w-1/4 ">054-{element.phone}</div>
 							<div class="w-1/4 ">{element.address}</div>
 						</div>

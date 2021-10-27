@@ -154,7 +154,7 @@ const Sidebar = () => {
 								submenu={1}
 							/>
 							<SubText
-								text={"지적장애인자립지원센터"}
+								text={"포항시지적장애인자립지원센터"}
 								address={"/business/org1/intro"}
 								menu={2}
 								submenu={2}

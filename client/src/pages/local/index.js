@@ -49,17 +49,15 @@ const Index = ({ match }) => {
 				</div>
 				<div class="w-full h-auto px-3 py-2 2xl:px-36 xl:px-32 md:px-3 lg:pt-8">
 					<div class="py-4 md:pt-4 flex flex-wrap">
-						{[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].map(
-							(element, index) => {
-								return (
-									<LocalMenu
-										index={element}
-										selected={selected}
-										changeSelected={changeSelected}
-									/>
-								);
-							}
-						)}
+						{[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11].map((element, index) => {
+							return (
+								<LocalMenu
+									index={element}
+									selected={selected}
+									changeSelected={changeSelected}
+								/>
+							);
+						})}
 					</div>
 				</div>
 				<div class="w-full h-auto px-3 py-2 2xl:px-36 xl:px-32 md:px-3 lg:py-8">

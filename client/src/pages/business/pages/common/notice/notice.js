@@ -23,11 +23,11 @@ const Notice = (props, { match }) => {
 
 	useEffect(() => {
 		if (window.location.href.includes("org1")) {
-			setSubtitle("지적장애인자립지원센터");
+			setSubtitle("포항시지적장애인자립지원센터");
 		} else if (window.location.href.includes("org2")) {
 			setSubtitle("장애인활동지원사업");
 		} else if (window.location.href.includes("org3")) {
-			setSubtitle("방과후활동지원서비스사업");
+			setSubtitle("방과후활동서비스사업");
 		}
 	}, [window.location.href]);
 

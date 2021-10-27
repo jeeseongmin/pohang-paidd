@@ -99,7 +99,7 @@ const Home = () => {
 								onClick={() => goSubPage(2, 3)}
 								class="lg:text-base py-2 px-4 lg:p-4 text-xs cursor-pointer mr-4 mb-4 border border-purple-700 text-purple-700 rounded-full hover:border-purple-300 hover:bg-purple-300 transition delay-50 duration-300 hover:text-white"
 							>
-								장애인활동사업
+								장애인활동지원사업
 							</Link>
 							<Link
 								to="/business/org3/intro"
@@ -228,7 +228,6 @@ const Home = () => {
 									자원봉사
 								</h1>
 							</div>
-							transition delay-50 duration-300
 							<div class="w-full px-0 md:px-4 text-center flex">
 								<Link
 									to="/participation/volunteer/0"

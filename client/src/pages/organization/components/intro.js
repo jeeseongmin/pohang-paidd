@@ -100,33 +100,62 @@ const Intro = () => {
 					<div class="text-xl lg:text-2xl text-purple-700">직원현황</div>
 				</div>
 				<div class="px-2 lg:px-8 py-3 flex flex-row justify-center items-center border-b-2 border-purple-700">
-					<div class="w-1/6">직위</div>
-					<div class="w-1/6">성명</div>
-					<div class="w-2/6">전화번호</div>
-					<div class="w-2/6">업무내용</div>
+					<div class="w-1/6">
+						<span class="w-20 flex justify-center">직위</span>
+					</div>
+					<div class="w-1/6 text-center">성명</div>
+					<div class="w-2/6 text-center">전화번호</div>
+					<div class="w-2/6 text-center">업무내용</div>
 				</div>
 				<div class="px-2 lg:px-8 py-3 flex flex-row justify-center items-center border-b border-gray-300">
-					<div class="w-1/6">시설장</div>
-					<div class="w-1/6">우숙경</div>
-					<div class="w-2/6">054-244-9577</div>
+					<div class="w-1/6 hidden md:block">
+						<span class="w-20 flex justify-between">
+							<span>시</span>
+							<span>설</span>
+							<span>장</span>
+						</span>
+					</div>
+					<div class="w-1/6 text-center">우숙경</div>
+					<div class="w-2/6 text-center">054-244-9577</div>
 					<div class="w-2/6">운영전반 및 조직관리 총괄</div>
 				</div>
 				<div class="px-2 lg:px-8 py-3 flex flex-row justify-center items-center border-b border-gray-300">
-					<div class="w-1/6">팀장</div>
-					<div class="w-1/6">문수영</div>
-					<div class="w-2/6">054-244-9577</div>
+					<div class="w-1/6 hidden md:block">
+						<span class="w-20 flex justify-between">
+							<span>팀</span>
+							<span>장</span>
+						</span>
+					</div>
+					<div class="w-1/6 text-center">문수영</div>
+					<div class="w-2/6 text-center">054-244-9577</div>
 					<div class="w-2/6">실무 총괄 / 예결산 총괄 / 프로그램 평가</div>
 				</div>
 				<div class="px-2 lg:px-8 py-3 flex flex-row justify-center items-center border-b border-gray-300">
-					<div class="w-1/6">사회복지사</div>
-					<div class="w-1/6">박은숙</div>
-					<div class="w-2/6">070-5154-6983</div>
+					<div class="w-1/6 hidden md:block">
+						<span class="w-20 flex justify-between">
+							<span>사</span>
+							<span>회</span>
+							<span>복</span>
+							<span>지</span>
+							<span>사</span>
+						</span>
+					</div>
+					<div class="w-1/6 text-center">박은숙</div>
+					<div class="w-2/6 text-center">070-5154-6983</div>
 					<div class="w-2/6">프로그램 기획 / 이용자 지원 / 상담</div>
 				</div>
 				<div class="px-2 lg:px-8 py-3 flex flex-row justify-center items-center border-b border-gray-300">
-					<div class="w-1/6">사회복지사</div>
-					<div class="w-1/6">이윤미</div>
-					<div class="w-2/6">070-5154-6973</div>
+					<div class="w-1/6 hidden md:block">
+						<span class="w-20 flex justify-between">
+							<span>사</span>
+							<span>회</span>
+							<span>복</span>
+							<span>지</span>
+							<span>사</span>
+						</span>
+					</div>
+					<div class="w-1/6 text-center">이윤미</div>
+					<div class="w-2/6 text-center">070-5154-6973</div>
 					<div class="w-2/6">프로그램 진행 / 이용자 지원</div>
 				</div>
 			</div>
