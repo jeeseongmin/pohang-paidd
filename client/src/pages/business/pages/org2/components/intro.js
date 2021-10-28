@@ -14,7 +14,7 @@ const Intro = () => {
 				<div class="mr-2">
 					<HiHome size={16} />
 				</div>
-				Home {">"} 주요사업 {">"} 장애인활동사업 {">"} 사업소개
+				Home {">"} 주요사업 {">"} 장애인활동지원사업 {">"} 사업소개
 			</div>
 			<div class="text-base lg:text-xl font-bold leading-9 py-2 lg:py-4">
 				장애인활동지원사업

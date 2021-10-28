@@ -22,7 +22,7 @@ const Business = () => {
 				<div class="mr-2">
 					<HiHome size={16} />
 				</div>
-				Home {">"} 주요사업 {">"} 장애인활동사업 {">"} 주요사업
+				Home {">"} 주요사업 {">"} 장애인활동지원사업 {">"} 주요사업
 			</div>
 			<div class="flex flex-wrap justify-around gap-4 mt-4 md:mt-8">
 				<div
