@@ -1,49 +1,60 @@
 import React from "react";
 import SlideBlock from "react-slick";
+import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { setMenu, setSubmenu, setSidebar } from "../reducers/setting";
 
 const Slider = () => {
+	const dispatch = useDispatch();
+
 	const settings = {
-		dots: true,
+		dots: false,
 		fade: true,
 		arrows: false,
 		infinite: true,
 		speed: 500,
 		slidesToShow: 1,
-		autoplay: true,
+		autoplay: false,
 		autoplaySpeed: 3000,
 		slidesToScroll: 1,
+	};
+
+	const goSubPage = (main, sub) => {
+		dispatch(setMenu(main));
+		dispatch(setSubmenu(sub));
+		window.scrollTo(0, 0);
+		document.getElementById("scrollRef").scrollTo(0, 0);
 	};
 	return (
 		<>
 			<SlideBlock {...settings}>
 				<div class="">
-					<div class="w-full h-auto lg:h-2/4 flex flex-row items-center ">
+					<div class="w-full h-auto lg:h-2/4 flex flex-row items-center relative">
 						<img
 							src="/image/slide1-img1.png"
 							alt="main-img1"
 							class="object-cover w-full"
 						/>
-						{/* <img
-							src="/image/slide1-img2.png"
-							alt="main-img1"
-							class="object-cover w-full block lg:hidden"
-						/> */}
+						<div class="absolute right-8 md:right-16 lg:right-32 bottom-4 md:bottom-8 w-auto h-auto">
+							<Link to="/business/base/default" onClick={() => goSubPage(2, 1)}>
+								<img
+									src="/image/slide1-img1-btn.png"
+									alt="사업소개"
+									class="object-cover w-32 md:w-48 lg:w-60 cursor-pointer"
+								/>
+							</Link>
+						</div>
 					</div>
 				</div>
-				<div>
+				{/* <div>
 					<div class="w-full h-full lg:h-2/4 shadow-sm flex flex-row ">
 						<img
 							src="/image/slide2-img1.png"
 							alt="main-img1"
 							class="object-cover w-full h-1/2"
 						/>
-						{/* <img
-							src="/image/slide2-img2.png"
-							alt="main-img1"
-							class="object-cover w-full block lg:hidden"
-						/> */}
 					</div>
-				</div>
+				</div> */}
 			</SlideBlock>
 			{/* <SlideBlock {...settings}>
 				<div class="">

@@ -181,9 +181,35 @@ const Home = () => {
 						</div>
 					</div>
 				)}
+				<div class="flex flex-col w-full h-auto relative">
+					<img
+						src="/image/home-bg4.png"
+						class="object-cover w-full"
+						alt="home-bg4"
+					/>
+					<div class="absolute h-1/2 right-8 lg:right-32 bottom-4 lg:bottom-8 flex flex-row ">
+						<Link to="/participation/support/0" onClick={() => goSubPage(4, 3)}>
+							<img
+								src="/image/home-bg4-btn1.png"
+								alt="후원"
+								class="cursor-pointer h-full mr-4 lg:mr-8"
+							/>
+						</Link>
+						<Link
+							to="/participation/volunteer/0"
+							onClick={() => goSubPage(4, 4)}
+						>
+							<img
+								src="/image/home-bg4-btn2.png"
+								alt="자원봉사"
+								class="cursor-pointer h-full"
+							/>
+						</Link>
+					</div>
+				</div>
 
 				{/* section 4 */}
-				<div class="flex flex-col lg:flex-row px-5 py-16 2xl:px-36 xl:px-32 md:px-8">
+				{/* <div class="flex flex-col lg:flex-row px-5 py-16 2xl:px-36 xl:px-32 md:px-8">
 					<div class="w-full lg:w-1/3 mr-8">
 						<h1 class="text-xl font-semibold lg:text-3xl">후원 및 자원봉사</h1>
 						<div class="text-md py-4 md:text-xl md:py-8">
@@ -239,7 +265,7 @@ const Home = () => {
 							</div>
 						</div>
 					</div>
-				</div>
+				</div> */}
 			</div>
 		</Layout>
 	);
