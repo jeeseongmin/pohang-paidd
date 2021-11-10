@@ -35,14 +35,17 @@ const Slider = () => {
 							alt="main-img1"
 							class="object-cover w-full"
 						/>
-						<div class="absolute right-8 md:right-16 lg:right-32 bottom-4 md:bottom-8 w-auto h-auto">
+						<div class="absolute right-0 bottom-0 w-1/2 h-1/2 grid grid-cols-3">
+							<div></div>
 							<Link to="/business/base/default" onClick={() => goSubPage(2, 1)}>
-								<img
+								<div class="w-full h-full rounded-full"></div>
+								{/* <img
 									src="/image/slide1-img1-btn.png"
 									alt="사업소개"
 									class="object-cover w-32 md:w-48 lg:w-60 cursor-pointer"
-								/>
+								/> */}
 							</Link>
+							<div></div>
 						</div>
 					</div>
 				</div>
