@@ -12,6 +12,8 @@ const Home = () => {
 	const [photoList, setPhotoList] = useState([]);
 	const [galleryList, setGalleryList] = useState([]);
 	const [loading, setLoading] = useState(false);
+	const [hoverBtn1, setHoverBtn1] = useState(false);
+	const [hoverBtn2, setHoverBtn2] = useState(false);
 
 	useEffect(() => {
 		dispatch(setMenu(0));
@@ -188,19 +190,34 @@ const Home = () => {
 						alt="home-bg4"
 					/>
 					<div class="absolute h-1/2 right-8 lg:right-32 bottom-4 lg:bottom-8 flex flex-row ">
-						<Link to="/participation/support/0" onClick={() => goSubPage(4, 3)}>
+						<Link
+							onMouseOver={() => setHoverBtn1(true)}
+							onMouseLeave={() => setHoverBtn1(false)}
+							to="/participation/support/0"
+							onClick={() => goSubPage(4, 3)}
+						>
 							<img
-								src="/image/home-bg4-btn1.png"
+								src={
+									hoverBtn1
+										? "/image/home-bg4-btn1-hover.png"
+										: "/image/home-bg4-btn1.png"
+								}
 								alt="후원"
 								class="cursor-pointer h-full mr-4 lg:mr-8"
 							/>
 						</Link>
 						<Link
+							onMouseOver={() => setHoverBtn2(true)}
+							onMouseLeave={() => setHoverBtn2(false)}
 							to="/participation/volunteer/0"
 							onClick={() => goSubPage(4, 4)}
 						>
 							<img
-								src="/image/home-bg4-btn2.png"
+								src={
+									hoverBtn2
+										? "/image/home-bg4-btn2-hover.png"
+										: "/image/home-bg4-btn2.png"
+								}
 								alt="자원봉사"
 								class="cursor-pointer h-full"
 							/>

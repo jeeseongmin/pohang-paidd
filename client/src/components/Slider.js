@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import SlideBlock from "react-slick";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -6,6 +6,7 @@ import { setMenu, setSubmenu, setSidebar } from "../reducers/setting";
 
 const Slider = () => {
 	const dispatch = useDispatch();
+	const [hoverBtn, setHoverBtn] = useState(false);
 
 	const settings = {
 		dots: false,
@@ -19,6 +20,10 @@ const Slider = () => {
 		slidesToScroll: 1,
 	};
 
+	useEffect(() => {
+		console.log(hoverBtn);
+	}, [hoverBtn]);
+
 	const goSubPage = (main, sub) => {
 		dispatch(setMenu(main));
 		dispatch(setSubmenu(sub));
@@ -31,14 +36,22 @@ const Slider = () => {
 				<div class="">
 					<div class="w-full h-auto lg:h-2/4 flex flex-row items-center relative">
 						<img
-							src="/image/slide1-img1.png"
+							src={
+								hoverBtn
+									? "/image/slide1-img1-hover.png"
+									: "/image/slide1-img1.png"
+							}
 							alt="main-img1"
 							class="object-cover w-full"
 						/>
 						<div class="absolute right-0 bottom-0 w-1/2 h-1/2 grid grid-cols-3">
 							<div></div>
 							<Link to="/business/base/default" onClick={() => goSubPage(2, 1)}>
-								<div class="w-full h-full rounded-full"></div>
+								<div
+									onMouseOver={() => setHoverBtn(true)}
+									onMouseLeave={() => setHoverBtn(false)}
+									class="w-full h-full rounded-full"
+								></div>
 								{/* <img
 									src="/image/slide1-img1-btn.png"
 									alt="사업소개"
