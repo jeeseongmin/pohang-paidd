@@ -110,6 +110,7 @@ router.route("/add/:type").post((req, res) => {
 			type: req.params.type,
 			title: req.body.title,
 			content: req.body.content,
+			fileList: req.body.fileList,
 		};
 
 		const newOne = new Notice(one);
@@ -128,6 +129,7 @@ router.route("/update/:id").post((req, res) => {
 			.then((one) => {
 				one.title = req.body.title;
 				one.content = req.body.content;
+				one.fileList = req.body.fileList;
 
 				one
 					.save()

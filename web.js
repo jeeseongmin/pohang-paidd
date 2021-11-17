@@ -39,6 +39,7 @@ const galleryRouter = require("./routes/post/gallery");
 const supportRouter = require("./routes/post/support");
 const volunteerRouter = require("./routes/post/volunteer");
 const imageRouter = require("./routes/post/image");
+const fileRouter = require("./routes/post/file");
 
 app.use("/exercises", exercisesRouter);
 app.use("/api/user", userRouter);
@@ -49,6 +50,7 @@ app.use("/api/gallery", galleryRouter);
 app.use("/api/support", supportRouter);
 app.use("/api/volunteer", volunteerRouter);
 app.use("/api/image", imageRouter);
+app.use("/api/file", fileRouter);
 
 // app.use(express.static(path.join(__dirname, "./client/build")));
 

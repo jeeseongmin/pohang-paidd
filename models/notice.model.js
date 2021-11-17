@@ -16,6 +16,10 @@ const noticeSchema = new Schema(
 			type: String,
 			required: true,
 		},
+		fileList: {
+			type: [Object],
+			required: false,
+		},
 	},
 	{
 		timestamps: true,

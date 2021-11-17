@@ -18,6 +18,7 @@ const NoticeWrite = (props) => {
 		type: "",
 		title: "",
 		content: "",
+		fileList: [],
 	});
 	const titleRef = useRef(null);
 	const contentRef = useRef(null);
@@ -25,9 +26,15 @@ const NoticeWrite = (props) => {
 	const currentEmail = useSelector((state) => state.setting.currentEmail);
 
 	const changeInfo = (e, type) => {
-		const cp = { ...info };
-		cp[type] = e.target.value;
-		setInfo(cp);
+		if (type === "fileList") {
+			const cp = { ...info };
+			cp[type] = e;
+			setInfo(cp);
+		} else {
+			const cp = { ...info };
+			cp[type] = e.target.value;
+			setInfo(cp);
+		}
 	};
 
 	useEffect(() => {
@@ -52,6 +59,7 @@ const NoticeWrite = (props) => {
 						key: process.env.REACT_APP_API_KEY,
 						title: info.title,
 						content: info.content,
+						fileList: info.fileList,
 					},
 					{
 						headers: {
