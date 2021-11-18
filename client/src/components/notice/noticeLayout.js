@@ -18,40 +18,39 @@ const NoticeLayout = (props) => {
 	};
 
 	const loadFile = async (filename) => {
-		const res = await axios.get("/api/file/load/" + filename);
-		console.log("loadFile", res);
+		console.log("donwload file", filename);
+		const res = await axios.get("/api/file/download/" + filename);
+		console.log(res.data);
 	};
 
 	const onChange = async (e) => {
-		console.log("e", e);
-		setLoading(false);
-		const formData = new FormData();
+		let formData = new FormData();
+		const config = {
+			header: { "content-type": "multipart/form-data" },
+		};
 		formData.append("file", e.target.files[0]);
-		// 서버의 upload API 호출
-		const res = await axios.post("/api/file/upload", formData);
-		const cp = [...info.fileList];
-		await cp.push({ filename: res.data.filename, id: res.data.id });
-		await changeInfo(cp, "fileList");
-		console.log("cp", cp);
-		setLoading(true);
+		axios.post("/api/file/upload_page", formData, config).then(async (res) => {
+			console.log(res);
+			if (res.data.success) {
+				const cp = [...info.fileList];
+				await cp.push({
+					filename: res.data.file.filename,
+					id: res.data.file.id,
+				});
+				await changeInfo(cp, "fileList");
+				setLoading(true);
+			} else {
+				alert("사진 업로드를 실패했습니다.");
+			}
+		});
 	};
 
-	const removeImg = async (index) => {
-		if (isEdit) {
-			const cp = [...info.fileList];
-			const name = cp[index];
-			deletePhoto(name);
-
-			cp.splice(index, 1);
-			await changeInfo(cp, "fileList");
-		} else {
-			const cp = [...info.fileList];
-			const id = cp[index].id;
-			cp.splice(index, 1);
-			changeInfo(cp, "fileList");
-
-			await axios.get("/api/file/delete/" + id);
-		}
+	const removeFile = async (filename) => {
+		await axios.get("/api/file/delete/" + filename);
+		const cp = [...info.fileList].filter(function (element, index) {
+			return element.filename !== filename;
+		});
+		changeInfo(cp, "fileList");
 	};
 
 	return (
@@ -74,8 +73,8 @@ const NoticeLayout = (props) => {
 				name="img"
 				onChange={onChange}
 			/>
-			<div class="w-full my-4 flex flex-row justify-between items-center">
-				<h1 class="text-lg font-bold">업로드 된 파일 목록</h1>
+			<div class="w-full my-4 flex flex-col md:flex-row justify-start md:justify-between items-start md:items-center">
+				<h1 class="text-lg font-bold mb-4 md:mb-0">업로드 된 파일 목록</h1>
 				<button
 					class="text-sm outline-none w-full md:w-auto cursor-pointer px-0 md:px-8 py-1 justify-center border border-purple-300 bg-purple-300 text-white flex flex-row items-center hover:bg-purple-500 hover:text-white hover:font-bold"
 					onClick={buttonClick}
@@ -111,7 +110,7 @@ const NoticeLayout = (props) => {
 									{index} : {element.filename}
 								</div>
 								<MdCancel
-									onClick={() => removeImg(index)}
+									onClick={() => removeFile(element.filename)}
 									size={24}
 									class="cursor-pointer rounded-full bg-white absolute -top-2 -right-2"
 								/>

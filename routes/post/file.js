@@ -10,6 +10,19 @@ const crypto = require("crypto");
 const router = express.Router();
 const API_KEY = require("../../keyconfig");
 const db = require("../../dbconfig");
+var mime = require("mime");
+var getDownloadFilename =
+	require("./lib/getDownloadFilename").getDownloadFilename;
+
+const _storage = multer.diskStorage({
+	destination: (req, file, callback) => {
+		callback(null, "uploads/");
+	},
+	filename: (req, file, callback) => {
+		callback(null, `${Date.now()}_${file.originalname}`);
+	},
+});
+const uploader = multer({ storage: _storage }).single("file");
 
 const uri = db;
 const connect = mongoose.createConnection(uri, {
@@ -54,17 +67,13 @@ router.post("/upload", upload.single("file"), (req, res) => {
 	res.json({ filename: `${req.file.filename}`, id: `${req.file.id}` });
 });
 
-router.get("/delete/:id", (req, res) => {
-	gfs.delete(new mongoose.Types.ObjectId(req.params.id), (err, data) => {
-		if (err) {
-			return res.status(404).json({ err: err });
-		}
-
-		res.status(200).json({
-			success: true,
-			message: `File with ID ${req.params.id} is deleted`,
-		});
+router.get("/delete/:filename", (req, res) => {
+	fs.unlink(`uploads/${req.params.filename}`, (err) => {
+		console.log(req.params.filename);
+		//요청한 주소로 리다이렉션
+		res.end();
 	});
+	return res.json(filename);
 });
 
 router.route("/:url").get((req, res) => {
@@ -76,76 +85,45 @@ router.route("/:url").get((req, res) => {
 	});
 });
 
-router.route("/files").get((req, res, next) => {
-	gfs.files.find().toArray((err, files) => {
-		// Check if files
-		if (!files || files.length === 0) {
-			return res.status(404).json({
-				err: "No files exist",
-			});
+router.route("/upload_page").post((req, res, next) => {
+	console.log("파일 업로드");
+	uploader(req, res, (err) => {
+		if (err) {
+			return res.json({ success: false, err });
 		}
-
-		return res.json(files);
-	});
-});
-
-router.route("/load/:filename").get((req, res, next) => {
-	console.log("filename", req.params.filename);
-	// gfs.files.find().toArray((err, files) => {
-	// 	console.log(files);
-	// 	// Check if files
-	// 	if (!files || files.length === 0) {
-	// 		return res.status(404).json({
-	// 			err: "No files exist",
-	// 		});
-	// 	}
-
-	// 	return files.filter(function (element, index) {
-	// 		return req.params.id === element.id;
-	// 	})[0];
-	// });
-	// gfs.find({ id: req.params.id }, (err, file) => {
-	// 	console.log("file", file);
-	// 	// Check if files
-	// 	if (!file || file.length === 0) {
-	// 		return res.status(404).json({
-	// 			err: "No files exist",
-	// 		});
-	// 	}
-
-	// 	return res.json(file);
-	// });
-	gfs.find({ filename: req.params.filename }).toArray((err, file) => {
-		console.log(file);
-		if (!file || file.length === 0) {
-			return res.status(404).json({
-				err: "No files exist",
-			});
-		}
-		gfs.openDownloadStreamByName(req.params.filename).pipe(res);
-
-		// var readstream = gfs.createReadStream({ filename: req.params.filename });
-		// readstream.pipe(res);
-
-		return res.json(file);
+		return res.json({
+			success: true,
+			file: res.req.file,
+		});
 	});
 });
 
 router.route("/download/:filename").get((req, res, next) => {
-	// Check file exist on MongoDB
-	console.log("download file");
+	var upload_folder = "uploads/";
+	var file = upload_folder + req.params.filename; // ex) /upload/files/sample.txt
 
-	var filename = req.params.filename;
+	try {
+		if (fs.existsSync(file)) {
+			var filename = path.basename(file); // 파일 경로에서 파일명(확장자포함)만 추출
+			var mimetype = mime.getType(file); // 파일의 타입(형식)을 가져옴
+			console.log(filename, mimetype);
+			res.setHeader("Content-disposition", "attachment; filename=" + filename); // 다운받아질 파일명 설정
+			res.setHeader("Content-type", mimetype); // 파일 형식 지정
 
-	gfs.exist({ filename: filename }, (err, file) => {
-		if (err || !file) {
-			res.status(404).send("File Not Found");
+			var filestream = fs.createReadStream(file);
+			filestream.pipe(res);
+		} else {
+			res.send("해당 파일이 없습니다.");
 			return;
 		}
+	} catch (e) {
+		// 에러 발생시
+		console.log(e);
+		res.send("파일을 다운로드하는 중에 에러가 발생하였습니다.");
+		return;
+	}
 
-		var readstream = gfs.createReadStream({ filename: filename });
-		readstream.pipe(res);
-	});
+	return res.json("success");
 });
 
 module.exports = router;
