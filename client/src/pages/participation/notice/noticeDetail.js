@@ -6,6 +6,7 @@ import axios from "axios";
 import ReactHtmlParser from "react-html-parser";
 import NoticeEdit from "./EditNotice";
 import Skeleton from "@material-ui/lab/Skeleton";
+import CircularProgress from "@material-ui/core/CircularProgress";
 
 const NoticeDetail = (props) => {
 	const [loading, setLoading] = useState(false);
@@ -25,6 +26,7 @@ const NoticeDetail = (props) => {
 		title: "",
 		content: "",
 		date: "",
+		fileList: [],
 	});
 
 	useEffect(() => {
@@ -45,6 +47,8 @@ const NoticeDetail = (props) => {
 					type: Response.data.type,
 					title: Response.data.title,
 					content: Response.data.content,
+					fileList: Response.data.fileList,
+
 					date: dataToText(Response.data.createdAt),
 				};
 				setInfo(cp);
@@ -55,9 +59,13 @@ const NoticeDetail = (props) => {
 			});
 	}, []);
 
-	const deleteNotice = () => {
+	const deleteNotice = async () => {
 		if (currentEmail === "master") {
-			axios
+			await info.fileList.forEach(async function (item, index) {
+				await axios.get("/api/file/delete/" + item.filename);
+			});
+
+			await axios
 				.post(
 					"/api/notice/delete/" + id,
 					{
@@ -107,6 +115,46 @@ const NoticeDetail = (props) => {
 									<div class="text-lg flex-1 ">{info.title}</div>
 									<div class="text-lg w-24 ">{info.date}</div>
 								</>
+							)}
+						</div>
+						<div
+							class={
+								"w-full border-t border-gray-300 px-4 pt-4 pb-2 flex flex-wrap flex-col " +
+								(loading ? "text-center" : "")
+							}
+						>
+							{info.fileList.length === 0 && loading ? (
+								<div class="text-gray-500">업로드된 파일이 없습니다.</div>
+							) : loading ? (
+								info.fileList.map((element, index) => {
+									return (
+										<div class="w-full mb-4 rounded-md relative ">
+											<span class="mr-2 text-blue-600 font-bold">
+												첨부 #{index + 1}
+											</span>
+											<a
+												class="hover:text-blue-500 "
+												href={"http://phaidd.or.kr/uploads/" + element.filename}
+												target="_blank"
+												download
+											>
+												{element.filename}{" "}
+												<span class="text-sm text-gray-300">(</span>
+												<span class="text-sm text-blue-300">
+													{element.size
+														.toString()
+														.replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")}
+												</span>{" "}
+												<span class="text-red-500 text-sm">bytes</span>
+												<span class="text-sm text-gray-300">) </span>
+											</a>
+										</div>
+									);
+								})
+							) : (
+								<div class="w-full h-24 my-2 py-4 flex justify-center items-center text-center">
+									<CircularProgress />
+								</div>
 							)}
 						</div>
 						<div class="w-full px-2 lg:px-8 py-4 flex justify-end items-center border-t border-gray-300">

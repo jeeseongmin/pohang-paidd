@@ -2,6 +2,7 @@ import React, { useEffect, useState, useRef } from "react";
 import axios from "axios";
 import { MdCancel } from "react-icons/md";
 import CircularProgress from "@material-ui/core/CircularProgress";
+import { Link } from "react-router-dom";
 
 const NoticeLayout = (props) => {
 	const [loading, setLoading] = useState(true);
@@ -11,16 +12,9 @@ const NoticeLayout = (props) => {
 	const contentRef = props.contentRef;
 	const buttonRef = useRef(null);
 	const isEdit = props.isEdit;
-	const deletePhoto = isEdit ? props.deletePhoto : null;
 
 	const buttonClick = () => {
 		buttonRef.current.click();
-	};
-
-	const loadFile = async (filename) => {
-		console.log("donwload file", filename);
-		const res = await axios.get("/api/file/download/" + filename);
-		console.log(res.data);
 	};
 
 	const onChange = async (e) => {
@@ -30,15 +24,15 @@ const NoticeLayout = (props) => {
 		};
 		formData.append("file", e.target.files[0]);
 		axios.post("/api/file/upload_page", formData, config).then(async (res) => {
-			console.log(res);
 			if (res.data.success) {
 				const cp = [...info.fileList];
 				await cp.push({
 					filename: res.data.file.filename,
-					id: res.data.file.id,
+					size: res.data.file.size,
 				});
 				await changeInfo(cp, "fileList");
 				setLoading(true);
+				e.target.value = null;
 			} else {
 				alert("사진 업로드를 실패했습니다.");
 			}
@@ -48,7 +42,7 @@ const NoticeLayout = (props) => {
 	const removeFile = async (filename) => {
 		await axios.get("/api/file/delete/" + filename);
 		const cp = [...info.fileList].filter(function (element, index) {
-			return element.filename !== filename;
+			return element !== filename;
 		});
 		changeInfo(cp, "fileList");
 	};
@@ -84,16 +78,17 @@ const NoticeLayout = (props) => {
 			</div>
 			<div
 				class={
-					"w-full border-2 border-gray-300 px-4 py-4 mb-2 flex flex-wrap " +
+					"w-full border-2 border-gray-300 px-4 py-4 mb-2 flex flex-wrap flex-col " +
 					(loading ? "text-center" : "")
 				}
 			>
-				{info.fileList.length === 0 && loading ? (
+				{info.fileList && info.fileList.length === 0 && loading ? (
 					<div class="text-gray-500">업로드된 파일이 없습니다.</div>
 				) : loading ? (
+					info.fileList &&
 					info.fileList.map((element, index) => {
 						return (
-							<div class="w-24 mb-4 border border-gray-300 rounded-md relative mx-4">
+							<div class="w-full mb-4 border border-gray-300 rounded-md relative">
 								{/* <img
 									class="w-full h-24 object-contain"
 									src={
@@ -103,12 +98,15 @@ const NoticeLayout = (props) => {
 									}
 									alt="fileList"
 								/> */}
-								<div
-									onClick={() => loadFile(element.filename)}
-									class="cursor-pointer w-full font-bold border border-black"
+								<a
+									class="text-blue-500 underline"
+									href={"http://phaidd.or.kr/uploads/" + element.filename}
+									target="_blank"
+									download
 								>
-									{index} : {element.filename}
-								</div>
+									{element.filename}
+								</a>
+
 								<MdCancel
 									onClick={() => removeFile(element.filename)}
 									size={24}

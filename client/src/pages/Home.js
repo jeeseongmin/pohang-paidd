@@ -124,7 +124,9 @@ const Home = () => {
 					</div>
 				</div>
 				{/* section 3 */}
-				{galleryList.length === 0 ? null : (
+				{galleryList.length === 0 ? (
+					<div class="mb-8"></div>
+				) : (
 					<div class="flex flex-col px-5 py-8 2xl:px-36 xl:px-32 md:px-8">
 						<div class="w-full">
 							<h1 class="text-xl font-semibold lg:text-3xl">소식</h1>

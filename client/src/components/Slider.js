@@ -32,37 +32,37 @@ const Slider = () => {
 	};
 	return (
 		<>
-			<SlideBlock {...settings}>
-				<div class="">
-					<div class="w-full h-auto lg:h-2/4 flex flex-row items-center relative">
-						<img
-							src={
-								hoverBtn
-									? "/image/slide1-img1-hover.png"
-									: "/image/slide1-img1.png"
-							}
-							alt="main-img1"
-							class="object-cover w-full"
-						/>
-						<div class="absolute right-0 bottom-0 w-1/2 h-1/2 grid grid-cols-3">
-							<div></div>
-							<Link to="/business/base/default" onClick={() => goSubPage(2, 1)}>
-								<div
-									onMouseOver={() => setHoverBtn(true)}
-									onMouseLeave={() => setHoverBtn(false)}
-									class="w-full h-full rounded-full"
-								></div>
-								{/* <img
+			<div class="">
+				<div class="w-full h-auto lg:h-2/4 flex flex-row items-center relative">
+					<img
+						src={"/image/slide1-img1.png"}
+						alt="main-img1"
+						class={"object-cover " + (hoverBtn ? "w-0 " : "w-full ")}
+					/>
+					<img
+						src={"/image/slide1-img1-hover.png"}
+						alt="main-img1"
+						class={"object-cover " + (hoverBtn ? "w-full " : "w-0 ")}
+					/>
+					<div class="absolute right-0 bottom-0 w-1/2 h-1/2 grid z-50 grid-cols-3">
+						<div></div>
+						<Link to="/business/base/default" onClick={() => goSubPage(2, 1)}>
+							<div
+								onMouseOver={() => setHoverBtn(true)}
+								onMouseLeave={() => setHoverBtn(false)}
+								class="w-full h-full rounded-full"
+							></div>
+							{/* <img
 									src="/image/slide1-img1-btn.png"
 									alt="사업소개"
 									class="object-cover w-32 md:w-48 lg:w-60 cursor-pointer"
 								/> */}
-							</Link>
-							<div></div>
-						</div>
+						</Link>
+						<div></div>
 					</div>
 				</div>
-				{/* <div>
+			</div>
+			{/* <div>
 					<div class="w-full h-full lg:h-2/4 shadow-sm flex flex-row ">
 						<img
 							src="/image/slide2-img1.png"
@@ -71,7 +71,6 @@ const Slider = () => {
 						/>
 					</div>
 				</div> */}
-			</SlideBlock>
 			{/* <SlideBlock {...settings}>
 				<div class="">
 					<div class="h-auto py-0 lg:py-8 px-10 bg-purple-100 flex flex-row items-center 2xl:px-36 xl:px-32 lg:px-10 md:py-4">

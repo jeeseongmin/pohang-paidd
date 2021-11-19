@@ -68,12 +68,12 @@ router.post("/upload", upload.single("file"), (req, res) => {
 });
 
 router.get("/delete/:filename", (req, res) => {
-	fs.unlink(`uploads/${req.params.filename}`, (err) => {
-		console.log(req.params.filename);
+	console.log(req.params.filename);
+	fs.unlink(`uploads/` + req.params.filename, (err) => {
 		//요청한 주소로 리다이렉션
 		res.end();
 	});
-	return res.json(filename);
+	return res.json(req.params.filename);
 });
 
 router.route("/:url").get((req, res) => {
@@ -112,6 +112,7 @@ router.route("/download/:filename").get((req, res, next) => {
 
 			var filestream = fs.createReadStream(file);
 			filestream.pipe(res);
+			return res.json(file);
 		} else {
 			res.send("해당 파일이 없습니다.");
 			return;
