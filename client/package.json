@@ -2,7 +2,7 @@
   "name": "paidd-project",
   "version": "0.1.0",
   "private": true,
-  "proxy": "http://phaidd.co.kr",
+  "proxy": "http://localhost:5000",
   "dependencies": {
     "@babel/core": "^7.15.0",
     "@ckeditor/ckeditor5-build-classic": "^29.1.0",

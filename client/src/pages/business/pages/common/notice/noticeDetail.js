@@ -109,13 +109,17 @@ const NoticeDetail = (props) => {
 					</div>
 					<div class="text-sm lg:text-base w-full h-auto mb-8 border-t-2 border-b-2 border-purple-600">
 						{/* 딱 10개 씩만 로드하기 */}
-						<div class="w-full px-2 lg:px-8 py-4 flex justify-end items-center">
+						<div class="w-full px-2 lg:px-8 py-4 flex justify-end items-center relative">
 							{!loading ? (
 								<Skeleton animation="wave" />
 							) : (
 								<>
-									<div class="text-lg flex-1 font-bold">{info.title}</div>
-									<div class="text-lg w-24 ">{info.date}</div>
+									<div class="w-full relative pr-24">
+										<p class="w-full h-full break-words">{info.title}</p>
+										{/* <div class="text-lg w-auto border border-black pr-4 relative">
+										</div> */}
+									</div>
+									<div class="absolute right-0 text-lg w-24 ">{info.date}</div>
 								</>
 							)}
 						</div>
@@ -163,10 +167,13 @@ const NoticeDetail = (props) => {
 								</div>
 							)}
 						</div>
-						<div class="w-full px-2 lg:px-8 py-4 flex justify-end items-center border-t border-gray-300">
-							<div class="h-96 text-base flex-1 pr-4 truncate	">
+						<div class="w-full h-auto flex justify-end items-center border-t border-gray-300 relative">
+							{/* <p class="h-96 text-base flex-1 pr-4 overflow-ellipsis">
 								{ReactHtmlParser(info.content)}
-							</div>
+							</p> */}
+							<p class="px-4 lg:px-8 py-4 w-full break-words h-full text-base overflow-ellipsis resize-none select-none">
+								{info.content}
+							</p>
 						</div>
 					</div>
 					<div class="flex justify-between items-center flex-col md:flex-row">
