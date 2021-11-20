@@ -136,7 +136,11 @@ const NoticeDetail = (props) => {
 											</span>
 											<a
 												class="hover:text-blue-500 "
-												href={"http://phaidd.or.kr/uploads/" + element.filename}
+												href={
+													window.location.origin +
+													"/uploads/" +
+													element.filename
+												}
 												target="_blank"
 												download
 											>

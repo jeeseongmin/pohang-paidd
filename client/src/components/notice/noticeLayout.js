@@ -27,23 +27,29 @@ const NoticeLayout = (props) => {
 			header: { "content-type": "multipart/form-data" },
 		};
 		formData.append("file", e.target.files[0]);
-		await axios
-			.post("/api/file/upload_page", formData, config)
-			.then(async (res) => {
-				console.log("data", res.data);
-				if (res.data.success) {
-					const cp = [...info.fileList];
-					await cp.push({
-						filename: res.data.file.filename,
-						size: res.data.file.size,
-					});
-					await changeInfo(cp, "fileList");
-					setLoading(true);
-					e.target.value = null;
-				} else {
-					alert("파일 업로드를 실패했습니다.");
-				}
-			});
+		console.log("file", e.target.files[0]);
+		if (e.target.files[0].size > 10 * 1024 * 1024) {
+			alert("10MB 이하의 파일만 업로드 가능합니다.");
+			e.target.value = null;
+		} else {
+			await axios
+				.post("/api/file/upload_page", formData, config)
+				.then(async (res) => {
+					console.log("data", res.data);
+					if (res.data.success) {
+						const cp = [...info.fileList];
+						await cp.push({
+							filename: res.data.file.filename,
+							size: res.data.file.size,
+						});
+						await changeInfo(cp, "fileList");
+						setLoading(true);
+						e.target.value = null;
+					} else {
+						alert("파일 업로드를 실패했습니다.");
+					}
+				});
+		}
 	};
 
 	const removeFile = async (filename) => {
@@ -77,9 +83,14 @@ const NoticeLayout = (props) => {
 				onChange={onChange}
 			/>
 			<div class="w-full my-4 flex flex-col md:flex-row justify-start md:justify-between items-start md:items-center">
-				<h1 class="text-lg font-bold mb-4 md:mb-0">업로드 된 파일 목록</h1>
+				<div class="flex flex-col md:flex-row mb-4 md:mb-0 justify-start items-start md:items-center">
+					<h1 class="text-lg font-bold mr-0 md:mr-2 mb-2 md:mb-0">
+						업로드 된 파일 목록
+					</h1>
+					<p class="text-xs font-bold text-red-500">파일 별 크기는 10MB 이하</p>
+				</div>
 				<button
-					class="text-sm outline-none w-full md:w-auto cursor-pointer px-0 md:px-8 py-1 justify-center border border-purple-300 bg-purple-300 text-white flex flex-row items-center hover:bg-purple-500 hover:text-white hover:font-bold"
+					class="text-sm outline-none w-full md:w-auto cursor-pointer px-0 md:px-8 py-2 md:py-1 justify-center border border-purple-300 bg-purple-300 text-white flex flex-row items-center hover:bg-purple-500 hover:text-white hover:font-bold"
 					onClick={buttonClick}
 				>
 					파일 업로드
@@ -98,26 +109,29 @@ const NoticeLayout = (props) => {
 					info.fileList.map((element, index) => {
 						return (
 							<div class="w-full mb-4 border border-gray-300 rounded-md relative">
-								{/* <img
-									class="w-full h-24 object-contain"
-									src={
-										window.location.origin +
-										"/api/files/view/" +
-										element.filename
-									}
-									alt="fileList"
-								/> */}
-								<p>
-									경로 :{" "}
-									{window.location.origin + "/uploads/" + element.filename}
-								</p>
+								{/* 
+								// localhost
 								<a
 									class="text-blue-500 underline"
+									href={"http://localhost:5000/uploads/" + element.filename}
+									target="_blank"
+									download
+								> */}
+								<a
+									class="text-blue-500"
 									href={window.location.origin + "/uploads/" + element.filename}
 									target="_blank"
 									download
 								>
-									{element.filename}
+									<span class="underline">{element.filename}</span>{" "}
+									<span class="text-sm text-gray-300">(</span>
+									<span class="text-sm text-blue-300">
+										{element.size
+											.toString()
+											.replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")}
+									</span>{" "}
+									<span class="text-red-500 text-sm">bytes</span>
+									<span class="text-sm text-gray-300">) </span>
 								</a>
 
 								<MdCancel
