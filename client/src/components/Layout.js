@@ -4,8 +4,6 @@ import Footer from "./Footer/Footer";
 
 const Layout = ({ children }) => {
 	useEffect(() => {
-		console.log("load!");
-		// window.scrollTo(0, 0);
 		document.getElementById("root").scrollTo(0, 0);
 	}, []);
 	return (

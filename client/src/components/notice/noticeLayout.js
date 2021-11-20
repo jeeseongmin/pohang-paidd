@@ -16,6 +16,10 @@ const NoticeLayout = (props) => {
 	const buttonClick = () => {
 		buttonRef.current.click();
 	};
+	const downloadTest = async (filename) => {
+		const res = await axios.get("/api/file/download/" + filename);
+		console.log("download", res.data);
+	};
 
 	const onChange = async (e) => {
 		let formData = new FormData();
@@ -23,26 +27,31 @@ const NoticeLayout = (props) => {
 			header: { "content-type": "multipart/form-data" },
 		};
 		formData.append("file", e.target.files[0]);
-		axios.post("/api/file/upload_page", formData, config).then(async (res) => {
-			if (res.data.success) {
-				const cp = [...info.fileList];
-				await cp.push({
-					filename: res.data.file.filename,
-					size: res.data.file.size,
-				});
-				await changeInfo(cp, "fileList");
-				setLoading(true);
-				e.target.value = null;
-			} else {
-				alert("사진 업로드를 실패했습니다.");
-			}
-		});
+		await axios
+			.post("/api/file/upload_page", formData, config)
+			.then(async (res) => {
+				console.log("data", res.data);
+				if (res.data.success) {
+					const cp = [...info.fileList];
+					await cp.push({
+						filename: res.data.file.filename,
+						size: res.data.file.size,
+					});
+					await changeInfo(cp, "fileList");
+					setLoading(true);
+					e.target.value = null;
+				} else {
+					alert("파일 업로드를 실패했습니다.");
+				}
+			});
 	};
 
 	const removeFile = async (filename) => {
-		await axios.get("/api/file/delete/" + filename);
+		await downloadTest(filename);
+		const res = await axios.get("/api/file/delete/" + filename);
+		console.log(res.data);
 		const cp = [...info.fileList].filter(function (element, index) {
-			return element !== filename;
+			return element.filename !== filename;
 		});
 		changeInfo(cp, "fileList");
 	};
@@ -98,9 +107,13 @@ const NoticeLayout = (props) => {
 									}
 									alt="fileList"
 								/> */}
+								<p>
+									경로 :{" "}
+									{window.location.origin + "/uploads/" + element.filename}
+								</p>
 								<a
 									class="text-blue-500 underline"
-									href={"http://phaidd.or.kr/uploads/" + element.filename}
+									href={window.location.origin + "/uploads/" + element.filename}
 									target="_blank"
 									download
 								>

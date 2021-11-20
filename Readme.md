@@ -50,11 +50,13 @@ Notice {
 	type : (org1, org2, org3, org4, participation)
 	title : string,
 	content : string,
+	fileList : Array
 }
 Gallery {
 	type : (org1, org2, org3, org4, participation)
 	title : string,
 	content : string,
+	imgList : Array(Object),
 	imagePath : string
 }
 Support : {

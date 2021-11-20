@@ -20,10 +20,6 @@ const Slider = () => {
 		slidesToScroll: 1,
 	};
 
-	useEffect(() => {
-		console.log(hoverBtn);
-	}, [hoverBtn]);
-
 	const goSubPage = (main, sub) => {
 		dispatch(setMenu(main));
 		dispatch(setSubmenu(sub));

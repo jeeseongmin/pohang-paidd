@@ -16,7 +16,7 @@ var getDownloadFilename =
 
 const _storage = multer.diskStorage({
 	destination: (req, file, callback) => {
-		callback(null, "uploads/");
+		callback(null, path.join(__dirname, "..", "..", "uploads"));
 	},
 	filename: (req, file, callback) => {
 		callback(null, `${Date.now()}_${file.originalname}`);
@@ -38,35 +38,6 @@ connect.once("open", () => {
 	});
 });
 
-// create storage engine
-var storage = new GridFsStorage({
-	url: db,
-	file: (req, file) => {
-		return new Promise((resolve, reject) => {
-			crypto.randomBytes(16, (err, buf) => {
-				if (err) {
-					return reject(err);
-				}
-				const ext = path.extname(file.originalname);
-				const filename = path.basename(file.originalname, ext) + ext;
-				const fileInfo = {
-					filename: filename,
-					bucketName: "uploads",
-				};
-				resolve(fileInfo);
-			});
-		});
-	},
-});
-
-const upload = multer({ storage });
-
-// 이미지 업로드를 위한 API
-// upload의 single 메서드는 하나의 이미지를 업로드할 때 사용
-router.post("/upload", upload.single("file"), (req, res) => {
-	res.json({ filename: `${req.file.filename}`, id: `${req.file.id}` });
-});
-
 router.get("/delete/:filename", (req, res) => {
 	console.log(req.params.filename);
 	fs.unlink(`uploads/` + req.params.filename, (err) => {
@@ -86,6 +57,10 @@ router.route("/:url").get((req, res) => {
 });
 
 router.route("/upload_page").post((req, res, next) => {
+	var dir = path.join(__dirname, "..", "..", "uploads");
+	if (!fs.existsSync(dir)) {
+		fs.mkdirSync(dir);
+	}
 	console.log("파일 업로드");
 	uploader(req, res, (err) => {
 		if (err) {
