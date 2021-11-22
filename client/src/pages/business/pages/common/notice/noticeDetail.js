@@ -115,7 +115,9 @@ const NoticeDetail = (props) => {
 							) : (
 								<>
 									<div class="w-full relative pr-24">
-										<p class="w-full h-full break-words">{info.title}</p>
+										<p class="w-full h-full break-words text-lg font-bold">
+											{info.title}
+										</p>
 										{/* <div class="text-lg w-auto border border-black pr-4 relative">
 										</div> */}
 									</div>

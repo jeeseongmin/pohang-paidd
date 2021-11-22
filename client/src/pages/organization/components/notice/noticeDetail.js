@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { Route, Link, useHistory } from "react-router-dom";
 import Subtitle from "../../../../components/Subtitle";
 import { useDispatch, useSelector } from "react-redux";
@@ -10,6 +10,7 @@ import CircularProgress from "@material-ui/core/CircularProgress";
 
 const NoticeDetail = (props) => {
 	const [loading, setLoading] = useState(false);
+	const [oldDiv, setOldDiv] = useState(true);
 
 	const dispatch = useDispatch();
 	const history = useHistory();
@@ -29,6 +30,28 @@ const NoticeDetail = (props) => {
 		date: "",
 		fileList: [],
 	});
+
+	const areaRef = useRef();
+
+	useEffect(() => {
+		console.log(window.innerWidth);
+		// textareaDiv가 true이면 이미 길이가 긴 상태. h-auto
+		// textareaDiv가 false일 때만 기본 96으로 만들어야됨.
+		// if (areaRef.current.offsetHeight <= 384) {
+		// 	setTextareaDiv(false);
+		// } else setTextareaDiv(true);
+
+		if (areaRef.current) {
+			let areaHeight = areaRef.current.offsetHeight;
+			if (areaHeight <= 384) {
+				console.log("필요!", areaHeight);
+				setOldDiv(false);
+			} else {
+				console.log("안필요", areaHeight);
+				setOldDiv(true);
+			}
+		}
+	}, [window.innerWidth, loading]);
 
 	useEffect(() => {
 		document.getElementById("scrollRef").scrollTo(0, 0);
@@ -52,7 +75,6 @@ const NoticeDetail = (props) => {
 					title: Response.data.title,
 					content: Response.data.content,
 					fileList: Response.data.fileList,
-
 					date: dataToText(Response.data.createdAt),
 				};
 				setInfo(cp);
@@ -106,6 +128,7 @@ const NoticeDetail = (props) => {
 		setIsEdit(true);
 		document.getElementById("scrollRef").scrollTo(0, 0);
 	};
+
 	return (
 		<>
 			{!isEdit ? (
@@ -121,7 +144,9 @@ const NoticeDetail = (props) => {
 							) : (
 								<>
 									<div class="w-full relative pr-24">
-										<p class="w-full h-full break-words">{info.title}</p>
+										<p class="w-full h-full break-words text-lg font-bold">
+											{info.title}
+										</p>
 										{/* <div class="text-lg w-auto border border-black pr-4 relative">
 										</div> */}
 									</div>
@@ -173,10 +198,26 @@ const NoticeDetail = (props) => {
 								</div>
 							)}
 						</div>
-						<div class="w-full h-auto flex justify-end items-center border-t border-gray-300 relative">
-							{/* <p class="h-96 text-base flex-1 pr-4 overflow-ellipsis">
-								{ReactHtmlParser(info.content)}
-							</p> */}
+						{oldDiv && (
+							<div
+								class={
+									"w-full h-auto flex justify-end items-center border-t border-gray-300 relative "
+								}
+							>
+								<p
+									ref={areaRef}
+									class="px-4 lg:px-8 py-4 w-full break-words h-auto min-h-screen border border-black text-base overflow-ellipsis resize-none select-none"
+								>
+									{info.content}
+								</p>
+							</div>
+						)}
+						<div
+							class={
+								"w-full flex justify-end items-center border-t border-gray-300 relative " +
+								(oldDiv ? "hidden" : "h-96")
+							}
+						>
 							<p class="px-4 lg:px-8 py-4 w-full break-words h-full text-base overflow-ellipsis resize-none select-none">
 								{info.content}
 							</p>

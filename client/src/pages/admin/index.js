@@ -53,6 +53,7 @@ const Index = () => {
 					alert("로그인되었습니다.");
 					history.push("/");
 				} else {
+					alert("올바른 정보를 입력해주세요.");
 					emailRef.current.focus();
 				}
 			})
@@ -60,6 +61,12 @@ const Index = () => {
 				console.log("Error!");
 			});
 	};
+
+	function enterkey() {
+		if (window.event.keyCode === 13) {
+			loginCheck();
+		}
+	}
 
 	return (
 		<div class="w-full h-full py-16 flex justify-center items-center bg-purple-200">
@@ -77,6 +84,7 @@ const Index = () => {
 					/>
 					<input
 						ref={passwordRef}
+						onKeyUp={enterkey}
 						type="password"
 						class="w-full p-4 border-b-2 border-gray-300 outline-none focus:border-purple-700"
 						onChange={(e) => changeInfo(e, "password")}

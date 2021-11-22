@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { Route, Link, useHistory } from "react-router-dom";
 import Subtitle from "../../../components/Subtitle";
 import { useDispatch, useSelector } from "react-redux";
@@ -91,6 +91,14 @@ const NoticeDetail = (props) => {
 		}
 	};
 
+	const areaRef = useRef();
+	useEffect(() => {
+		console.log(areaRef.current.height);
+		if (areaRef.current.height <= 384) {
+			areaRef.current.height = 33;
+		}
+	}, []);
+
 	const dataToText = (date) => {
 		let year = date.substring(2, 4);
 		let month = date.substring(5, 7);
@@ -113,7 +121,9 @@ const NoticeDetail = (props) => {
 							) : (
 								<>
 									<div class="w-full relative pr-24">
-										<p class="w-full h-full break-words">{info.title}</p>
+										<p class="w-full h-full break-words text-lg font-bold">
+											{info.title}
+										</p>
 										{/* <div class="text-lg w-auto border border-black pr-4 relative">
 										</div> */}
 									</div>
@@ -165,7 +175,10 @@ const NoticeDetail = (props) => {
 								</div>
 							)}
 						</div>
-						<div class="w-full h-auto flex justify-end items-center border-t border-gray-300 relative">
+						<div
+							ref={areaRef}
+							class="w-full h-96 flex justify-end items-center border-t border-gray-300 relative"
+						>
 							{/* <p class="h-96 text-base flex-1 pr-4 overflow-ellipsis">
 								{ReactHtmlParser(info.content)}
 							</p> */}
