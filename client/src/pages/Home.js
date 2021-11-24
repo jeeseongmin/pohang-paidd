@@ -1,11 +1,10 @@
-import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { Route, Link } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-// import { setMenu, setSubmenu, toggleSidebar } from "../reducer/settingSlice";
-import { setMenu, setSubmenu, setSidebar } from "../reducers/setting";
+import React, { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
 import Layout from "../components/Layout";
 import Slider from "../components/Slider";
+import { setMenu, setSubmenu } from "../reducers/setting";
 
 const Home = () => {
 	const dispatch = useDispatch();

@@ -159,9 +159,10 @@ const NoticeDetail = (props) => {
 												{element.filename}{" "}
 												<span class="text-sm text-gray-300">(</span>
 												<span class="text-sm text-blue-300">
-													{element.size
+													{element.size.toString()}
+													{/* {element.size
 														.toString()
-														.replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")}
+														.replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")} */}
 												</span>{" "}
 												<span class="text-red-500 text-sm">bytes</span>
 												<span class="text-sm text-gray-300">) </span>

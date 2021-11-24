@@ -1,12 +1,11 @@
-import React, { useEffect, useState } from "react";
-import { Route, Link, useHistory } from "react-router-dom";
-import Subtitle from "../../../../../components/Subtitle";
-import { useDispatch, useSelector } from "react-redux";
-import axios from "axios";
-import ReactHtmlParser from "react-html-parser";
-import NoticeEdit from "./noticeEdit";
-import Skeleton from "@material-ui/lab/Skeleton";
 import CircularProgress from "@material-ui/core/CircularProgress";
+import Skeleton from "@material-ui/lab/Skeleton";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, useHistory } from "react-router-dom";
+import Subtitle from "../../../../../components/Subtitle";
+import NoticeEdit from "./noticeEdit";
 
 const NoticeDetail = (props) => {
 	const [loading, setLoading] = useState(false);
@@ -153,9 +152,7 @@ const NoticeDetail = (props) => {
 												{element.filename}{" "}
 												<span class="text-sm text-gray-300">(</span>
 												<span class="text-sm text-blue-300">
-													{element.size
-														.toString()
-														.replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")}
+													{element.size.toString()}
 												</span>{" "}
 												<span class="text-red-500 text-sm">bytes</span>
 												<span class="text-sm text-gray-300">) </span>

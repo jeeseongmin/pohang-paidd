@@ -1,8 +1,7 @@
-import React, { useEffect, useState, useRef } from "react";
-import axios from "axios";
-import { MdCancel } from "react-icons/md";
 import CircularProgress from "@material-ui/core/CircularProgress";
-import { Link } from "react-router-dom";
+import axios from "axios";
+import React, { useRef, useState } from "react";
+import { MdCancel } from "react-icons/md";
 
 const NoticeLayout = (props) => {
 	const [loading, setLoading] = useState(true);
@@ -126,9 +125,7 @@ const NoticeLayout = (props) => {
 									<span class="underline">{element.filename}</span>{" "}
 									<span class="text-sm text-gray-300">(</span>
 									<span class="text-sm text-blue-300">
-										{element.size
-											.toString()
-											.replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")}
+										{element.size.toString()}
 									</span>{" "}
 									<span class="text-red-500 text-sm">bytes</span>
 									<span class="text-sm text-gray-300">) </span>

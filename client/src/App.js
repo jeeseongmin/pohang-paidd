@@ -1,8 +1,6 @@
 import React, { useEffect } from "react";
 import { Route } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-
-// import Navbar from "./components/Navbar/Navbar";
 import Home from "./pages/Home";
 import Introduce from "./pages/introduce/index";
 import Business from "./pages/business/index";
@@ -11,7 +9,6 @@ import Participation from "./pages/participation/index";
 import Local from "./pages/local/index";
 import Admin from "./pages/admin/index";
 import EditAdmin from "./pages/admin/editAdmin";
-// import Footer from "./components/Footer";
 import Sidebar from "./components/Navbar/Sidebar";
 import {
 	setSidebar,

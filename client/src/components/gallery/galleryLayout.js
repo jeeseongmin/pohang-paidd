@@ -1,13 +1,8 @@
-import React, { useEffect, useState, useRef } from "react";
-import { Link, useHistory } from "react-router-dom";
-
-import "@toast-ui/editor/dist/toastui-editor.css";
-import { Editor } from "@toast-ui/react-editor";
-import axios from "axios";
-// import { backUrl } from "../../config/config";
-import { MdCancel } from "react-icons/md";
-import { useDispatch, useSelector } from "react-redux";
 import CircularProgress from "@material-ui/core/CircularProgress";
+import axios from "axios";
+import React, { useRef, useState } from "react";
+import { MdCancel } from "react-icons/md";
+import { useHistory } from "react-router-dom";
 
 const GalleryLayout = (props) => {
 	const [loading, setLoading] = useState(true);
