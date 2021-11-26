@@ -103,6 +103,21 @@ router.route("/page/:page").post((req, res) => {
 	} else res.status(400).json("Error");
 });
 
+router.route("/read/:id").post((req, res) => {
+	if (req.body.key === API_KEY) {
+		Notice.findById(req.params.id)
+			.then((one) => {
+				one.read = req.body.read + 1;
+
+				one
+					.save()
+					.then(() => res.json("Notice updated!"))
+					.catch((err) => res.status(400).json("Error: " + req));
+			})
+			.catch((err) => res.status(400).json("Error: " + err));
+	}
+});
+
 // Create notice
 router.route("/add/:type").post((req, res) => {
 	if (req.body.key === API_KEY) {
@@ -111,6 +126,7 @@ router.route("/add/:type").post((req, res) => {
 			title: req.body.title,
 			content: req.body.content,
 			fileList: req.body.fileList,
+			read: 0,
 		};
 
 		const newOne = new Notice(one);
@@ -130,6 +146,7 @@ router.route("/update/:id").post((req, res) => {
 				one.title = req.body.title;
 				one.content = req.body.content;
 				one.fileList = req.body.fileList;
+				one.read = req.body.read;
 
 				one
 					.save()

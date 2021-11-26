@@ -170,8 +170,18 @@ const NoticeDetail = (props) => {
 							{/* <p class="h-96 text-base flex-1 pr-4 overflow-ellipsis">
 								{ReactHtmlParser(info.content)}
 							</p> */}
-							<p class="px-4 lg:px-8 py-4 w-full break-words h-full text-base overflow-ellipsis resize-none select-none">
+							{/* <p class="px-4 lg:px-8 py-4 w-full  min-h-screen text-base break-words overflow-ellipsis resize-none select-none">
 								{info.content}
+							</p>{" "} */}
+							<p class="px-4 lg:px-8 py-4 w-full min-h-screen text-base select-none break-words overflow-ellipsis">
+								{info.content.split("\n").map((line) => {
+									return (
+										<span>
+											{line}
+											<br />
+										</span>
+									);
+								})}
 							</p>
 						</div>
 					</div>

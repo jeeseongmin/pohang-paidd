@@ -2,8 +2,6 @@ import React, { useEffect, useRef, useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
-import { CKEditor } from "@ckeditor/ckeditor5-react";
-import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import NoticeLayout from "../../../../components/notice/noticeLayout";
 
 const WriteNotice = (props) => {
@@ -22,7 +20,7 @@ const WriteNotice = (props) => {
 	const currentEmail = useSelector((state) => state.setting.currentEmail);
 
 	const changeInfo = (e, type) => {
-		if (type === "fileList") {
+		if (type === "fileList" || type === "content") {
 			const cp = { ...info };
 			cp[type] = e;
 			setInfo(cp);
@@ -56,6 +54,7 @@ const WriteNotice = (props) => {
 						title: info.title,
 						content: info.content,
 						fileList: info.fileList,
+						read: 0,
 					},
 					{
 						headers: {

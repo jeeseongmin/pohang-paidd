@@ -6,6 +6,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
 import Subtitle from "../../../../components/Subtitle";
 import NoticeEdit from "./EditNotice";
+import ReactHtmlParser from "react-html-parser";
+import { CKEditor } from "@ckeditor/ckeditor5-react";
+import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 
 const NoticeDetail = (props) => {
 	const [loading, setLoading] = useState(false);
@@ -31,26 +34,6 @@ const NoticeDetail = (props) => {
 	});
 
 	const areaRef = useRef();
-
-	useEffect(() => {
-		console.log(window.innerWidth);
-		// textareaDiv가 true이면 이미 길이가 긴 상태. h-auto
-		// textareaDiv가 false일 때만 기본 96으로 만들어야됨.
-		// if (areaRef.current.offsetHeight <= 384) {
-		// 	setTextareaDiv(false);
-		// } else setTextareaDiv(true);
-
-		if (areaRef.current) {
-			let areaHeight = areaRef.current.offsetHeight;
-			if (areaHeight <= 384) {
-				console.log("필요!", areaHeight);
-				setOldDiv(false);
-			} else {
-				console.log("안필요", areaHeight);
-				setOldDiv(true);
-			}
-		}
-	}, [window.innerWidth, loading]);
 
 	useEffect(() => {
 		document.getElementById("scrollRef").scrollTo(0, 0);
@@ -198,29 +181,47 @@ const NoticeDetail = (props) => {
 								</div>
 							)}
 						</div>
-						{oldDiv && (
-							<div
-								class={
-									"w-full h-auto flex justify-end items-center border-t border-gray-300 relative "
-								}
-							>
-								<p
-									ref={areaRef}
-									class="px-4 lg:px-8 py-4 w-full break-words h-auto min-h-screen border border-black text-base overflow-ellipsis resize-none select-none"
-								>
-									{info.content}
-								</p>
-							</div>
-						)}
-						<div
-							class={
-								"w-full flex justify-end items-center border-t border-gray-300 relative " +
-								(oldDiv ? "hidden" : "h-96")
-							}
-						>
-							<p class="px-4 lg:px-8 py-4 w-full break-words h-full text-base overflow-ellipsis resize-none select-none">
+						{/* <div class="w-full h-auto flex justify-end items-center border-t border-gray-300 relative"> */}
+						{/* <p class="h-96 text-base flex-1 pr-4 overflow-ellipsis">
+								{ReactHtmlParser(info.content)}
+							</p> */}
+						{/* <p class="px-4 lg:px-8 py-4 w-full  min-h-screen text-base break-words overflow-ellipsis resize-none select-none">
 								{info.content}
-							</p>
+							</p>{" "} */}
+						{/* <p class="px-4 lg:px-8 py-4 w-full min-h-screen text-base select-none break-words overflow-ellipsis">
+								{info.content.split("\n").map((line) => {
+									return (
+										<span>
+											{line}
+											<br />
+										</span>
+									);
+								})}
+							</p> */}
+						<div class="w-full h-auto border-t border-gray-300 relative">
+							<CKEditor
+								editor={ClassicEditor}
+								disabled={true}
+								config={{
+									toolbar: [],
+									isReadOnly: true,
+								}}
+								data={info.content}
+								onReady={(editor) => {
+									// You can store the "editor" and use when it is needed.
+									// console.log("Editor is ready to use!", editor);
+								}}
+								onChange={(event, editor) => {
+									const data = editor.getData();
+									console.log({ event, editor, data });
+								}}
+								onBlur={(event, editor) => {
+									// console.log("Blur.", editor);
+								}}
+								onFocus={(event, editor) => {
+									// console.log("Focus.", editor);
+								}}
+							/>
 						</div>
 					</div>
 					<div class="flex justify-between items-center flex-col md:flex-row">

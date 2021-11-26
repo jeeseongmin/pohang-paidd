@@ -13,5 +13,9 @@ module.exports = {
 	variants: {
 		extend: {},
 	},
-	plugins: [require("tailwind-scrollbar-hide"), require("autoprefixer")],
+	plugins: [
+		require("tailwind-scrollbar-hide"),
+		require("tailwindcss"),
+		require("autoprefixer"),
+	],
 };

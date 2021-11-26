@@ -20,6 +20,10 @@ const noticeSchema = new Schema(
 			type: [Object],
 			required: false,
 		},
+		read: {
+			type: Number,
+			required: true,
+		},
 	},
 	{
 		timestamps: true,

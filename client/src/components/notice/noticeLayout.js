@@ -2,6 +2,8 @@ import CircularProgress from "@material-ui/core/CircularProgress";
 import axios from "axios";
 import React, { useRef, useState } from "react";
 import { MdCancel } from "react-icons/md";
+import { CKEditor } from "@ckeditor/ckeditor5-react";
+import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 
 const NoticeLayout = (props) => {
 	const [loading, setLoading] = useState(true);
@@ -145,14 +147,78 @@ const NoticeLayout = (props) => {
 					</div>
 				)}
 			</div>
-			<div class="cursor-pointer w-full pt-2 pb-4 flex justify-end items-center border-b border-gray-300">
-				<textarea
+			{/* <div class="cursor-pointer w-full pt-2 pb-4 flex justify-end items-center border-b border-gray-300"> */}
+			{/* <textarea
 					ref={contentRef}
 					class="w-full h-96 p-4 border-2 border-gray-300 outline-none focus:border-purple-700 resize-none	"
 					onChange={(e) => changeInfo(e, "content")}
 					value={info.content}
 					placeholder="내용"
-				></textarea>
+				></textarea> */}
+			<div class="cursor-pointer w-full pt-2 pb-4 ">
+				<CKEditor
+					class="w-full"
+					editor={ClassicEditor}
+					config={{
+						toolbar: [
+							"heading",
+							"|",
+							"bold",
+							"italic",
+							"blockQuote",
+							"fontSize",
+							"link",
+							"numberedList",
+							"bulletedList",
+							"insertTable",
+							"tableColumn",
+							"tableRow",
+							"mergeTableCells",
+							"mediaEmbed",
+							"|",
+							"undo",
+							"redo",
+						],
+
+						heading: {
+							options: [
+								{
+									model: "paragraph",
+									title: "Paragraph",
+									class: "ck-heading_paragraph",
+								},
+								{
+									model: "heading1",
+									view: "h1",
+									title: "Heading 1",
+									class: "ck-heading_heading1",
+								},
+								{
+									model: "heading2",
+									view: "h2",
+									title: "Heading 2",
+									class: "ck-heading_heading2",
+								},
+							],
+						},
+					}}
+					data={info.content}
+					onReady={(editor) => {
+						// You can store the "editor" and use when it is needed.
+						// console.log("Editor is ready to use!", editor);
+					}}
+					onChange={(event, editor) => {
+						const data = editor.getData();
+						// console.log({ event, editor, data });
+						changeInfo(data, "content");
+					}}
+					onBlur={(event, editor) => {
+						// console.log("Blur.", editor);
+					}}
+					onFocus={(event, editor) => {
+						// console.log("Focus.", editor);
+					}}
+				/>
 			</div>
 		</div>
 	);

@@ -40,8 +40,8 @@ const Home = () => {
 	const goSubPage = (main, sub) => {
 		dispatch(setMenu(main));
 		dispatch(setSubmenu(sub));
-		window.scrollTo(0, 0);
-		document.getElementById("scrollRef").scrollTo(0, 0);
+		// document.getElementById("scrollRef").scrollTo(0, 0);
+		// document.getElementById("root").scrollTop = 0;
 	};
 
 	const dataToText = (date) => {
