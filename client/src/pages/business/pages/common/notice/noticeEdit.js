@@ -3,8 +3,6 @@ import { Link, useHistory } from "react-router-dom";
 import Subtitle from "../../../../../components/Subtitle";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
-import { CKEditor } from "@ckeditor/ckeditor5-react";
-import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import NoticeLayout from "../../../../../components/notice/noticeLayout";
 
 const NoticeEdit = (props) => {

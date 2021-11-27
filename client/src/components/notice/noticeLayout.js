@@ -4,6 +4,9 @@ import React, { useRef, useState } from "react";
 import { MdCancel } from "react-icons/md";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
+import { Editor } from "react-draft-wysiwyg";
+import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
+import { EditorState } from "draft-js";
 
 const NoticeLayout = (props) => {
 	const [loading, setLoading] = useState(true);
@@ -13,6 +16,12 @@ const NoticeLayout = (props) => {
 	const contentRef = props.contentRef;
 	const buttonRef = useRef(null);
 	const isEdit = props.isEdit;
+	const [editorState, setEditorState] = useState(EditorState.createEmpty());
+
+	const onEditorStateChange = (editorState) => {
+		// editorState에 값 설정
+		setEditorState(editorState);
+	};
 
 	const buttonClick = () => {
 		buttonRef.current.click();
@@ -155,8 +164,8 @@ const NoticeLayout = (props) => {
 					value={info.content}
 					placeholder="내용"
 				></textarea> */}
-			<div class="cursor-pointer w-full pt-2 pb-4 ">
-				<CKEditor
+			<div class="cursor-pointer w-full h-96 pt-2 pb-4 ">
+				{/* <CKEditor
 					class="w-full"
 					editor={ClassicEditor}
 					config={{
@@ -179,45 +188,48 @@ const NoticeLayout = (props) => {
 							"undo",
 							"redo",
 						],
-
-						heading: {
-							options: [
-								{
-									model: "paragraph",
-									title: "Paragraph",
-									class: "ck-heading_paragraph",
-								},
-								{
-									model: "heading1",
-									view: "h1",
-									title: "Heading 1",
-									class: "ck-heading_heading1",
-								},
-								{
-									model: "heading2",
-									view: "h2",
-									title: "Heading 2",
-									class: "ck-heading_heading2",
-								},
-							],
-						},
 					}}
 					data={info.content}
-					onReady={(editor) => {
-						// You can store the "editor" and use when it is needed.
-						// console.log("Editor is ready to use!", editor);
+					// onReady={(editor) => {
+					// 	// You can store the "editor" and use when it is needed.
+					// 	// console.log("Editor is ready to use!", editor);
+					// }}
+					// onChange={(event, editor) => {
+					// 	const data = editor.getData();
+					// 	// console.log({ event, editor, data });
+					// 	changeInfo(data, "content");
+					// }}
+					// onBlur={(event, editor) => {
+					// 	// console.log("Blur.", editor);
+					// }}
+					// onFocus={(event, editor) => {
+					// 	// console.log("Focus.", editor);
+					// }}
+				/> */}
+				<Editor
+					// 에디터와 툴바 모두에 적용되는 클래스
+					wrapperClassName="wrapper-class"
+					// 에디터 주변에 적용된 클래스
+					editorClassName="editor"
+					// 툴바 주위에 적용된 클래스
+					toolbarClassName="toolbar-class"
+					// 툴바 설정
+					toolbar={{
+						// inDropdown: 해당 항목과 관련된 항목을 드롭다운으로 나타낼것인지
+						list: { inDropdown: true },
+						textAlign: { inDropdown: true },
+						link: { inDropdown: true },
+						history: { inDropdown: false },
 					}}
-					onChange={(event, editor) => {
-						const data = editor.getData();
-						// console.log({ event, editor, data });
-						changeInfo(data, "content");
+					placeholder="내용을 작성해주세요."
+					// 한국어 설정
+					localization={{
+						locale: "ko",
 					}}
-					onBlur={(event, editor) => {
-						// console.log("Blur.", editor);
-					}}
-					onFocus={(event, editor) => {
-						// console.log("Focus.", editor);
-					}}
+					// 초기값 설정
+					editorState={editorState}
+					// 에디터의 값이 변경될 때마다 onEditorStateChange 호출
+					onEditorStateChange={onEditorStateChange}
 				/>
 			</div>
 		</div>

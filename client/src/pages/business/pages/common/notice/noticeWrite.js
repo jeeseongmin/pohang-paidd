@@ -2,11 +2,6 @@ import React, { useEffect, useRef, useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
-import { CKEditor } from "@ckeditor/ckeditor5-react";
-import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
-import "@toast-ui/editor/dist/toastui-editor.css";
-import Viewer from "@toast-ui/editor/dist/toastui-editor-viewer";
-import "@toast-ui/editor/dist/toastui-editor-viewer.css";
 
 import NoticeLayout from "../../../../../components/notice/noticeLayout";
 

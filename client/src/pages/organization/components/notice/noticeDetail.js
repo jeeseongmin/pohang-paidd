@@ -9,6 +9,8 @@ import NoticeEdit from "./EditNotice";
 import ReactHtmlParser from "react-html-parser";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
+import { EditorState, convertToRaw } from "draft-js";
+import draftToHtml from "draftjs-to-html";
 
 const NoticeDetail = (props) => {
 	const [loading, setLoading] = useState(false);
@@ -22,6 +24,7 @@ const NoticeDetail = (props) => {
 	const currentEmail = useSelector((state) => state.setting.currentEmail);
 	const currentPassword = useSelector((state) => state.setting.currentPassword);
 	const API_KEY = process.env.REACT_APP_API_KEY;
+	const [viewText, setViewText] = useState("");
 
 	const id = props.id;
 
@@ -198,8 +201,9 @@ const NoticeDetail = (props) => {
 									);
 								})}
 							</p> */}
-						<div class="w-full h-auto border-t border-gray-300 relative">
+						<div class="w-full h-auto relative">
 							<CKEditor
+								class="border border-red-500"
 								editor={ClassicEditor}
 								disabled={true}
 								config={{
@@ -207,10 +211,7 @@ const NoticeDetail = (props) => {
 									isReadOnly: true,
 								}}
 								data={info.content}
-								onReady={(editor) => {
-									// You can store the "editor" and use when it is needed.
-									// console.log("Editor is ready to use!", editor);
-								}}
+								onReady={(editor) => {}}
 								onChange={(event, editor) => {
 									const data = editor.getData();
 									console.log({ event, editor, data });
