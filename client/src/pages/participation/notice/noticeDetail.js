@@ -125,7 +125,7 @@ const NoticeDetail = (props) => {
 						</div>
 						<div
 							class={
-								"w-full border-t border-gray-300 px-4 pt-4 pb-2 flex flex-wrap flex-col " +
+								"w-full border-t border-b border-gray-300 px-4 py-4 flex flex-wrap flex-col items-center" +
 								(loading ? "text-center" : "")
 							}
 						>
@@ -169,12 +169,16 @@ const NoticeDetail = (props) => {
 							)}
 						</div>
 						<div class="w-full h-auto flex justify-end items-center border-t border-gray-300 relative">
-							{/* <p class="h-96 text-base flex-1 pr-4 overflow-ellipsis">
-								{ReactHtmlParser(info.content)}
+							{/* <p class="px-4 lg:px-8 py-4 w-full min-h-screen text-base select-none break-words overflow-ellipsis">
+								{info.content.split("\n").map((line) => {
+									return (
+										<span>
+											{line}
+											<br />
+										</span>
+									);
+								})}
 							</p> */}
-							{/* <p class="px-4 lg:px-8 py-4 w-full  min-h-screen text-base break-words overflow-ellipsis resize-none select-none">
-								{info.content}
-							</p>{" "} */}
 							<p class="px-4 lg:px-8 py-4 w-full min-h-screen text-base select-none break-words overflow-ellipsis">
 								{info.content.split("\n").map((line) => {
 									return (
@@ -185,6 +189,12 @@ const NoticeDetail = (props) => {
 									);
 								})}
 							</p>
+							<div class="w-full h-auto relative">
+								<div
+									class="mb-24"
+									dangerouslySetInnerHTML={{ __html: info.content }}
+								></div>
+							</div>
 						</div>
 					</div>
 					<div class="flex justify-between items-center flex-col md:flex-row">

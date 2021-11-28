@@ -6,7 +6,8 @@ import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import { Editor } from "react-draft-wysiwyg";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
-import { EditorState } from "draft-js";
+import { EditorState, convertToRaw } from "draft-js";
+import draftToHtml from "draftjs-to-html";
 
 const NoticeLayout = (props) => {
 	const [loading, setLoading] = useState(true);
@@ -21,6 +22,14 @@ const NoticeLayout = (props) => {
 	const onEditorStateChange = (editorState) => {
 		// editorState에 값 설정
 		setEditorState(editorState);
+		// console.log(draftToHtml(convertToRaw(editorState.getCurrentContent())));
+		let text = draftToHtml(convertToRaw(editorState.getCurrentContent()));
+		if (text !== "") {
+			changeInfo(
+				draftToHtml(convertToRaw(editorState.getCurrentContent())),
+				"content"
+			);
+		}
 	};
 
 	const buttonClick = () => {
@@ -164,7 +173,7 @@ const NoticeLayout = (props) => {
 					value={info.content}
 					placeholder="내용"
 				></textarea> */}
-			<div class="cursor-pointer w-full h-96 pt-2 pb-4 ">
+			<div class="cursor-pointer w-full h-auto border-2 border-gray-300 ">
 				{/* <CKEditor
 					class="w-full"
 					editor={ClassicEditor}

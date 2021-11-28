@@ -11,6 +11,8 @@ import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import { EditorState, convertToRaw } from "draft-js";
 import draftToHtml from "draftjs-to-html";
+import { Editor } from "react-draft-wysiwyg";
+import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 
 const NoticeDetail = (props) => {
 	const [loading, setLoading] = useState(false);
@@ -25,6 +27,12 @@ const NoticeDetail = (props) => {
 	const currentPassword = useSelector((state) => state.setting.currentPassword);
 	const API_KEY = process.env.REACT_APP_API_KEY;
 	const [viewText, setViewText] = useState("");
+	const [editorState, setEditorState] = useState(EditorState.createEmpty());
+
+	const onEditorStateChange = (editorState) => {
+		// editorState에 값 설정
+		setEditorState(editorState);
+	};
 
 	const id = props.id;
 
@@ -141,7 +149,7 @@ const NoticeDetail = (props) => {
 						</div>
 						<div
 							class={
-								"w-full border-t border-gray-300 px-4 pt-4 pb-2 flex flex-wrap flex-col " +
+								"w-full py-4 border-t border-b border-gray-300 px-4 flex flex-wrap flex-col items-center " +
 								(loading ? "text-center" : "")
 							}
 						>
@@ -202,27 +210,10 @@ const NoticeDetail = (props) => {
 								})}
 							</p> */}
 						<div class="w-full h-auto relative">
-							<CKEditor
-								class="border border-red-500"
-								editor={ClassicEditor}
-								disabled={true}
-								config={{
-									toolbar: [],
-									isReadOnly: true,
-								}}
-								data={info.content}
-								onReady={(editor) => {}}
-								onChange={(event, editor) => {
-									const data = editor.getData();
-									console.log({ event, editor, data });
-								}}
-								onBlur={(event, editor) => {
-									// console.log("Blur.", editor);
-								}}
-								onFocus={(event, editor) => {
-									// console.log("Focus.", editor);
-								}}
-							/>
+							<div
+								class="mb-24"
+								dangerouslySetInnerHTML={{ __html: info.content }}
+							></div>
 						</div>
 					</div>
 					<div class="flex justify-between items-center flex-col md:flex-row">
