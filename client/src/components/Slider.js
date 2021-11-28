@@ -40,7 +40,7 @@ const Slider = () => {
 						alt="main-img1"
 						class={"object-cover " + (hoverBtn ? "w-full " : "w-0 ")}
 					/>
-					<div class="absolute right-0 bottom-0 w-1/2 h-1/2 grid z-50 grid-cols-3">
+					<div class="absolute right-0 bottom-0 w-1/2 h-1/2 grid z-20 grid-cols-3">
 						<div></div>
 						<Link to="/business/base/default" onClick={() => goSubPage(2, 1)}>
 							<div

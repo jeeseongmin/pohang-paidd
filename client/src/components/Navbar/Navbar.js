@@ -129,7 +129,7 @@ const Navbar = () => {
 		<>
 			<div
 				class={
-					"z-20 w-full pl-5 pr-16 h-16 hidden justify-start shadow-lg bg-white lg:flex 2xl:px-36 xl:px-32 lg:pl-5 fixed "
+					"z-50 w-full pl-5 pr-16 h-16 hidden justify-start shadow-lg bg-white lg:flex 2xl:px-36 xl:px-32 lg:pl-5 fixed "
 				}
 			>
 				<div class="flex h-full justify-center items-center cursor-pointer">
