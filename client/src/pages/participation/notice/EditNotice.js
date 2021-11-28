@@ -19,7 +19,7 @@ const EditNotice = (props) => {
 	const currentEmail = useSelector((state) => state.setting.currentEmail);
 
 	const changeInfo = (e, type) => {
-		if (type === "fileList") {
+		if (type === "fileList" || type === "content") {
 			const cp = { ...info };
 			cp[type] = e;
 			setInfo(cp);
@@ -49,6 +49,7 @@ const EditNotice = (props) => {
 						title: info.title,
 						content: info.content,
 						fileList: info.fileList,
+						read: info.read,
 					},
 					{
 						headers: {

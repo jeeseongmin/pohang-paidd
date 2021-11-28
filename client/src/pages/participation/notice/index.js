@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { BsSearch } from "react-icons/bs";
-import { Route, Link } from "react-router-dom";
+import { Route, Link, useHistory } from "react-router-dom";
 import Subtitle from "../../../components/Subtitle";
 import Paging from "../../../components/Paging";
 import { useDispatch, useSelector } from "react-redux";
@@ -9,6 +9,7 @@ import CircularProgress from "@material-ui/core/CircularProgress";
 import { HiHome } from "react-icons/hi";
 
 const Index = () => {
+	const history = useHistory();
 	const [loading, setLoading] = useState(false);
 	const [isSearch, setIsSearch] = useState(false);
 	const [findText, setFindText] = useState("");
@@ -158,19 +159,38 @@ const Index = () => {
 		let day = date.substring(8, 10);
 		return year + "." + month + "." + day;
 	};
-
+	const readThis = async (id) => {
+		await axios
+			.post(
+				"/api/notice/read/" + id,
+				{ key: process.env.REACT_APP_API_KEY },
+				{
+					headers: {
+						"Content-type": "application/json",
+						Accept: "application/json",
+					},
+				}
+			)
+			.then((Response) => {
+				history.push("/participation/detailNotice/" + id);
+			})
+			.catch((Error) => {
+				console.log(Error);
+			});
+	};
 	function NoticeBlock(props) {
 		const data = props.data;
 		const date = dataToText(data.createdAt);
 
 		return (
-			<Link
-				to={"/participation/detailNotice/" + data._id}
-				class="cursor-pointer w-full px-2 lg:px-8 py-4 flex justify-end items-center border-b transition delay-50 duration-300 border-gray-300 hover:bg-gray-100"
+			<div
+				onClick={() => readThis(data._id)}
+				class="cursor-pointer w-full px-2 lg:px-8 py-4 flex justify-end items-center border-b border-gray-300 hover:bg-gray-100"
 			>
 				<div class="text-base flex-1 pr-4 truncate	">{data.title}</div>
 				<div class="text-base w-24 ">{date}</div>
-			</Link>
+				<div class="text-base w-24 text-center">{data.read}</div>
+			</div>
 		);
 	}
 
@@ -214,6 +234,7 @@ const Index = () => {
 				<div class="w-full px-2 lg:px-8 py-4 flex justify-end items-center border-b-2 border-purple-600">
 					<div class="text-lg flex-1 ">제목</div>
 					<div class="text-lg w-24 ">날짜</div>
+					<div class="text-lg w-24 text-center">조회</div>
 				</div>
 
 				{noticeList.length !== 0 ? (

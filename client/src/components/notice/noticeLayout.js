@@ -1,13 +1,14 @@
 import CircularProgress from "@material-ui/core/CircularProgress";
 import axios from "axios";
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { MdCancel } from "react-icons/md";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import { Editor } from "react-draft-wysiwyg";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
-import { EditorState, convertToRaw } from "draft-js";
+import { EditorState, convertToRaw, ContentState } from "draft-js";
 import draftToHtml from "draftjs-to-html";
+import htmlToDraft from "html-to-draftjs";
 
 const NoticeLayout = (props) => {
 	const [loading, setLoading] = useState(true);
@@ -19,10 +20,21 @@ const NoticeLayout = (props) => {
 	const isEdit = props.isEdit;
 	const [editorState, setEditorState] = useState(EditorState.createEmpty());
 
+	useEffect(() => {
+		const blocksFromHtml = htmlToDraft(info.content);
+		if (blocksFromHtml) {
+			const { contentBlocks, entityMap } = blocksFromHtml;
+			const contentState = ContentState.createFromBlockArray(
+				contentBlocks,
+				entityMap
+			);
+			const editorState = EditorState.createWithContent(contentState);
+			setEditorState(editorState);
+		}
+	}, []);
 	const onEditorStateChange = (editorState) => {
 		// editorState에 값 설정
 		setEditorState(editorState);
-		// console.log(draftToHtml(convertToRaw(editorState.getCurrentContent())));
 		let text = draftToHtml(convertToRaw(editorState.getCurrentContent()));
 		if (text !== "") {
 			changeInfo(
@@ -37,7 +49,6 @@ const NoticeLayout = (props) => {
 	};
 	const downloadTest = async (filename) => {
 		const res = await axios.get("/api/file/download/" + filename);
-		console.log("download", res.data);
 	};
 
 	const onChange = async (e) => {
@@ -46,7 +57,6 @@ const NoticeLayout = (props) => {
 			header: { "content-type": "multipart/form-data" },
 		};
 		formData.append("file", e.target.files[0]);
-		console.log("file", e.target.files[0]);
 		if (e.target.files[0].size > 10 * 1024 * 1024) {
 			alert("10MB 이하의 파일만 업로드 가능합니다.");
 			e.target.value = null;
@@ -54,7 +64,6 @@ const NoticeLayout = (props) => {
 			await axios
 				.post("/api/file/upload_page", formData, config)
 				.then(async (res) => {
-					console.log("data", res.data);
 					if (res.data.success) {
 						const cp = [...info.fileList];
 						await cp.push({
@@ -74,7 +83,6 @@ const NoticeLayout = (props) => {
 	const removeFile = async (filename) => {
 		await downloadTest(filename);
 		const res = await axios.get("/api/file/delete/" + filename);
-		console.log(res.data);
 		const cp = [...info.fileList].filter(function (element, index) {
 			return element.filename !== filename;
 		});
@@ -173,48 +181,10 @@ const NoticeLayout = (props) => {
 					value={info.content}
 					placeholder="내용"
 				></textarea> */}
+			<div class="text-sm text-right my-2">
+				엔터 시에는 [Shift + Enter] 를 사용해주세요.
+			</div>
 			<div class="cursor-pointer w-full h-auto border-2 border-gray-300 ">
-				{/* <CKEditor
-					class="w-full"
-					editor={ClassicEditor}
-					config={{
-						toolbar: [
-							"heading",
-							"|",
-							"bold",
-							"italic",
-							"blockQuote",
-							"fontSize",
-							"link",
-							"numberedList",
-							"bulletedList",
-							"insertTable",
-							"tableColumn",
-							"tableRow",
-							"mergeTableCells",
-							"mediaEmbed",
-							"|",
-							"undo",
-							"redo",
-						],
-					}}
-					data={info.content}
-					// onReady={(editor) => {
-					// 	// You can store the "editor" and use when it is needed.
-					// 	// console.log("Editor is ready to use!", editor);
-					// }}
-					// onChange={(event, editor) => {
-					// 	const data = editor.getData();
-					// 	// console.log({ event, editor, data });
-					// 	changeInfo(data, "content");
-					// }}
-					// onBlur={(event, editor) => {
-					// 	// console.log("Blur.", editor);
-					// }}
-					// onFocus={(event, editor) => {
-					// 	// console.log("Focus.", editor);
-					// }}
-				/> */}
 				<Editor
 					// 에디터와 툴바 모두에 적용되는 클래스
 					wrapperClassName="wrapper-class"

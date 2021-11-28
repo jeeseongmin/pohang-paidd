@@ -50,6 +50,7 @@ const EditNotice = (props) => {
 						title: info.title,
 						content: info.content,
 						fileList: info.fileList,
+						read: info.read,
 					},
 					{
 						headers: {
@@ -79,6 +80,7 @@ const EditNotice = (props) => {
 				contentRef={contentRef}
 				changeInfo={changeInfo}
 				info={info}
+				isEdit={true}
 			/>
 			<div class="flex justify-between items-center flex-col md:flex-row">
 				<Link

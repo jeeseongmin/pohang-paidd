@@ -24,6 +24,7 @@ const NoticeDetail = (props) => {
 		title: "",
 		content: "",
 		date: "",
+		read: 0,
 		fileList: [],
 	});
 
@@ -47,6 +48,7 @@ const NoticeDetail = (props) => {
 					title: Response.data.title,
 					content: Response.data.content,
 					fileList: Response.data.fileList,
+					read: Response.data.read,
 					date: dataToText(Response.data.createdAt),
 				};
 				setInfo(cp);
@@ -124,9 +126,28 @@ const NoticeDetail = (props) => {
 								</>
 							)}
 						</div>
+						<div class="w-full px-2 lg:px-8 py-4 flex justify-end items-center relative border-t border-gray-300">
+							{!loading ? (
+								<Skeleton animation="wave" />
+							) : (
+								<>
+									<div class="w-full relative pr-24">
+										<p class="w-full h-full break-words text-md invisible ">
+											Read {info.read}
+										</p>
+										{/* <div class="text-lg w-auto border border-black pr-4 relative">
+										</div> */}
+									</div>
+									<div class="absolute right-0 text-md w-24">
+										<span class="text-purple-500 font-bold mr-2">조회</span>{" "}
+										{info.read}
+									</div>
+								</>
+							)}
+						</div>
 						<div
 							class={
-								"w-full border-t border-gray-300 px-4 pt-4 pb-2 flex flex-wrap flex-col " +
+								"w-full border-t border-b border-gray-300 px-4 pt-4 pb-2 flex flex-wrap flex-col " +
 								(loading ? "text-center" : "")
 							}
 						>
@@ -166,23 +187,11 @@ const NoticeDetail = (props) => {
 								</div>
 							)}
 						</div>
-						<div class="w-full h-auto flex justify-end items-center border-t border-gray-300 relative">
-							{/* <p class="h-96 text-base flex-1 pr-4 overflow-ellipsis">
-								{ReactHtmlParser(info.content)}
-							</p> */}
-							{/* <p class="px-4 lg:px-8 py-4 w-full  min-h-screen text-base break-words overflow-ellipsis resize-none select-none">
-								{info.content}
-							</p>{" "} */}
-							<p class="px-4 lg:px-8 py-4 w-full min-h-screen text-base select-none break-words overflow-ellipsis">
-								{info.content.split("\n").map((line) => {
-									return (
-										<span>
-											{line}
-											<br />
-										</span>
-									);
-								})}
-							</p>
+						<div class="w-full h-auto relative py-4 px-2 lg:px-8">
+							<div
+								class="mb-24"
+								dangerouslySetInnerHTML={{ __html: info.content }}
+							></div>
 						</div>
 					</div>
 					<div class="flex justify-between items-center flex-col md:flex-row">

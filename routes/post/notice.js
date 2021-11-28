@@ -107,7 +107,7 @@ router.route("/read/:id").post((req, res) => {
 	if (req.body.key === API_KEY) {
 		Notice.findById(req.params.id)
 			.then((one) => {
-				one.read = req.body.read + 1;
+				one.read = one.read + 1;
 
 				one
 					.save()
