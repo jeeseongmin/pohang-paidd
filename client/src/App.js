@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Route } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import Home from "./pages/Home";
@@ -23,7 +23,17 @@ const Routes = ({ match }) => {
 	const dispatch = useDispatch();
 
 	const sidebar = useSelector((state) => state.setting.sidebar);
+	const [isIe, setIsIe] = useState(false);
 
+	useEffect(() => {
+		if (
+			navigator.userAgent.indexOf("MSIE") !== -1 ||
+			!!document.documentMode === true
+		) {
+			setIsIe(true);
+			console.log("Internet Explorer");
+		}
+	}, []);
 	useEffect(() => {
 		dispatch(setSidebar("off"));
 	}, []);
@@ -39,7 +49,37 @@ const Routes = ({ match }) => {
 		}
 	}, []);
 
-	return (
+	const nav = {
+		width: "100%",
+		height: "5rem",
+		backgroundColor: "Purple",
+		display: "flex",
+		flexDirection: "column",
+	};
+
+	return isIe ? (
+		<>
+			<div class="h-screen">
+				<div class="w-full h-full  flex flex-col justify-center items-center">
+					<h1 class="font-bold text-4xl mb-4">다른 브라우저를 이용해주세요.</h1>
+					<div class="w-full h-96 flex justify-center items-center mb-4">
+						<img
+							src="/image/home-img2.png"
+							class="h-full object-contain"
+							alt="main-img2"
+						/>
+					</div>
+					<p>경북발달장애인협회 포항시지부 홈페이지는</p>
+					<p>
+						<b>Internet Explorer</b>를 지원하지 않습니다.
+					</p>
+					<p>
+						<b>Chrome, Edge, Safari</b>를 이용해주시기 바랍니다.
+					</p>
+				</div>
+			</div>
+		</>
+	) : (
 		<>
 			<div
 				id="scrollRef"
