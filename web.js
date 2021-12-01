@@ -3,6 +3,7 @@ const cors = require("cors");
 const path = require("path");
 const mongoose = require("mongoose");
 const db = require("./dbconfig");
+const HTTPS = require("https");
 
 require("dotenv").config();
 
@@ -61,3 +62,18 @@ app.use("/api/file", fileRouter);
 app.listen(port, () => {
 	console.log(`Server is running on port: ${port}`);
 });
+
+// const options = {
+// 	key: fs.readFileSync("./etc/rapidSSL/www.phaidd.or.kr_2021112159661.key.pem"),
+// 	cert: fs.readFileSync(
+// 		"./etc/rapidSSL/www.phaidd.or.kr_2021112159661.crt.pem"
+// 	),
+// 	ca: fs.readFileSync("./etc/rapidSSL/ca-chain-bundle.pem"),
+// 	minVersion: "TLSv1.2",
+// };
+// https
+// 	.createServer(options, (req, res) => {
+// 		res.writeHead(200);
+// 		res.end("hello SecureSign\n");
+// 	})
+// 	.listen(443);

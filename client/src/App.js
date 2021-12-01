@@ -34,6 +34,7 @@ const Routes = ({ match }) => {
 			console.log("Internet Explorer");
 		}
 	}, []);
+	
 	useEffect(() => {
 		dispatch(setSidebar("off"));
 	}, []);
@@ -49,14 +50,6 @@ const Routes = ({ match }) => {
 		}
 	}, []);
 
-	const nav = {
-		width: "100%",
-		height: "5rem",
-		backgroundColor: "Purple",
-		display: "flex",
-		flexDirection: "column",
-	};
-
 	return isIe ? (
 		<>
 			<div class="h-screen">
@@ -69,7 +62,7 @@ const Routes = ({ match }) => {
 							alt="main-img2"
 						/>
 					</div>
-					<p>경북발달장애인협회 포항시지부 홈페이지는</p>
+					<p>경북지적발달장애인협회 포항시지부 홈페이지는</p>
 					<p>
 						<b>Internet Explorer</b>를 지원하지 않습니다.
 					</p>

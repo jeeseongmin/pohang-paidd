@@ -63,10 +63,12 @@ const NoticeDetail = (props) => {
 				}
 			)
 			.then((Response) => {
+				const _text = Response.data.content.replace(/<p><\/p>/gi, "</br>");
 				const cp = {
 					type: Response.data.type,
 					title: Response.data.title,
-					content: Response.data.content,
+					// content: Response.data.content,
+					content: _text,
 					fileList: Response.data.fileList,
 					read: Response.data.read,
 					date: dataToText(Response.data.createdAt),

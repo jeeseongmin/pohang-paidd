@@ -22,6 +22,7 @@ keyconfig.js
 /server/node_modules
 /clinet/.env
 /client/node_modules
+/etc
 
 npm-debug.log*
 yarn-debug.log*

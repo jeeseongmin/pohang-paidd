@@ -2,13 +2,29 @@ import CircularProgress from "@material-ui/core/CircularProgress";
 import axios from "axios";
 import React, { useRef, useState, useEffect } from "react";
 import { MdCancel } from "react-icons/md";
-import { CKEditor } from "@ckeditor/ckeditor5-react";
-import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
+
 import { Editor } from "react-draft-wysiwyg";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import { EditorState, convertToRaw, ContentState } from "draft-js";
+
 import draftToHtml from "draftjs-to-html";
 import htmlToDraft from "html-to-draftjs";
+import "@toast-ui/editor/dist/toastui-editor.css";
+// import { Editor } from "@toast-ui/react-editor";
+
+import "tui-color-picker/dist/tui-color-picker.css";
+import colorSyntax from "@toast-ui/editor-plugin-color-syntax";
+import tableMergedCell from "@toast-ui/editor-plugin-table-merged-cell";
+import uml from "@toast-ui/editor-plugin-uml";
+import { Viewer } from "@toast-ui/react-editor";
+
+// cursor-pointer w-full h-auto border-2 border-gray-300
+const editorStyle = {
+	cursor: "pointer",
+	width: "100%",
+	minHeight: "20rem",
+	border: "2px solid rgba(209, 213, 219, var(--tw-border-opacity))",
+};
 
 const NoticeLayout = (props) => {
 	const [loading, setLoading] = useState(true);
@@ -18,8 +34,9 @@ const NoticeLayout = (props) => {
 	const contentRef = props.contentRef;
 	const buttonRef = useRef(null);
 	const isEdit = props.isEdit;
-	const [editorState, setEditorState] = useState(EditorState.createEmpty());
 
+	// draft.js
+	const [editorState, setEditorState] = useState(EditorState.createEmpty());
 	useEffect(() => {
 		const blocksFromHtml = htmlToDraft(info.content);
 		if (blocksFromHtml) {
@@ -32,23 +49,34 @@ const NoticeLayout = (props) => {
 			setEditorState(editorState);
 		}
 	}, []);
-	const onEditorStateChange = (editorState) => {
+
+	const onEditorStateChange = async (editorState) => {
 		// editorState에 값 설정
-		setEditorState(editorState);
+		await setEditorState(editorState);
 		let text = draftToHtml(convertToRaw(editorState.getCurrentContent()));
 		if (text !== "") {
-			changeInfo(
+			await changeInfo(
 				draftToHtml(convertToRaw(editorState.getCurrentContent())),
 				"content"
 			);
 		}
 	};
 
+	// Toast ui
+	const editorRef = useRef();
+
+	const btnClickListener = () => {
+		const editorInstance = editorRef.current.getInstance();
+		const getContent_md = editorInstance.getMarkdown();
+		console.log("마크다운----");
+		console.log(getContent_md);
+		const getContent_html = editorInstance.getHTML();
+		console.log("HTML----");
+		console.log(getContent_html);
+	};
+
 	const buttonClick = () => {
 		buttonRef.current.click();
-	};
-	const downloadTest = async (filename) => {
-		const res = await axios.get("/api/file/download/" + filename);
 	};
 
 	const onChange = async (e) => {
@@ -81,7 +109,6 @@ const NoticeLayout = (props) => {
 	};
 
 	const removeFile = async (filename) => {
-		await downloadTest(filename);
 		const res = await axios.get("/api/file/delete/" + filename);
 		const cp = [...info.fileList].filter(function (element, index) {
 			return element.filename !== filename;
@@ -181,10 +208,10 @@ const NoticeLayout = (props) => {
 					value={info.content}
 					placeholder="내용"
 				></textarea> */}
-			<div class="text-sm text-right my-2">
+			{/* <div class="text-sm text-right my-2">
 				엔터 시에는 [Shift + Enter] 를 사용해주세요.
-			</div>
-			<div class="cursor-pointer w-full h-auto border-2 border-gray-300 ">
+			</div> */}
+			<div style={editorStyle}>
 				<Editor
 					// 에디터와 툴바 모두에 적용되는 클래스
 					wrapperClassName="wrapper-class"
@@ -211,6 +238,24 @@ const NoticeLayout = (props) => {
 					onEditorStateChange={onEditorStateChange}
 				/>
 			</div>
+
+			{/* <Editor
+				initialValue="hello react editor world!"
+				// previewStyle="vertical"
+				height="600px"
+				initialEditType="markdown"
+				useCommandShortcut={true}
+				plugins={[colorSyntax, tableMergedCell, uml]}
+				ref={editorRef}
+			/>
+			<button onClick={btnClickListener}>클릭하면 값을 콘솔에</button> */}
+			{/* <Viewer initialValue={editorRef.current.getInstance().getMarkdown()} /> */}
+			{/* <Viewer
+				initialValue={editorRef.current
+					.getInstance()
+					.getMarkdown()
+					.replace(/\n/gi, "</br>")}
+			/> */}
 		</div>
 	);
 };

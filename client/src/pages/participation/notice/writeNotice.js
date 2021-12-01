@@ -20,7 +20,7 @@ const WriteNotice = (props) => {
 	const currentEmail = useSelector((state) => state.setting.currentEmail);
 
 	const changeInfo = (e, type) => {
-		if (type === "fileList") {
+		if (type === "fileList" || type === "content") {
 			const cp = { ...info };
 			cp[type] = e;
 			setInfo(cp);
@@ -51,8 +51,8 @@ const WriteNotice = (props) => {
 					{
 						key: process.env.REACT_APP_API_KEY,
 						title: info.title,
-						content: info.content,						fileList: info.fileList,
-
+						content: info.content,
+						fileList: info.fileList,
 					},
 					{
 						headers: {
