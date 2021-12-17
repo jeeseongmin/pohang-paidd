@@ -53,6 +53,7 @@ const WriteNotice = (props) => {
 						title: info.title,
 						content: info.content,
 						fileList: info.fileList,
+						read: 0,
 					},
 					{
 						headers: {

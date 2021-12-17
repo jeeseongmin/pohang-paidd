@@ -1,24 +1,14 @@
 import CircularProgress from "@material-ui/core/CircularProgress";
+import "@toast-ui/editor/dist/toastui-editor.css";
 import axios from "axios";
-import React, { useRef, useState, useEffect } from "react";
-import { MdCancel } from "react-icons/md";
-
-import { Editor } from "react-draft-wysiwyg";
-import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
-import { EditorState, convertToRaw, ContentState } from "draft-js";
-
+import { ContentState, convertToRaw, EditorState } from "draft-js";
 import draftToHtml from "draftjs-to-html";
 import htmlToDraft from "html-to-draftjs";
-import "@toast-ui/editor/dist/toastui-editor.css";
-// import { Editor } from "@toast-ui/react-editor";
+import React, { useEffect, useRef, useState } from "react";
+import { Editor } from "react-draft-wysiwyg";
+import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
+import { MdCancel } from "react-icons/md";
 
-import "tui-color-picker/dist/tui-color-picker.css";
-import colorSyntax from "@toast-ui/editor-plugin-color-syntax";
-import tableMergedCell from "@toast-ui/editor-plugin-table-merged-cell";
-import uml from "@toast-ui/editor-plugin-uml";
-import { Viewer } from "@toast-ui/react-editor";
-
-// cursor-pointer w-full h-auto border-2 border-gray-300
 const editorStyle = {
 	cursor: "pointer",
 	width: "100%",
@@ -60,19 +50,6 @@ const NoticeLayout = (props) => {
 				"content"
 			);
 		}
-	};
-
-	// Toast ui
-	const editorRef = useRef();
-
-	const btnClickListener = () => {
-		const editorInstance = editorRef.current.getInstance();
-		const getContent_md = editorInstance.getMarkdown();
-		console.log("마크다운----");
-		console.log(getContent_md);
-		const getContent_html = editorInstance.getHTML();
-		console.log("HTML----");
-		console.log(getContent_html);
 	};
 
 	const buttonClick = () => {

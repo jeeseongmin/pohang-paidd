@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import Layout from "../components/Layout";
 import Slider from "../components/Slider";
 import { setMenu, setSubmenu } from "../reducers/setting";
+import HomeNoticeBlock from "../components/notice/HomeNoticeBlock";
 
 const Home = () => {
 	const dispatch = useDispatch();
@@ -40,6 +41,7 @@ const Home = () => {
 	const goSubPage = (main, sub) => {
 		dispatch(setMenu(main));
 		dispatch(setSubmenu(sub));
+		document.getElementById("scrollRef").scrollTo(0, 0);
 		// document.getElementById("scrollRef").scrollTo(0, 0);
 		// document.getElementById("root").scrollTop = 0;
 	};
@@ -184,6 +186,7 @@ const Home = () => {
 						</div>
 					</div>
 				)}
+				<HomeNoticeBlock />
 				<div class="flex flex-col w-full h-auto relative">
 					<img
 						src="/image/home-bg4.png"

@@ -3,7 +3,6 @@ import { Route, Link, useHistory } from "react-router-dom";
 import Subtitle from "../../../components/Subtitle";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
-import ReactHtmlParser from "react-html-parser";
 import NoticeEdit from "./EditNotice";
 import Skeleton from "@material-ui/lab/Skeleton";
 import CircularProgress from "@material-ui/core/CircularProgress";
@@ -109,7 +108,6 @@ const NoticeDetail = (props) => {
 						<Subtitle text={"자세히보기"} />
 					</div>
 					<div class="text-sm lg:text-base w-full h-auto mb-8 border-t-2 border-b-2 border-purple-600">
-						{/* 딱 10개 씩만 로드하기 */}
 						<div class="w-full px-2 lg:px-8 py-4 flex justify-end items-center relative">
 							{!loading ? (
 								<Skeleton animation="wave" />
@@ -119,8 +117,6 @@ const NoticeDetail = (props) => {
 										<p class="w-full h-full break-words text-lg font-bold">
 											{info.title}
 										</p>
-										{/* <div class="text-lg w-auto border border-black pr-4 relative">
-										</div> */}
 									</div>
 									<div class="absolute right-0 text-lg w-24 ">{info.date}</div>
 								</>

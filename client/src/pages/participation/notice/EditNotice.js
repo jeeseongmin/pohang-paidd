@@ -10,6 +10,8 @@ const EditNotice = (props) => {
 	const [info, setInfo] = useState({
 		title: props.info.title,
 		content: props.info.content,
+		fileList: props.info.fileList,
+		read: props.info.fileList,
 	});
 	const id = props.id;
 	const pages = props.pages;
