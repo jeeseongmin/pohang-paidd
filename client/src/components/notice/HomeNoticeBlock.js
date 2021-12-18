@@ -97,20 +97,20 @@ const HomeNoticeBlock = () => {
 				<span class="font-bold text-xl lg:text-3xl">주요공지</span>
 				<div
 					ref={modalMenuRef}
-					class="text-sm relative cursor-pointer mt-4 md:mt-0 w-full md:w-72 h-14 border-2 border-purple-100"
+					class="text-sm relative cursor-pointer mt-4 md:mt-0 w-full md:w-72 h-14 border-2 border-gray-400"
 				>
 					<div
 						onClick={onToggleMenu}
-						class="w-full h-full flex justify-between items-center text-purple-100 font-bold"
+						class="pl-2 w-full h-full flex justify-between items-center text-md text-gray-400 font-bold"
 					>
-						<div class=" w-12 h-full"></div>
-						{noticeType === "all" && <p>전체보기</p>}
-						{noticeType === "org1" && <p>포항시지적장애인자립지원센터</p>}
-						{noticeType === "org2" && <p>장애인활동지원사업</p>}
-						{noticeType === "org3" && <p>방과후활동서비스사업</p>}
-						{noticeType === "org4" && <p>늘사랑주간보호센터</p>}
-						{noticeType === "participation" && <p>참여마당</p>}
-
+						<div class="w-full flex justify-center items-center">
+							{noticeType === "all" && <p>전체보기</p>}
+							{noticeType === "org1" && <p>포항시지적장애인자립지원센터</p>}
+							{noticeType === "org2" && <p>장애인활동지원사업</p>}
+							{noticeType === "org3" && <p>방과후활동서비스사업</p>}
+							{noticeType === "org4" && <p>늘사랑주간보호센터</p>}
+							{noticeType === "participation" && <p>참여마당</p>}
+						</div>
 						<div class=" w-12 pr-4 h-full flex justify-center items-center">
 							<IoIosArrowDown size={28} />
 							{/* <IoIosArrowUp size={28} /> */}
@@ -118,17 +118,17 @@ const HomeNoticeBlock = () => {
 					</div>
 					<div
 						class={
-							"z-40 absolute shadow-xl font-bold w-full h-60 left-0 top-14 border-l-2 border-r-2 border-t-2 border-purple-100 grid-rows-6 " +
+							"z-40 absolute shadow-xl font-bold w-full h-60 left-0 top-14 border-l-2 border-r-2 border-t-2 text-purple-500 border-purple-100 grid-rows-6 " +
 							(modalMenu ? "grid" : "hidden")
 						}
 					>
 						<div
 							onClick={() => onChangeMenu("all")}
 							class={
-								"flex justify-center items-center border-b-2 border-purple-100 hover:bg-purple-100 " +
+								"flex justify-center items-center border-b-2 border-purple-100 hover:text-purple-500 hover:bg-purple-100 transition delay-50 duration-150 " +
 								(noticeType === "all"
 									? "bg-purple-100 text-purple-500"
-									: "bg-white text-purple-100")
+									: "bg-white text-black")
 							}
 						>
 							전체보기
@@ -136,10 +136,10 @@ const HomeNoticeBlock = () => {
 						<div
 							onClick={() => onChangeMenu("org1")}
 							class={
-								"flex justify-center items-center border-b-2 border-purple-100 hover:bg-purple-100 " +
+								"flex justify-center items-center border-b-2 border-purple-100 hover:text-purple-500 hover:bg-purple-100 transition delay-50 duration-150 " +
 								(noticeType === "org1"
 									? "bg-purple-100 text-purple-500"
-									: "bg-white text-purple-100")
+									: "bg-white text-black")
 							}
 						>
 							{" "}
@@ -148,10 +148,10 @@ const HomeNoticeBlock = () => {
 						<div
 							onClick={() => onChangeMenu("org2")}
 							class={
-								"flex justify-center items-center border-b-2 border-purple-100 hover:bg-purple-100 " +
+								"flex justify-center items-center border-b-2 border-purple-100 hover:text-purple-500 hover:bg-purple-100 transition delay-50 duration-150 " +
 								(noticeType === "org2"
 									? "bg-purple-100 text-purple-500"
-									: "bg-white text-purple-100")
+									: "bg-white text-black")
 							}
 						>
 							{" "}
@@ -160,10 +160,10 @@ const HomeNoticeBlock = () => {
 						<div
 							onClick={() => onChangeMenu("org3")}
 							class={
-								"flex justify-center items-center border-b-2 border-purple-100 hover:bg-purple-100 " +
+								"flex justify-center items-center border-b-2 border-purple-100 hover:text-purple-500 hover:bg-purple-100 transition delay-50 duration-150 " +
 								(noticeType === "org3"
 									? "bg-purple-100 text-purple-500"
-									: "bg-white text-purple-100")
+									: "bg-white text-black")
 							}
 						>
 							{" "}
@@ -172,10 +172,10 @@ const HomeNoticeBlock = () => {
 						<div
 							onClick={() => onChangeMenu("org4")}
 							class={
-								"flex justify-center items-center border-b-2 border-purple-100 hover:bg-purple-100 " +
+								"flex justify-center items-center border-b-2 border-purple-100 hover:text-purple-500 hover:bg-purple-100 transition delay-50 duration-150 " +
 								(noticeType === "org4"
 									? "bg-purple-100 text-purple-500"
-									: "bg-white text-purple-100")
+									: "bg-white text-black")
 							}
 						>
 							{" "}
@@ -184,10 +184,10 @@ const HomeNoticeBlock = () => {
 						<div
 							onClick={() => onChangeMenu("participation")}
 							class={
-								"flex justify-center items-center border-b-2 border-purple-100 " +
+								"flex justify-center items-center border-b-2 border-purple-100 hover:text-purple-500 hover:bg-purple-100 transition delay-50 duration-150 " +
 								(noticeType === "participation"
 									? "bg-purple-100 text-purple-500"
-									: "bg-white text-purple-100")
+									: "bg-white text-black")
 							}
 						>
 							{" "}
@@ -201,7 +201,7 @@ const HomeNoticeBlock = () => {
 					경북지적발달장애인복지협회 포항시지부의 주요 공지를 확인하세요!
 				</div>
 			</div>
-			<div class="flex flex-col pt-4 border-t border-gray-400">
+			<div class="flex flex-col h-60 pt-4 border-t border-gray-400">
 				{!loading && (
 					<div class="w-full py-2 flex justify-center items-center">
 						<CircularProgress size={28} />
@@ -215,7 +215,7 @@ const HomeNoticeBlock = () => {
 									onClick={() =>
 										history.push(typeUrl[element.type] + element._id)
 									}
-									class="px-2 flex flex-row justify-between text-md py-2 cursor-pointer hover:bg-gray-100"
+									class="h-10 px-2 flex flex-row justify-between items-center text-md  cursor-pointer hover:bg-gray-100"
 								>
 									<div class="flex-1 truncate pr-4">
 										<BsDot class="inline-block" />{" "}
@@ -224,7 +224,9 @@ const HomeNoticeBlock = () => {
 										>
 											{"[" + typeName[element.type] + "]"}
 										</span>
-										<span class="font-bold">{element.title}</span>
+										<span class={noticeType === "all" ? "" : "font-bold"}>
+											{element.title}
+										</span>
 									</div>
 									<div class="w-16 text-sm">
 										{dateToString(new Date(element.createdAt))}
