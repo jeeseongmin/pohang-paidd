@@ -3,16 +3,25 @@ const cors = require("cors");
 const path = require("path");
 const mongoose = require("mongoose");
 const db = require("./dbconfig");
-const HTTPS = require("https");
+const http = require("http");
+const https = require("https");
+const fs = require("fs");
 
 require("dotenv").config();
 
 const app = express();
-const port = process.env.PORT || 5000;
+// const port = process.env.PORT || 5000;
+
+const HTTP_PORT = 8443;
+const HTTPS_PORT = 5000;
 
 app.use(cors());
 app.use(express.json());
 app.use("/uploads", express.static(__dirname + "/uploads"));
+app.use(
+	"/etc/rapidSSL/RootChain",
+	express.static(__dirname + "/etc/rapidSSL/RootChain")
+);
 
 // const uri = process.env.ATLAS_URI;
 mongoose.Promise = global.Promise;
@@ -59,21 +68,24 @@ app.use("/api/file", fileRouter);
 // 	res.sendFile(path.join(__dirname, "./client/build/index.html"));
 // });
 
-app.listen(port, () => {
-	console.log(`Server is running on port: ${port}`);
-});
+// app.listen(port, () => {
+// 	console.log(`Server is running on port: ${port}`);
+// });
 
-// const options = {
-// 	key: fs.readFileSync("./etc/rapidSSL/www.phaidd.or.kr_2021112159661.key.pem"),
-// 	cert: fs.readFileSync(
-// 		"./etc/rapidSSL/www.phaidd.or.kr_2021112159661.crt.pem"
-// 	),
-// 	ca: fs.readFileSync("./etc/rapidSSL/ca-chain-bundle.pem"),
-// 	minVersion: "TLSv1.2",
-// };
-// https
-// 	.createServer(options, (req, res) => {
-// 		res.writeHead(200);
-// 		res.end("hello SecureSign\n");
-// 	})
-// 	.listen(443);
+const options = {
+	key: fs.readFileSync(
+		"./etc/rapidSSL/RootChain/www.phaidd.or.kr_2021112159661.key.pem"
+	),
+	cert: fs.readFileSync(
+		"./etc/rapidSSL/RootChain/www.phaidd.or.kr_2021112159661.crt.pem"
+	),
+	ca: fs.readFileSync("./etc/rapidSSL/RootChain/ca-chain-bundle.pem"),
+};
+
+http.createServer(app).listen(HTTP_PORT);
+https.createServer(options, app).listen(HTTPS_PORT);
+
+// HTTPS.createServer(options, (req, res) => {
+// 	res.writeHead(200);
+// 	res.end("hello SecureSign\n");
+// }).listen(443);
