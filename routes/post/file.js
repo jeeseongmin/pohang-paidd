@@ -12,56 +12,55 @@ const API_KEY = require("../../keyconfig");
 const db = require("../../dbconfig");
 var mime = require("mime");
 var getDownloadFilename =
-	require("./lib/getDownloadFilename").getDownloadFilename;
+  require("./lib/getDownloadFilename").getDownloadFilename;
 
 const storage = multer.diskStorage({
-	destination: (req, file, callback) => {
-		callback(null, path.join(__dirname, "..", "..", "uploads"));
-	},
-	filename: (req, file, callback) => {
-		callback(null, `${Date.now()}_${file.originalname}`);
-	},
+  destination: (req, file, callback) => {
+    callback(null, path.join(__dirname, "..", "..", "uploads"));
+  },
+  filename: (req, file, callback) => {
+    callback(null, `${Date.now()}_${file.originalname}`);
+  },
 });
 const uploader = multer({ storage: storage }).single("file");
 
 const uri = db;
 const connect = mongoose.createConnection(uri, {
-	useNewUrlParser: true,
-	useUnifiedTopology: true,
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
 });
 
 let gfs;
 
 connect.once("open", () => {
-	gfs = new mongoose.mongo.GridFSBucket(connect.db, {
-		bucketName: "uploads",
-	});
+  gfs = new mongoose.mongo.GridFSBucket(connect.db, {
+    bucketName: "uploads",
+  });
 });
 
 router.get("/delete/:filename", (req, res) => {
-	console.log(req.params.filename);
-	fs.unlink(`uploads/` + req.params.filename, (err) => {
-		res.end();
-	});
-	return res.json(req.params.filename);
+  fs.unlink(`uploads/` + req.params.filename, (err) => {
+    res.end();
+  });
+  return res.json(req.params.filename);
 });
 
 // 10MB 이하로 제한하기.
 router.route("/upload_page").post((req, res, next) => {
-	var dir = path.join(__dirname, "..", "..", "uploads");
-	if (!fs.existsSync(dir)) {
-		fs.mkdirSync(dir);
-	}
+  var dir = path.join(__dirname, "..", "..", "uploads");
+  if (!fs.existsSync(dir)) {
+    fs.mkdirSync(dir);
+  }
 
-	uploader(req, res, (err) => {
-		if (err) {
-			return res.json({ success: false });
-		}
-		return res.json({
-			success: true,
-			file: res.req.file,
-		});
-	});
+  uploader(req, res, (err) => {
+    if (err) {
+      return res.json({ success: false });
+    }
+    return res.json({
+      success: true,
+      file: res.req.file,
+    });
+  });
 });
 
 module.exports = router;

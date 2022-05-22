@@ -1,13 +1,17 @@
 import CircularProgress from "@material-ui/core/CircularProgress";
+import "@toast-ui/editor/dist/toastui-editor-viewer.css";
 import "@toast-ui/editor/dist/toastui-editor.css";
+import { Editor } from "@toast-ui/react-editor";
 import axios from "axios";
 import { ContentState, convertToRaw, EditorState } from "draft-js";
 import draftToHtml from "draftjs-to-html";
 import htmlToDraft from "html-to-draftjs";
 import React, { useEffect, useRef, useState } from "react";
-import { Editor } from "react-draft-wysiwyg";
+// import { Editor } from "react-draft-wysiwyg";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import { MdCancel } from "react-icons/md";
+
+const test = `# markdown`;
 
 const editorStyle = {
   cursor: "pointer",
@@ -22,9 +26,13 @@ const NoticeLayout = (props) => {
   const changeInfo = props.changeInfo;
   const titleRef = props.titleRef;
   const contentRef = props.contentRef;
+  const editorRef = props.editorRef;
   const buttonRef = useRef(null);
   const isEdit = props.isEdit;
-
+  const fileList = props.fileList;
+  const imgList = props.imgList;
+  const changeList = props.changeList;
+  const setImgList = props.setImgList;
   // draft.js
   const [editorState, setEditorState] = useState(EditorState.createEmpty());
 
@@ -42,7 +50,6 @@ const NoticeLayout = (props) => {
   }, []);
 
   const onEditorStateChange = async (editorState) => {
-    console.log(editorState);
     // editorState에 값 설정
     await setEditorState(editorState);
     let text = draftToHtml(convertToRaw(editorState.getCurrentContent()));
@@ -72,12 +79,13 @@ const NoticeLayout = (props) => {
         .post("/api/file/upload_page", formData, config)
         .then(async (res) => {
           if (res.data.success) {
-            const cp = [...info.fileList];
+            const cp = [...fileList];
             await cp.push({
               filename: res.data.file.filename,
               size: res.data.file.size,
             });
-            await changeInfo(cp, "fileList");
+            // await changeInfo(cp, "fileList");
+            await changeList(cp, "fileList");
             setLoading(true);
             e.target.value = null;
           } else {
@@ -89,10 +97,11 @@ const NoticeLayout = (props) => {
 
   const removeFile = async (filename) => {
     const res = await axios.get("/api/file/delete/" + filename);
-    const cp = [...info.fileList].filter(function (element, index) {
+    const cp = [...fileList].filter(function (element, index) {
       return element.filename !== filename;
     });
-    changeInfo(cp, "fileList");
+    // changeInfo(cp, "fileList");
+    changeList(cp, "fileList");
   };
 
   return (
@@ -133,11 +142,11 @@ const NoticeLayout = (props) => {
           "w-full border-2 border-gray-300 px-4 py-4 mb-2 flex flex-wrap flex-col " +
           (loading ? "text-center" : "")
         }>
-        {info.fileList && info.fileList.length === 0 && loading ? (
+        {fileList && fileList.length === 0 && loading ? (
           <div class='text-gray-500'>업로드된 파일이 없습니다.</div>
         ) : loading ? (
-          info.fileList &&
-          info.fileList.map((element, index) => {
+          fileList &&
+          fileList.map((element, index) => {
             return (
               <div class='w-full mb-4 border border-gray-300 rounded-md relative'>
                 {/* 
@@ -152,7 +161,8 @@ const NoticeLayout = (props) => {
                   class='text-blue-500'
                   href={window.location.origin + "/uploads/" + element.filename}
                   target='_blank'
-                  download>
+                  download
+                  rel='noreferrer'>
                   <span class='underline'>{element.filename}</span>{" "}
                   <span class='text-sm text-gray-300'>(</span>
                   <span class='text-sm text-blue-300'>
@@ -176,18 +186,7 @@ const NoticeLayout = (props) => {
           </div>
         )}
       </div>
-      {/* <div class="cursor-pointer w-full pt-2 pb-4 flex justify-end items-center border-b border-gray-300"> */}
-      {/* <textarea
-					ref={contentRef}
-					class="w-full h-96 p-4 border-2 border-gray-300 outline-none focus:border-purple-700 resize-none	"
-					onChange={(e) => changeInfo(e, "content")}
-					value={info.content}
-					placeholder="내용"
-				></textarea> */}
-      {/* <div class="text-sm text-right my-2">
-				엔터 시에는 [Shift + Enter] 를 사용해주세요.
-			</div> */}
-      <div style={editorStyle}>
+      {/* <div style={editorStyle}>
         <Editor
           // 에디터와 툴바 모두에 적용되는 클래스
           wrapperClassName='wrapper-class'
@@ -221,19 +220,88 @@ const NoticeLayout = (props) => {
           // 에디터의 값이 변경될 때마다 onEditorStateChange 호출
           onEditorStateChange={onEditorStateChange}
         />
-      </div>
+      </div> */}
+      {isEdit ? (
+        <Editor
+          initialValue={info.content}
+          // previewStyle="vertical"
+          height='600px'
+          initialEditType='wysiwyg'
+          useCommandShortcut={true}
+          ref={editorRef}
+          hooks={{
+            addImageBlobHook: async (blob, callback) => {
+              // 서버의 upload API 호출
+              if (blob.size > 10 * 1024 * 1024) {
+                alert("10MB 이하의 파일만 업로드 가능합니다.");
+                blob = null;
+              } else {
+                let formData = new FormData();
+                formData.append("file", blob);
+                await axios
+                  .post("/api/image/upload", formData)
+                  .then(async (res) => {
+                    if (res.data.success) {
+                      const cp = [...imgList];
+                      cp.push({
+                        filename: res.data.filename,
+                        id: res.data.id,
+                        url: res.data.url,
+                        deleted: false,
+                      });
+                      await changeList(cp, "imgList");
+                      callback(res.data.url, "alt text");
+                    } else {
+                      alert("이미지 업로드를 실패했습니다.");
+                      return "error";
+                    }
+                  });
+              }
+            },
+          }}
+        />
+      ) : (
+        <Editor
+          initialValue=''
+          // previewStyle="vertical"
+          height='600px'
+          initialEditType='wysiwyg'
+          useCommandShortcut={true}
+          ref={editorRef}
+          hooks={{
+            addImageBlobHook: async (blob, callback) => {
+              // 서버의 upload API 호출
+              if (blob.size > 10 * 1024 * 1024) {
+                alert("10MB 이하의 파일만 업로드 가능합니다.");
+                blob = null;
+              } else {
+                let formData = new FormData();
+                formData.append("file", blob);
+                await axios
+                  .post("/api/image/upload", formData)
+                  .then(async (res) => {
+                    if (res.data.success) {
+                      const cp = [...imgList];
+                      cp.push({
+                        filename: res.data.filename,
+                        id: res.data.id,
+                        url: res.data.url,
+                        deleted: false,
+                      });
+                      await changeList(cp, "imgList");
+                      callback(res.data.url, "alt text");
+                    } else {
+                      alert("이미지 업로드를 실패했습니다.");
+                      return "error";
+                    }
+                  });
+              }
+            },
+          }}
+        />
+      )}
 
-      {/* <Editor
-				initialValue="hello react editor world!"
-				// previewStyle="vertical"
-				height="600px"
-				initialEditType="markdown"
-				useCommandShortcut={true}
-				plugins={[colorSyntax, tableMergedCell, uml]}
-				ref={editorRef}
-			/>
-			<button onClick={btnClickListener}>클릭하면 값을 콘솔에</button> */}
-      {/* <Viewer initialValue={editorRef.current.getInstance().getMarkdown()} /> */}
+      {/* <Viewer initialValue={editorRef.current.getInstance().getMarkdown()} />
       {/* <Viewer
 				initialValue={editorRef.current
 					.getInstance()

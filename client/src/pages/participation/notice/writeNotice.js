@@ -1,11 +1,11 @@
-import React, { useEffect, useRef, useState } from "react";
-import { Link, useHistory } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
+import React, { useEffect, useRef, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, useHistory } from "react-router-dom";
 import NoticeLayout from "../../../components/notice/noticeLayout";
 
 const WriteNotice = (props) => {
-  const type = "participation";
+  const type = props.pages;
   const dispatch = useDispatch();
   const history = useHistory();
   const [info, setInfo] = useState({

@@ -1,12 +1,12 @@
+import CircularProgress from "@material-ui/core/CircularProgress";
+import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { BsSearch } from "react-icons/bs";
-import { Route, Link, useHistory } from "react-router-dom";
-import Subtitle from "../../../components/Subtitle";
-import Paging from "../../../components/Paging";
-import { useDispatch, useSelector } from "react-redux";
-import axios from "axios";
-import CircularProgress from "@material-ui/core/CircularProgress";
 import { HiHome } from "react-icons/hi";
+import { useSelector } from "react-redux";
+import { Link, useHistory } from "react-router-dom";
+import Paging from "../../../components/Paging";
+import Subtitle from "../../../components/Subtitle";
 
 const Index = () => {
   const history = useHistory();
@@ -22,7 +22,6 @@ const Index = () => {
       searchList();
     }
   };
-  console.log("key", process.env.REACT_APP_API_KEY);
 
   const changeText = (e) => {
     const cp = e.target.value;
