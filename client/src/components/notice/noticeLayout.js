@@ -3,29 +3,15 @@ import "@toast-ui/editor/dist/toastui-editor-viewer.css";
 import "@toast-ui/editor/dist/toastui-editor.css";
 import { Editor } from "@toast-ui/react-editor";
 import axios from "axios";
-import { ContentState, convertToRaw, EditorState } from "draft-js";
-import draftToHtml from "draftjs-to-html";
-import htmlToDraft from "html-to-draftjs";
-import React, { useEffect, useRef, useState } from "react";
-// import { Editor } from "react-draft-wysiwyg";
+import React, { useRef, useState } from "react";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import { MdCancel } from "react-icons/md";
-
-const test = `# markdown`;
-
-const editorStyle = {
-  cursor: "pointer",
-  width: "100%",
-  minHeight: "20rem",
-  border: "2px solid rgba(209, 213, 219, var(--tw-border-opacity))",
-};
 
 const NoticeLayout = (props) => {
   const [loading, setLoading] = useState(true);
   const info = props.info;
   const changeInfo = props.changeInfo;
   const titleRef = props.titleRef;
-  const contentRef = props.contentRef;
   const editorRef = props.editorRef;
   const buttonRef = useRef(null);
   const isEdit = props.isEdit;
@@ -33,38 +19,15 @@ const NoticeLayout = (props) => {
   const imgList = props.imgList;
   const changeList = props.changeList;
   const setImgList = props.setImgList;
-  // draft.js
-  const [editorState, setEditorState] = useState(EditorState.createEmpty());
-
-  useEffect(() => {
-    const blocksFromHtml = htmlToDraft(info.content);
-    if (blocksFromHtml) {
-      const { contentBlocks, entityMap } = blocksFromHtml;
-      const contentState = ContentState.createFromBlockArray(
-        contentBlocks,
-        entityMap
-      );
-      const editorState = EditorState.createWithContent(contentState);
-      setEditorState(editorState);
-    }
-  }, []);
-
-  const onEditorStateChange = async (editorState) => {
-    // editorState에 값 설정
-    await setEditorState(editorState);
-    let text = draftToHtml(convertToRaw(editorState.getCurrentContent()));
-    if (text !== "") {
-      await changeInfo(
-        draftToHtml(convertToRaw(editorState.getCurrentContent())),
-        "content"
-      );
-    }
-  };
 
   const buttonClick = () => {
     buttonRef.current.click();
   };
 
+  /**
+   * 파일 업로드 onChange 함수
+   * @param {*} e
+   */
   const onChange = async (e) => {
     let formData = new FormData();
     const config = {
@@ -95,12 +58,15 @@ const NoticeLayout = (props) => {
     }
   };
 
+  /**
+   * 파일 개별 삭제
+   * @param {*} filename
+   */
   const removeFile = async (filename) => {
     const res = await axios.get("/api/file/delete/" + filename);
     const cp = [...fileList].filter(function (element, index) {
       return element.filename !== filename;
     });
-    // changeInfo(cp, "fileList");
     changeList(cp, "fileList");
   };
 
@@ -186,45 +152,9 @@ const NoticeLayout = (props) => {
           </div>
         )}
       </div>
-      {/* <div style={editorStyle}>
-        <Editor
-          // 에디터와 툴바 모두에 적용되는 클래스
-          wrapperClassName='wrapper-class'
-          // 에디터 주변에 적용된 클래스
-          editorClassName='editor'
-          // 툴바 주위에 적용된 클래스
-          toolbarClassName='toolbar-class'
-          // 툴바 설정
-          toolbar={{
-            // inDropdown: 해당 항목과 관련된 항목을 드롭다운으로 나타낼것인지
-            list: { inDropdown: true },
-            textAlign: { inDropdown: true },
-            link: { inDropdown: true },
-            history: { inDropdown: false },
-            image: {
-              urlEnabled: true,
-              uploadEnabled: true,
-              defaultSize: {
-                height: "auto",
-                width: "auto",
-              },
-            },
-          }}
-          placeholder='내용을 작성해주세요.'
-          // 한국어 설정
-          localization={{
-            locale: "ko",
-          }}
-          // 초기값 설정
-          editorState={editorState}
-          // 에디터의 값이 변경될 때마다 onEditorStateChange 호출
-          onEditorStateChange={onEditorStateChange}
-        />
-      </div> */}
       {isEdit ? (
         <Editor
           initialValue={info.content}
-          // previewStyle="vertical"
           height='600px'
           initialEditType='wysiwyg'
           useCommandShortcut={true}
@@ -233,7 +163,7 @@ const NoticeLayout = (props) => {
             addImageBlobHook: async (blob, callback) => {
               // 서버의 upload API 호출
               if (blob.size > 10 * 1024 * 1024) {
-                alert("10MB 이하의 파일만 업로드 가능합니다.");
+                alert("10MB 이하의 이미지만 업로드 가능합니다.");
                 blob = null;
               } else {
                 let formData = new FormData();
@@ -300,14 +230,6 @@ const NoticeLayout = (props) => {
           }}
         />
       )}
-
-      {/* <Viewer initialValue={editorRef.current.getInstance().getMarkdown()} />
-      {/* <Viewer
-				initialValue={editorRef.current
-					.getInstance()
-					.getMarkdown()
-					.replace(/\n/gi, "</br>")}
-			/> */}
     </div>
   );
 };
