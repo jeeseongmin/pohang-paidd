@@ -203,7 +203,7 @@ const Intro = () => {
 						</span>
 					</div>
 					<div class="w-1/6 block md:hidden">제공인력</div>
-					<div class="w-1/6 text-center">손해경</div>
+					<div class="w-1/6 text-center">고은정</div>
 					<div class="w-2/6 text-center">070-5154-5600</div>
 					<div class="w-2/6">
 						이용자 모집 및 상담,<br></br>프로그램 계획 및 진행

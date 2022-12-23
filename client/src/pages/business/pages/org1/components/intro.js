@@ -202,20 +202,20 @@ const Intro = () => {
 						직원 및 이용자 고충처리담당, <br></br>예결산 관련 회계 총괄
 					</div>
 				</div>
-				<div class="px-2 lg:px-8 py-3 flex flex-row justify-center items-center border-b border-gray-300">
-					<div class="w-1/6 hidden md:block">
-						<span class="w-16 flex justify-between">
-							<span>팀</span>
-							<span>장</span>
-						</span>
-					</div>
-					<div class="w-1/6 block md:hidden">팀장</div>
-					<div class="w-1/6 text-center">임낭기</div>
-					<div class="w-2/6 text-center">070-5154-6981</div>
-					<div class="w-2/6">
-						권익옹호지원사업, 이용자 고충처리,<br></br>자원봉사자 관리
-					</div>
-				</div>
+				{/*<div class="px-2 lg:px-8 py-3 flex flex-row justify-center items-center border-b border-gray-300">*/}
+				{/*	<div class="w-1/6 hidden md:block">*/}
+				{/*		<span class="w-16 flex justify-between">*/}
+				{/*			<span>팀</span>*/}
+				{/*			<span>장</span>*/}
+				{/*		</span>*/}
+				{/*	</div>*/}
+				{/*	<div class="w-1/6 block md:hidden">팀장</div>*/}
+				{/*	<div class="w-1/6 text-center">임낭기</div>*/}
+				{/*	<div class="w-2/6 text-center">070-5154-6981</div>*/}
+				{/*	<div class="w-2/6">*/}
+				{/*		권익옹호지원사업, 이용자 고충처리,<br></br>자원봉사자 관리*/}
+				{/*	</div>*/}
+				{/*</div>*/}
 				<div class="px-2 lg:px-8 py-3 flex flex-row justify-center items-center border-b border-gray-300">
 					<div class="w-1/6 hidden md:block">
 						<span class="w-16 flex justify-between">
