@@ -210,6 +210,24 @@ const Intro = () => {
             모니터링 및 상담,<br></br>수급자 교육 관리<br></br>신규 활동지원사
             접수 및 상담
           </div>
+        </div> <div class='px-2 lg:px-8 py-3 flex flex-row justify-center items-center border-b border-gray-300'>
+          <div class='w-1/6 hidden md:block'>
+            <span class='w-20 flex justify-between'>
+              <span>모</span>
+              <span>니</span>
+              <span>터</span>
+              <span>링</span>
+              <span>전</span>
+              <span>담</span>
+            </span>
+          </div>
+          <div class='w-1/6 block md:hidden'>모니터링전담</div>
+          <div class='w-1/6 text-center'>임향숙</div>
+          <div class='w-2/6 text-center'>070-4757-7050</div>
+          <div class='w-2/6'>
+            이용수급자 모니터링,<br></br>
+            이용수급자 만족도조사,<br></br>이용수급자 교육 및 재안내<br></br>
+          </div>
         </div>
       </div>
     </div>
