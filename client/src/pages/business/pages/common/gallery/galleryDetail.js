@@ -2,7 +2,6 @@ import CircularProgress from "@material-ui/core/CircularProgress";
 import Skeleton from "@material-ui/lab/Skeleton";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import ReactHtmlParser from "react-html-parser";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
 import Subtitle from "../../../../../components/Subtitle";
@@ -14,11 +13,11 @@ const GalleryDetail = (props) => {
   const history = useHistory();
   const [page, setPage] = useState(1);
   const [isEdit, setIsEdit] = useState(false);
-
+  
   const currentEmail = useSelector((state) => state.setting.currentEmail);
-
+  
   const id = props.id;
-
+  
   const [info, setInfo] = useState({
     type: "",
     title: "",
@@ -26,14 +25,14 @@ const GalleryDetail = (props) => {
     imgList: [],
     date: "",
   });
-
+  
   useEffect(() => {
     document.getElementById("scrollRef").scrollTo(0, 0);
-
+    
     axios
       .post(
         "/api/gallery/" + id,
-        { key: process.env.REACT_APP_API_KEY },
+        {key: process.env.REACT_APP_API_KEY},
         {
           headers: {
             "Content-type": "application/json",
@@ -50,13 +49,14 @@ const GalleryDetail = (props) => {
           date: dataToText(Response.data.createdAt),
         };
         setInfo(cp);
+        console.log("cp", cp);
         setLoading(true);
       })
       .catch((Error) => {
         console.log(Error);
       });
   }, []);
-
+  
   const deleteGallery = () => {
     if (currentEmail === "master" || currentEmail === info.type) {
       axios
@@ -76,7 +76,7 @@ const GalleryDetail = (props) => {
           alert("삭제되었습니다.");
           history.push("/business/" + info.type + "/gallery");
           document.getElementById("scrollRef").scrollTo(0, 0);
-
+          
           for (let i = 0; i < info.imgList.length; i++) {
             axios.post("/api/image/delete", {
               name: info.imgList[i],
@@ -90,31 +90,31 @@ const GalleryDetail = (props) => {
       alert("권한이 없습니다.");
     }
   };
-
+  
   const dataToText = (date) => {
     let year = date.substring(2, 4);
     let month = date.substring(5, 7);
     let day = date.substring(8, 10);
     return year + "." + month + "." + day;
   };
-
+  
   const goEdit = () => {
     setIsEdit(true);
     document.getElementById("scrollRef").scrollTo(0, 0);
   };
-
+  
   return (
     <>
       {!isEdit ? (
         <div>
           <div class='flex flex-row justify-between items-center mb-8'>
-            <Subtitle text={"자세히보기"} />
+            <Subtitle text={"자세히보기"}/>
           </div>
           <div class='text-sm lg:text-base w-full h-auto mb-8 border-t-2 border-b-2 border-purple-600'>
             {/* 딱 10개 씩만 로드하기 */}
             <div class='w-full px-2 lg:px-8 py-4 flex justify-end items-center'>
               {!loading ? (
-                <Skeleton animation='wave' />
+                <Skeleton animation='wave'/>
               ) : (
                 <>
                   <div class='text-lg flex-1 font-bold'>{info.title}</div>
@@ -124,7 +124,7 @@ const GalleryDetail = (props) => {
             </div>
             <div class='w-full px-2 lg:px-8 py-4 flex flex-col justify-end items-center border-t border-gray-300'>
               {!loading ? (
-                <CircularProgress />
+                <CircularProgress/>
               ) : (
                 info.imgList.map((element, index) => {
                   return (
@@ -139,21 +139,22 @@ const GalleryDetail = (props) => {
                         alt='img'
                       />
                       {/* <img
-													class="w-full object-cover"
-													src={
-														"http://localhost:5000/api/image/view/" +
-														element.filename
-													}
-													alt="img"
-												/> */}
+                       class="w-full object-cover"
+                       src={
+                       "http://localhost:5000/api/image/view/" +
+                       element.filename
+                       }
+                       alt="img"
+                       /> */}
                     </div>
                   );
                 })
               )}
             </div>
             <div class='w-full px-2 lg:px-8 py-4 flex justify-end items-center border-t border-gray-300'>
-              <div class='h-24 text-base flex-1 pr-4 truncate	'>
-                {ReactHtmlParser(info.content)}
+              <div class='h-24 text-base flex-1 pr-4	'>
+                <textarea value={info.content} class={"w-full resize-none h-full border-none outline-none leading-4"}
+                          readOnly/>
               </div>
             </div>
           </div>
@@ -184,7 +185,7 @@ const GalleryDetail = (props) => {
           </div>
         </div>
       ) : (
-        <GalleryEdit pages={props.pages} info={info} id={id} />
+        <GalleryEdit pages={props.pages} info={info} id={id}/>
       )}
       {}
     </>

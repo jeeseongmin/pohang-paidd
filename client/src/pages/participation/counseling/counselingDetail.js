@@ -3,7 +3,6 @@ import { Route, Link, useHistory } from "react-router-dom";
 import Subtitle from "../../../components/Subtitle";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
-import ReactHtmlParser from "react-html-parser";
 import EditCounseling from "./EditCounseling";
 import Skeleton from "@material-ui/lab/Skeleton";
 
@@ -200,7 +199,8 @@ const CounselingDetail = (props) => {
 						</div>
 						<div class="w-full px-2 lg:px-8 py-4 flex justify-end items-center border-t border-gray-300">
 							<div class="h-96 text-base flex-1 pr-4 truncate	">
-								{ReactHtmlParser(info.content)}
+								<textarea value={info.content} className={"w-full resize-none h-full border-none outline-none"}
+													readOnly/>
 							</div>
 						</div>
 					</div>
