@@ -8,28 +8,28 @@ import Layout from "../../components/Layout";
 import Submenu from "../../components/Submenu";
 // 건의 및 고충 상담 탭
 import Counseling from "./counseling";
-import CounselingDetail from "./counseling/counselingDetail";
-import WriteCounsel from "./counseling/writeCounsel";
+import CounselingDetail from "./counseling/CounselingDetail";
+import WriteCounsel from "./counseling/WriteCounsel";
 // 공지사항 탭
 import Notice from "./notice";
 // 후원 탭
 import Support from "./support";
-import SupportDetail from "./support/supportDetail";
-import SupportList from "./support/supportList";
-import WriteSupport from "./support/writeSupport";
+import SupportDetail from "./support/SupportDetail";
+import SupportList from "./support/SupportList";
+import WriteSupport from "./support/WriteSupport";
 // 자원봉사 탭
 import Volunteer from "./volunteer";
-import VolunteerDetail from "./volunteer/volunteerDetail";
-import VolunteerList from "./volunteer/volunteerList";
-import WriteVolunteer from "./volunteer/writeVolunteer";
+import VolunteerDetail from "./volunteer/VolunteerDetail";
+import VolunteerList from "./volunteer/VolunteerList";
+import WriteVolunteer from "./volunteer/WriteVolunteer";
 
-const Index = ({ match }) => {
+const Index = ({match}) => {
   const [transForm, setTransForm] = useState(false);
-
+  
   useEffect(() => {
     setTransForm(true);
   }, []);
-
+  
   return (
     <Layout>
       <div class='h-full z-0'>
@@ -57,56 +57,57 @@ const Index = ({ match }) => {
               />
             </div>
           </div>
-          <div class='z-40 absolute w-full cursor-pointer bottom-22 flex flex-row justify-center bg-purple-100 px-0 2xl:px-36 xl:px-32 md:px-8'>
-            <Submenu menu={4} submenu={1} />
-            <Submenu menu={4} submenu={2} />
-            <Submenu menu={4} submenu={3} />
-            <Submenu menu={4} submenu={4} />
+          <div
+            class='z-40 absolute w-full cursor-pointer bottom-22 flex flex-row justify-center bg-purple-100 px-0 2xl:px-36 xl:px-32 md:px-8'>
+            <Submenu menu={4} submenu={1}/>
+            <Submenu menu={4} submenu={2}/>
+            <Submenu menu={4} submenu={3}/>
+            <Submenu menu={4} submenu={4}/>
           </div>
         </div>
         <div class='w-full h-auto px-5 py-8 2xl:px-36 xl:px-32 md:px-8 lg:py-16'>
           <switch>
             <Route exact path='/participation/notice/0'>
-              <Notice />
+              <Notice/>
             </Route>
             <Route exact path='/participation/detailNotice/:id'>
-              <NoticeDetail id={match.params.type} url='participation' />
+              <NoticeDetail id={match.params.type} url='participation'/>
             </Route>
             <Route exact path='/participation/writeNotice/0'>
-              <NoticeWrite pages={"participation"} url='participation' />
+              <NoticeWrite pages={"participation"} url='participation'/>
             </Route>
             <Route exact path='/participation/writeCounsel/0'>
-              <WriteCounsel />
+              <WriteCounsel/>
             </Route>
             <Route exact path='/participation/writeVolunteer/0'>
-              <WriteVolunteer />
+              <WriteVolunteer/>
             </Route>
             <Route exact path='/participation/writeSupport/0'>
-              <WriteSupport />
+              <WriteSupport/>
             </Route>
             <Route exact path='/participation/counseling/0'>
-              <Counseling />
+              <Counseling/>
             </Route>
             <Route exact path='/participation/detailCounseling/:id'>
-              <CounselingDetail id={match.params.type} />
+              <CounselingDetail id={match.params.type}/>
             </Route>
             <Route exact path='/participation/support/0'>
-              <Support />
+              <Support/>
             </Route>
             <Route exact path='/participation/supportList/0'>
-              <SupportList />
+              <SupportList/>
             </Route>
             <Route exact path='/participation/supportDetail/:id'>
-              <SupportDetail id={match.params.type} />
+              <SupportDetail id={match.params.type}/>
             </Route>
             <Route exact path='/participation/volunteer/0'>
-              <Volunteer />
+              <Volunteer/>
             </Route>
             <Route exact path='/participation/volunteerList/0'>
-              <VolunteerList />
+              <VolunteerList/>
             </Route>
             <Route exact path='/participation/volunteerDetail/:id'>
-              <VolunteerDetail id={match.params.type} />
+              <VolunteerDetail id={match.params.type}/>
             </Route>
           </switch>
         </div>

@@ -3,9 +3,9 @@ import NoticeWrite from "pages/notice/NoticeWrite";
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import OrgMenu from "../../components/Menu/orgMenu";
-import Business from "./components/business";
-import Gallery from "./components/gallery";
-import Intro from "./components/intro";
+import Business from "./common/business";
+import Gallery from "./common/gallery";
+import Intro from "./common/intro";
 import Notice from "./pages/common/notice/notice";
 import NoticeDetail from "./pages/common/notice/noticeDetail";
 
@@ -16,7 +16,7 @@ const Main = (props) => {
     setSelected(num);
     window.scrollTo(0, 0);
   };
-
+  
   const Content = () => {
     if (window.location.pathname.includes("notice")) {
       history.push(window.location.pathname);
@@ -26,24 +26,24 @@ const Main = (props) => {
       setSelected(3);
     } else {
       if (selected === 0) {
-        return <Intro />;
+        return <Intro/>;
       } else if (selected === 1) {
-        return <Business />;
+        return <Business/>;
       } else if (selected === 2) {
         if (props.type === "default") {
-          return <Notice url='business' />;
+          return <Notice url='business'/>;
         } else if (props.type === "noticeWrite") {
-          return <NoticeWrite url='business' />;
+          return <NoticeWrite url='business'/>;
         } else if (props.type === "noticeDetail") {
-          return <NoticeDetail url='business' />;
+          return <NoticeDetail url='business'/>;
         }
-        return <Notice />;
+        return <Notice/>;
       } else if (selected === 3) {
-        return <Gallery />;
+        return <Gallery/>;
       }
     }
   };
-
+  
   return (
     <div class='h-full z-0'>
       <div class='w-full h-auto'>
@@ -58,9 +58,9 @@ const Main = (props) => {
             );
           })}
         </div>
-
+        
         <div>
-          <Content />
+          <Content/>
         </div>
       </div>
     </div>
