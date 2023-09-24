@@ -7,6 +7,7 @@ import Subtitle from "../Subtitle";
 import GalleryEdit from "./GalleryEdit";
 
 const GalleryDetail = (props) => {
+  const pages = props.pages;
   const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
   const history = useHistory();
@@ -23,10 +24,14 @@ const GalleryDetail = (props) => {
     content: "",
     imgList: [],
     date: "",
+    convertedImageUrlList: [],
   });
   const [deleteActionUrl, setDeleteActionUrl] = useState(props.type === "organization" ? "/organization/gallery/0" : `/business/${info.type}/gallery`);
-  const [updateActionUrl, setUpdateActionUrl] = useState(props.type === "organization" ? "/organization/gallery/0" : `/business/${props.page}/gallery`);
+  const [updateActionUrl, setUpdateActionUrl] = useState(props.type === "organization" ? "/organization/gallery/0" : `/business/${pages}/gallery`);
   
+  useEffect(() => {
+    console.log("updateActionUrl", updateActionUrl, pages)
+  }, [updateActionUrl])
   useEffect(() => {
     document.getElementById("scrollRef").scrollTo(0, 0);
     
@@ -48,6 +53,8 @@ const GalleryDetail = (props) => {
           content: Response.data.content,
           imgList: Response.data.imgList,
           date: dataToText(Response.data.createdAt),
+          convertedImageUrlList: Response.data.convertedImageUrlList,
+          imageUrlList: Response.data.imageUrlList,
         };
         setInfo(cp);
         setDeleteActionUrl(props.type === "organization" ? "/organization/gallery/0" : `/business/${cp.type}/gallery`);
@@ -125,16 +132,21 @@ const GalleryDetail = (props) => {
             {/*  <ImageSlideShow/>*/}
             {/*</div>*/}
             <div class="w-full px-2 lg:px-8 py-4 flex flex-col justify-end items-center border-t border-gray-300">
-              {info.imgList.map((element, index) => {
+              {info.convertedImageUrlList.map((element, index) => {
                 return (
                   <div class="w-1/2 flex justify-center items-center my-4">
+                    {/*<img*/}
+                    {/*  class="w-full object-cover"*/}
+                    {/*  src={*/}
+                    {/*    window.location.origin +*/}
+                    {/*    "/api/image/view/" +*/}
+                    {/*    element.filename*/}
+                    {/*  }*/}
+                    {/*  alt="img"*/}
+                    {/*/>  */}
                     <img
                       class="w-full object-cover"
-                      src={
-                        window.location.origin +
-                        "/api/image/view/" +
-                        element.filename
-                      }
+                      src={element}
                       alt="img"
                     />
                     {/* <img
@@ -188,7 +200,7 @@ const GalleryDetail = (props) => {
           </div>
         </div>
       ) : (
-        <GalleryEdit pages={props.pages} info={info} id={id} updateActionUrl={updateActionUrl}/>
+        <GalleryEdit pages={pages} info={info} id={id} updateActionUrl={updateActionUrl}/>
       )}
       {}
     </>
