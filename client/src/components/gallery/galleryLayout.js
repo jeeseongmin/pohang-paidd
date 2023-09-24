@@ -21,14 +21,23 @@ const style = {
 
 const GalleryLayout = (props) => {
   const [loading, setLoading] = useState(true);
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(false);
   const history = useHistory();
-  const [info, setInfo] = useState(props.info);
+  // const [info, setInfo] = useState(props.info);
+  const info = props.info;
   const changeInfo = props.changeInfo;
   const changeImageUrlList = props.changeImageUrlList;
   const titleRef = props.titleRef;
   const isEdit = props.isEdit;
   const contentRef = props.contentRef;
+  
+  // 임시
+  const [oneLine, setOneLine] = useState("");
+  const convert = () => {
+    const test = oneLine.split(",").map((item) => item.trim())
+    console.log("test", test);
+    changeImageUrlList("multi", test, "");
+  }
   
   const rowsRef = useRef();
   
@@ -145,53 +154,8 @@ const GalleryLayout = (props) => {
         </div>
         <div class='w-full my-4 flex flex-row justify-between items-center'>
           <h1 class='text-lg font-bold'>업로드 된 이미지 목록</h1>
-          <button
-            class='text-sm outline-none w-full md:w-auto cursor-pointer px-0 md:px-8 py-1 justify-center border border-purple-300 bg-purple-300 text-white flex flex-row items-center hover:bg-purple-500 hover:text-white hover:font-bold'
-            onClick={buttonClick}>
-            이미지 업로드
-          </button>
         </div>
-        {/*<div*/}
-        {/*  class={*/}
-        {/*    "w-full border-2 border-gray-300 px-4 py-4 mb-2 flex flex-wrap " +*/}
-        {/*    (loading ? "text-center" : "")*/}
-        {/*  }>*/}
-        {/*  {info.imgList.length === 0 && loading ? (*/}
-        {/*    <div class='text-gray-500'>업로드된 이미지가 없습니다.</div>*/}
-        {/*  ) : loading ? (*/}
-        {/*    info.imgList.map((element, index) => {*/}
-        {/*      return (*/}
-        {/*        <div class='w-24 mb-4 border border-gray-300 rounded-md relative mx-4'>*/}
-        {/*          <img*/}
-        {/*            class='w-full h-24 object-contain'*/}
-        {/*            src={*/}
-        {/*              window.location.origin +*/}
-        {/*              "/api/image/view/" +*/}
-        {/*              element.filename*/}
-        {/*            }*/}
-        {/*            alt='imgList'*/}
-        {/*          />*/}
-        {/*          /!* <img*/}
-        {/*           class="w-full h-24 object-contain"*/}
-        {/*           src={*/}
-        {/*           "http://localhost:5000/api/image/view/" + element.filename*/}
-        {/*           }*/}
-        {/*           alt="imgList"*/}
-        {/*           /> *!/*/}
-        {/*          <MdCancel*/}
-        {/*            onClick={() => removeImg(index)}*/}
-        {/*            size={24}*/}
-        {/*            class='cursor-pointer rounded-full bg-white absolute -top-2 -right-2'*/}
-        {/*          />*/}
-        {/*        </div>*/}
-        {/*      );*/}
-        {/*    })*/}
-        {/*  ) : (*/}
-        {/*    <div class='w-full h-24 my-2 py-4 flex justify-center items-center text-center'>*/}
-        {/*      <CircularProgress/>*/}
-        {/*    </div>*/}
-        {/*  )}*/}
-        {/*</div>*/}
+        
         
         <div
           className={
@@ -206,21 +170,9 @@ const GalleryLayout = (props) => {
                 <div className='w-24 mb-4 border border-gray-300 rounded-md relative mx-4'>
                   <img
                     className='w-full h-24 object-contain'
-                    // src={
-                    //   window.location.origin +
-                    //   "/api/image/view/" +
-                    //   element.filename
-                    // }
                     src={element}
                     alt='imgList'
                   />
-                  {/* <img
-                   class="w-full h-24 object-contain"
-                   src={
-                   "http://localhost:5000/api/image/view/" + element.filename
-                   }
-                   alt="imgList"
-                   /> */}
                   <MdCancel
                     onClick={() => removeImg(index)}
                     size={24}
@@ -255,6 +207,11 @@ const GalleryLayout = (props) => {
           <p id="parent-modal-description mb-4">
             원하는 이미지 주소를 구글 드라이브에서 복사해서 붙여넣으세요.
           </p>
+          <div class={"w-full flex"}>
+            <input value={oneLine} placeholder={"one line"} class={"flex-1 border border-purple-300"}
+                   onChange={(e) => setOneLine(e.target.value)}/>
+            <button onClick={convert}>로드</button>
+          </div>
           <div class={"w-full flex justify-center my-4"}>
             <button
               className='ext-sm outline-none w-full cursor-pointer px-0 md:px-8 py-1 justify-center border border-purple-300 bg-purple-300 text-white flex flex-row items-center hover:bg-purple-500 hover:text-white hover:font-bold'
@@ -265,7 +222,6 @@ const GalleryLayout = (props) => {
           <div class={"mb-8 auto max-h-60 overflow-y-scroll"}>
             {
               info.imageUrlList.map((element, index) => {
-                console.log(index, element);
                 return <div class={"flex flex-row gap-1"}>
                   <div class={"w-10 flex justify-center items-center mb-4 font-bold"}>{index}</div>
                   <input type={"text"}

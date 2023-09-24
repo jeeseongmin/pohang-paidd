@@ -135,28 +135,11 @@ const GalleryDetail = (props) => {
               {info.convertedImageUrlList.map((element, index) => {
                 return (
                   <div class="w-1/2 flex justify-center items-center my-4">
-                    {/*<img*/}
-                    {/*  class="w-full object-cover"*/}
-                    {/*  src={*/}
-                    {/*    window.location.origin +*/}
-                    {/*    "/api/image/view/" +*/}
-                    {/*    element.filename*/}
-                    {/*  }*/}
-                    {/*  alt="img"*/}
-                    {/*/>  */}
                     <img
                       class="w-full object-cover"
                       src={element}
                       alt="img"
                     />
-                    {/* <img
-                     class="w-full object-cover"
-                     src={
-                     "http://localhost:5000/api/image/view/" +
-                     element.filename
-                     }
-                     alt="img"
-                     /> */}
                   </div>
                 );
               })}
@@ -173,7 +156,7 @@ const GalleryDetail = (props) => {
           <div class="flex justify-between items-center flex-col md:flex-row">
             <Link
               class="w-full md:w-auto cursor-pointer px-16 py-2 justify-center border border-purple-700 text-purple-700 flex flex-row items-center hover:bg-purple-500 hover:text-white hover:font-bold"
-              to={"/organization/gallery/0"}
+              to={updateActionUrl}
               onClick={() =>
                 document.getElementById("scrollRef").scrollTo(0, 0)
               }
@@ -184,7 +167,8 @@ const GalleryDetail = (props) => {
             (currentEmail === "master" || currentEmail === info.type) ? (
               <div class="w-full md:w-auto flex flex-col md:flex-row">
                 <div
-                  onClick={deleteGallery}
+                  // onClick={deleteGallery}
+                  onClick={() => alert("웹사이트 개발중입니다. 포토갤러리를 이용할 수 없습니다. ")}
                   class="w-full md:w-auto my-4 md:my-0 justify-center mr-4 cursor-pointer px-16 py-2 border border-purple-700 text-purple-700 flex flex-row items-center hover:bg-purple-500 hover:text-white hover:font-bold"
                 >
                   삭제하기

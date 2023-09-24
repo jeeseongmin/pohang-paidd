@@ -7,11 +7,13 @@ import Subtitle from "../Subtitle";
 
 const GalleryEdit = (props) => {
   const history = useHistory();
+  // const list = ["https://drive.google.com/file/d/1JghogJncHGb_rpCXqjIeUe_S5NX5gFxA/view?usp=drive_link", "https://drive.google.com/file/d/1-X-NFKgkoNzQA0_6OOFTjEETV5LOhmgO/view?usp=drive_link", "https://drive.google.com/file/d/1SKTBcKnFiccRWuSq3baIU6ACsJPHDPsm/view?usp=drive_link", "https://drive.google.com/file/d/1m7RbujRJUyZUJHfKPOt1l3xbnfmWjVLH/view?usp=drive_link", "https://drive.google.com/file/d/15uNnWRRmD3D-MZzFDdfThZqPUTexTIgq/view?usp=drive_link", "https://drive.google.com/file/d/1Li5C4E2sKVqNXy-_iYwCO0nBE436Jk-p/view?usp=drive_link", "https://drive.google.com/file/d/1OTJHpV7XeFpzAger_JCK473JgAP_qxOU/view?usp=drive_link"];
   const [info, setInfo] = useState({
     title: props.info.title,
     content: props.info.content,
     imgList: props.info.imgList,
-    imageUrlList: props.info.imageUrlList.length > 0 ? props.info.imageUrlList : ["https://drive.google.com/file/d/10TXpxODo1VurfnG-bQ7Ct4Qd-rhlYGN7/view?usp=drive_link", "https://drive.google.com/file/d/1BbMXVDDDvFHkMbzU5gx8tRf1W2BfGh_t/view?usp=drive_link", "https://drive.google.com/file/d/1eI6V-Y9uloDSPWONMx2UV0l_P-S9j0l9/view?usp=drive_link", "https://drive.google.com/file/d/1SMuc7BFUKZSaZFXBSNmj1FYa-KKPQP8x/view?usp=drive_link", "https://drive.google.com/file/d/1pu-zivDwrizFTy7IjiS2iHOSe6Ah1DbR/view?usp=drive_link"]
+    imageUrlList: props.info.imageUrlList.length > 0 ? props.info.imageUrlList : [],
+    convertedImageUrlList: [],
   });
   const [convertedList, setConvertedList] = useState(info.convertedImageUrlList ? info.convertedImageUrlList : []);
   
@@ -50,17 +52,25 @@ const GalleryEdit = (props) => {
   };
   
   const changeImageUrlList = (type, e, index) => {
+    console.log("changeImageUrlList", type, info)
     if (type === "add") {
       const cp = {...info};
-      cp[type] = [...cp[type], ""];
+      console.log(cp, cp["imageUrlList"])
+      const haha = cp.imageUrlList;
+      haha.push("");
+      cp.imageUrlList = haha;
       setInfo(cp);
     } else if (type === "change") {
       const cp = {...info};
-      cp[type][index] = e;
+      cp.imageUrlList[index] = e;
       setInfo(cp);
-    } else if (type === "delete") {
+    } else if (type === "remove") {
       const cp = {...info};
-      cp[type].splice(index, 1);
+      cp.imageUrlList.splice(index, 1);
+      setInfo(cp);
+    } else if (type === "multi") {
+      const cp = {...info};
+      cp.imageUrlList = e;
       setInfo(cp);
     }
   }
@@ -78,7 +88,7 @@ const GalleryEdit = (props) => {
     } else if (info.content === "") {
       alert("내용을 입력해주세요!");
       contentRef.current.focus();
-    } else if (info.imgList.length === 0) {
+    } else if (info.imageUrlList.length === 0) {
       alert("하나 이상의 이미지를 업로드 해주세요.");
     } else if (currentEmail === "master" || currentEmail === info.type) {
       
@@ -108,7 +118,7 @@ const GalleryEdit = (props) => {
           document.getElementById("scrollRef").scrollTo(0, 0);
           
           for (let i = 0; i < deletedList.length; i++) {
-            axios.post("/api/image/delete", {
+            axios.get(`/api/image/delete/${deletedList[i].id}`, {
               name: deletedList[i],
             });
           }
