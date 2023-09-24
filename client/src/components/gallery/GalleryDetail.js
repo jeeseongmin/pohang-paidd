@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import Skeleton from "@material-ui/lab/Skeleton";
 import Subtitle from "../Subtitle";
-import ImageSlideShow from "../slideShow/ImageSlideShow";
 import GalleryEdit from "./GalleryEdit";
 
 const GalleryDetail = (props) => {
@@ -122,34 +121,34 @@ const GalleryDetail = (props) => {
                 </>
               )}
             </div>
-            <div class="w-full px-2 lg:px-8 py-4 flex flex-col justify-end items-center border-t border-gray-300">
-              <ImageSlideShow/>
-            </div>
             {/*<div class="w-full px-2 lg:px-8 py-4 flex flex-col justify-end items-center border-t border-gray-300">*/}
-            {/*  {info.imgList.map((element, index) => {*/}
-            {/*    return (*/}
-            {/*      <div class="w-1/2 flex justify-center items-center my-4">*/}
-            {/*        <img*/}
-            {/*          class="w-full object-cover"*/}
-            {/*          src={*/}
-            {/*            window.location.origin +*/}
-            {/*            "/api/image/view/" +*/}
-            {/*            element.filename*/}
-            {/*          }*/}
-            {/*          alt="img"*/}
-            {/*        />*/}
-            {/*        /!* <img*/}
-            {/*         class="w-full object-cover"*/}
-            {/*         src={*/}
-            {/*         "http://localhost:5000/api/image/view/" +*/}
-            {/*         element.filename*/}
-            {/*         }*/}
-            {/*         alt="img"*/}
-            {/*         /> *!/*/}
-            {/*      </div>*/}
-            {/*    );*/}
-            {/*  })}*/}
+            {/*  <ImageSlideShow/>*/}
             {/*</div>*/}
+            <div class="w-full px-2 lg:px-8 py-4 flex flex-col justify-end items-center border-t border-gray-300">
+              {info.imgList.map((element, index) => {
+                return (
+                  <div class="w-1/2 flex justify-center items-center my-4">
+                    <img
+                      class="w-full object-cover"
+                      src={
+                        window.location.origin +
+                        "/api/image/view/" +
+                        element.filename
+                      }
+                      alt="img"
+                    />
+                    {/* <img
+                     class="w-full object-cover"
+                     src={
+                     "http://localhost:5000/api/image/view/" +
+                     element.filename
+                     }
+                     alt="img"
+                     /> */}
+                  </div>
+                );
+              })}
+            </div>
             <div
               class="w-full h-full px-2 lg:px-8 py-4 flex justify-end items-center border-t border-gray-300">
               <div class="h-full text-base flex-1 pr-4">
