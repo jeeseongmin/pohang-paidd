@@ -11,7 +11,7 @@ const GalleryEdit = (props) => {
     title: props.info.title,
     content: props.info.content,
     imgList: props.info.imgList,
-    imageUrlList: props.info.imageUrlList ? props.info.imageUrlList : ["https://drive.google.com/file/d/1ACI3moFdp_rEbgBYNmxwz_fRGrqkRYPQ/view?usp=drive_link", "https://drive.google.com/file/d/1Hy2XCjZX2IbZEapTUYOS8YbgECyQmiB-/view?usp=drive_link", "https://drive.google.com/file/d/13_2KWbcDUMlznRMXWiYabFGm69b0XNJ1/view?usp=drive_link", "https://drive.google.com/file/d/1bKtpvZBbePXDMw--OTOhQOGW1WOYSMIS/view?usp=drive_link", "https://drive.google.com/file/d/1srykq0TxNlgA9N9lBU8KAwTh0fl7k-kY/view?usp=drive_link", "https://drive.google.com/file/d/1KDdoahEwfeyTgA2Bn5M4Fk0U9toHFiuF/view?usp=drive_link", "https://drive.google.com/file/d/10UZneuCHfulLhWt4K2jLzsGyzlHagJh4/view?usp=drive_link", "https://drive.google.com/file/d/1-G_twgizOl83yulGUsieDpTLiN89D1Sj/view?usp=drive_link", "https://drive.google.com/file/d/1lrSn2TGSzg8eq-948jehBpGQnnPW0Gua/view?usp=drive_link", "https://drive.google.com/file/d/1KlHr_o2ATb4s9j9_q352R67_THf3LCPX/view?usp=drive_link", "https://drive.google.com/file/d/1MbRURVL3-RLGzCEVxUZCXJcJdsqbnHyr/view?usp=drive_link", "https://drive.google.com/file/d/1zMicPlONUUtMel6vb7dotYi-eIViJT4d/view?usp=drive_link", "https://drive.google.com/file/d/1YJIcIy4eaoJ-hoEPWD3UiqKr3v3gBIy_/view?usp=drive_link", "https://drive.google.com/file/d/1iJSArcu6BmMyPformbZ5n6xufbzK5WRm/view?usp=drive_link", "https://drive.google.com/file/d/1tGiALvYMoP85TqftDZTtykf0LpukPVPj/view?usp=drive_link"]
+    imageUrlList: props.info.imageUrlList.length > 0 ? props.info.imageUrlList : ["https://drive.google.com/file/d/10TXpxODo1VurfnG-bQ7Ct4Qd-rhlYGN7/view?usp=drive_link", "https://drive.google.com/file/d/1BbMXVDDDvFHkMbzU5gx8tRf1W2BfGh_t/view?usp=drive_link", "https://drive.google.com/file/d/1eI6V-Y9uloDSPWONMx2UV0l_P-S9j0l9/view?usp=drive_link", "https://drive.google.com/file/d/1SMuc7BFUKZSaZFXBSNmj1FYa-KKPQP8x/view?usp=drive_link", "https://drive.google.com/file/d/1pu-zivDwrizFTy7IjiS2iHOSe6Ah1DbR/view?usp=drive_link"]
   });
   const [convertedList, setConvertedList] = useState(info.convertedImageUrlList ? info.convertedImageUrlList : []);
   
@@ -36,11 +36,13 @@ const GalleryEdit = (props) => {
   }
   
   const changeInfo = (e, type) => {
+    console.log(e, type);
     if (type === "imgList" || type === "imageUrlList") {
       const cp = {...info};
       cp[type] = e;
       setInfo(cp);
     } else {
+      console.log("e.target.value", e.target.value)
       const cp = {...info};
       cp[type] = e.target.value;
       setInfo(cp);
