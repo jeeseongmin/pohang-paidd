@@ -14,15 +14,17 @@ const GalleryWrite = (props) => {
     content: "",
     imgList: [],
     date: "",
+    imageUrlList: [],
   });
   const titleRef = useRef(null);
   const contentRef = useRef(null);
+  const [convertedList, setConvertedList] = useState(info.imageUrlList ? info.imageUrlList : []);
   
   const currentEmail = useSelector((state) => state.setting.currentEmail);
   const [createActionUrl, setCreateActionUrl] = useState(props.type === "organization" ? "/organization/gallery/0" : `/business/${info.type}/gallery`);
   
   const changeInfo = (e, type) => {
-    if (type === "imgList") {
+    if (type === "imgList" || type === "imageUrlList") {
       const cp = {...info};
       cp[type] = e;
       setInfo(cp);

@@ -10,7 +10,11 @@ const fs = require("fs");
 require("dotenv").config();
 
 const app = express();
-const port = process.env.PORT || 8080;
+// cafe24 업로드 용
+const port = process.env.PORT || 5000;
+
+// const port = process.env.PORT || 8080;
+// const port = 8001;
 
 // const HTTP_PORT = 8443;
 // const HTTPS_PORT = 5000;
@@ -58,10 +62,15 @@ app.use("/api/volunteer", volunteerRouter);
 app.use("/api/image", imageRouter);
 app.use("/api/file", fileRouter);
 
-app.use(express.static(path.join(__dirname, "./client/build")));
+// app.use(express.static(path.join(__dirname, "./client/build")));
+
+// cafe24 업로드용
+app.use(express.static(path.join(__dirname, "./build")));
 
 app.get("*", function (req, res) {
-  res.sendFile(path.join(__dirname, "./client/build/index.html"));
+  // res.sendFile(path.join(__dirname, "./client/build/index.html"));
+  // cafe24 업로드용
+  res.sendFile(path.join(__dirname, "./build/index.html"));
 });
 
 app.listen(port, () => {
