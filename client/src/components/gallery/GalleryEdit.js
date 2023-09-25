@@ -15,7 +15,7 @@ const GalleryEdit = (props) => {
     imageUrlList: props.info.imageUrlList.length > 0 ? props.info.imageUrlList : [],
     convertedImageUrlList: [],
   });
-  const [convertedList, setConvertedList] = useState(info.convertedImageUrlList ? info.convertedImageUrlList : []);
+  // const [convertedList, setConvertedList] = useState(info.convertedImageUrlList ? info.convertedImageUrlList : []);
   
   const id = props.id;
   const pages = props.pages;
@@ -34,17 +34,17 @@ const GalleryEdit = (props) => {
       const fileToken = item.split("/file/d/")[1].split("/view")[0];
       return `https://drive.google.com/uc?id=${fileToken}`;
     })
-    setConvertedList(converted);
+    const cp = {...info};
+    cp.convertedImageUrlList = converted;
+    setInfo(cp);
   }
   
   const changeInfo = (e, type) => {
-    console.log(e, type);
     if (type === "imgList" || type === "imageUrlList") {
       const cp = {...info};
       cp[type] = e;
       setInfo(cp);
     } else {
-      console.log("e.target.value", e.target.value)
       const cp = {...info};
       cp[type] = e.target.value;
       setInfo(cp);
@@ -52,10 +52,8 @@ const GalleryEdit = (props) => {
   };
   
   const changeImageUrlList = (type, e, index) => {
-    console.log("changeImageUrlList", type, info)
     if (type === "add") {
       const cp = {...info};
-      console.log(cp, cp["imageUrlList"])
       const haha = cp.imageUrlList;
       haha.push("");
       cp.imageUrlList = haha;
@@ -67,6 +65,7 @@ const GalleryEdit = (props) => {
     } else if (type === "remove") {
       const cp = {...info};
       cp.imageUrlList.splice(index, 1);
+      cp.convertedImageUrlList.splice(index, 1);
       setInfo(cp);
     } else if (type === "multi") {
       const cp = {...info};
@@ -103,7 +102,7 @@ const GalleryEdit = (props) => {
             content: info.content,
             imgList: info.imgList,
             imageUrlList: info.imageUrlList,
-            convertedImageUrlList: convertedList,
+            convertedImageUrlList: info.convertedImageUrlList,
           },
           {
             headers: {
@@ -139,7 +138,7 @@ const GalleryEdit = (props) => {
         contentRef={contentRef}
         changeInfo={changeInfo}
         changeImageUrlList={changeImageUrlList}
-        convertedList={convertedList}
+        // convertedList={convertedList}
         deletePhoto={deletePhoto}
         info={info}
         isEdit={true}
@@ -148,7 +147,7 @@ const GalleryEdit = (props) => {
       <div class="flex justify-between items-center flex-col md:flex-row">
         <Link
           class="w-full md:w-auto cursor-pointer mb-4 md:mb-0 px-16 py-2 justify-center border border-purple-700 text-purple-700 flex flex-row items-center hover:bg-purple-500 hover:text-white hover:font-bold"
-          to={"/organization/gallery/0"}
+          to={props.updateActionUrl}
           onClick={() => document.getElementById("scrollRef").scrollTo(0, 0)}
         >
           뒤로 가기

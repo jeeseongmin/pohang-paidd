@@ -5,6 +5,40 @@ import axios from "axios";
 import Skeleton from "@material-ui/lab/Skeleton";
 import Subtitle from "../Subtitle";
 import GalleryEdit from "./GalleryEdit";
+import Slider from "react-slick";
+
+function SampleNextArrow(props) {
+  const {className, style, onClick} = props;
+  return (
+    <div
+      className={className}
+      style={{
+        ...style,
+        display: "block",
+        color: "black",
+        background: "black",
+        borderRadius: "100%",
+        paddingTop: "1px"
+      }}
+      onClick={onClick}
+    />
+  );
+}
+
+function SamplePrevArrow(props) {
+  const {className, style, onClick} = props;
+  return (
+    <div
+      className={className}
+      style={{
+        ...style, display: "block", background: "black",
+        borderRadius: "100%",
+        paddingTop: "1px"
+      }}
+      onClick={onClick}
+    />
+  );
+}
 
 const GalleryDetail = (props) => {
   const pages = props.pages;
@@ -30,7 +64,6 @@ const GalleryDetail = (props) => {
   const [updateActionUrl, setUpdateActionUrl] = useState(props.type === "organization" ? "/organization/gallery/0" : `/business/${pages}/gallery`);
   
   useEffect(() => {
-    console.log("updateActionUrl", updateActionUrl, pages)
   }, [updateActionUrl])
   useEffect(() => {
     document.getElementById("scrollRef").scrollTo(0, 0);
@@ -109,6 +142,37 @@ const GalleryDetail = (props) => {
     document.getElementById("scrollRef").scrollTo(0, 0);
   };
   
+  // const settings = {
+  //   dots: true,
+  //   fade: true,
+  //   infinite: true,
+  //   speed: 500,
+  //   slidesToShow: 1,
+  //   slidesToScroll: 1,
+  //   nextArrow: <SampleNextArrow/>,
+  //   prevArrow: <SamplePrevArrow/>
+  //
+  // };
+  
+  const settings = {
+    customPaging: function (i) {
+      return (
+        <a>
+          <img style={{width: "50px"}} src={info.convertedImageUrlList[i]}/>
+        </a>
+      );
+    },
+    dots: true,
+    dotsClass: "slick-dots slick-thumb",
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    nextArrow: <SampleNextArrow/>,
+    prevArrow: <SamplePrevArrow/>
+    
+  };
+  
   return (
     <>
       {!isEdit ? (
@@ -131,21 +195,40 @@ const GalleryDetail = (props) => {
             {/*<div class="w-full px-2 lg:px-8 py-4 flex flex-col justify-end items-center border-t border-gray-300">*/}
             {/*  <ImageSlideShow/>*/}
             {/*</div>*/}
-            <div class="w-full px-2 lg:px-8 py-4 flex flex-col justify-end items-center border-t border-gray-300">
-              {info.convertedImageUrlList.map((element, index) => {
-                return (
-                  <div class="w-1/2 flex justify-center items-center my-4">
-                    <img
-                      class="w-full object-cover"
-                      src={element}
-                      alt="img"
-                    />
-                  </div>
-                );
-              })}
+            {/*<div class="w-full px-2 lg:px-8 py-4 flex flex-col justify-end items-center border-t border-gray-300">*/}
+            {/*  {info.convertedImageUrlList.map((element, index) => {*/}
+            {/*    return (*/}
+            {/*      <div class="w-1/2 flex justify-center items-center my-4">*/}
+            {/*        <img*/}
+            {/*          class="w-full object-cover"*/}
+            {/*          src={element}*/}
+            {/*          alt="img"*/}
+            {/*        />*/}
+            {/*      </div>*/}
+            {/*    );*/}
+            {/*  })}*/}
+            {/*</div>*/}
+            <div class={"w-full flex justify-center border-t border-gray-300 "}>
+              <div className={"h-full mt-36 mb-12"} style={{marginTop: "36px", width: "30rem"}}>
+                <Slider {...settings}>
+                  {info.convertedImageUrlList.map((element, index) => {
+                    return (
+                      <div
+                        class={info.convertedImageUrlList.length > 16 ? "mb-12" : "mb-4"}>
+                        <img
+                          class="h-96"
+                          style={{width: "30rem"}}
+                          src={element}
+                          alt="img"
+                        />
+                      </div>
+                    );
+                  })}
+                </Slider>
+              </div>
             </div>
             <div
-              class="w-full h-full px-2 lg:px-8 py-4 flex justify-end items-center border-t border-gray-300">
+              class="mt-24 w-full h-full px-2 lg:px-8 py-4 flex justify-end items-center ">
               <div class="h-full text-base flex-1 pr-4">
 								<textarea value={info.content}
                           className={"w-full resize-none h-48 border-none outline-none leading-8"}

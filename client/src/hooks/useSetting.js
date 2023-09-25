@@ -2,11 +2,10 @@ import { useEffect, useState } from "react";
 
 function useSetting(type) {
   const [setting, setSetting] = useState(null);
-  console.log("setting!", setting);
   useEffect(() => {
     return init();
   }, []);
-
+  
   const init = async () => {
     console.log("init", type);
     if (type === "business") {
@@ -30,7 +29,7 @@ function useSetting(type) {
     }
     return [setting, setSetting];
   };
-
+  
   return [setting, setSetting];
 }
 
