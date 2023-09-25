@@ -35,7 +35,6 @@ const GalleryLayout = (props) => {
   const [oneLine, setOneLine] = useState("");
   const convert = () => {
     const test = oneLine.split(",").map((item) => item.trim())
-    console.log("test", test);
     changeImageUrlList("multi", test, "");
   }
   
@@ -106,21 +105,22 @@ const GalleryLayout = (props) => {
   };
   
   const removeImg = async (index) => {
-    if (isEdit) {
-      const cp = [...info.imgList];
-      const name = cp[index];
-      deletePhoto(name);
-      
-      cp.splice(index, 1);
-      await changeInfo(cp, "imgList");
-    } else {
-      const cp = [...info.imgList];
-      const id = cp[index].id;
-      cp.splice(index, 1);
-      changeInfo(cp, "imgList");
-      
-      await axios.get("/api/image/delete/" + id);
-    }
+    // if (isEdit) {
+    //   const cp = [...info.imgList];
+    //   const name = cp[index];
+    //   deletePhoto(name);
+    //   cp.splice(index, 1);
+    //   await changeInfo(cp, "imgList");
+    // } else {
+    //   const cp = [...info.imgList];
+    //   const id = cp[index].id;
+    //   cp.splice(index, 1);
+    //   changeInfo(cp, "imgList");
+    //
+    //   await axios.get("/api/image/delete/" + id);
+    // }
+    
+    changeImageUrlList("remove", "", index);
   };
   
   return (
@@ -144,12 +144,12 @@ const GalleryLayout = (props) => {
           name='img'
           onChange={onChange}
         />
-        <div class='w-full my-4 flex flex-row justify-between items-center'>
-          <h1 class='text-lg font-bold'>이미지 업로드하기</h1>
+        <div class='w-full my-4 flex flex-row justify-center items-center'>
+          {/*<h1 class='text-lg font-bold'>이미지 업로드하기</h1>*/}
           <button
-            class='text-sm outline-none w-full md:w-auto cursor-pointer px-0 md:px-8 py-1 justify-center border border-purple-300 bg-purple-300 text-white flex flex-row items-center hover:bg-purple-500 hover:text-white hover:font-bold'
+            class='text-sm outline-none w-full md:w-60 cursor-pointer px-0 md:px-8 py-1 justify-center border border-purple-300 bg-purple-300 text-white flex flex-row items-center hover:bg-purple-500 hover:text-white hover:font-bold'
             onClick={handleOpen}>
-            이미지 리스트 관리
+            이미지 업로드하기
           </button>
         </div>
         <div class='w-full my-4 flex flex-row justify-between items-center'>
@@ -162,10 +162,10 @@ const GalleryLayout = (props) => {
             "w-full border-2 border-gray-300 px-4 py-4 mb-2 flex flex-wrap " +
             (loading ? "text-center" : "")
           }>
-          {props.convertedList.length === 0 && loading ? (
+          {info.convertedImageUrlList.length === 0 && loading ? (
             <div className='text-gray-500'>업로드된 이미지가 없습니다.</div>
           ) : loading ? (
-            props.convertedList.map((element, index) => {
+            info.convertedImageUrlList.map((element, index) => {
               return (
                 <div className='w-24 mb-4 border border-gray-300 rounded-md relative mx-4'>
                   <img
