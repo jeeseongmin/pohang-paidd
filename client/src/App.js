@@ -8,7 +8,7 @@ import Organization from "./pages/organization";
 import Participation from "./pages/participation/index";
 import Local from "./pages/local/index";
 import Admin from "./pages/admin/index";
-import EditAdmin from "./pages/admin/editAdmin";
+import EditAdmin from "./pages/admin/EditAdmin";
 import Sidebar from "./components/Navbar/Sidebar";
 import {
   setCurrentEmail,
@@ -18,6 +18,7 @@ import {
   setSidebar,
   setSubmenu,
 } from "./reducers/setting";
+import BusinessManagement from "./pages/admin/management/BusinessManagement";
 
 const Routes = ({match}) => {
   const dispatch = useDispatch();
@@ -86,6 +87,7 @@ const Routes = ({match}) => {
           <switch>
             <Route exact path="/admin" component={Admin}/>
             <Route exact path="/admin/edit" component={EditAdmin}/>
+            <Route exact path="/admin/management/business" component={BusinessManagement}/>
             <Route path="/local" component={Local}/>
             <Route path="/introduce/:pages" component={Introduce}/>
             <Route path="/business/:pages/:type" component={Business}/>

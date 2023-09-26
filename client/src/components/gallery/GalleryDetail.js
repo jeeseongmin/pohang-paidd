@@ -158,7 +158,7 @@ const GalleryDetail = (props) => {
     customPaging: function (i) {
       return (
         <a>
-          <img style={{width: "50px"}} src={info.convertedImageUrlList[i]}/>
+          <img style={{width: "100px"}} src={info.convertedImageUrlList[i]}/>
         </a>
       );
     },
@@ -228,7 +228,7 @@ const GalleryDetail = (props) => {
               </div>
             </div>
             <div
-              class="mt-24 w-full h-full px-2 lg:px-8 py-4 flex justify-end items-center ">
+              class="mt-24 w-full h-full px-2 lg:px-8 py-4 flex justify-end items-center border-t-2 border-gray-200">
               <div class="h-full text-base flex-1 pr-4">
 								<textarea value={info.content}
                           className={"w-full resize-none h-48 border-none outline-none leading-8"}
