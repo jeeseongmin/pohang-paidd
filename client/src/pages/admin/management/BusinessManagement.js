@@ -4,48 +4,7 @@ import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { setCurrentPassword, } from "../../../reducers/setting";
 import Layout from "../../../components/Layout";
-import { alpha, Divider, Menu, MenuItem, styled } from "@mui/material";
-
-const StyledMenu = styled((props) => (
-  <Menu
-    elevation={0}
-    anchorOrigin={{
-      vertical: 'bottom',
-      horizontal: 'right',
-    }}
-    transformOrigin={{
-      vertical: 'top',
-      horizontal: 'right',
-    }}
-    {...props}
-  />
-))(({theme}) => ({
-  '& .MuiPaper-root': {
-    borderRadius: 6,
-    marginTop: theme.spacing(1),
-    minWidth: 180,
-    color:
-      theme.palette.mode === 'light' ? 'rgb(55, 65, 81)' : theme.palette.grey[300],
-    boxShadow:
-      'rgb(255, 255, 255) 0px 0px 0px 0px, rgba(0, 0, 0, 0.05) 0px 0px 0px 1px, rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px',
-    '& .MuiMenu-list': {
-      padding: '4px 0',
-    },
-    '& .MuiMenuItem-root': {
-      '& .MuiSvgIcon-root': {
-        fontSize: 18,
-        color: theme.palette.text.secondary,
-        marginRight: theme.spacing(1.5),
-      },
-      '&:active': {
-        backgroundColor: alpha(
-          theme.palette.primary.main,
-          theme.palette.action.selectedOpacity,
-        ),
-      },
-    },
-  },
-}));
+import Select from "react-select";
 
 const BusinessManagement = () => {
   const history = useHistory();
@@ -54,7 +13,7 @@ const BusinessManagement = () => {
   const emailRef = useRef(null);
   const passwordRef = useRef(null);
   const newPasswordRef = useRef(null);
-  const [selected, setSelected] = useState("org1");
+  const [selectedValue, setSelectedValue] = useState("org1");
   
   const currentEmail = useSelector((state) => state.setting.currentEmail);
   const currentPassword = useSelector((state) => state.setting.currentPassword);
@@ -145,6 +104,13 @@ const BusinessManagement = () => {
     }
   }
   
+  const options = [
+    {value: 'org1', label: '포항시지적장애인자립지원센터'},
+    {value: 'org2', label: '장애인활동지원사업'},
+    {value: 'org3', label: '방과후활동서비스사업'},
+    {value: 'business1', label: '늘사랑주간보호센터'}
+  ]
+  
   return (
     <Layout>
       <div class="w-full h-full flex flex-col">
@@ -154,31 +120,37 @@ const BusinessManagement = () => {
           </div>
         </div>
         
-        <div class="flex-1 flex justify-center items-center py-8 border border-black">
-          <div class={"flex flex-row"}>
-            <StyledMenu
-              id="demo-customized-menu"
-              MenuListProps={{
-                'aria-labelledby': 'demo-customized-button',
-              }}
-              // anchorEl={anchorEl}
-              // open={open}
-              // onClose={handleClose}
-            >
-              <MenuItem disableRipple>
-                Edit
-              </MenuItem>
-              <MenuItem disableRipple>
-                Duplicate
-              </MenuItem>
-              <Divider sx={{my: 0.5}}/>
-              <MenuItem disableRipple>
-                Archive
-              </MenuItem>
-              <MenuItem disableRipple>
-                More
-              </MenuItem>
-            </StyledMenu></div>
+        <div class="flex-1 flex justify-center items-center py-8 ">
+          <div class={"w-full flex flex-col px-5 py-2 2xl:px-36 xl:px-32 md:px-8 lg:py-2"}>
+            <Select className="basic-single w-96 outline-none mb-6"
+                    classNamePrefix="select"
+                    style={{width: "36px"}}
+                    onChange={(e) => setSelectedValue(e.value)}
+                    value={options.filter(function (option) {
+                      return option.value === selectedValue;
+                    })}
+                    options={options}/>
+            <div class={"w-full"}>
+              {/* 사업 현황 */}
+              <div class={"border border-gray-300"}>
+                <div class={"flex flex-row justify-between items-center mb-4"}>
+                  <span class={"font-bold text-2xl"}>사업 현황</span>
+                  <button
+                    className="w-full md:w-auto cursor-pointer justify-center transition delay-50 duration-300 px-16 py-2 border border-purple-700 text-purple-700 flex flex-row items-center hover:bg-purple-500 hover:text-white hover:font-bold "
+                  >
+                    추가하기
+                  </button>
+                </div>
+                <div>
+                  내용입니다.
+                </div>
+              </div>
+              {/* 이용안내 */}
+              <div></div>
+              {/* 직원현황 */}
+              <div></div>
+            </div>
+          </div>
         </div>
       </div>
     </Layout>
