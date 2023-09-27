@@ -1,9 +1,51 @@
 import React, { useEffect, useRef, useState } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { setCurrentPassword, } from "../../../reducers/setting";
 import Layout from "../../../components/Layout";
+import { alpha, Divider, Menu, MenuItem, styled } from "@mui/material";
+
+const StyledMenu = styled((props) => (
+  <Menu
+    elevation={0}
+    anchorOrigin={{
+      vertical: 'bottom',
+      horizontal: 'right',
+    }}
+    transformOrigin={{
+      vertical: 'top',
+      horizontal: 'right',
+    }}
+    {...props}
+  />
+))(({theme}) => ({
+  '& .MuiPaper-root': {
+    borderRadius: 6,
+    marginTop: theme.spacing(1),
+    minWidth: 180,
+    color:
+      theme.palette.mode === 'light' ? 'rgb(55, 65, 81)' : theme.palette.grey[300],
+    boxShadow:
+      'rgb(255, 255, 255) 0px 0px 0px 0px, rgba(0, 0, 0, 0.05) 0px 0px 0px 1px, rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px',
+    '& .MuiMenu-list': {
+      padding: '4px 0',
+    },
+    '& .MuiMenuItem-root': {
+      '& .MuiSvgIcon-root': {
+        fontSize: 18,
+        color: theme.palette.text.secondary,
+        marginRight: theme.spacing(1.5),
+      },
+      '&:active': {
+        backgroundColor: alpha(
+          theme.palette.primary.main,
+          theme.palette.action.selectedOpacity,
+        ),
+      },
+    },
+  },
+}));
 
 const BusinessManagement = () => {
   const history = useHistory();
@@ -12,6 +54,7 @@ const BusinessManagement = () => {
   const emailRef = useRef(null);
   const passwordRef = useRef(null);
   const newPasswordRef = useRef(null);
+  const [selected, setSelected] = useState("org1");
   
   const currentEmail = useSelector((state) => state.setting.currentEmail);
   const currentPassword = useSelector((state) => state.setting.currentPassword);
@@ -110,55 +153,32 @@ const BusinessManagement = () => {
             <h1 class="text-4xl">사업 관리</h1>
           </div>
         </div>
-        <div class="flex-1 flex justify-center items-center py-8">
-          <div class="w-auto flex flex-col">
-            <div class="flex flex-row items-center mb-4">
-              <p class="w-32 mr-8 text-lg font-bold">관리자 ID </p>
-              <input
-                ref={emailRef}
-                type="text"
-                class="select-none w-36 md:w-72 px-4 py-2 border- bg-gray-200 border-gray-300 outline-none focus:border-purple-700 "
-                onChange={(e) => changeInfo(e, "email")}
-                placeholder="관리자 ID"
-                value={info.email}
-                disabled={true}
-              />
-            </div>
-            <div class="flex flex-row items-center mb-4">
-              <p class="w-32 mr-8 text-lg font-bold">현재 password </p>
-              <input
-                ref={passwordRef}
-                type="text"
-                class="w-36 md:w-72 px-4 py-2 border-2 border-gray-300 outline-none focus:border-purple-700"
-                onChange={(e) => changeInfo(e, "password")}
-                placeholder="현재 password"
-              />
-            </div>
-            <div class="flex flex-row items-center mb-4">
-              <p class="w-32 mr-8 text-lg font-bold">변경 password</p>
-              <input
-                ref={newPasswordRef}
-                type="text"
-                class="w-36 md:w-72 px-4 py-2 border-2 border-gray-300 outline-none focus:border-purple-700"
-                onChange={(e) => changeInfo(e, "newPassword")}
-                placeholder="변경 password"
-              />
-            </div>
-            <div class="flex flex-row items-center mb-4">
-              <Link
-                to="/"
-                class="cursor-pointer w-full py-2 border border-purple-400 text-purple-400 flex justify-center hover:bg-purple-400 hover:text-white"
-              >
-                홈으로
-              </Link>
-              <div
-                onClick={onEdit}
-                class="cursor-pointer w-full py-2 border border-purple-400 text-purple-400 flex justify-center hover:bg-purple-400 hover:text-white"
-              >
-                변경하기
-              </div>
-            </div>
-          </div>
+        
+        <div class="flex-1 flex justify-center items-center py-8 border border-black">
+          <div class={"flex flex-row"}>
+            <StyledMenu
+              id="demo-customized-menu"
+              MenuListProps={{
+                'aria-labelledby': 'demo-customized-button',
+              }}
+              // anchorEl={anchorEl}
+              // open={open}
+              // onClose={handleClose}
+            >
+              <MenuItem disableRipple>
+                Edit
+              </MenuItem>
+              <MenuItem disableRipple>
+                Duplicate
+              </MenuItem>
+              <Divider sx={{my: 0.5}}/>
+              <MenuItem disableRipple>
+                Archive
+              </MenuItem>
+              <MenuItem disableRipple>
+                More
+              </MenuItem>
+            </StyledMenu></div>
         </div>
       </div>
     </Layout>
