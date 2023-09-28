@@ -104,7 +104,7 @@ const Navbar = () => {
     setModalShow(true);
     dispatch(setMenu(0));
     dispatch(setSubmenu(1));
-    history.push("/admin/management/business");
+    history.push("/admin/management/organization");
   };
   
   const goEditPage = () => {
@@ -262,7 +262,7 @@ const Navbar = () => {
                     onClick={goManagementPage}
                     class="cursor-pointer w-full py-1 border border-purple-400 text-purple-400 flex justify-center transition delay-50 duration-300 hover:bg-purple-400 hover:text-white"
                   >
-                    사업 관리
+                    기관 관리
                   </div>
                   <div
                     onClick={goEditPage}

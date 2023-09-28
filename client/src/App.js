@@ -18,7 +18,7 @@ import {
   setSidebar,
   setSubmenu,
 } from "./reducers/setting";
-import BusinessManagement from "./pages/admin/management/BusinessManagement";
+import OrganizationManagement from "./pages/admin/management/OrganizationManagement";
 
 const Routes = ({match}) => {
   const dispatch = useDispatch();
@@ -87,7 +87,7 @@ const Routes = ({match}) => {
           <switch>
             <Route exact path="/admin" component={Admin}/>
             <Route exact path="/admin/edit" component={EditAdmin}/>
-            <Route exact path="/admin/management/business" component={BusinessManagement}/>
+            <Route exact path="/admin/management/organization" component={OrganizationManagement}/>
             <Route path="/local" component={Local}/>
             <Route path="/introduce/:pages" component={Introduce}/>
             <Route path="/business/:pages/:type" component={Business}/>
