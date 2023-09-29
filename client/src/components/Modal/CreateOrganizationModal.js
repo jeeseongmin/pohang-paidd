@@ -60,7 +60,7 @@ const CreateOrganizationModal = ({onClose}) => {
         {대상자: "포항시에 사는 발달장애인 (나이: 20세~60세까지"},
         {이용시간: "평일 09:30 ~ 16:30"},
         {이용료: "월 250,000원 (중식비/교통비 포함)"},
-        {이용절차: "image:: + https://drive.google.com/file/d/1wTFtGOKq75_hhh-DNw3jPgs-ffTgA14x/view?usp=sharing"}
+        {이용절차: "image::https://drive.google.com/file/d/1wTFtGOKq75_hhh-DNw3jPgs-ffTgA14x/view?usp=sharing"}
       ]
     }
   ]);

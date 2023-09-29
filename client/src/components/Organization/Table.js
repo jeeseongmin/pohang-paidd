@@ -47,7 +47,7 @@ const Table = ({type, index, name, contents, tables, setTables}) => {
         <div
           className='px-2 lg:px-8 py-3 flex flex-row justify-start items-center border-b-2 border-purple-700'>
           {/*<div className='text-xl lg:text-2xl text-purple-700'>{name}</div>*/}
-          <input className='text-xl lg:text-2xl text-purple-700' value={name}
+          <input className='border border-purple-500 outline-none text-xl lg:text-2xl text-purple-700' value={name}
                  onChange={(e) => handleChange(e, "name")}/>
         </div>
         {
@@ -62,13 +62,14 @@ const Table = ({type, index, name, contents, tables, setTables}) => {
                 const convertedUrl = ImageUtils.convertGoogleDriveImage(image);
                 return <div
                   className='px-2 lg:px-8 py-3 flex flex-row justify-center items-center border-b border-gray-300'>
-                  <div className='w-1/6'>{key}</div>
-                  <div className='flex-1'>
-                    <img
-                      src={convertedUrl}
-                      alt='img'
-                      className='h-auto xl:h-36 object-cover'
-                    />
+                  <div className='w-1/6 mr-8 border border-gray-300 outline-none'>{key}</div>
+                  <div className='flex-1 border border-gray-300 outline-none'>
+                    {/*<img*/}
+                    {/*  src={convertedUrl}*/}
+                    {/*  alt='img'*/}
+                    {/*  className='h-auto xl:h-36 object-cover'*/}
+                    {/*/>*/}
+                    {value.split("image::")[1]}
                   </div>
                 </div>
               }
@@ -77,10 +78,10 @@ const Table = ({type, index, name, contents, tables, setTables}) => {
                 return <div
                   className='px-2 lg:px-8 py-3 flex flex-row justify-center items-center border-b border-gray-300'>
                   {/*<div className='w-1/6'>{key}</div>*/}
-                  <input className='w-1/6' value={key}
+                  <input className='w-1/6 mr-8 border border-gray-300 outline-none' value={key}
                          onChange={(e) => handleChange(e, "key", _index)}/>
                   {/*<div className='flex-1'>*/}
-                  <input className='flex-1' value={value}
+                  <input className='flex-1 border border-gray-300 outline-none' value={value}
                          onChange={(e) => handleChange(e, "value", _index)}/>
                   {/*<span*/}
                   {/*  className='cursor-pointer underline'*/}
@@ -98,9 +99,9 @@ const Table = ({type, index, name, contents, tables, setTables}) => {
                 className='px-2 lg:px-8 py-3 flex flex-row justify-center items-center border-b border-gray-300'>
                 {/*<div className='w-1/6'>{key}</div>*/}
                 {/*<div className='flex-1'>{value}</div>*/}
-                <input class={"w-1/6"} placeholders={"name"} value={key}
+                <input class={"w-1/6 mr-8 border border-gray-300 outline-none"} placeholders={"name"} value={key}
                        onChange={(e) => handleChange(e, "key", _index)}/>
-                <input class={"flex-1"} placeholders={"content"} value={value}
+                <input class={"flex-1 border border-gray-300 outline-none"} placeholders={"content"} value={value}
                        onChange={(e) => handleChange(e, "value", _index)}/>
               </div>
             }
