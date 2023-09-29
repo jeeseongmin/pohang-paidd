@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Box, Modal, TextField } from "@mui/material";
+import Table from "../Organization/Table";
 
 const style = {
   position: 'absolute',
@@ -41,8 +42,47 @@ const CreateOrganizationModal = ({onClose}) => {
     //   "전화번호" : "054-253-9500",
     //   "업무내용" : ["", "", "", ""]
     // }]
-    
   });
+  
+  const [tables, setTables] = useState([
+    {
+      시설현황: [
+        {기관명: "늘사랑보호주간센터"},
+        {센터장: "우숙경"},
+        {사업개시일: "2002.07.01"},
+        {전화: "054)244-9577"},
+        {팩스: "054)254-9588"},
+        {블로그: "https://cafe.daum.net/phaeho"},
+      ]
+    },
+    {
+      이용안내: [
+        {대상자: "포항시에 사는 발달장애인 (나이: 20세~60세까지"},
+        {이용시간: "평일 09:30 ~ 16:30"},
+        {이용료: "월 250,000원 (중식비/교통비 포함)"},
+        {이용절차: "image:: + https://drive.google.com/file/d/1wTFtGOKq75_hhh-DNw3jPgs-ffTgA14x/view?usp=sharing"}
+      ]
+    }
+  ]);
+  
+  const [employees, setEmployees] = useState([{
+    "직위": "관리책임자",
+    "성명": "김옥희",
+    "전화번호": "054-254-9500",
+    "업무내용": ["", "", "", ""]
+  }]);
+  
+  const addRow = (name) => {
+    const cp = [...tables].map((item) => {
+      if (Object.keys(item)[0] === name) {
+        return {
+          [name]: [...item[name], {"이름": "설명"}]
+        }
+      } else return item;
+    })
+    setTables(cp);
+  }
+  
   return (
     <Modal
       open={true}
@@ -68,6 +108,22 @@ const CreateOrganizationModal = ({onClose}) => {
           </button>
           <div className={"w-full"}>
             <div>
+              {
+                tables.map((item, index) => {
+                  const name = Object.keys(item)[0];
+                  console.log(item, name);
+                  return <div class={"mb-16"}>
+                    <Table key={index} type={"create"} index={index} name={name} contents={item[name]} tables={tables}
+                           setTables={setTables}/>
+                    <div
+                      onClick={() => addRow(name)}
+                      className='px-2 lg:px-8 py-3 flex flex-row justify-center items-center border-b border-gray-300 bg-gray-200 text-center font-bold hover:bg-gray-300 transition delay-100 duration-100 cursor-pointer'>
+                      {/*<div className='w-1/6'>{key}</div>*/}
+                      <div className='flex-1'>추가</div>
+                    </div>
+                  </div>
+                })
+              }
               <div className='mb-16 text-sm lg:text-base'>
                 <div
                   className='px-2 lg:px-8 py-3 flex flex-row justify-start items-center border-b-2 border-purple-700'>
@@ -102,12 +158,12 @@ const CreateOrganizationModal = ({onClose}) => {
                   className='px-2 lg:px-8 py-3 flex flex-row justify-center items-center border-b border-gray-300'>
                   <div className='w-1/6'>블로그</div>
                   <div className='flex-1'>
-            <span
-              className='cursor-pointer underline'
-              // onClick={() => moveUrl("https://cafe.daum.net/phaeho")}
-            >
-              https://cafe.daum.net/phaeho
-            </span>
+                  <span
+                    className='cursor-pointer underline'
+                    // onClick={() => moveUrl("https://cafe.daum.net/phaeho")}
+                  >
+                    https://cafe.daum.net/phaeho
+                  </span>
                   </div>
                 </div>
               </div>

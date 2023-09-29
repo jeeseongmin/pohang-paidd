@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import axios from "axios";
 import GalleryLayout from "./GalleryLayout";
 import Subtitle from "../Subtitle";
+import { ImageUtils } from "../../utils/ImageUtils";
 
 const GalleryEdit = (props) => {
   const history = useHistory();
@@ -31,8 +32,7 @@ const GalleryEdit = (props) => {
   const convertImageUrl = () => {
     const urlList = [...info.imageUrlList];
     const converted = urlList.map((item) => {
-      const fileToken = item.split("/file/d/")[1].split("/view")[0];
-      return `https://drive.google.com/uc?id=${fileToken}`;
+      return ImageUtils.convertGoogleDriveImage(item);
     })
     const cp = {...info};
     cp.convertedImageUrlList = converted;
