@@ -57,7 +57,7 @@ const CreateOrganizationModal = ({onClose}) => {
     },
     {
       이용안내: [
-        {대상자: ["포항시에 사는 발달장애인 (나이: 20세~60세까지"]},
+        {대상자: ["포항시에 사는 발달장애인 (나이: 20세~60세까지)"]},
         {이용시간: ["평일 09:30 ~ 16:30"]},
         {이용료: ["월 250,000원 (중식비/교통비 포함)"]},
         {이용절차: ["https://drive.google.com/file/d/1wTFtGOKq75_hhh-DNw3jPgs-ffTgA14x/view?usp=sharing"]}
@@ -83,6 +83,27 @@ const CreateOrganizationModal = ({onClose}) => {
     setTables(cp);
   }
   
+  const addTable = () => {
+    const _tables = [...tables];
+    _tables.push({
+      "": [
+        {"": [""]},
+      ]
+    })
+    setTables(_tables);
+    focusNew();
+  }
+  
+  const focusNew = () => {
+  }
+  
+  const removeTable = (tableIndex) => {
+    const _tables = [...tables].filter((item, index) => {
+      return index !== tableIndex;
+    })
+    setTables(_tables);
+  }
+  
   return (
     <Modal
       open={true}
@@ -104,6 +125,7 @@ const CreateOrganizationModal = ({onClose}) => {
           <p class={"mb-2"}>- 일반적인 텍스트는 한 줄에 입력해주시고, 여러 줄로 표현해야하는 경우 행을 추가하여 입력해주세요.</p>
           <p class={"mb-2"}>- 링크나 이미지는 url을 입력해주세요.</p>
           <button
+            onClick={() => addTable()}
             className="mb-12 rounded-full w-full md:w-auto cursor-pointer justify-center transition delay-50 duration-300 px-4 py-2 border border-purple-700 text-purple-700 flex flex-row items-center hover:bg-purple-500 hover:text-white hover:font-bold "
           >
             표 추가하기
@@ -111,18 +133,27 @@ const CreateOrganizationModal = ({onClose}) => {
           <div className={"w-full"}>
             <div>
               {
-                tables.map((item, index) => {
+                tables.map((item, tableIndex) => {
                   const name = Object.keys(item)[0];
-                  console.log(item, name);
                   return <div class={"mb-16"}>
-                    <Table key={index} type={"create"} index={index} name={name} contents={item[name]} tables={tables}
-                           setTables={setTables}/>
+                    <Table key={tableIndex} type={"create"} index={tableIndex} name={name} contents={item[name]}
+                           tables={tables}
+                           setTables={setTables} focusNew={focusNew}/>
                     <div
                       onClick={() => addRow(name)}
                       className='px-2 lg:px-8 py-3 flex flex-row justify-center items-center border-b border-gray-300 bg-gray-200 text-center font-bold hover:bg-gray-300 transition delay-100 duration-100 cursor-pointer'>
                       {/*<div className='w-1/6'>{key}</div>*/}
-                      <div className='flex-1'>추가</div>
+                      <div className='flex-1'>컨텐츠 추가</div>
                     </div>
+                    <div class={"flex flex-row justify-end"}>
+                      <button
+                        onClick={() => removeTable(tableIndex)}
+                        
+                        className='mt-4 px-2 lg:px-8 py-3 flex flex-row justify-center items-center border-b border-gray-300 bg-gray-200 text-center font-bold hover:bg-gray-300 transition delay-100 duration-100 cursor-pointer'>
+                        {name} 테이블 삭제
+                      </button>
+                    </div>
+                  
                   </div>
                 })
               }
