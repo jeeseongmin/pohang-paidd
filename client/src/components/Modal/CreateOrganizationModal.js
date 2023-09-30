@@ -47,20 +47,20 @@ const CreateOrganizationModal = ({onClose}) => {
   const [tables, setTables] = useState([
     {
       시설현황: [
-        {기관명: "늘사랑보호주간센터"},
-        {센터장: "우숙경"},
-        {사업개시일: "2002.07.01"},
-        {전화: "054)244-9577"},
-        {팩스: "054)254-9588"},
-        {블로그: "https://cafe.daum.net/phaeho"},
+        {기관명: ["늘사랑보호주간센터"]},
+        {센터장: ["우숙경"]},
+        {사업개시일: ["2002.07.01"]},
+        {전화: ["054)244-9577"]},
+        {팩스: ["054)254-9588"]},
+        {블로그: ["https://cafe.daum.net/phaeho"]},
       ]
     },
     {
       이용안내: [
-        {대상자: "포항시에 사는 발달장애인 (나이: 20세~60세까지"},
-        {이용시간: "평일 09:30 ~ 16:30"},
-        {이용료: "월 250,000원 (중식비/교통비 포함)"},
-        {이용절차: "image::https://drive.google.com/file/d/1wTFtGOKq75_hhh-DNw3jPgs-ffTgA14x/view?usp=sharing"}
+        {대상자: ["포항시에 사는 발달장애인 (나이: 20세~60세까지"]},
+        {이용시간: ["평일 09:30 ~ 16:30"]},
+        {이용료: ["월 250,000원 (중식비/교통비 포함)"]},
+        {이용절차: ["https://drive.google.com/file/d/1wTFtGOKq75_hhh-DNw3jPgs-ffTgA14x/view?usp=sharing"]}
       ]
     }
   ]);
@@ -76,7 +76,7 @@ const CreateOrganizationModal = ({onClose}) => {
     const cp = [...tables].map((item) => {
       if (Object.keys(item)[0] === name) {
         return {
-          [name]: [...item[name], {"이름": "설명"}]
+          [name]: [...item[name], {"": [""]}]
         }
       } else return item;
     })
@@ -101,8 +101,10 @@ const CreateOrganizationModal = ({onClose}) => {
         </div>
         <div>
           <p class={"mb-2"}>기관에 대해 더 자세한 정보를 적을 수 있는 표를 작성합니다.</p>
+          <p class={"mb-2"}>- 일반적인 텍스트는 한 줄에 입력해주시고, 여러 줄로 표현해야하는 경우 행을 추가하여 입력해주세요.</p>
+          <p class={"mb-2"}>- 링크나 이미지는 url을 입력해주세요.</p>
           <button
-            className="rounded-full w-full md:w-auto cursor-pointer justify-center transition delay-50 duration-300 px-4 py-2 border border-purple-700 text-purple-700 flex flex-row items-center hover:bg-purple-500 hover:text-white hover:font-bold "
+            className="mb-12 rounded-full w-full md:w-auto cursor-pointer justify-center transition delay-50 duration-300 px-4 py-2 border border-purple-700 text-purple-700 flex flex-row items-center hover:bg-purple-500 hover:text-white hover:font-bold "
           >
             표 추가하기
           </button>
@@ -124,91 +126,6 @@ const CreateOrganizationModal = ({onClose}) => {
                   </div>
                 })
               }
-              <div className='mb-16 text-sm lg:text-base'>
-                <div
-                  className='px-2 lg:px-8 py-3 flex flex-row justify-start items-center border-b-2 border-purple-700'>
-                  <div className='text-xl lg:text-2xl text-purple-700'>시설현황</div>
-                </div>
-                <div
-                  className='px-2 lg:px-8 py-3 flex flex-row justify-center items-center border-b border-gray-300'>
-                  <div className='w-1/6'>기관명</div>
-                  <div className='flex-1'>늘사랑보호주간센터</div>
-                </div>
-                <div
-                  className='px-2 lg:px-8 py-3 flex flex-row justify-center items-center border-b border-gray-300'>
-                  <div className='w-1/6'>센터장</div>
-                  <div className='flex-1'>우숙경</div>
-                </div>
-                <div
-                  className='px-2 lg:px-8 py-3 flex flex-row justify-center items-center border-b border-gray-300'>
-                  <div className='w-1/6'>사업개시일</div>
-                  <div className='flex-1'>2002.07.01</div>
-                </div>
-                <div
-                  className='px-2 lg:px-8 py-3 flex flex-row justify-center items-center border-b border-gray-300'>
-                  <div className='w-1/6'>전화</div>
-                  <div className='flex-1'>054{")"}244-9577</div>
-                </div>
-                <div
-                  className='px-2 lg:px-8 py-3 flex flex-row justify-center items-center border-b border-gray-300'>
-                  <div className='w-1/6'>팩스</div>
-                  <div className='flex-1'>054{")"}254-9588</div>
-                </div>
-                <div
-                  className='px-2 lg:px-8 py-3 flex flex-row justify-center items-center border-b border-gray-300'>
-                  <div className='w-1/6'>블로그</div>
-                  <div className='flex-1'>
-                  <span
-                    className='cursor-pointer underline'
-                    // onClick={() => moveUrl("https://cafe.daum.net/phaeho")}
-                  >
-                    https://cafe.daum.net/phaeho
-                  </span>
-                  </div>
-                </div>
-              </div>
-              <div className='mb-16 text-sm lg:text-base'>
-                <div
-                  className='px-2 lg:px-8 py-3 flex flex-row justify-start items-center border-b-2 border-purple-700'>
-                  <div className='text-xl lg:text-2xl text-purple-700'>이용안내</div>
-                </div>
-                <div
-                  className='px-2 lg:px-8 py-3 flex flex-row justify-center items-center border-b border-gray-300'>
-                  <div className='w-1/6'>대상자</div>
-                  <div className='flex-1'>
-                    포항시에 사는 발달장애인 (나이 : 20세~60세까지)
-                  </div>
-                </div>
-                <div
-                  className='px-2 lg:px-8 py-3 flex flex-row justify-center items-center border-b border-gray-300'>
-                  <div className='w-1/6'>이용시간</div>
-                  <div className='flex-1'>평일 09:30 ~ 16:30</div>
-                </div>
-                <div
-                  className='px-2 lg:px-8 py-3 flex flex-row justify-center items-center border-b border-gray-300'>
-                  <div className='w-1/6'>이용료</div>
-                  <div className='flex-1'>월 250,000원 (중식비/교통비 포함)</div>
-                </div>
-                <div
-                  className='px-2 lg:px-8 py-3 flex flex-row justify-center items-center border-b border-gray-300'>
-                  <div className='w-1/6'>이용절차</div>
-                  <div className='flex-1'>
-                    <img
-                      src='/image/org-intro-img1.png'
-                      alt='img'
-                      className='h-auto xl:h-36 object-cover'
-                    />
-                    {/* <div class="inline-block">
-                     <div>입소의뢰/접수 ＞ 초기면접 ＞ 입소여부 결정 및 계획</div>
-                     <div class="invisible">＞ 상담 및 타기관 연계</div>
-                     </div>
-                     <div class="inline-block">
-                     <div>＞ 적응기간 (1주) ＞ 입소 및 이용</div>
-                     <div>＞ 상담 및 타기관 연계</div>
-                     </div> */}
-                  </div>
-                </div>
-              </div>
               <div className='mb-16 text-sm lg:text-base'>
                 <div
                   className='px-2 lg:px-8 py-3 flex flex-row justify-start items-center border-b-2 border-purple-700'>

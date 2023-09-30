@@ -133,14 +133,23 @@ const OrganizationManagement = () => {
           
           <div class="flex-1 flex justify-center items-center py-8 ">
             <div class={"w-full flex flex-col px-5 py-2 2xl:px-36 xl:px-32 md:px-8 lg:py-2"}>
-              <Select className="basic-single w-96 outline-none mb-6"
-                      classNamePrefix="select"
-                      style={{width: "36px"}}
-                      onChange={(e) => setSelectedValue(e.value)}
-                      value={options.filter(function (option) {
-                        return option.value === selectedValue;
-                      })}
-                      options={options}/>
+              
+              <div class={"h-12 flex flex-row justify-between"}>
+                <Select className="basic-single w-96 outline-none mb-6"
+                        classNamePrefix="select"
+                        style={{width: "36px"}}
+                        onChange={(e) => setSelectedValue(e.value)}
+                        value={options.filter(function (option) {
+                          return option.value === selectedValue;
+                        })}
+                        options={options}/>
+                <button
+                  onClick={() => setOpenCreateModal(true)}
+                  className="h-10 w-full md:w-auto cursor-pointer justify-center transition delay-50 duration-300 px-4 py-2 border border-purple-700 text-purple-700 flex flex-row items-center hover:bg-purple-500 hover:text-white hover:font-bold "
+                >
+                  기관 추가하기
+                </button>
+              </div>
               <div class={"w-full"}>
                 <div>
                   <div class={"flex flex-row justify-between"}>

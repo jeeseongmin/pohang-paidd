@@ -1,9 +1,8 @@
 import React from 'react';
-import { ImageUtils } from "../../utils/ImageUtils";
 
 const Table = ({type, index, name, contents, tables, setTables}) => {
   
-  const handleChange = (e, type, _index) => {
+  const handleChange = (e, type, _index, textRowIndex) => {
     const target = tables[index][name];
     console.log("hahahahaha", e.target.value, type, target);
     const targetKey = Object.keys(target);
@@ -33,7 +32,7 @@ const Table = ({type, index, name, contents, tables, setTables}) => {
       let _contents = [...contents];
       let _key = Object.keys(_contents[_index])[0];
       console.log("contents ", _contents, _key);
-      _contents[_index][_key] = e.target.value;
+      _contents[_index][_key][textRowIndex] = e.target.value;
       cp[index] = {
         [name]: _contents
       }
@@ -41,6 +40,44 @@ const Table = ({type, index, name, contents, tables, setTables}) => {
     console.log("cp", cp);
     setTables(cp);
   }
+  
+  const addInput = (contentRowIndex) => {
+    let cp = [...tables];
+    let _contents = [...contents];
+    let _key = Object.keys(_contents[contentRowIndex])[0];
+    console.log("contents ", _contents, _key);
+    _contents[contentRowIndex][_key].push("");
+    cp[index] = {
+      [name]: _contents
+    }
+    setTables(cp);
+  }
+  
+  const removeInput = (type, contentRowIndex, textRowIndex) => {
+    if (type === "row") {
+      let cp = [...tables];
+      let _contents = [...contents];
+      let _key = Object.keys(_contents[contentRowIndex])[0];
+      console.log("contents ", _contents, _key);
+      _contents[contentRowIndex][_key] = _contents[contentRowIndex][_key].filter((item, index) => {
+        return index !== textRowIndex;
+      })
+      cp[index] = {
+        [name]: _contents
+      }
+      setTables(cp);
+    } else if (type === "content") {
+      let cp = [...tables];
+      let _contents = [...contents].filter((item, index) => {
+        return index !== contentRowIndex;
+      });
+      cp[index] = {
+        [name]: _contents
+      }
+      setTables(cp);
+    }
+  }
+  
   if (type === "create") {
     return (
       <div className=' text-sm lg:text-base'>
@@ -51,60 +88,41 @@ const Table = ({type, index, name, contents, tables, setTables}) => {
                  onChange={(e) => handleChange(e, "name")}/>
         </div>
         {
-          contents.map((obj, _index) => {
+          contents.map((obj, contentRowIndex) => {
             const key = Object.keys(obj)[0];
             const value = obj[key];
             console.log("key", obj, key, value)
-            if (value.includes("https")) {
-              // 이미지
-              if (value.includes("image::")) {
-                const image = value.split("image::")[1];
-                const convertedUrl = ImageUtils.convertGoogleDriveImage(image);
-                return <div
-                  className='px-2 lg:px-8 py-3 flex flex-row justify-center items-center border-b border-gray-300'>
-                  <div className='w-1/6 mr-8 border border-gray-300 outline-none'>{key}</div>
-                  <div className='flex-1 border border-gray-300 outline-none'>
-                    {/*<img*/}
-                    {/*  src={convertedUrl}*/}
-                    {/*  alt='img'*/}
-                    {/*  className='h-auto xl:h-36 object-cover'*/}
-                    {/*/>*/}
-                    {value.split("image::")[1]}
-                  </div>
-                </div>
-              }
-              // 링크
-              else {
-                return <div
-                  className='px-2 lg:px-8 py-3 flex flex-row justify-center items-center border-b border-gray-300'>
-                  {/*<div className='w-1/6'>{key}</div>*/}
-                  <input className='w-1/6 mr-8 border border-gray-300 outline-none' value={key}
-                         onChange={(e) => handleChange(e, "key", _index)}/>
-                  {/*<div className='flex-1'>*/}
-                  <input className='flex-1 border border-gray-300 outline-none' value={value}
-                         onChange={(e) => handleChange(e, "value", _index)}/>
-                  {/*<span*/}
-                  {/*  className='cursor-pointer underline'*/}
-                  {/*  onClick={() => CommonUtils.moveUrl(value)}*/}
-                  {/*>*/}
-                  {/*  {value}*/}
-                  {/*</span>*/}
-                  {/*  </input>*/}
-                </div>
-              }
-            }
+            
             // 일반 텍스트
-            else {
-              return <div
-                className='px-2 lg:px-8 py-3 flex flex-row justify-center items-center border-b border-gray-300'>
-                {/*<div className='w-1/6'>{key}</div>*/}
-                {/*<div className='flex-1'>{value}</div>*/}
-                <input class={"w-1/6 mr-8 border border-gray-300 outline-none"} placeholders={"name"} value={key}
-                       onChange={(e) => handleChange(e, "key", _index)}/>
-                <input class={"flex-1 border border-gray-300 outline-none"} placeholders={"content"} value={value}
-                       onChange={(e) => handleChange(e, "value", _index)}/>
+            return <div
+              className='px-2 lg:px-8 py-3 flex flex-row justify-center items-center border-b border-gray-300'>
+              {/*<div className='w-1/6'>{key}</div>*/}
+              {/*<div className='flex-1'>{value}</div>*/}
+              <input class={"w-1/6 mr-8 border border-gray-300 outline-none"} placeholders={"name"} value={key}
+                     onChange={(e) => handleChange(e, "key", contentRowIndex)}/>
+              <div class={"flex-1 flex flex-col gap-4 mr-8"}>
+                {
+                  value.map((item, textRowIndex) => {
+                    return <div class={"flex flex-row gap-4"}>
+                      <input className={"flex-1 border border-gray-300 outline-none"} placeholders={"content"}
+                             value={item}
+                             onChange={(e) => handleChange(e, "value", contentRowIndex, textRowIndex)}/>
+                      <button onClick={() => removeInput("row", contentRowIndex, textRowIndex)} class={"font-bold"}>X
+                      </button>
+                    </div>
+                  })
+                }
+                
+                <button onClick={() => addInput(contentRowIndex)}
+                        class={"rounded-full border border-gray-300 bg-gray-200 font-bold"}>행 추가
+                </button>
               </div>
-            }
+              
+              <button onClick={() => removeInput("content", contentRowIndex)}
+                      className={"rounded-full bg-gray-300 w-8 h-8 font-bold"}>X
+              </button>
+            </div>
+            
           })
         }
       </div>
