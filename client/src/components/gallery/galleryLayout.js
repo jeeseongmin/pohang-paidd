@@ -4,6 +4,7 @@ import React, { useRef, useState } from "react";
 import { MdCancel } from "react-icons/md";
 import { useHistory } from "react-router-dom";
 import { Box, Modal } from "@mui/material";
+import { BsArrowDownCircle } from "react-icons/bs";
 
 const style = {
   position: 'absolute',
@@ -34,8 +35,11 @@ const GalleryLayout = (props) => {
   // 임시
   const [oneLine, setOneLine] = useState("");
   const convert = () => {
-    const test = oneLine.split(",").map((item) => item.trim())
-    changeImageUrlList("multi", test, "");
+    if (oneLine !== "") {
+      const test = oneLine.split(",").map((item) => item.trim())
+      changeImageUrlList("multi", test, "");
+      setOneLine("");
+    }
   }
   
   const rowsRef = useRef();
@@ -204,20 +208,23 @@ const GalleryLayout = (props) => {
       >
         <Box sx={{...style, width: 800}}>
           <h1 class={"text-3xl font-bold mb-4"}>이미지 주소 업로드</h1>
-          <p id="parent-modal-description mb-4">
+          <p id="parent-modal-description mb-12">
             원하는 이미지 주소를 구글 드라이브에서 복사해서 붙여넣으세요.
           </p>
-          <div class={"w-full flex"}>
+          <div class={"w-full flex my-4 items-center justify-center"}>
             <input value={oneLine} placeholder={"one line"} class={"flex-1 border border-purple-300"}
                    onChange={(e) => setOneLine(e.target.value)}/>
-            <button onClick={convert}>로드</button>
+            <button class={"w-12 text-purple-300 mx-0 px-0 mb-2 text-sm font-bold"} onClick={convert}>로드</button>
           </div>
-          <div class={"w-full flex justify-center my-4"}>
-            <button
-              className='ext-sm outline-none w-full cursor-pointer px-0 md:px-8 py-1 justify-center border border-purple-300 bg-purple-300 text-white flex flex-row items-center hover:bg-purple-500 hover:text-white hover:font-bold'
-              onClick={addRow}>
-              행 추가
-            </button>
+          {/*<div class={"w-full flex justify-center mt-4"}>*/}
+          {/*  <button*/}
+          {/*    className='ext-sm outline-none w-full cursor-pointer px-0 md:px-8 py-1 justify-center border border-purple-300 bg-purple-300 text-white flex flex-row items-center hover:bg-purple-500 hover:text-white hover:font-bold'*/}
+          {/*    onClick={addRow}>*/}
+          {/*    행 추가*/}
+          {/*  </button>*/}
+          {/*</div>*/}
+          <div class={"w-full flex justify-center items-center mb-4 "}>
+            <BsArrowDownCircle size={24} class={"text-purple-500"}/>
           </div>
           <div class={"mb-8 auto max-h-60 overflow-y-scroll"}>
             {

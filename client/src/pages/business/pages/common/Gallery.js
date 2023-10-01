@@ -153,8 +153,7 @@ const Gallery = (props) => {
         {currentEmail === "master" || currentEmail === type ? (
           <div class='relative md:absolute right-0 w-full md:w-auto flex justify-end md:block'>
             <Link
-              // to={"/business/" + type + "/gallery/write"}
-              onClick={() => alert("웹사이트 개발중입니다. 포토갤러리를 이용할 수 없습니다. ")}
+              to={"/business/" + type + "/gallery/write"}
               class='cursor-pointer px-16 py-2 border border-purple-700 text-purple-700 flex flex-row items-center hover:bg-purple-500 hover:text-white hover:font-bold'>
               작성하기
             </Link>
