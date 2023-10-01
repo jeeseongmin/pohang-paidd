@@ -4,7 +4,6 @@ import CustomTable from "../Organization/CustomTable";
 import { BsArrowDownShort, BsArrowUpShort } from "react-icons/bs";
 import EmployeesTable from "../Organization/EmployeesTable";
 import axios from "axios";
-import { v4 as uuidv4 } from 'uuid';
 
 const style = {
   position: 'absolute',
@@ -154,7 +153,6 @@ const CreateOrganizationModal = ({onClose}) => {
           "/api/organization/add",
           {
             key: process.env.REACT_APP_API_KEY,
-            id: uuidv4(),
             orgId: info.orgId,
             name: info.name,
             path: info.path,

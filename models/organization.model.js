@@ -4,11 +4,6 @@ const Schema = mongoose.Schema;
 
 const organizationSchema = new Schema(
   {
-    // 고유 id
-    id: {
-      type: String,
-      required: true,
-    },
     // 기관 id : ex) org1, org2, org3, org4
     orgId: {
       type: String,
