@@ -98,24 +98,25 @@ const Table = ({type, index, name, contents, tables, setTables}) => {
               className='px-2 lg:px-8 py-3 flex flex-row justify-center items-center border-b border-gray-300'>
               {/*<div className='w-1/6'>{key}</div>*/}
               {/*<div className='flex-1'>{value}</div>*/}
-              <input class={"w-1/6 mr-8 border border-gray-300 outline-none"} placeholders={"name"} value={key}
+              <input class={"p-4 h-16 -1/6 mr-8 border border-gray-300 outline-none"} placeholders={"name"} value={key}
                      onChange={(e) => handleChange(e, "key", contentRowIndex)}/>
               <div class={"flex-1 flex flex-col gap-4 mr-8"}>
                 {
                   value.map((item, textRowIndex) => {
                     return <div class={"flex flex-row gap-4"}>
-                      <input className={"flex-1 border border-gray-300 outline-none"} placeholders={"content"}
-                             value={item}
-                             onChange={(e) => handleChange(e, "value", contentRowIndex, textRowIndex)}/>
-                      <button onClick={() => removeInput("row", contentRowIndex, textRowIndex)} class={"font-bold"}>X
-                      </button>
+                      <textarea className={"p-4 h-16 flex-1 border border-gray-300 outline-none resize-none"}
+                                placeholders={"content"}
+                                value={item}
+                                onChange={(e) => handleChange(e, "value", contentRowIndex, textRowIndex)}/>
+                      {/*<button onClick={() => removeInput("row", contentRowIndex, textRowIndex)} class={"font-bold"}>X*/}
+                      {/*</button>*/}
                     </div>
                   })
                 }
                 
-                <button onClick={() => addInput(contentRowIndex)}
-                        class={"rounded-full border border-gray-300 bg-gray-200 font-bold"}>행 추가
-                </button>
+                {/*<button onClick={() => addInput(contentRowIndex)}*/}
+                {/*        class={"rounded-full border border-gray-300 bg-gray-200 font-bold"}>행 추가*/}
+                {/*</button>*/}
               </div>
               
               <button onClick={() => removeInput("content", contentRowIndex)}

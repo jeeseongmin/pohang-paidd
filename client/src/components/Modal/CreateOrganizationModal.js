@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Box, Modal, TextField } from "@mui/material";
 import Table from "../Organization/Table";
+import { BsArrowDownShort, BsArrowUpShort } from "react-icons/bs";
 
 const style = {
   position: 'absolute',
@@ -18,10 +19,10 @@ const style = {
 
 const CreateOrganizationModal = ({onClose}) => {
   const [info, setInfo] = useState({
-    orgId: "", // ex) org1, org2, org3...
-    name: "", // ex) 포항시지적장애인자립지원센터
-    path: "", // ex) Home > 주요사업 > 포항시지적장애인자립지원센터 > 센터소개
-    description: "", // ex) ~~ 센터는 ~~ 의 일을 합니다.
+    orgId: "org1", // ex) org1, org2, org3...
+    name: "포항시지적장애인자립지원센터", // ex) 포항시지적장애인자립지원센터
+    path: "Home > 주요사업 > 포항시지적장애인자립지원센터 > 센터소개", // ex) Home > 주요사업 > 포항시지적장애인자립지원센터 > 센터소개
+    description: "포항시지적장애인자립지원센터는, 포항시에 사는 발달장애인이 스스로 자신의 삶을 이끌어갈 수 있도록 지원합니다. \n발달장애인과 가족이 다른 사람들과 어울려 함게 살아가는 것을 돕습니다.", // ex) ~~ 센터는 ~~ 의 일을 합니다.
     contents: [],
     // 커스텀 contents
     // [{
@@ -43,6 +44,13 @@ const CreateOrganizationModal = ({onClose}) => {
     //   "업무내용" : ["", "", "", ""]
     // }]
   });
+  
+  const onChangeInfo = (e) => {
+    const _info = {...info};
+    _info[e.target.name] = e.target.value;
+    setInfo(_info);
+    
+  }
   
   const [tables, setTables] = useState([
     {
@@ -104,6 +112,13 @@ const CreateOrganizationModal = ({onClose}) => {
     setTables(_tables);
   }
   
+  const swap = (index, direction) => {
+    const _tables = [...tables];
+    const directionNumber = direction === "up" ? -1 : 1;
+    [_tables[index], _tables[index + directionNumber]] = [_tables[index + directionNumber], _tables[index]];
+    setTables(_tables);
+    
+  }
   return (
     <Modal
       open={true}
@@ -115,10 +130,16 @@ const CreateOrganizationModal = ({onClose}) => {
         <h1 class={"text-3xl font-bold mb-4"}>기관 정보 생성</h1>
         <div class={"mb-8"}>기관에 대한 기본 정보들을 입력해주세요.</div>
         <div class={"h-auto flex flex-col gap-4 mb-8"}>
-          <TextField id="outlined-basic" label="기관 id" variant="outlined"/>
-          <TextField id="outlined-basic" label="기관 이름(name)" variant="outlined"/>
-          <TextField id="outlined-basic" label="기관 설명(description)" variant="outlined"/>
-          <TextField id="outlined-basic" label="해당 웹 사이트 내 기관이 위치한 path를 입력해주세요." variant="outlined"/>
+          <TextField id="outlined-basic" value={info.orgId} label="기관 id" name={"orgId"}
+                     onChange={(e) => onChangeInfo(e)}
+                     variant="outlined"/>
+          <TextField id="outlined-basic" value={info.name} label="기관 이름(name)" name={"name"}
+                     onChange={(e) => onChangeInfo(e)}
+                     variant="outlined"/>
+          <textarea id="outlined-basic" value={info.description} class={"border border-gray-300 p-4 resize-none"}
+                    placeholder={"기관 설명(description)"} name={"description"} onChange={(e) => onChangeInfo(e)}/>
+          <TextField id="outlined-basic" value={info.path} label="해당 웹 사이트 내 기관이 위치한 path를 입력해주세요." name={"path"}
+                     onChange={(e) => onChangeInfo(e)} variant="outlined"/>
         </div>
         <div>
           <p class={"mb-2"}>기관에 대해 더 자세한 정보를 적을 수 있는 표를 작성합니다.</p>
@@ -145,7 +166,23 @@ const CreateOrganizationModal = ({onClose}) => {
                       {/*<div className='w-1/6'>{key}</div>*/}
                       <div className='flex-1'>컨텐츠 추가</div>
                     </div>
-                    <div class={"flex flex-row justify-end"}>
+                    <div class={"flex flex-row justify-end gap-4"}>
+                      <div class={"flex flex-row gap-4"}>
+                        {tableIndex !== 0 && <button
+                          onClick={() => swap(tableIndex, "up")}
+                          
+                          className='mt-4 px-2 lg:px-8 py-3 flex flex-row justify-center items-center border-b border-gray-300 bg-gray-200 text-center font-bold hover:bg-gray-300 transition delay-100 duration-100 cursor-pointer'>
+                          <BsArrowUpShort size={24}/>
+                        </button>}
+                        {
+                          tableIndex !== tables.length - 1 &&
+                          <button
+                            onClick={() => swap(tableIndex, "down")}
+                            className='mt-4 px-2 lg:px-8 py-3 flex flex-row justify-center items-center border-b border-gray-300 bg-gray-200 text-center font-bold hover:bg-gray-300 transition delay-100 duration-100 cursor-pointer'>
+                            <BsArrowDownShort size={24}/>
+                          </button>
+                        }
+                      </div>
                       <button
                         onClick={() => removeTable(tableIndex)}
                         
