@@ -32,7 +32,7 @@ router.route("/:id").post((req, res) => {
 router.route("/add").post((req, res) => {
   if (req.body.key === API_KEY) {
     const one = {
-      id: v4(),
+      id: req.body.id,
       orgId: req.body.orgId,
       name: req.body.name,
       path: req.body.path,
