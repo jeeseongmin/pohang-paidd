@@ -1,7 +1,10 @@
+// import { v4 as uuidv4 } from 'uuid';
+
+const {v4} = require('uuid');
 const router = require("express").Router();
 let Organization = require("../../models/organization.model");
 const API_KEY = require("../../keyconfig");
-import { v4 as uuidv4 } from 'uuid';
+// const {v4 as uuidv4} = require("uuidv4");
 
 // Read All Service
 router.route("/").post((req, res) => {
@@ -29,7 +32,7 @@ router.route("/:id").post((req, res) => {
 router.route("/add").post((req, res) => {
   if (req.body.key === API_KEY) {
     const one = {
-      id: uuidv4(),
+      id: v4(),
       orgId: req.body.orgId,
       name: req.body.name,
       path: req.body.path,

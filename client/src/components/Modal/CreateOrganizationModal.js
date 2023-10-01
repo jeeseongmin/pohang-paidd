@@ -150,7 +150,7 @@ const CreateOrganizationModal = ({onClose}) => {
       // api 호출
       await axios
         .post(
-          "/api/organization/add/",
+          "/api/organization/add",
           {
             key: process.env.REACT_APP_API_KEY,
             orgId: info.orgId,
