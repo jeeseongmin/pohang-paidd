@@ -1,6 +1,7 @@
 import React from 'react';
+import { GrClear } from "react-icons/gr";
 
-const Table = ({type, index, name, contents, tables, setTables}) => {
+const CustomTable = ({type, index, name, contents, tables, setTables}) => {
   
   const handleChange = (e, type, _index, textRowIndex) => {
     const target = tables[index][name];
@@ -32,7 +33,7 @@ const Table = ({type, index, name, contents, tables, setTables}) => {
       let _contents = [...contents];
       let _key = Object.keys(_contents[_index])[0];
       console.log("contents ", _contents, _key);
-      _contents[_index][_key][textRowIndex] = e.target.value;
+      _contents[_index][_key] = e.target.value;
       cp[index] = {
         [name]: _contents
       }
@@ -101,26 +102,29 @@ const Table = ({type, index, name, contents, tables, setTables}) => {
               <input class={"p-4 h-16 -1/6 mr-8 border border-gray-300 outline-none"} placeholders={"name"} value={key}
                      onChange={(e) => handleChange(e, "key", contentRowIndex)}/>
               <div class={"flex-1 flex flex-col gap-4 mr-8"}>
-                {
-                  value.map((item, textRowIndex) => {
-                    return <div class={"flex flex-row gap-4"}>
+                {/*{*/}
+                {/*  value.map((item, textRowIndex) => {*/}
+                {/*    return */}
+                {/*  })*/}
+                {/*}*/}
+                <div className={"flex flex-row gap-4"}>
                       <textarea className={"p-4 h-16 flex-1 border border-gray-300 outline-none resize-none"}
                                 placeholders={"content"}
-                                value={item}
-                                onChange={(e) => handleChange(e, "value", contentRowIndex, textRowIndex)}/>
-                      {/*<button onClick={() => removeInput("row", contentRowIndex, textRowIndex)} class={"font-bold"}>X*/}
-                      {/*</button>*/}
-                    </div>
-                  })
-                }
+                                value={value}
+                                onChange={(e) => handleChange(e, "value", contentRowIndex)}/>
+                  {/*<button onClick={() => removeInput("row", contentRowIndex, textRowIndex)} class={"font-bold"}>X*/}
+                  {/*</button>*/}
+                </div>
                 
                 {/*<button onClick={() => addInput(contentRowIndex)}*/}
                 {/*        class={"rounded-full border border-gray-300 bg-gray-200 font-bold"}>행 추가*/}
                 {/*</button>*/}
               </div>
               
+              
               <button onClick={() => removeInput("content", contentRowIndex)}
-                      className={"rounded-full bg-gray-300 w-8 h-8 font-bold"}>X
+                      className={"w-auto h-auto font-bold"}>
+                <GrClear size={24}/>
               </button>
             </div>
             
@@ -133,4 +137,4 @@ const Table = ({type, index, name, contents, tables, setTables}) => {
   }
 };
 
-export default Table;
+export default CustomTable;
