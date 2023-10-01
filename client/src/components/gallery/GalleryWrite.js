@@ -89,7 +89,7 @@ const GalleryWrite = (props) => {
     } else if (info.content === "") {
       alert("내용을 입력해주세요!");
       contentRef.current.focus();
-    } else if (info.imgList.length === 0) {
+    } else if (info.imageUrlList.length === 0) {
       alert("1개 이상의 이미지를 업로드 해주세요.");
     } else if (currentEmail === "master" || currentEmail === info.type) {
       axios
@@ -100,6 +100,8 @@ const GalleryWrite = (props) => {
             title: info.title,
             content: info.content,
             imgList: info.imgList,
+            imageUrlList: info.imageUrlList,
+            convertedImageUrlList: info.convertedImageUrlList,
           },
           {
             headers: {

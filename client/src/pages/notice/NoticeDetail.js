@@ -16,12 +16,12 @@ const NoticeDetail = (props) => {
   const [page, setPage] = useState(1);
   const [isEdit, setIsEdit] = useState(false);
   const [backUrl, setBackUrl] = useState();
-
+  
   const currentEmail = useSelector((state) => state.setting.currentEmail);
   const currentPassword = useSelector((state) => state.setting.currentPassword);
-
+  
   const id = props.id;
-
+  
   const [info, setInfo] = useState({
     type: "",
     title: "",
@@ -37,14 +37,14 @@ const NoticeDetail = (props) => {
     else if (props.url === "participation")
       setBackUrl("/participation/notice/0");
   }, []);
-
+  
   useEffect(() => {
     document.getElementById("scrollRef").scrollTo(0, 0);
-
+    
     axios
       .post(
         "/api/notice/" + id,
-        { key: process.env.REACT_APP_API_KEY },
+        {key: process.env.REACT_APP_API_KEY},
         {
           headers: {
             "Content-type": "application/json",
@@ -70,7 +70,7 @@ const NoticeDetail = (props) => {
         console.log(Error);
       });
   }, []);
-
+  
   const deleteNotice = async () => {
     if (currentEmail === "master" || currentEmail === info.type) {
       await info.fileList.forEach(async function (item, index) {
@@ -99,31 +99,31 @@ const NoticeDetail = (props) => {
     } else {
     }
   };
-
+  
   const dataToText = (date) => {
     let year = date.substring(2, 4);
     let month = date.substring(5, 7);
     let day = date.substring(8, 10);
     return year + "." + month + "." + day;
   };
-
+  
   const goEdit = () => {
     setIsEdit(true);
     document.getElementById("scrollRef").scrollTo(0, 0);
   };
-
+  
   return (
     <>
       {!isEdit ? (
         <div>
           <div class='flex flex-row justify-between items-center mb-8'>
-            <Subtitle text={"자세히보기"} />
+            <Subtitle text={"자세히보기"}/>
           </div>
           <div class='text-sm lg:text-base w-full h-auto mb-8 border-t-2 border-b-2 border-purple-600'>
             {/* 딱 10개 씩만 로드하기 */}
             <div class='w-full px-2 lg:px-8 py-4 flex justify-end items-center relative'>
               {!loading ? (
-                <Skeleton animation='wave' />
+                <Skeleton animation='wave'/>
               ) : (
                 <>
                   <div class='w-full relative pr-24'>
@@ -131,7 +131,7 @@ const NoticeDetail = (props) => {
                       {info.title}
                     </p>
                     {/* <div class="text-lg w-auto border border-black pr-4 relative">
-										</div> */}
+                     </div> */}
                   </div>
                   <div class='absolute right-0 text-lg w-24 '>{info.date}</div>
                 </>
@@ -139,7 +139,7 @@ const NoticeDetail = (props) => {
             </div>
             <div class='w-full px-2 lg:px-8 py-4 flex justify-end items-center relative border-t border-gray-300'>
               {!loading ? (
-                <Skeleton animation='wave' />
+                <Skeleton animation='wave'/>
               ) : (
                 <>
                   <div class='w-full relative pr-24'>
@@ -147,7 +147,7 @@ const NoticeDetail = (props) => {
                       Read {info.read}
                     </p>
                     {/* <div class="text-lg w-auto border border-black pr-4 relative">
-										</div> */}
+                     </div> */}
                   </div>
                   <div class='absolute right-0 text-md w-24'>
                     <span class='text-purple-500 font-bold mr-2'>조회</span>{" "}
@@ -193,15 +193,15 @@ const NoticeDetail = (props) => {
                 })
               ) : (
                 <div class='w-full h-24 my-2 py-4 flex justify-center items-center text-center'>
-                  <CircularProgress />
+                  <CircularProgress/>
                 </div>
               )}
             </div>
             <div class='w-full relative py-4 px-2 lg:px-8 select-text h-auto min-h-screen'>
               {/* <div
-                class='mb-24'
-                dangerouslySetInnerHTML={{ __html: info.content }}></div> */}
-              {loading && <Viewer initialValue={info.content} />}
+               class='mb-24'
+               dangerouslySetInnerHTML={{ __html: info.content }}></div> */}
+              {loading && <Viewer initialValue={info.content}/>}
             </div>
           </div>
           <div class='flex justify-between items-center flex-col md:flex-row'>
@@ -219,7 +219,8 @@ const NoticeDetail = (props) => {
               currentEmail === info.type) ? (
               <div class='w-full md:w-auto flex flex-col md:flex-row'>
                 <div
-                  onClick={deleteNotice}
+                  // onClick={deleteNotice}
+                  onClick={() => alert("웹사이트 개발중입니다. 공지사항을 이용할 수 없습니다. ")}
                   class='w-full md:w-auto my-4 md:my-0 justify-center mr-4 cursor-pointer px-16 py-2 border border-purple-700 text-purple-700 flex flex-row items-center hover:bg-purple-500 hover:text-white hover:font-bold'>
                   삭제하기
                 </div>

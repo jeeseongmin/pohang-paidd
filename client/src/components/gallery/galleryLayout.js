@@ -60,7 +60,6 @@ const GalleryLayout = (props) => {
    2. 올리기를 누르면 배열에 순서대로 저장이 됨.
    3. image 올린 목록들을 리스트로 볼 수 있음.
    4. comment 까지 올릴 수 있음.
-   5.
    */
   
   // useEffect(() => {
