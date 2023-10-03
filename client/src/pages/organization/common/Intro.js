@@ -1,16 +1,39 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { HiHome } from "react-icons/hi";
 import Subtitle from "../../../components/Subtitle";
+import axios from "axios";
+
 const Intro = () => {
   const moveUrl = function (url) {
     window.open(url, "_blank");
   };
+  
+  useEffect(() => {
+    readOrganization();
+  }, [])
+  
+  const readOrganization = async () => {
+    await axios
+      .post(
+        "/api/organization/findByName/포항시지적장애인자립지원센터",
+        {key: process.env.REACT_APP_API_KEY},
+        {
+          headers: {
+            "Content-type": "application/json",
+            Accept: "application/json",
+          },
+        }
+      ).then((Response) => {
+        console.log(Response)
+      })
+  }
+  
   return (
     <div>
-      <Subtitle text={"센터소개"} />
+      <Subtitle text={"센터소개"}/>
       <div class='mt-1 mb-4 w-full hidden lg:flex flex-row text-sm text-gray-400 items-center'>
         <div class='mr-2'>
-          <HiHome size={16} />
+          <HiHome size={16}/>
         </div>
         Home {">"} 부설기관 {">"} 늘사랑주간보호센터 {">"} 센터소개
       </div>
@@ -84,13 +107,13 @@ const Intro = () => {
               class='h-auto xl:h-36 object-cover'
             />
             {/* <div class="inline-block">
-							<div>입소의뢰/접수 ＞ 초기면접 ＞ 입소여부 결정 및 계획</div>
-							<div class="invisible">＞ 상담 및 타기관 연계</div>
-						</div>
-						<div class="inline-block">
-							<div>＞ 적응기간 (1주) ＞ 입소 및 이용</div>
-							<div>＞ 상담 및 타기관 연계</div>
-						</div> */}
+             <div>입소의뢰/접수 ＞ 초기면접 ＞ 입소여부 결정 및 계획</div>
+             <div class="invisible">＞ 상담 및 타기관 연계</div>
+             </div>
+             <div class="inline-block">
+             <div>＞ 적응기간 (1주) ＞ 입소 및 이용</div>
+             <div>＞ 상담 및 타기관 연계</div>
+             </div> */}
           </div>
         </div>
       </div>

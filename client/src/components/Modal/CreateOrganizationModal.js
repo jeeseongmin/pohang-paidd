@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Box, Modal, TextField } from "@mui/material";
 import CustomTable from "../Organization/CustomTable";
 import { BsArrowDownShort, BsArrowUpShort } from "react-icons/bs";
@@ -12,7 +12,7 @@ const style = {
   transform: 'translate(-50%, -50%)',
   width: 400,
   bgcolor: 'background.paper',
-  border: '2px solid #000',
+  // border: '2px solid #000',
   boxShadow: 24,
   pt: 2,
   px: 4,
@@ -51,7 +51,26 @@ const CreateOrganizationModal = ({onClose}) => {
     const _info = {...info};
     _info[e.target.name] = e.target.value;
     setInfo(_info);
-    
+  }
+  
+  useEffect(() => {
+    readOrganization();
+  }, [])
+  
+  const readOrganization = async () => {
+    await axios
+      .post(
+        "/api/organization/findByName/포항시지적장애인자립지원센터",
+        {key: process.env.REACT_APP_API_KEY},
+        {
+          headers: {
+            "Content-type": "application/json",
+            Accept: "application/json",
+          },
+        }
+      ).then((Response) => {
+        console.log(Response)
+      })
   }
   
   const [tables, setTables] = useState([
@@ -150,7 +169,7 @@ const CreateOrganizationModal = ({onClose}) => {
       // api 호출
       await axios
         .post(
-          "/api/organization/add",
+          "/api/organization/add/new",
           {
             key: process.env.REACT_APP_API_KEY,
             orgId: info.orgId,

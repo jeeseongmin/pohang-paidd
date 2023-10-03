@@ -8,9 +8,9 @@ import BusinessMenu from "../../../../components/Menu/BusinessMenu";
 import Gallery from "../common/Gallery";
 import Notice from "../common/notice/notice";
 import Business from "./components/business";
-import Intro from "./components/intro";
 import GalleryDetail from "../../../../components/gallery/GalleryDetail";
 import GalleryWrite from "../../../../components/gallery/GalleryWrite";
+import Intro from "../../../common/Intro";
 
 const Index = (props, {match}) => {
   const history = useHistory();
@@ -27,7 +27,7 @@ const Index = (props, {match}) => {
     // /business/org/intro
     if (pathname.includes("intro")) {
       setSelected(0);
-      return <Intro/>;
+      return <Intro name={"포항시지적장애인자립지원센터"}/>;
     } else if (pathname.includes("notice")) {
       setSelected(2);
       // list : /business/org/notice
