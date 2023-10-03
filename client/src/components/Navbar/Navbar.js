@@ -321,11 +321,17 @@ const Navbar = () => {
               />
               {profile === "on" ? (
                 <div
-                  class="z-30 px-4 py-2 flex flex-col justify-center items-center right-4 top-12 w-60 h-44 bg-white border border-gray-300 rounded-lg absolute">
+                  class="z-30 px-4 py-2 flex flex-col justify-center items-center right-4 top-12 w-60 h-48 bg-white border border-gray-300 rounded-lg absolute">
                   <div class="w-full h-full flex flex-col justify-around">
                     <div class="w-full flex flex-col">
                       <p class="font-bold">{loginInfo.position}</p>
                       <p class="text-gray-500">ID : {loginInfo.email}</p>
+                    </div>
+                    <div
+                      onClick={goManagementPage}
+                      class="cursor-pointer w-full py-1 border border-purple-400 text-purple-400 flex justify-center transition delay-50 duration-300 hover:bg-purple-400 hover:text-white"
+                    >
+                      기관 관리
                     </div>
                     <div
                       onClick={goEditPage}

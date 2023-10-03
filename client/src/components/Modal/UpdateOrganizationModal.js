@@ -19,12 +19,12 @@ const style = {
   pb: 3,
 };
 
-const CreateOrganizationModal = ({onClose, setRefresh}) => {
+const UpdateOrganizationModal = ({onClose}) => {
   const [info, setInfo] = useState({
-    orgId: "", // ex) org1, org2, org3...
-    name: "", // ex) 포항시지적장애인자립지원센터
-    path: "", // ex) Home > 주요사업 > 포항시지적장애인자립지원센터 > 센터소개
-    description: "", // ex) ~~ 센터는 ~~ 의 일을 합니다.
+    orgId: "org1", // ex) org1, org2, org3...
+    name: "포항시지적장애인자립지원센터", // ex) 포항시지적장애인자립지원센터
+    path: "Home > 주요사업 > 포항시지적장애인자립지원센터 > 센터소개", // ex) Home > 주요사업 > 포항시지적장애인자립지원센터 > 센터소개
+    description: "포항시지적장애인자립지원센터는, 포항시에 사는 발달장애인이 스스로 자신의 삶을 이끌어갈 수 있도록 지원합니다. \n발달장애인과 가족이 다른 사람들과 어울려 함께 살아가는 것을 돕습니다.", // ex) ~~ 센터는 ~~ 의 일을 합니다.
     contents: [],
     // 커스텀 contents
     // [{
@@ -53,9 +53,53 @@ const CreateOrganizationModal = ({onClose, setRefresh}) => {
     setInfo(_info);
   }
   
-  const [tables, setTables] = useState([]);
+  const [tables, setTables] = useState([
+    {
+      시설현황: [
+        {기관명: "늘사랑보호주간센터"},
+        {센터장: "우숙경"},
+        {사업개시일: "2002.07.01"},
+        {전화: "054)244-9577"},
+        {팩스: "054)254-9588"},
+        {블로그: "https://cafe.daum.net/phaeho"},
+      ]
+    },
+    {
+      이용안내: [
+        {대상자: "포항시에 사는 발달장애인 (나이: 20세~60세까지)"},
+        {이용시간: "평일 09:30 ~ 16:30"},
+        {이용료: "월 250,000원 (중식비/교통비 포함)"},
+        {이용절차: "https://drive.google.com/file/d/1wTFtGOKq75_hhh-DNw3jPgs-ffTgA14x/view?usp=sharing"}
+      ]
+    }
+  ]);
   
-  const [employees, setEmployees] = useState([]);
+  const [employees, setEmployees] = useState([{
+    "직위": "관리책임자",
+    "성명": "김옥희",
+    "전화번호": "054-249-9588",
+    "업무내용": "자립지원센터 총괄",
+  }, {
+    "직위": "사무국장",
+    "성명": "조혜령",
+    "전화번호": "054-249-9588",
+    "업무내용": "직원 및 이용자 고충처리담당,\n예결산 관련 회계 총괄",
+  }, {
+    "직위": "전문요원",
+    "성명": "김민정",
+    "전화번호": "070-5154-6982",
+    "업무내용": "자립생활지원사업, 차량 및 시설물 관리,\n협회후원금 관련 업무",
+  }, {
+    "직위": "전문요원",
+    "성명": "양수정",
+    "전화번호": "070-5154-4930",
+    "업무내용": "문화체육활동지원사업, 장애인일자리사업,\n입회회원 관리",
+  }, {
+    "직위": "전문요원",
+    "성명": "백승훈",
+    "전화번호": "070-5154-6982",
+    "업무내용": "문화체육활동지원사업, 시설관리",
+  }]);
   
   const addRow = (name) => {
     const cp = [...tables].map((item) => {
@@ -124,7 +168,6 @@ const CreateOrganizationModal = ({onClose, setRefresh}) => {
         )
         .then((response) => {
           alert("업로드 되었습니다.");
-          setRefresh(new Date());
           onClose();
           // history.push(createActionUrl);
           document.getElementById("scrollRef").scrollTo(0, 0);
@@ -183,7 +226,7 @@ const CreateOrganizationModal = ({onClose, setRefresh}) => {
                       onClick={() => addRow(name)}
                       className='px-2 lg:px-8 py-3 flex flex-row justify-center items-center border-b border-gray-300 bg-gray-200 text-center font-bold hover:bg-gray-300 transition delay-100 duration-100 cursor-pointer'>
                       {/*<div className='w-1/6'>{key}</div>*/}
-                      <div className='flex-1'>행 추가</div>
+                      <div className='flex-1'>컨텐츠 추가</div>
                     </div>
                     <div class={"flex flex-row justify-end gap-4"}>
                       <div class={"flex flex-row gap-4"}>
@@ -247,4 +290,4 @@ const CreateOrganizationModal = ({onClose, setRefresh}) => {
   );
 };
 
-export default CreateOrganizationModal;
+export default UpdateOrganizationModal;

@@ -5,18 +5,15 @@ const CustomTable = ({type, index, name, contents, tables, setTables}) => {
   
   const handleChange = (e, type, _index, textRowIndex) => {
     const target = tables[index][name];
-    console.log("hahahahaha", e.target.value, type, target);
     const targetKey = Object.keys(target);
     let obj = {};
     
-    console.log("obj", obj);
     let cp = [...tables];
     
     if (type === "name") {
       cp[index] = {
         [e.target.value]: contents
       }
-      console.log(cp);
     } else if (type === "key") {
       let _contents = [...contents];
       let _key = Object.keys(_contents[_index])[0];
@@ -32,13 +29,11 @@ const CustomTable = ({type, index, name, contents, tables, setTables}) => {
     } else if (type === "value") {
       let _contents = [...contents];
       let _key = Object.keys(_contents[_index])[0];
-      console.log("contents ", _contents, _key);
       _contents[_index][_key] = e.target.value;
       cp[index] = {
         [name]: _contents
       }
     }
-    console.log("cp", cp);
     setTables(cp);
   }
   
@@ -46,7 +41,6 @@ const CustomTable = ({type, index, name, contents, tables, setTables}) => {
     let cp = [...tables];
     let _contents = [...contents];
     let _key = Object.keys(_contents[contentRowIndex])[0];
-    console.log("contents ", _contents, _key);
     _contents[contentRowIndex][_key].push("");
     cp[index] = {
       [name]: _contents
@@ -59,7 +53,6 @@ const CustomTable = ({type, index, name, contents, tables, setTables}) => {
       let cp = [...tables];
       let _contents = [...contents];
       let _key = Object.keys(_contents[contentRowIndex])[0];
-      console.log("contents ", _contents, _key);
       _contents[contentRowIndex][_key] = _contents[contentRowIndex][_key].filter((item, index) => {
         return index !== textRowIndex;
       })
@@ -92,7 +85,6 @@ const CustomTable = ({type, index, name, contents, tables, setTables}) => {
           contents.map((obj, contentRowIndex) => {
             const key = Object.keys(obj)[0];
             const value = obj[key];
-            console.log("key", obj, key, value)
             
             // 일반 텍스트
             return <div
