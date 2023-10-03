@@ -8,6 +8,7 @@ const API_KEY = require("../../keyconfig");
 
 // Read All Service
 router.route("/").post((req, res) => {
+  console.log(API_KEY);
   if (req.body.key === API_KEY) {
     Organization.find()
       .sort({createdAt: -1})
@@ -28,8 +29,20 @@ router.route("/:id").post((req, res) => {
   } else res.status(400).json("Error");
 })
 
+/**
+ * 1. 페이지 내에서
+ */
+router.route("/findByName/:name").post((req, res) => {
+  if (req.body.key === API_KEY) {
+    Organization.find({name: req.params.name})
+      .sort({createdAt: -1})
+      .then((all) => res.json(all))
+      .catch((err) => res.status(400).json("Error : " + err));
+  } else res.status(400).json("Error");
+})
+
 // Create Organization
-router.route("/add").post((req, res) => {
+router.route("/add/:id").post((req, res) => {
   if (req.body.key === API_KEY) {
     const one = {
       orgId: req.body.orgId,

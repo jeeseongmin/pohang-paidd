@@ -11,8 +11,8 @@ require("dotenv").config();
 
 const app = express();
 // cafe24 업로드 용
-const port = process.env.PORT || 5000;
-
+// const port = process.env.PORT || 5000;
+const port = 5001;
 // const port = process.env.PORT || 8080;
 // const port = 8001;
 
