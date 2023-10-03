@@ -162,20 +162,12 @@ const CreateOrganizationModal = ({onClose, setRefresh}) => {
           <p class={"mb-2"}>기관에 대해 더 자세한 정보를 적을 수 있는 표를 작성합니다.</p>
           <p class={"mb-2"}>- 일반적인 텍스트는 한 줄에 입력해주시고, 여러 줄로 표현해야하는 경우 행을 추가하여 입력해주세요.</p>
           <p class={"mb-2"}>- 링크나 이미지는 url을 입력해주세요.</p>
-          <div class={"flex flex-row justify-center"}>
-            <button
-              onClick={() => addTable()}
-              className="mb-12 rounded-full w-full md:w-auto cursor-pointer justify-center transition delay-50 duration-300 px-16 py-2 border border-purple-700 text-purple-700 flex flex-row items-center hover:bg-purple-500 hover:text-white hover:font-bold "
-            >
-              표 추가하기
-            </button>
-          </div>
-          <div className={"w-full"}>
+          <div className={"w-full mt-4"}>
             <div>
               {
                 tables.map((item, tableIndex) => {
                   const name = Object.keys(item)[0];
-                  return <div class={"mb-16"}>
+                  return <div class={"mb-4"}>
                     <CustomTable key={tableIndex} type={"create"} index={tableIndex} name={name} contents={item[name]}
                                  tables={tables}
                                  setTables={setTables}/>
@@ -216,6 +208,14 @@ const CreateOrganizationModal = ({onClose, setRefresh}) => {
             
             </div>
             {/* 직원 현황 */}
+            <div className={"flex flex-row justify-center"}>
+              <button
+                onClick={() => addTable()}
+                className="mb-12 rounded-full w-full md:w-auto cursor-pointer justify-center transition delay-50 duration-300 px-16 py-2 border border-purple-700 text-purple-700 flex flex-row items-center hover:bg-purple-500 hover:text-white hover:font-bold "
+              >
+                표 추가하기
+              </button>
+            </div>
             <div>
               <div className={"w-full border-b border-gray-400 mb-8"}></div>
               <p className={"mb-2"}>직원 현황에 대해 자세한 정보를 적을 수 있는 표를 작성합니다.</p>
