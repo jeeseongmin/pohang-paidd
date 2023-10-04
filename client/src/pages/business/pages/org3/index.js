@@ -7,9 +7,9 @@ import BusinessMenu from "../../../../components/Menu/BusinessMenu";
 import Gallery from "../common/Gallery";
 import Notice from "../common/notice/notice";
 import Business from "./components/business";
-import Intro from "./components/intro";
 import GalleryDetail from "../../../../components/gallery/GalleryDetail";
 import GalleryWrite from "../../../../components/gallery/GalleryWrite";
+import Intro from "../../../common/Intro";
 
 const Index = (props) => {
   const [selected, setSelected] = useState(0);
@@ -25,7 +25,7 @@ const Index = (props) => {
     // /business/org/intro
     if (pathname.includes("intro")) {
       setSelected(0);
-      return <Intro/>;
+      return <Intro name={"방과후활동서비스사업"}/>;
     } else if (pathname.includes("notice")) {
       setSelected(2);
       // list : /business/org/notice

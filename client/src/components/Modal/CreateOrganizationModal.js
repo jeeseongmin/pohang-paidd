@@ -181,7 +181,6 @@ const CreateOrganizationModal = ({onClose, setRefresh}) => {
                       <div class={"flex flex-row gap-4"}>
                         {tableIndex !== 0 && <button
                           onClick={() => swap(tableIndex, "up")}
-                          
                           className='mt-4 px-2 lg:px-8 py-3 flex flex-row justify-center items-center border-b border-gray-300 bg-gray-200 text-center font-bold hover:bg-gray-300 transition delay-100 duration-100 cursor-pointer'>
                           <BsArrowUpShort size={24}/>
                         </button>}

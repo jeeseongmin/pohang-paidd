@@ -11,7 +11,7 @@ import Gallery from "./common/Gallery.js";
 import Notice from "./common/notice/index";
 import GalleryDetail from "../../components/gallery/GalleryDetail";
 import GalleryWrite from "../../components/gallery/GalleryWrite";
-import Intro from "./common/Intro";
+import Intro from "../common/Intro";
 
 const Index = ({match}) => {
   const [selected, setSelected] = useState(0);
@@ -119,8 +119,7 @@ const Index = ({match}) => {
           <div>
             <switch>
               <Route exact path='/organization/intro/0'>
-                <Intro/>
-                {/*<Intro name={"포항시지적장애인자립지원센터"}/>*/}
+                <Intro name={"늘사랑주간보호센터"}/>
               </Route>
               <Route exact path='/organization/business/0'>
                 <Business/>

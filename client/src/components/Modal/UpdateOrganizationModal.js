@@ -19,32 +19,9 @@ const style = {
   pb: 3,
 };
 
-const UpdateOrganizationModal = ({onClose}) => {
+const UpdateOrganizationModal = ({currentInfo, onClose, setRefresh}) => {
   const [info, setInfo] = useState({
-    orgId: "org1", // ex) org1, org2, org3...
-    name: "포항시지적장애인자립지원센터", // ex) 포항시지적장애인자립지원센터
-    path: "Home > 주요사업 > 포항시지적장애인자립지원센터 > 센터소개", // ex) Home > 주요사업 > 포항시지적장애인자립지원센터 > 센터소개
-    description: "포항시지적장애인자립지원센터는, 포항시에 사는 발달장애인이 스스로 자신의 삶을 이끌어갈 수 있도록 지원합니다. \n발달장애인과 가족이 다른 사람들과 어울려 함께 살아가는 것을 돕습니다.", // ex) ~~ 센터는 ~~ 의 일을 합니다.
-    contents: [],
-    // 커스텀 contents
-    // [{
-    //   "사업현황" : {
-    //     "센터명" : "포항시지적장애인자립지원센터",
-    //     "센터장" : ""
-    //   },
-    //   "이용안내" : {},
-    //   "직원현황" : {}
-    // }]
-    
-    employees: [],
-    // 가장 하단에 배치되는 직원 현황에 대한 데이터
-    // 직원 현황은 contents와 구조가 좀 다르고, 또 무조건 있는 부분이기 때문에 modeling 시에 일부러 다른 컬럼에 넣었다.
-    // [{
-    //   "직위" : "관리책임자",
-    //   "성명" : "김옥희",
-    //   "전화번호" : "054-253-9500",
-    //   "업무내용" : ["", "", "", ""]
-    // }]
+    ...currentInfo
   });
   
   const onChangeInfo = (e) => {
@@ -53,53 +30,9 @@ const UpdateOrganizationModal = ({onClose}) => {
     setInfo(_info);
   }
   
-  const [tables, setTables] = useState([
-    {
-      시설현황: [
-        {기관명: "늘사랑보호주간센터"},
-        {센터장: "우숙경"},
-        {사업개시일: "2002.07.01"},
-        {전화: "054)244-9577"},
-        {팩스: "054)254-9588"},
-        {블로그: "https://cafe.daum.net/phaeho"},
-      ]
-    },
-    {
-      이용안내: [
-        {대상자: "포항시에 사는 발달장애인 (나이: 20세~60세까지)"},
-        {이용시간: "평일 09:30 ~ 16:30"},
-        {이용료: "월 250,000원 (중식비/교통비 포함)"},
-        {이용절차: "https://drive.google.com/file/d/1wTFtGOKq75_hhh-DNw3jPgs-ffTgA14x/view?usp=sharing"}
-      ]
-    }
-  ]);
+  const [tables, setTables] = useState([...currentInfo.contents]);
   
-  const [employees, setEmployees] = useState([{
-    "직위": "관리책임자",
-    "성명": "김옥희",
-    "전화번호": "054-249-9588",
-    "업무내용": "자립지원센터 총괄",
-  }, {
-    "직위": "사무국장",
-    "성명": "조혜령",
-    "전화번호": "054-249-9588",
-    "업무내용": "직원 및 이용자 고충처리담당,\n예결산 관련 회계 총괄",
-  }, {
-    "직위": "전문요원",
-    "성명": "김민정",
-    "전화번호": "070-5154-6982",
-    "업무내용": "자립생활지원사업, 차량 및 시설물 관리,\n협회후원금 관련 업무",
-  }, {
-    "직위": "전문요원",
-    "성명": "양수정",
-    "전화번호": "070-5154-4930",
-    "업무내용": "문화체육활동지원사업, 장애인일자리사업,\n입회회원 관리",
-  }, {
-    "직위": "전문요원",
-    "성명": "백승훈",
-    "전화번호": "070-5154-6982",
-    "업무내용": "문화체육활동지원사업, 시설관리",
-  }]);
+  const [employees, setEmployees] = useState([...currentInfo.employees]);
   
   const addRow = (name) => {
     const cp = [...tables].map((item) => {
@@ -136,7 +69,7 @@ const UpdateOrganizationModal = ({onClose}) => {
     setTables(_tables);
   }
   
-  const saveInfo = async () => {
+  const updateInfo = async () => {
     if (info.orgId === "") {
       alert("기관 id를 입력해주세요.");
     } else if (info.name === "") {
@@ -149,7 +82,7 @@ const UpdateOrganizationModal = ({onClose}) => {
       // api 호출
       await axios
         .post(
-          "/api/organization/add/new",
+          `/api/organization/update/${currentInfo._id}`,
           {
             key: process.env.REACT_APP_API_KEY,
             orgId: info.orgId,
@@ -167,8 +100,9 @@ const UpdateOrganizationModal = ({onClose}) => {
           }
         )
         .then((response) => {
-          alert("업로드 되었습니다.");
+          alert("수정되었습니다.");
           onClose();
+          setRefresh(new Date());
           // history.push(createActionUrl);
           document.getElementById("scrollRef").scrollTo(0, 0);
         })
@@ -278,7 +212,7 @@ const UpdateOrganizationModal = ({onClose}) => {
             닫기
           </button>
           <button
-            onClick={saveInfo}
+            onClick={updateInfo}
             className="outline-none w-full md:w-auto cursor-pointer px-0 md:px-16 py-2 justify-center border border-purple-700 text-purple-700 flex flex-row items-center hover:bg-purple-500 hover:text-white hover:font-bold"
           >
             저장하기
