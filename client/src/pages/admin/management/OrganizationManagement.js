@@ -175,7 +175,7 @@ const OrganizationManagement = () => {
           <div class="flex-1 flex justify-center items-center py-8 ">
             <div class={"w-full flex flex-col px-5 py-2 2xl:px-36 xl:px-32 md:px-8 lg:py-2"}>
               
-              <div class={"h-12 flex flex-row justify-between"}>
+              <div class={"h-12 flex flex-row justify-between mb-8"}>
                 <Select className="basic-single w-96 outline-none mb-6"
                         classNamePrefix="select"
                         style={{width: "36px"}}
@@ -202,8 +202,8 @@ const OrganizationManagement = () => {
                 {
                   currentInfo.load ?
                     <div>
-                      <Subtitle text={"센터소개"}/>
-                      <div class='mt-1 mb-4 w-full hidden lg:flex flex-row text-sm text-gray-400 items-center'>
+                      <Subtitle text={`${currentInfo.name.includes("사업") ? "사업소개" : "센터소개"}`}/>
+                      <div class='mt-1 mb-4 w-full flex flex-row text-sm text-gray-400 items-center'>
                         <div class='mr-2'>
                           <HiHome size={16}/>
                         </div>
