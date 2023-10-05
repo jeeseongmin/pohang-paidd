@@ -190,12 +190,12 @@ const OrganizationManagement = () => {
                         })}
                         options={options}/>
                 <div class={"flex flex-row gap-4"}>
-                  <button
-                    onClick={() => setOpenCreateModal(true)}
-                    className="h-10 w-full md:w-auto cursor-pointer justify-center transition delay-50 duration-300 px-4 py-2 border border-purple-700 text-purple-700 flex flex-row items-center hover:bg-purple-500 hover:text-white hover:font-bold "
-                  >
-                    기관 추가하기
-                  </button>
+                  {/*<button*/}
+                  {/*  onClick={() => setOpenCreateModal(true)}*/}
+                  {/*  className="h-10 w-full md:w-auto cursor-pointer justify-center transition delay-50 duration-300 px-4 py-2 border border-purple-700 text-purple-700 flex flex-row items-center hover:bg-purple-500 hover:text-white hover:font-bold "*/}
+                  {/*>*/}
+                  {/*  기관 추가하기*/}
+                  {/*</button>*/}
                   <button
                     onClick={() => setOpenUpdateModal(true)}
                     className="h-10 w-full md:w-auto cursor-pointer justify-center transition delay-50 duration-300 px-4 py-2 border border-purple-700 text-purple-700 flex flex-row items-center hover:bg-purple-500 hover:text-white hover:font-bold "
