@@ -219,8 +219,8 @@ const NoticeDetail = (props) => {
               currentEmail === info.type) ? (
               <div class='w-full md:w-auto flex flex-col md:flex-row'>
                 <div
-                  // onClick={deleteNotice}
-                  onClick={() => alert("웹사이트 개발중입니다. 공지사항을 이용할 수 없습니다. ")}
+                  onClick={deleteNotice}
+                  // onClick={() => alert("웹사이트 개발중입니다. 공지사항을 이용할 수 없습니다. ")}
                   class='w-full md:w-auto my-4 md:my-0 justify-center mr-4 cursor-pointer px-16 py-2 border border-purple-700 text-purple-700 flex flex-row items-center hover:bg-purple-500 hover:text-white hover:font-bold'>
                   삭제하기
                 </div>

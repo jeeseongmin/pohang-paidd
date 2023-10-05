@@ -6,12 +6,12 @@ import React, { useEffect, useState } from "react";
 import { Route, useHistory } from "react-router-dom";
 import Layout from "../../components/Layout";
 import OrgMenu from "../../components/Menu/OrgMenu";
-import Business from "./common/Business";
 import Gallery from "./common/Gallery.js";
 import Notice from "./common/notice/index";
 import GalleryDetail from "../../components/gallery/GalleryDetail";
 import GalleryWrite from "../../components/gallery/GalleryWrite";
 import Intro from "../common/Intro";
+import Business from "../common/Business";
 
 const Index = ({match}) => {
   const [selected, setSelected] = useState(0);
@@ -122,7 +122,7 @@ const Index = ({match}) => {
                 <Intro name={"늘사랑주간보호센터"}/>
               </Route>
               <Route exact path='/organization/business/0'>
-                <Business/>
+                <Business orgId={"org4"} type={"image"} menu={"늘사랑주간보호센터"}/>
               </Route>
               <Route exact path='/organization/notice/0'>
                 <Notice/>

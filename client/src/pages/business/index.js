@@ -6,6 +6,7 @@ import Org2 from "./pages/org2/index";
 import Org3 from "./pages/org3/index";
 import Submenu from "../../components/Submenu";
 import Layout from "../../components/Layout";
+import Org5 from "./pages/org5";
 
 const Index = ({match}) => {
   const [transForm, setTransForm] = useState(false);
@@ -51,6 +52,7 @@ const Index = ({match}) => {
             <Submenu menu={2} submenu={2} Key={2}/>
             <Submenu menu={2} submenu={3} key={3}/>
             <Submenu menu={2} submenu={4} key={4}/>
+            <Submenu menu={2} submenu={5} key={5}/>
           </div>
         </div>
         <div class="w-full h-auto px-5 py-8 2xl:px-36 xl:px-32 md:px-8 lg:py-16">
@@ -67,6 +69,9 @@ const Index = ({match}) => {
             </Route>
             <Route path="/business/org3/:type">
               <Org3 pages={"org3"} type={match.params.type}/>
+            </Route>
+            <Route path="/business/org5/:type">
+              <Org5 pages={"org5"} type={match.params.type}/>
             </Route>
             
             {/* <Route exact path="/business/org1/:type">

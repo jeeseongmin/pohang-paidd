@@ -7,10 +7,10 @@ import { useHistory } from "react-router-dom";
 import BusinessMenu from "../../../../components/Menu/BusinessMenu";
 import Gallery from "../common/Gallery";
 import Notice from "../common/notice/notice";
-import Business from "./components/business";
 import GalleryDetail from "../../../../components/gallery/GalleryDetail";
 import GalleryWrite from "../../../../components/gallery/GalleryWrite";
 import Intro from "../../../common/Intro";
+import Business from "../../../common/Business";
 
 const Index = (props, {match}) => {
   const history = useHistory();
@@ -62,7 +62,7 @@ const Index = (props, {match}) => {
     // /business/org/business
     else if (pathname.includes("business")) {
       setSelected(1);
-      return <Business/>;
+      return <Business type={"image"} menu={"포항시지적장애인자립지원센터"} orgId={props.pages}/>;
     }
   };
   

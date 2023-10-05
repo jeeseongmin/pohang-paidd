@@ -5,11 +5,11 @@ import NoticeWrite from "pages/notice/NoticeWrite";
 import React, { useState } from "react";
 import Gallery from "../common/Gallery";
 import Notice from "../common/notice/notice";
-import Business from "./components/business";
 import BusinessMenu from "../../../../components/Menu/BusinessMenu";
 import GalleryDetail from "../../../../components/gallery/GalleryDetail";
 import GalleryWrite from "../../../../components/gallery/GalleryWrite";
 import Intro from "../../../common/Intro";
+import Business from "../../../common/Business";
 
 const Index = (props) => {
   const [selected, setSelected] = useState(0);
@@ -60,7 +60,7 @@ const Index = (props) => {
     // /business/org/business
     else if (pathname.includes("business")) {
       setSelected(1);
-      return <Business/>;
+      return <Business type={"table"}/>;
     }
   };
   
@@ -80,7 +80,6 @@ const Index = (props) => {
             );
           })}
         </div>
-        
         <div>
           <Content/>
         </div>
