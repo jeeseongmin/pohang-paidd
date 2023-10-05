@@ -4,7 +4,6 @@ import { CircularProgress } from "@mui/material";
 import OrganizationIntro from "../../components/Organization/OrganizationIntro";
 
 const Intro = ({name}) => {
-  console.log("intro")
   const [info, setInfo] = useState({
     orgId: "",
     name: "",
@@ -35,7 +34,6 @@ const Intro = ({name}) => {
         }
       ).then((Response) => {
         const {data} = Response;
-        console.log(data)
         if (data.length > 0)
           setInfo({...data[0], load: true});
       }).catch(() => {

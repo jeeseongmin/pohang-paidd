@@ -7,7 +7,6 @@ function useSetting(type) {
   }, []);
   
   const init = async () => {
-    console.log("init", type);
     if (type === "business") {
       await setSetting({
         subtitle: "1",

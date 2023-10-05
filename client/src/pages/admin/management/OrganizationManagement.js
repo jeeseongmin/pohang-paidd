@@ -61,7 +61,6 @@ const OrganizationManagement = () => {
     await axios.post("/api/organization", {
       key: process.env.REACT_APP_API_KEY,
     }).then((Response) => {
-      console.log("Response : ", Response);
       const {data} = Response;
       if (data.length > 0) {
         const sorted = data.sort((a, b) => {
