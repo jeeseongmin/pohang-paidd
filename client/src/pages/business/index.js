@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { Route } from "react-router-dom";
-import Base from "./Base";
 import Org1 from "./pages/org1/index";
 import Org2 from "./pages/org2/index";
 import Org3 from "./pages/org3/index";
 import Submenu from "../../components/Submenu";
 import Layout from "../../components/Layout";
 import Org5 from "./pages/org5";
+import Business from "../common/Business";
 
 const Index = ({match}) => {
   const [transForm, setTransForm] = useState(false);
@@ -58,7 +58,7 @@ const Index = ({match}) => {
         <div class="w-full h-auto px-5 py-8 2xl:px-36 xl:px-32 md:px-8 lg:py-16">
           <switch>
             <Route exact path="/business/base/:type">
-              <Base/>
+              <Business type={"image"} menu={"협회사업"} orgId={match.params.type}/>
             </Route>
             
             <Route path="/business/org1/:type">

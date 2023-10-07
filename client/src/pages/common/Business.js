@@ -25,7 +25,10 @@ const Business = ({type, menu, orgId}) => {
         <div className="mr-2">
           <HiHome size={16}/>
         </div>
-        Home {">"} 주요사업 {"> "} {menu} {" >"} 주요사업
+        {
+          menu === "협회사업" ? "Home > 주요사업 > 협회사업" :
+            `Home > 주요사업 > ${menu} > 주요사업`
+        }
       </div>
       <div className="flex flex-wrap justify-around gap-4 mt-4 md:mt-8">
         <div
@@ -253,7 +256,10 @@ const Business = ({type, menu, orgId}) => {
         <div className="mr-2">
           <HiHome size={16}/>
         </div>
-        Home {">"} 주요사업 {"> "} {menu} {" >"} 주요사업
+        {
+          menu === "협회사업" ? "Home > 주요사업 > 협회사업" :
+            `Home > 주요사업 > ${menu} > 주요사업`
+        }
       </div>
       <div
         className="w-full grid grid-flow-row grid-cols-1 grid-rows-5 md:grid-cols-2 md:grid-rows-3 lg:grid-cols-4 lg:grid-rows-2 gap-x-8 mt-8">

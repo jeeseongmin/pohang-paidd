@@ -1,24 +1,45 @@
 export const BusinessData = {
+  default: [{
+    title: "장애인복지 일자리사업",
+    content: ["발달장애인에게 일자리 제공"],
+    image: "https://drive.google.com/file/d/1h5_MIZBYRFBbBcYPeBBmkbBCjZUZ-yoI/view?usp=drive_link",
+  }, {
+    title: "가족지원사업",
+    content: ["가족상담, 교육"],
+    image: "https://drive.google.com/file/d/1Up2_Nr2CrCYCXgKbbMZdrT1pmxGBTPd-/view?usp=drive_link",
+  }, {
+    title: "교육 연수 사업",
+    content: ["사회복지 전문가 역량강화 연수"],
+    image: "https://drive.google.com/file/d/1NJqRQPX-fNTEMr_PdUFwzbgLgRw06V-y/view?usp=drive_link",
+  }, {
+    title: "단체교류 및 연계사업",
+    content: ["단체 협력 사업"],
+    image: "https://drive.google.com/file/d/1tDH0OTeYWI2R6IskxZ2eoQjS-VG572g8/view?usp=drive_link",
+  }, {
+    title: "지역사회자원개발사업",
+    content: ["후원자 및 자원봉사자 개발"],
+    image: "https://drive.google.com/file/d/1vvd7K2S5WusCE8SBXB9zoaGP_2RD_7Vm/view?usp=drive_link",
+  }],
   org1: [{
-    title: "건강증진사업",
-    content: ["산책", "슐런", "등산", "승마체험", "특수체육"],
-    image: "https://drive.google.com/file/d/16uPZGxLxmBPu7O1jHuBsIsI1f5AngeQu/view?usp=drive_link",
+    title: "취미여가활동",
+    content: ["음악활동", "체육활동", "배움활동", "힐링활동"],
+    image: "https://drive.google.com/file/d/1udAFmcWLvmESHSEHj2Tg7-dHtMITaoEA/view?usp=drive_link",
   }, {
-    title: "문화여가사업",
-    content: ["캠핑", "여행", "영화관람", "미술관 및 박물관 관람"],
-    image: "https://drive.google.com/file/d/1jYqcXlXYGzth6v5L-G400HjXJwy3cFJ5/view?usp=drive_link",
+    title: "직업탐구활동",
+    content: ["직업이해활동", "직업체험활동", "직업탐색활동"],
+    image: "https://drive.google.com/file/d/1BfrPI-1BMPqzTtRpqYgywSMAPTpKZmP2/view?usp=drive_link",
   }, {
-    title: "취미활동사업",
-    content: ["음악활동", "미술활동", "요리활동"],
-    image: "https://drive.google.com/file/d/103AFMmWYzouwgNROkIp3bgTdAsdCJZzy/view?usp=drive_link",
+    title: "자립준비활동",
+    content: ["지역사회이해활동", "관계형성활동", "자기표현활동", "미래계획활동"],
+    image: "https://drive.google.com/file/d/1UgJyqoGYRVujFhdlLSXJsV4LJwQj2tj4/view?usp=drive_link",
   }, {
-    title: "교육활동사업",
-    content: ["안전교육", "성인권교육", "자립생활교육"],
-    image: "https://drive.google.com/file/d/1kxjPSs_xwI3pBrW-I-TUFXz4xU9DLr1G/view?usp=drive_link",
+    title: "관람체험활동",
+    content: ["관람활동", "체험활동"],
+    image: "https://drive.google.com/file/d/1Dci-tLaWX9utNiQPntoiVljYpfwb0PG-/view?usp=drive_link",
   }, {
-    title: "자조활동사업",
-    content: ["자조모임참여"],
-    image: "https://drive.google.com/file/d/1FV5uM2llDMFcTqDV9gYyq_YSx6hjPbYj/view?usp=drive_link",
+    title: "자조활동",
+    content: ["직접 활동계획을 세우고 추진하는 활동"],
+    image: "https://drive.google.com/file/d/1TGdPuVL1h1d6VKRQ0PR4gkfuLdXz-C11/view?usp=drive_link",
   }],
   org2: [],
   org3: [{
@@ -86,24 +107,24 @@ export const BusinessData = {
   }],
   // 임시 데이터
   org5: [{
-    title: "취미여가활동",
-    content: ["음악활동", "체육활동", "배움활동", "힐링활동"],
-    image: "https://drive.google.com/file/d/1udAFmcWLvmESHSEHj2Tg7-dHtMITaoEA/view?usp=drive_link",
+    title: "건강증진사업",
+    content: ["산책", "슐런", "등산", "승마체험", "특수체육"],
+    image: "https://drive.google.com/file/d/16uPZGxLxmBPu7O1jHuBsIsI1f5AngeQu/view?usp=drive_link",
   }, {
-    title: "직업탐구활동",
-    content: ["직업이해활동", "직업체험활동", "직업탐색활동"],
-    image: "https://drive.google.com/file/d/1BfrPI-1BMPqzTtRpqYgywSMAPTpKZmP2/view?usp=drive_link",
+    title: "문화여가사업",
+    content: ["캠핑", "여행", "영화관람", "미술관 및 박물관 관람"],
+    image: "https://drive.google.com/file/d/1jYqcXlXYGzth6v5L-G400HjXJwy3cFJ5/view?usp=drive_link",
   }, {
-    title: "자립준비활동",
-    content: ["지역사회이해활동", "관계형성활동", "자기표현활동", "미래계획활동"],
-    image: "https://drive.google.com/file/d/1UgJyqoGYRVujFhdlLSXJsV4LJwQj2tj4/view?usp=drive_link",
+    title: "취미활동사업",
+    content: ["음악활동", "미술활동", "요리활동"],
+    image: "https://drive.google.com/file/d/103AFMmWYzouwgNROkIp3bgTdAsdCJZzy/view?usp=drive_link",
   }, {
-    title: "관람체험활동",
-    content: ["관람활동", "체험활동"],
-    image: "https://drive.google.com/file/d/1Dci-tLaWX9utNiQPntoiVljYpfwb0PG-/view?usp=drive_link",
+    title: "교육활동사업",
+    content: ["안전교육", "성인권교육", "자립생활교육"],
+    image: "https://drive.google.com/file/d/1kxjPSs_xwI3pBrW-I-TUFXz4xU9DLr1G/view?usp=drive_link",
   }, {
-    title: "자조활동",
-    content: ["직접 활동계획을 세우고 추진하는 활동"],
-    image: "https://drive.google.com/file/d/1TGdPuVL1h1d6VKRQ0PR4gkfuLdXz-C11/view?usp=drive_link",
+    title: "자조활동사업",
+    content: ["자조모임참여"],
+    image: "https://drive.google.com/file/d/1FV5uM2llDMFcTqDV9gYyq_YSx6hjPbYj/view?usp=drive_link",
   }],
 }
