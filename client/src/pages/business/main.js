@@ -3,11 +3,11 @@ import NoticeWrite from "pages/notice/NoticeWrite";
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import OrgMenu from "../../components/Menu/orgMenu";
-import Business from "./common/business";
 import Gallery from "./common/gallery";
 import Intro from "./common/intro";
 import Notice from "./pages/common/notice/notice";
 import NoticeDetail from "./pages/common/notice/noticeDetail";
+import Business from "../common/Business";
 
 const Main = (props) => {
   const history = useHistory();
@@ -28,7 +28,7 @@ const Main = (props) => {
       if (selected === 0) {
         return <Intro/>;
       } else if (selected === 1) {
-        return <Business/>;
+        return <Business type={"image"} menu={"협회사업"} orgId={"default"}/>;
       } else if (selected === 2) {
         if (props.type === "default") {
           return <Notice url='business'/>;
