@@ -1,11 +1,12 @@
 // import NoticeWrite from "./pages/common/notice/noticeWrite";
-import NoticeWrite from "pages/notice/NoticeWrite";
+// import NoticeWrite from "pages/notice/NoticeWrite";
+import NoticeWrite from "components/notice/NoticeWrite"
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import OrgMenu from "../../components/Menu/orgMenu";
 import Gallery from "./common/gallery";
 import Intro from "./common/intro";
-import Notice from "./pages/common/notice/notice";
+import Notice from "./pages/common/Notice";
 import NoticeDetail from "./pages/common/notice/noticeDetail";
 import Business from "../common/Business";
 

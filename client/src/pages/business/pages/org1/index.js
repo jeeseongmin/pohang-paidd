@@ -1,12 +1,14 @@
 // import NoticeWrite from "../common/notice/noticeWrite";
 // import NoticeDetail from "../common/notice/noticeDetail";
-import NoticeDetail from "pages/notice/NoticeDetail";
-import NoticeWrite from "pages/notice/NoticeWrite";
+// import NoticeWrite from "pages/notice/NoticeWrite";
+import NoticeDetail from "components/notice/NoticeDetail"
+import NoticeWrite from "components/notice/NoticeWrite"
+
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import BusinessMenu from "../../../../components/Menu/BusinessMenu";
 import Gallery from "../common/Gallery";
-import Notice from "../common/notice/notice";
+import Notice from "../common/Notice";
 import GalleryDetail from "../../../../components/gallery/GalleryDetail";
 import GalleryWrite from "../../../../components/gallery/GalleryWrite";
 import Intro from "../../../common/Intro";
@@ -41,6 +43,7 @@ const Index = (props, {match}) => {
       // detail : /business/org/notice/:id
       else {
         const id = pathname.split("/")[4];
+        // return <NoticeDetail pages={props.pages} id={id} url='business'/>;
         return <NoticeDetail pages={props.pages} id={id} url='business'/>;
       }
     } else if (window.location.pathname.includes("gallery")) {

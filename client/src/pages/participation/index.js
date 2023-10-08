@@ -1,7 +1,9 @@
 // import NoticeDetail from "./notice/noticeDetail";
 // import WriteNotice from "./notice/writeNotice";
-import NoticeDetail from "pages/notice/NoticeDetail";
-import NoticeWrite from "pages/notice/NoticeWrite";
+// import NoticeDetail from "pages/notice/NoticeDetail";
+import NoticeDetail from "components/notice/NoticeDetail"
+import NoticeWrite from "components/notice/NoticeWrite"
+// import NoticeWrite from "pages/notice/NoticeWrite";
 import React, { useEffect, useState } from "react";
 import { Route } from "react-router-dom";
 import Layout from "../../components/Layout";

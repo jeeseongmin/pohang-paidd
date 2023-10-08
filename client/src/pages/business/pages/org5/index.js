@@ -1,11 +1,12 @@
 // import NoticeDetail from "../common/notice/noticeDetail";
 // import NoticeWrite from "../common/notice/noticeWrite";
-import NoticeDetail from "pages/notice/NoticeDetail";
-import NoticeWrite from "pages/notice/NoticeWrite";
+// import NoticeDetail from "pages/notice/NoticeDetail";
+import NoticeDetail from "components/notice/NoticeDetail"
+import NoticeWrite from "components/notice/NoticeWrite"
 import React, { useState } from "react";
 import BusinessMenu from "../../../../components/Menu/BusinessMenu";
 import Gallery from "../common/Gallery";
-import Notice from "../common/notice/notice";
+import Notice from "../common/Notice";
 import GalleryDetail from "../../../../components/gallery/GalleryDetail";
 import GalleryWrite from "../../../../components/gallery/GalleryWrite";
 import Intro from "../../../common/Intro";

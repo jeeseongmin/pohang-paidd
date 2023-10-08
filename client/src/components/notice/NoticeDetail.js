@@ -4,7 +4,8 @@ import "@toast-ui/editor/dist/toastui-editor-viewer.css";
 import { Viewer } from "@toast-ui/react-editor";
 import axios from "axios";
 import Subtitle from "components/Subtitle";
-import NoticeEdit from "pages/notice/NoticeEdit";
+// import NoticeEdit from "pages/notice/NoticeEdit";
+import NoticeEdit from "components/notice/NoticeEdit"
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
