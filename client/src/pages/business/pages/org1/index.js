@@ -7,8 +7,8 @@ import NoticeWrite from "components/notice/NoticeWrite"
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import BusinessMenu from "../../../../components/Menu/BusinessMenu";
-import Gallery from "../common/Gallery";
-import Notice from "../common/Notice";
+import Gallery from "../../../common/Gallery";
+import Notice from "../../../common/Notice";
 import GalleryDetail from "../../../../components/gallery/GalleryDetail";
 import GalleryWrite from "../../../../components/gallery/GalleryWrite";
 import Intro from "../../../common/Intro";

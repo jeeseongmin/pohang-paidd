@@ -10,11 +10,11 @@ import { Route, useHistory } from "react-router-dom";
 import Layout from "../../components/Layout";
 import OrgMenu from "../../components/Menu/OrgMenu";
 import Gallery from "./common/Gallery.js";
-import Notice from "./common/notice/index";
 import GalleryDetail from "../../components/gallery/GalleryDetail";
 import GalleryWrite from "../../components/gallery/GalleryWrite";
 import Intro from "../common/Intro";
 import Business from "../common/Business";
+import Notice from "../common/Notice";
 
 const Index = ({match}) => {
   const [selected, setSelected] = useState(0);
@@ -128,7 +128,7 @@ const Index = ({match}) => {
                 <Business orgId={"org4"} type={"image"} menu={"늘사랑주간보호센터"}/>
               </Route>
               <Route exact path='/organization/notice/0'>
-                <Notice/>
+                <Notice pages={"org4"}/>
               </Route>
               <Route exact path='/organization/gallery/0'>
                 <Gallery pages={"org4"}/>

@@ -5,10 +5,11 @@ import { BsSearch } from "react-icons/bs";
 import { HiHome } from "react-icons/hi";
 import { useSelector } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
-import Paging from "../../../../components/Paging";
-import Subtitle from "../../../../components/Subtitle";
+import Paging from "../../components/Paging";
+import Subtitle from "../../components/Subtitle";
 
 const Notice = (props, {match}) => {
+  console.log(props.pages);
   const history = useHistory();
   const [loading, setLoading] = useState(false);
   const [loadingPaging, setLoadingPaging] = useState(false);
@@ -29,6 +30,8 @@ const Notice = (props, {match}) => {
       setSubtitle("장애인활동지원사업");
     } else if (window.location.href.includes("org3")) {
       setSubtitle("방과후활동서비스사업");
+    } else if (window.location.href.includes("org5")) {
+      setSubtitle("주간활동서비스사업")
     }
   }, [window.location.href]);
   
@@ -189,7 +192,11 @@ const Notice = (props, {match}) => {
         }
       )
       .then((Response) => {
-        history.push("/business/" + type + "/notice/" + id);
+        if (type === "org4") {
+          history.push("/organization/noticeDetail/" + id);
+        } else {
+          history.push("/business/" + type + "/notice/" + id);
+        }
       })
       .catch((Error) => {
         console.log(Error);
@@ -222,7 +229,11 @@ const Notice = (props, {match}) => {
             <div class='mr-2'>
               <HiHome size={16}/>
             </div>
-            Home {">"} 주요사업 {">"} {subtitle} {">"} 공지사항
+            {
+              type === "org4" ?
+                `Home > 부설기관 > 늘사랑주간보호센터 > 공지사항` : `Home > 주요사업 > ${subtitle} > 공지사항`
+            }
+          
           </div>
         </div>
         <div class='w-1/2 flex flex-row items-center relative justify-end '>

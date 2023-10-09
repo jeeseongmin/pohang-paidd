@@ -4,8 +4,8 @@ import NoticeDetail from "components/notice/NoticeDetail"
 import NoticeWrite from "components/notice/NoticeWrite"
 // import NoticeWrite from "pages/notice/NoticeWrite";
 import React, { useState } from "react";
-import Gallery from "../common/Gallery";
-import Notice from "../common/Notice";
+import Gallery from "../../../common/Gallery";
+import Notice from "../../../common/Notice";
 import BusinessMenu from "../../../../components/Menu/BusinessMenu";
 import GalleryDetail from "../../../../components/gallery/GalleryDetail";
 import GalleryWrite from "../../../../components/gallery/GalleryWrite";
@@ -61,7 +61,7 @@ const Index = (props) => {
     // /business/org/business
     else if (pathname.includes("business")) {
       setSelected(1);
-      return <Business type={"table"}/>;
+      return <Business type={"table"} menu={"장애인활동지원사업"} orgId={props.pages}/>;
     }
   };
   

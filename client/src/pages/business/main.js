@@ -6,7 +6,7 @@ import { useHistory } from "react-router-dom";
 import OrgMenu from "../../components/Menu/orgMenu";
 import Gallery from "./common/gallery";
 import Intro from "./common/intro";
-import Notice from "./pages/common/Notice";
+import Notice from "../common/Notice";
 import NoticeDetail from "./pages/common/notice/noticeDetail";
 import Business from "../common/Business";
 

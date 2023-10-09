@@ -4,8 +4,8 @@ import React, { useEffect, useState } from "react";
 import { HiHome } from "react-icons/hi";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import Paging from "../../../../components/Paging";
-import Subtitle from "../../../../components/Subtitle";
+import Paging from "../../components/Paging";
+import Subtitle from "../../components/Subtitle";
 
 const Gallery = (props) => {
   const [loading, setLoading] = useState(false);
