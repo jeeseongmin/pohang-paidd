@@ -19,11 +19,11 @@ const NoticeLayout = (props) => {
   const imgList = props.imgList;
   const changeList = props.changeList;
   const setImgList = props.setImgList;
-
+  
   const buttonClick = () => {
     buttonRef.current.click();
   };
-
+  
   /**
    * 파일 업로드 onChange 함수
    * @param {*} e
@@ -31,7 +31,7 @@ const NoticeLayout = (props) => {
   const onChange = async (e) => {
     let formData = new FormData();
     const config = {
-      header: { "content-type": "multipart/form-data" },
+      header: {"content-type": "multipart/form-data"},
     };
     formData.append("file", e.target.files[0]);
     if (e.target.files[0].size > 10 * 1024 * 1024) {
@@ -57,7 +57,7 @@ const NoticeLayout = (props) => {
         });
     }
   };
-
+  
   /**
    * 파일 개별 삭제
    * @param {*} filename
@@ -69,7 +69,7 @@ const NoticeLayout = (props) => {
     });
     changeList(cp, "fileList");
   };
-
+  
   return (
     <div class='w-full h-auto mb-4'>
       {/* 딱 10개 씩만 로드하기 */}
@@ -116,13 +116,13 @@ const NoticeLayout = (props) => {
             return (
               <div class='w-full mb-4 border border-gray-300 rounded-md relative'>
                 {/* 
-								// localhost
-								<a
-									class="text-blue-500 underline"
-									href={"http://localhost:5000/uploads/" + element.filename}
-									target="_blank"
-									download
-								> */}
+                 // localhost
+                 <a
+                 class="text-blue-500 underline"
+                 href={"http://localhost:5000/uploads/" + element.filename}
+                 target="_blank"
+                 download
+                 > */}
                 <a
                   class='text-blue-500'
                   href={window.location.origin + "/uploads/" + element.filename}
@@ -137,7 +137,7 @@ const NoticeLayout = (props) => {
                   <span class='text-red-500 text-sm'>bytes</span>
                   <span class='text-sm text-gray-300'>) </span>
                 </a>
-
+                
                 <MdCancel
                   onClick={() => removeFile(element.filename)}
                   size={24}
@@ -148,7 +148,7 @@ const NoticeLayout = (props) => {
           })
         ) : (
           <div class='w-full h-24 my-2 py-4 flex justify-center items-center text-center'>
-            <CircularProgress />
+            <CircularProgress/>
           </div>
         )}
       </div>
@@ -161,32 +161,33 @@ const NoticeLayout = (props) => {
           ref={editorRef}
           hooks={{
             addImageBlobHook: async (blob, callback) => {
+              alert("이미지 업로드 기능은 일시적으로 사용이 불가합니다.")
               // 서버의 upload API 호출
-              if (blob.size > 10 * 1024 * 1024) {
-                alert("10MB 이하의 이미지만 업로드 가능합니다.");
-                blob = null;
-              } else {
-                let formData = new FormData();
-                formData.append("file", blob);
-                await axios
-                  .post("/api/image/upload", formData)
-                  .then(async (res) => {
-                    if (res.data.success) {
-                      const cp = [...imgList];
-                      cp.push({
-                        filename: res.data.filename,
-                        id: res.data.id,
-                        url: res.data.url,
-                        deleted: false,
-                      });
-                      await changeList(cp, "imgList");
-                      callback(res.data.url, "alt text");
-                    } else {
-                      alert("이미지 업로드를 실패했습니다.");
-                      return "error";
-                    }
-                  });
-              }
+              // if (blob.size > 10 * 1024 * 1024) {
+              //   alert("10MB 이하의 이미지만 업로드 가능합니다.");
+              //   blob = null;
+              // } else {
+              //   let formData = new FormData();
+              //   formData.append("file", blob);
+              //   await axios
+              //     .post("/api/image/upload", formData)
+              //     .then(async (res) => {
+              //       if (res.data.success) {
+              //         const cp = [...imgList];
+              //         cp.push({
+              //           filename: res.data.filename,
+              //           id: res.data.id,
+              //           url: res.data.url,
+              //           deleted: false,
+              //         });
+              //         await changeList(cp, "imgList");
+              //         callback(res.data.url, "alt text");
+              //       } else {
+              //         alert("이미지 업로드를 실패했습니다.");
+              //         return "error";
+              //       }
+              //     });
+              // }
             },
           }}
         />
