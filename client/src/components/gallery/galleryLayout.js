@@ -1,5 +1,4 @@
 import CircularProgress from "@material-ui/core/CircularProgress";
-import axios from "axios";
 import React, { useRef, useState } from "react";
 import { MdCancel } from "react-icons/md";
 import { useHistory } from "react-router-dom";
@@ -95,17 +94,17 @@ const GalleryLayout = (props) => {
     // setImageUrlList(cp);
   }
   
-  const onChange = async (e) => {
-    setLoading(false);
-    const formData = new FormData();
-    formData.append("file", e.target.files[0]);
-    // 서버의 upload API 호출
-    const res = await axios.post("/api/image/upload", formData);
-    const cp = [...info.imgList];
-    await cp.push({filename: res.data.filename, id: res.data.id});
-    await changeInfo(cp, "imgList");
-    setLoading(true);
-  };
+  // const onChange = async (e) => {
+  //   setLoading(false);
+  //   const formData = new FormData();
+  //   formData.append("file", e.target.files[0]);
+  //   // 서버의 upload API 호출
+  //   const res = await axios.post("/api/image/upload", formData);
+  //   const cp = [...info.imgList];
+  //   await cp.push({filename: res.data.filename, id: res.data.id});
+  //   await changeInfo(cp, "imgList");
+  //   setLoading(true);
+  // };
   
   const removeImg = async (index) => {
     // if (isEdit) {
@@ -145,7 +144,7 @@ const GalleryLayout = (props) => {
           type='file'
           class='hidden'
           name='img'
-          onChange={onChange}
+          // onChange={onChange}
         />
         <div class='w-full my-4 flex flex-row justify-center items-center'>
           {/*<h1 class='text-lg font-bold'>이미지 업로드하기</h1>*/}
