@@ -9,7 +9,6 @@ import Paging from "../../components/Paging";
 import Subtitle from "../../components/Subtitle";
 
 const Notice = (props, {match}) => {
-  console.log(props.pages);
   const history = useHistory();
   const [loading, setLoading] = useState(false);
   const [loadingPaging, setLoadingPaging] = useState(false);
@@ -22,7 +21,7 @@ const Notice = (props, {match}) => {
   const currentPassword = useSelector((state) => state.setting.currentPassword);
   const type = props.pages;
   
-  const [createActionUrl, setCreateActionUrl] = useState(type ? `/organization/writeNotice/0` : `/business/${type}/notice/write`);
+  const [createActionUrl, setCreateActionUrl] = useState(type !== "org4" ? `/business/${type}/notice/write` : `/organization/writeNotice/0`);
   const [subtitle, setSubtitle] = useState("");
   
   useEffect(() => {

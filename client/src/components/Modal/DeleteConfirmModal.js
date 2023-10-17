@@ -27,7 +27,7 @@ const DeleteConfirmModal = ({onClose, type, deleteAction}) => {
         <h1 class={"text-3xl font-bold mb-4"}>{type} 삭제하기</h1>
         <div class={"mb-8"}>정말 해당 게시글을 삭제하시겠습니까?</div>
         
-        <div className="flex justify-between items-center flex-col md:flex-row">
+        <div className="flex justify-between items-center flex-col md:flex-row gap-4">
           <button
             class="w-full md:w-auto cursor-pointer mb-4 md:mb-0 px-16 py-2 justify-center border border-purple-700 text-purple-700 flex flex-row items-center hover:bg-purple-500 hover:text-white hover:font-bold"
             onClick={onClose}
