@@ -161,7 +161,9 @@ const NoticeLayout = (props) => {
           ref={editorRef}
           hooks={{
             addImageBlobHook: async (blob, callback) => {
-              alert("이미지 업로드 기능은 일시적으로 사용이 불가합니다.")
+              console.log("blob", blob);
+              // alert("이미지 업로드 기능은 일시적으로 사용이 불가합니다.")
+              
               // 서버의 upload API 호출
               // if (blob.size > 10 * 1024 * 1024) {
               //   alert("10MB 이하의 이미지만 업로드 가능합니다.");
@@ -201,32 +203,35 @@ const NoticeLayout = (props) => {
           ref={editorRef}
           hooks={{
             addImageBlobHook: async (blob, callback) => {
+              alert("현재 파일 업로드는 불가능합니다. 구글 드라이브를 통한 URL을 활용해주시기 바랍니다.");
+              console.log("blob", blob)
+              
               // 서버의 upload API 호출
-              if (blob.size > 10 * 1024 * 1024) {
-                alert("10MB 이하의 파일만 업로드 가능합니다.");
-                blob = null;
-              } else {
-                let formData = new FormData();
-                formData.append("file", blob);
-                await axios
-                  .post("/api/image/upload", formData)
-                  .then(async (res) => {
-                    if (res.data.success) {
-                      const cp = [...imgList];
-                      cp.push({
-                        filename: res.data.filename,
-                        id: res.data.id,
-                        url: res.data.url,
-                        deleted: false,
-                      });
-                      await changeList(cp, "imgList");
-                      callback(res.data.url, "alt text");
-                    } else {
-                      alert("이미지 업로드를 실패했습니다.");
-                      return "error";
-                    }
-                  });
-              }
+              // if (blob.size > 10 * 1024 * 1024) {
+              //   alert("10MB 이하의 파일만 업로드 가능합니다.");
+              //   blob = null;
+              // } else {
+              //   let formData = new FormData();
+              //   formData.append("file", blob);
+              //   await axios
+              //     .post("/api/image/upload", formData)
+              //     .then(async (res) => {
+              //       if (res.data.success) {
+              //         const cp = [...imgList];
+              //         cp.push({
+              //           filename: res.data.filename,
+              //           id: res.data.id,
+              //           url: res.data.url,
+              //           deleted: false,
+              //         });
+              //         await changeList(cp, "imgList");
+              //         callback(res.data.url, "alt text");
+              //       } else {
+              //         alert("이미지 업로드를 실패했습니다.");
+              //         return "error";
+              //       }
+              //     });
+              // }
             },
           }}
         />
