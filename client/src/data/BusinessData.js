@@ -109,22 +109,22 @@ export const BusinessData = {
   org5: [{
     title: "건강증진사업",
     content: ["산책", "슐런", "등산", "승마체험", "특수체육"],
-    image: "https://drive.google.com/file/d/16uPZGxLxmBPu7O1jHuBsIsI1f5AngeQu/view?usp=drive_link",
+    image: "https://drive.google.com/file/d/1bX79QbksXKwTGlW03gxpC2JECm5KeHrU/view?usp=share_link",
   }, {
     title: "문화여가사업",
-    content: ["캠핑", "여행", "영화관람", "미술관 및 박물관 관람"],
-    image: "https://drive.google.com/file/d/1jYqcXlXYGzth6v5L-G400HjXJwy3cFJ5/view?usp=drive_link",
+    content: ["캠핑체험", "여행", "영화관람", "미술관 및 박물관 관람"],
+    image: "https://drive.google.com/file/d/1clDepC0gbT2qBuewjgLZqUlogIz1CJUz/view?usp=sharing",
   }, {
     title: "취미활동사업",
     content: ["음악활동", "미술활동", "요리활동"],
-    image: "https://drive.google.com/file/d/103AFMmWYzouwgNROkIp3bgTdAsdCJZzy/view?usp=drive_link",
+    image: "https://drive.google.com/file/d/1DYriyhyPXrTJPCuECmv83LEmWvo-YSYa/view?usp=share_link",
   }, {
     title: "교육활동사업",
     content: ["안전교육", "성인권교육", "자립생활교육"],
-    image: "https://drive.google.com/file/d/1kxjPSs_xwI3pBrW-I-TUFXz4xU9DLr1G/view?usp=drive_link",
+    image: "https://drive.google.com/file/d/1UCNARZFLAG5cbbncaqhltAcBUYmzriRh/view?usp=share_link",
   }, {
     title: "자조활동사업",
     content: ["자조모임참여"],
-    image: "https://drive.google.com/file/d/1FV5uM2llDMFcTqDV9gYyq_YSx6hjPbYj/view?usp=drive_link",
+    image: "https://drive.google.com/file/d/1vnuelErlzaGeeL40PjYqDPnqxhHVlJIW/view?usp=share_link",
   }],
 }
