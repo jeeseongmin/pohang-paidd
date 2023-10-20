@@ -112,8 +112,15 @@ const Home = () => {
                 방과후활동서비스사업
               </Link>
               <Link
-                to="/organization/intro/0"
+                to="/business/org5/intro"
                 onClick={() => goSubPage(2, 5)}
+                class="lg:text-base lg:p-4 text-xs cursor-pointer mr-4 mb-4 py-2 px-4 border border-purple-700 text-purple-700 rounded-full hover:border-purple-300 hover:bg-purple-300 transition delay-50 duration-300 hover:text-white"
+              >
+                주간활동서비스사업
+              </Link>
+              <Link
+                to="/organization/intro/0"
+                onClick={() => goSubPage(3, 1)}
                 class="lg:text-base lg:p-4 text-xs cursor-pointer mr-4 mb-4 py-2 px-4 border border-purple-700 text-purple-700 rounded-full hover:border-purple-300 hover:bg-purple-300 transition delay-50 duration-300 hover:text-white"
               >
                 사회복지이용시설 - 늘사랑주간보호센터
