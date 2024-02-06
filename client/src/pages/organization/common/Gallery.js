@@ -7,6 +7,7 @@ import axios from "axios";
 import { useSelector } from "react-redux";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import { HiHome } from "react-icons/hi";
+import { ImageUtils } from "../../../utils/ImageUtils";
 
 const Gallery = (props) => {
   const [loading, setLoading] = useState(false);
@@ -80,7 +81,7 @@ const Gallery = (props) => {
             <img
               class="w-full h-full object-cover"
               src={
-                data.convertedImageUrlList[0]
+                ImageUtils.convertGoogleDriveImage2(data.convertedImageUrlList[0])
               }
               alt="logo"
             />

@@ -7,6 +7,7 @@ import Subtitle from "../Subtitle";
 import GalleryEdit from "./GalleryEdit";
 import Slider from "react-slick";
 import DeleteConfirmModal from "../Modal/DeleteConfirmModal";
+import { ImageUtils } from "../../utils/ImageUtils";
 
 function SampleNextArrow(props) {
   const {className, style, onClick} = props;
@@ -160,7 +161,7 @@ const GalleryDetail = (props) => {
     customPaging: function (i) {
       return (
         <a>
-          <img style={{width: "100px"}} src={info.convertedImageUrlList[i]}/>
+          <img style={{width: "100px"}} src={ImageUtils.convertGoogleDriveImage2(info.convertedImageUrlList[i])}/>
         </a>
       );
     },
@@ -220,7 +221,7 @@ const GalleryDetail = (props) => {
                         <img
                           class="h-96"
                           style={{width: "30rem"}}
-                          src={element}
+                          src={ImageUtils.convertGoogleDriveImage2(element)}
                           alt="img"
                         />
                       </div>

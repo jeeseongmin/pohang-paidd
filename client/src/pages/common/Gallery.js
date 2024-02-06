@@ -6,6 +6,7 @@ import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import Paging from "../../components/Paging";
 import Subtitle from "../../components/Subtitle";
+import { ImageUtils } from "../../utils/ImageUtils";
 
 const Gallery = (props) => {
   const [loading, setLoading] = useState(false);
@@ -88,7 +89,7 @@ const Gallery = (props) => {
             <img
               class='w-full h-full object-cover'
               src={
-                data.convertedImageUrlList[0]
+                ImageUtils.convertGoogleDriveImage2(data.convertedImageUrlList[0])
               }
               alt='logo'
             />

@@ -8,7 +8,6 @@ const API_KEY = require("../../keyconfig");
 
 // Read All Service
 router.route("/").post((req, res) => {
-  console.log(API_KEY);
   if (req.body.key === API_KEY) {
     Organization.find()
       .sort({createdAt: -1})
