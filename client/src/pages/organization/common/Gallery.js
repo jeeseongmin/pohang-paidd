@@ -145,7 +145,7 @@ const Gallery = (props) => {
          */}
         <Paging setPage={setPage} page={page} total={totalPage}/>
         
-        {currentEmail === "master" || currentEmail === type ? (
+        {currentEmail === "master" && currentEmail === type ? (
           <div class="relative md:absolute right-0 w-full md:w-auto flex justify-end md:block">
             <Link
               to={"/organization/galleryWrite/0"}

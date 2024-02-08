@@ -18,22 +18,22 @@ const Index = () => {
   const [isSearch, setIsSearch] = useState(false);
   const [findText, setFindText] = useState("");
   // const setting = useSetting("haha");
-
+  
   // useEffect(() => {
   //   console.log("useHooks test", setting);
   // }, []);
-
+  
   const enterkey = () => {
     if (window.event.keyCode === 13) {
       searchList();
     }
   };
-
+  
   const changeText = (e) => {
     const cp = e.target.value;
     setFindText(cp);
   };
-
+  
   const searchList = () => {
     setIsSearch(true);
     setPage(1);
@@ -41,7 +41,7 @@ const Index = () => {
       axios
         .post(
           "/api/notice/search/org4/" + page,
-          { key: process.env.REACT_APP_API_KEY, text: findText },
+          {key: process.env.REACT_APP_API_KEY, text: findText},
           {
             headers: {
               "Content-type": "application/json",
@@ -60,7 +60,7 @@ const Index = () => {
       axios
         .post(
           "/api/notice/type/org4/" + page,
-          { key: process.env.REACT_APP_API_KEY },
+          {key: process.env.REACT_APP_API_KEY},
           {
             headers: {
               "Content-type": "application/json",
@@ -81,7 +81,7 @@ const Index = () => {
       axios
         .post(
           "/api/notice/search/org4/" + page,
-          { key: process.env.REACT_APP_API_KEY, text: findText },
+          {key: process.env.REACT_APP_API_KEY, text: findText},
           {
             headers: {
               "Content-type": "application/json",
@@ -99,7 +99,7 @@ const Index = () => {
       axios
         .post(
           "/api/notice/type/org4/" + page,
-          { key: process.env.REACT_APP_API_KEY },
+          {key: process.env.REACT_APP_API_KEY},
           {
             headers: {
               "Content-type": "application/json",
@@ -115,14 +115,14 @@ const Index = () => {
         });
     }
   }, [page]);
-
+  
   useEffect(() => {
     setLoading(false);
     if (isSearch) {
       axios
         .post(
           "/api/notice/search/org4",
-          { key: process.env.REACT_APP_API_KEY, text: findText },
+          {key: process.env.REACT_APP_API_KEY, text: findText},
           {
             headers: {
               "Content-type": "application/json",
@@ -141,7 +141,7 @@ const Index = () => {
       axios
         .post(
           "/api/notice/type/org4",
-          { key: process.env.REACT_APP_API_KEY },
+          {key: process.env.REACT_APP_API_KEY},
           {
             headers: {
               "Content-type": "application/json",
@@ -158,19 +158,19 @@ const Index = () => {
         });
     }
   }, [noticeList]);
-
+  
   const dataToText = (date) => {
     let year = date.substring(2, 4);
     let month = date.substring(5, 7);
     let day = date.substring(8, 10);
     return year + "." + month + "." + day;
   };
-
+  
   const readThis = async (id) => {
     await axios
       .post(
         "/api/notice/read/" + id,
-        { key: process.env.REACT_APP_API_KEY },
+        {key: process.env.REACT_APP_API_KEY},
         {
           headers: {
             "Content-type": "application/json",
@@ -185,11 +185,11 @@ const Index = () => {
         console.log(Error);
       });
   };
-
+  
   function NoticeBlock(props) {
     const data = props.data;
     const date = dataToText(data.createdAt);
-
+    
     return (
       <div
         // to={"/organization/noticeDetail/" + data._id}
@@ -201,18 +201,18 @@ const Index = () => {
       </div>
     );
   }
-
+  
   return (
     <div>
       <div class='flex flex-row items-center justify-between mb-4 lg:mb-12'>
         <div class='flex flex-col'>
           <div class='flex flex-row justify-between items-center mb-4 md:mb-0'>
-            <Subtitle text={"공지사항"} />
+            <Subtitle text={"공지사항"}/>
             <div class='w-1/2 flex flex-row items-center relative justify-end '></div>
           </div>
           <div class='mt-1 mb-4 w-full hidden lg:flex flex-row text-sm text-gray-400 items-center'>
             <div class='mr-2'>
-              <HiHome size={16} />
+              <HiHome size={16}/>
             </div>
             Home {">"} 부설기관 {">"} 늘사랑주간보호센터 {">"} 공지사항
           </div>
@@ -245,10 +245,10 @@ const Index = () => {
           <div class='text-lg w-24 '>날짜</div>
           <div class='text-lg w-24 text-center'>조회</div>
         </div>
-
+        
         {noticeList.length !== 0 ? (
           noticeList.map((element, index) => {
-            return <NoticeBlock data={element} key={element._id} />;
+            return <NoticeBlock data={element} key={element._id}/>;
           })
         ) : loading ? (
           <div class='w-full flex justify-center items-center mt-8'>
@@ -256,20 +256,20 @@ const Index = () => {
           </div>
         ) : (
           <div class='py-4 w-full flex justify-center'>
-            <CircularProgress />
+            <CircularProgress/>
           </div>
         )}
       </div>
       <div class='flex flex-col lg:flex-row justify-center items-center my-8 relative'>
         <div class='flex flex-row w-full justify-center items-center lg:w-auto mb-4 lg:mb-0'></div>
         {/* 
-					setPage : 현재 페이지 설정 함수
-					page : 현재 페이지
-					total : 총 페이지
-				 */}
-        <Paging setPage={setPage} page={page} total={totalPage} />
-
-        {currentEmail === "master" || currentEmail === "org4" ? (
+         setPage : 현재 페이지 설정 함수
+         page : 현재 페이지
+         total : 총 페이지
+         */}
+        <Paging setPage={setPage} page={page} total={totalPage}/>
+        
+        {currentEmail === "master" && currentEmail === "org4" ? (
           <div class='relative md:absolute right-0 w-full md:w-auto flex justify-end md:block'>
             <Link
               to={"/organization/writeNotice/0"}
@@ -278,7 +278,8 @@ const Index = () => {
             </Link>
           </div>
         ) : null}
-      </div>{" "}
+      </div>
+      {" "}
     </div>
   );
 };

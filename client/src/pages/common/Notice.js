@@ -296,7 +296,7 @@ const Notice = (props, {match}) => {
         {/* {loading && <Paging setPage={setPage} page={page} total={totalPage} />} */}
         <Paging setPage={setPage} page={page} total={totalPage}/>
         {/* 이거 빌드 전에 고쳐야댐!! */}
-        {true || currentEmail === "master" || currentEmail === type ? (
+        {currentEmail === "master" || currentEmail === type ? (
           <div class='relative md:absolute right-0 w-full md:w-auto flex justify-end md:block'>
             <Link
               to={createActionUrl}

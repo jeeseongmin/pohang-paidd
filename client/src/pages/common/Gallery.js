@@ -16,7 +16,9 @@ const Gallery = (props) => {
   
   const currentEmail = useSelector((state) => state.setting.currentEmail);
   const currentPassword = useSelector((state) => state.setting.currentPassword);
+  
   const type = props.pages;
+  console.log(currentEmail, type);
   const [subtitle, setSubtitle] = useState("");
   
   useEffect(() => {
@@ -151,7 +153,7 @@ const Gallery = (props) => {
          */}
         <Paging setPage={setPage} page={page} total={totalPage}/>
         
-        {currentEmail === "master" || currentEmail === type ? (
+        {currentEmail === "master" ? (
           <div class='relative md:absolute right-0 w-full md:w-auto flex justify-end md:block'>
             <Link
               to={"/business/" + type + "/gallery/write"}

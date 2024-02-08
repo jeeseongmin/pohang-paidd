@@ -6,6 +6,7 @@ import Layout from "../components/Layout";
 import Slider from "../components/Slider";
 import { setMenu, setSubmenu } from "../reducers/setting";
 import HomeNoticeBlock from "../components/notice/HomeNoticeBlock";
+import { ImageUtils } from "../utils/ImageUtils";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -170,7 +171,7 @@ const Home = () => {
                           <img
                             class="w-full h-full object-cover"
                             src={
-                              element.convertedImageUrlList[0]
+                              ImageUtils.convertGoogleDriveImage2(element.convertedImageUrlList[0])
                             }
                             alt="logo"
                           />
