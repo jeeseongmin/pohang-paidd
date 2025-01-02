@@ -1,5 +1,5 @@
 import axios from "axios";
-import NoticeLayout from "components/notice/noticeLayout";
+import NoticeLayout from "components/notice/NoticeLayout";
 import Subtitle from "components/Subtitle";
 import React, { useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
@@ -19,7 +19,7 @@ const NoticeEdit = (props) => {
   const [imgList, setImgList] = useState([]);
   const [fileList, setFileList] = useState(props.info.fileList);
   const [detailUrl, setDetailUrl] = useState();
-  
+
   useEffect(() => {
     if (props.url === "business")
       setDetailUrl("/business/" + props.pages + "/notice/" + id);
@@ -29,19 +29,19 @@ const NoticeEdit = (props) => {
       setDetailUrl("/participation/notice/0");
   }, []);
   const currentEmail = useSelector((state) => state.setting.currentEmail);
-  
+
   const changeInfo = (e, type) => {
     if (type === "fileList" || type === "content") {
-      const cp = {...info};
+      const cp = { ...info };
       cp[type] = e;
       setInfo(cp);
     } else {
-      const cp = {...info};
+      const cp = { ...info };
       cp[type] = e.target.value;
       setInfo(cp);
     }
   };
-  
+
   /**
    * Mongo DB에 저장 시 에디터 상에서 삭제된 파일은 지우는 것이 효율적이다.
    * 따라서 업로드 시에 어떤 항목들이 있는지에 대한 목록.
@@ -55,11 +55,11 @@ const NoticeEdit = (props) => {
       setImgList(data);
     }
   };
-  
+
   useEffect(() => {
     setInfo(props.info);
   }, []);
-  
+
   const editSave = () => {
     if (info.title === "") {
       alert("제목을 입력해주세요!");
@@ -94,11 +94,11 @@ const NoticeEdit = (props) => {
         });
     }
   };
-  
+
   return (
     <div>
-      <div class='flex flex-row justify-between items-center mb-8'>
-        <Subtitle text={"수정하기"}/>
+      <div class="flex flex-row justify-between items-center mb-8">
+        <Subtitle text={"수정하기"} />
       </div>
       <NoticeLayout
         titleRef={titleRef}
@@ -111,17 +111,19 @@ const NoticeEdit = (props) => {
         info={info}
         isEdit={true}
       />
-      
-      <div class='flex justify-between items-center flex-col md:flex-row'>
+
+      <div class="flex justify-between items-center flex-col md:flex-row">
         <Link
-          class='w-full md:w-auto cursor-pointer mb-4 md:mb-0 px-16 py-2 justify-center border border-purple-700 text-purple-700 flex flex-row items-center hover:bg-purple-500 hover:text-white hover:font-bold'
+          class="w-full md:w-auto cursor-pointer mb-4 md:mb-0 px-16 py-2 justify-center border border-purple-700 text-purple-700 flex flex-row items-center hover:bg-purple-500 hover:text-white hover:font-bold"
           to={props.backUrl}
-          onClick={() => window.scrollTo(0, 0)}>
+          onClick={() => window.scrollTo(0, 0)}
+        >
           뒤로 가기
         </Link>
         <div
           onClick={editSave}
-          class='w-full md:w-auto cursor-pointer justify-center px-16 py-2 border border-purple-700 text-purple-700 flex flex-row items-center hover:bg-purple-500 hover:text-white hover:font-bold'>
+          class="w-full md:w-auto cursor-pointer justify-center px-16 py-2 border border-purple-700 text-purple-700 flex flex-row items-center hover:bg-purple-500 hover:text-white hover:font-bold"
+        >
           저장하기
         </div>
       </div>
